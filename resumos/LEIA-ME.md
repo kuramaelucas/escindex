@@ -167,3 +167,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `pancreatite-aguda` | `ass-pancreatite` | 69 | 2 (anuladas, com reposição no resumo) |
 | `colecistite-e-coledocolitiase` | `ass-colecistite` | 61 | 1 (anulada, com reposição no resumo) |
 | `tce` | `ass-neurocir-tce` | 62 | — |
+| `apendicite-aguda` | `ass-apendicite` | 58 | 1 (anulada) |

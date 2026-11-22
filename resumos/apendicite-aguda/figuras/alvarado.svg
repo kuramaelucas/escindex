@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Escore de Alvarado (0 a 10) e o que fazer com ele</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="330" height="270" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="185" y="68" font-weight="bold">Pontos</text>
+    <text x="185" y="94">Migração da dor: 1</text>
+    <text x="185" y="114">Anorexia: 1</text>
+    <text x="185" y="134">Náuseas ou vômitos: 1</text>
+    <text x="185" y="154">Dor e defesa na fossa ilíaca direita: 2</text>
+    <text x="185" y="174">Descompressão dolorosa: 1</text>
+    <text x="185" y="194">Febre: 1</text>
+    <text x="185" y="214">Leucocitose: 2</text>
+    <text x="185" y="234">Desvio à esquerda: 1</text>
+    <rect x="370" y="44" width="330" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="535" y="68" font-weight="bold">1 a 4: improvável</text>
+    <text x="535" y="92">Baixo risco: observar e reavaliar</text>
+    <text x="535" y="110">em 6 a 8 horas</text>
+    <rect x="370" y="134" width="330" height="80" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="535" y="158" font-weight="bold">5 a 6: possível</text>
+    <text x="535" y="182">Imagem (ultrassonografia, tomografia)</text>
+    <text x="535" y="200">ou observação seriada</text>
+    <rect x="370" y="224" width="330" height="90" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="535" y="248" font-weight="bold">7 a 10: provável</text>
+    <text x="535" y="272">Diagnóstico clínico suficiente:</text>
+    <text x="535" y="290">apendicectomia</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Mulher em idade fértil e criança: a ultrassonografia vem antes da tomografia</text>
+</svg>

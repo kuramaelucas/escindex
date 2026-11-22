@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Apendicite aguda: o tratamento depende da fase</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Não complicada</text>
+    <text x="127" y="94">Apendicectomia, de preferência</text>
+    <text x="127" y="112">por videolaparoscopia</text>
+    <text x="127" y="136">Antibiótico em dose única,</text>
+    <text x="127" y="154">30 a 60 minutos antes da</text>
+    <text x="127" y="172">incisão; sem antibiótico depois</text>
+    <text x="127" y="196">Dieta leve e alta no</text>
+    <text x="127" y="214">1º pós-operatório</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Abscesso bem delimitado</text>
+    <text x="360" y="94">Paciente estável, coleção</text>
+    <text x="360" y="112">acima de 3 a 4 cm:</text>
+    <text x="360" y="136">drenagem percutânea guiada</text>
+    <text x="360" y="154">por imagem e antibiótico</text>
+    <text x="360" y="178">Operar depois, se indicado</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Peritonite difusa</text>
+    <text x="592" y="94">Ressuscitação, antibiótico de</text>
+    <text x="592" y="112">largo espectro e cirurgia</text>
+    <text x="592" y="136">com lavagem da cavidade</text>
+    <text x="592" y="160">Comunitária: ceftriaxona e</text>
+    <text x="592" y="178">metronidazol</text>
+    <text x="592" y="202">Febre tardia no pós-operatório:</text>
+    <text x="592" y="220">tomografia (abscesso)</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Antibiótico isolado trata, mas recorre em cerca de 25 a 30 % em um ano</text>
+</svg>
