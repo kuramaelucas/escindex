@@ -170,3 +170,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `apendicite-aguda` | `ass-apendicite` | 58 | 1 (anulada) |
 | `trauma-de-torax` | `ass-traumatorax` | 59 | — |
 | `hiv` | `ass-hiv` | 248 | — |
+| `meningites` | `ass-meningites` | 220 | — |

@@ -73,4 +73,5 @@
   { id: "apendicite-aguda", titulo: "Apendicite aguda", area: "Cirurgia · Abdome agudo", assunto: "ass-apendicite" },
   { id: "trauma-de-torax", titulo: "Trauma de tórax", area: "Cirurgia · Trauma", assunto: "ass-traumatorax" },
   { id: "hiv", titulo: "HIV/aids", area: "Clínica Médica · Infectologia", assunto: "ass-hiv" },
+  { id: "meningites", titulo: "Meningites e encefalites", area: "Clínica Médica · Infectologia", assunto: "ass-meningites" },
 ];
