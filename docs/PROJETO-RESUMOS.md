@@ -89,6 +89,41 @@ Ordem pedida em 19/11/2026 (questões reais contadas no mesmo dia por assunto da
 | 14 | `ass-caendometrio` | 49 | `cancer-de-endometrio` | escrito | `esgo-endometrio`, FIGO 2023 |
 | 15 | `ass-endometriose` | 49 | `endometriose` | escrito | ESHRE 2022, FEBRASGO |
 
+## 3-D. Medicina preventiva: os 10 assuntos pedidos
+
+Ordem pedida em 22/11/2026 (questões reais contadas no mesmo dia, anuladas incluídas; autorais e dissertativas entram no resumo). Diretrizes **a conferir na escrita**; quando a fonte está em `ferramentas/edicoes-vigentes.json`, o id é o mesmo.
+
+| # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
+|---|---|---|---|---|---|
+| 1 | `ass-esf` | 167 | `estrategia-saude-familia` | escrito | PNAB 2017 (Portaria 2.436/2017, com a Portaria 3.493/2024 sobre eMulti), Starfield, Portaria GM/MS 635/2023 (eMulti), Lei 14.510/2022 (telessaúde) |
+| 2 | `ass-desenhosestudo` | 158 | `desenhos-de-estudo` | a fazer | CONSORT, STROBE, PRISMA, Oxford CEBM (níveis de evidência) |
+| 3 | `ass-medidasepi` | 143 | `medidas-epidemiologicas` | a fazer | sem diretriz de conduta; fórmulas de indicadores (RIPSA) |
+| 4 | `ass-vigilancia` | 130 | `vigilancia-em-saude` | a fazer | `notificacao` (Portaria GM/MS de notificação compulsória), Lei 8.080/1990, Portaria de consolidação nº 4/2017 |
+| 5 | `ass-bioestatistica` | 108 | `bioestatistica` | a fazer | sem diretriz; fórmulas (sensibilidade, valor preditivo, risco, NNT, testes de hipótese) |
+| 6 | `ass-principiossus` | 106 | `principios-do-sus` | a fazer | CF/88, Lei 8.080/1990, Lei 8.142/1990, Decreto 7.508/2011, LC 141/2012 |
+| 7 | `ass-prevencao` | 85 | `prevencao` | a fazer | Wilson e Jungner (rastreamento), Leavell e Clark, USPSTF/INCA conforme o rastreio |
+| 8 | `ass-saudetrabalhador` | 77 | `saude-do-trabalhador` | a fazer | Portaria de Consolidação nº 5/2017 (notificação de agravos do trabalho), NR-7, NR-15, Lei 8.213/1991 (CAT) |
+| 9 | `ass-imunizacao` | 55 | `imunizacao` | a fazer | `calendario-vacinal`, Manual de Normas e Procedimentos para Vacinação (MS), CRIE |
+| 10 | `ass-comunicacaoclinica` | 51 | `comunicacao-clinica` | a fazer | Calgary-Cambridge, SPIKES, Código de Ética Médica (Res. CFM 2.217/2018) |
+
+## 3-E. Cirurgia: os 11 assuntos pedidos
+
+Mesma regra da 3-D. Para cirurgia, os PDFs enviados pelo usuário ficam em `lotes/fontes/` (ATLS, WSES, Tokyo 2018, ACG); domínio que não abrir vai para `PENDENCIAS.md`, item 13.
+
+| # | Assunto | Questões reais | Tema (pasta) | Situação | Diretrizes de que depende (a conferir na escrita) |
+|---|---|---|---|---|---|
+| 1 | `ass-atls` | 103 | `atls` | a fazer | ATLS 10ª ed. (ACS), `aha-rcp` quando tocar parada |
+| 2 | `ass-traumaabd` | 83 | `trauma-abdominal` | a fazer | ATLS, WSES (trauma abdominal fechado e penetrante), AAST (graduação de lesão) |
+| 3 | `ass-hernias` | 83 | `hernias` | a fazer | `herniasurge` (inguinal), classificação de Nyhus e EHS |
+| 4 | `ass-obstrucao` | 68 | `obstrucao-intestinal` | a fazer | WSES (obstrução de delgado por bridas), ASCRS/ESGE (obstrução maligna) |
+| 5 | `ass-complicacoescir` | 68 | `complicacoes-cirurgicas` | a fazer | CDC/NHSN (infecção de sítio cirúrgico), classificação de Clavien-Dindo |
+| 6 | `ass-cuidadosperi` | 66 | `cuidados-perioperatorios` | a fazer | ASA, risco cardíaco (ACC/AHA e ESC pré-operatório), ERAS, jejum (ASA/SBA) |
+| 7 | `ass-pancreatite` | 65 | `pancreatite-aguda` | a fazer | `acg-pancreatite`, Atlanta revisado 2012, IAP/APA |
+| 8 | `ass-colecistite` | 58 | `colecistite-e-coledocolitiase` | a fazer | Tokyo 2018, WSES (colecistite), ASGE (coledocolitiase) |
+| 9 | `ass-neurocir-tce` | 57 | `tce` | a fazer | ATLS, Brain Trauma Foundation 4ª ed., Escala de Coma de Glasgow |
+| 10 | `ass-apendicite` | 55 | `apendicite-aguda` | a fazer | `wses-apendicite` (2025), Alvarado/AIR |
+| 11 | `ass-traumatorax` | 55 | `trauma-de-torax` | a fazer | ATLS, WSES, EAST (toracotomia de reanimação) |
+
 ## 4. Mapeamento: o que foi usado e o que muda com diretriz
 
 Hoje o resumo guarda `fontes` só no nível do resumo. Para a atualização ser cirúrgica, cada seção precisa dizer de que diretriz depende.
@@ -201,3 +236,5 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 19/11/2026 | **`triagem-neonatal`**: PCDT de hipotireoidismo congênito 2021 e manual da SBP do coraçãozinho lidos; corrigido o momento do teste de suspensão da levotiroxina (após 3 anos; a prova de 2 anos foi às armadilhas); 2 seções sem `conferir`. O Manual de Triagem Neonatal 2016 está no bvsms (bloqueado). |
 | 19/11/2026 | **`ictericia-neonatal`**: documento científico da SBP (2021) lido; fator de risco corrigido (perda de peso > 7%); 2 seções sem `conferir`. AAP 2022 não está no PMC; SBP colestase a ler. |
 | 22/11/2026 | **`crescimento-puberdade`**: três documentos da SBP (puberdade precoce, adrenarca/telarca, avaliação do crescimento) lidos; nada a corrigir; 3 seções sem `conferir` (adrenarca segue a conferir: a ligação com SOP não consta do documento). |
+| 22/11/2026 | **Tabelas 3-D (medicina preventiva, 10 assuntos) e 3-E (cirurgia, 11 assuntos) abertas** com questões reais e diretrizes. |
+| 22/11/2026 | **`estrategia-saude-familia` escrito**: 6 capítulos, 19 seções, 173 de 175 questões (2 anuladas fora). Atributos de Starfield (acesso, longitudinalidade, integralidade e coordenação, derivados), PNAB 2017 (composição, ACS, eAP), eMulti, território, genograma e ecomapa, PTS, apoio matricial, visita domiciliar, SOAP/CIAP, método centrado na pessoa, educação em saúde, telessaúde; 2 esquemas autorais (atributos; genograma e ecomapa) e 3 casos ilustrados. Pendente: ler PNAB 2017, Portaria 635/2023 e Lei 14.510/2022 (`bvsms`, `in.gov.br`, `planalto` e `conass` não abriram), por isso todas as seções seguem "a conferir". |

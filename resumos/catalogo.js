@@ -51,4 +51,5 @@
   { id: "parto-pretermo-e-rotura", titulo: "Parto pré-termo e rotura prematura de membranas", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-partopretermo" },
   { id: "cancer-de-endometrio", titulo: "Câncer de endométrio e sangramento pós-menopausa", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-caendometrio" },
   { id: "endometriose", titulo: "Endometriose e adenomiose", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-endometriose" },
+  { id: "estrategia-saude-familia", titulo: "Estratégia Saúde da Família e atenção primária", area: "Medicina Preventiva · Atenção Primária", assunto: "ass-esf" },
 ];

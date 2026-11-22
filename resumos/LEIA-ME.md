@@ -148,3 +148,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `parto-pretermo-e-rotura` | `ass-partopretermo` | 54 | 2 (desatualizadas, com reposição no resumo) |
 | `cancer-de-endometrio` | `ass-caendometrio` | 52 (+1 de `ass-camama` sobre endométrio) | 1 (anulada) |
 | `endometriose` | `ass-endometriose` | 51 | — |
+| `estrategia-saude-familia` | `ass-esf` | 173 | 2 (anuladas) |
