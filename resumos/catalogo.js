@@ -60,4 +60,5 @@
   { id: "prevencao", titulo: "Prevenção, rastreamento e prevenção quaternária", area: "Medicina Preventiva · Prevenção", assunto: "ass-prevencao" },
   { id: "saude-do-trabalhador", titulo: "Saúde do trabalhador", area: "Medicina Preventiva · Saúde do Trabalhador", assunto: "ass-saudetrabalhador" },
   { id: "imunizacao", titulo: "Imunização: adultos, gestantes, grupos especiais e pós-exposição", area: "Medicina Preventiva · Imunização", assunto: "ass-imunizacao" },
+  { id: "comunicacao-clinica", titulo: "Comunicação clínica e relação médico-paciente", area: "Medicina Preventiva · Comunicação Clínica", assunto: "ass-comunicacaoclinica" },
 ];
