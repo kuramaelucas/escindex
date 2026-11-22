@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 390" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="390" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Sepse com hipoperfusão: a primeira hora</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Reconhecer e colher</text>
+    <text x="127" y="94">Dosar lactato</text>
+    <text x="127" y="122">Hemoculturas antes do</text>
+    <text x="127" y="140">antibiótico, sem atrasá-lo</text>
+    <text x="127" y="168">Procurar o foco e</text>
+    <text x="127" y="186">controlá-lo (drenar</text>
+    <text x="127" y="204">abscesso, desobstruir)</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Tratar</text>
+    <text x="360" y="94">Antibiótico de amplo</text>
+    <text x="360" y="112">espectro na primeira hora</text>
+    <text x="360" y="140">Cristaloide balanceado,</text>
+    <text x="360" y="158">30 mL/kg, se hipotensão</text>
+    <text x="360" y="176">ou lactato alto</text>
+    <text x="360" y="204">Reavaliar a perfusão:</text>
+    <text x="360" y="222">enchimento capilar,</text>
+    <text x="360" y="240">lactato, diurese</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Se a pressão não sobe</text>
+    <text x="592" y="94">Noradrenalina para</text>
+    <text x="592" y="112">PAM de 65 mmHg ou mais</text>
+    <text x="592" y="140">Pode começar em veia</text>
+    <text x="592" y="158">periférica, sem esperar</text>
+    <text x="592" y="176">o acesso central</text>
+    <text x="592" y="204">Hidrocortisona se a dose</text>
+    <text x="592" y="222">for alta e persistente</text>
+  </g>
+  <text x="360" y="344" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Cada hora de atraso do antibiótico aumenta a mortalidade</text>
+  <text x="360" y="366" text-anchor="middle" font-size="13" fill="#1f2d3d">Sepse possível, sem choque: avaliar rápido a probabilidade de infecção (até 3 horas)</text>
+</svg>

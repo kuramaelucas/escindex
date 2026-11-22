@@ -77,4 +77,5 @@
   { id: "pneumonia-comunitaria", titulo: "Pneumonia no adulto", area: "Clínica Médica · Pneumologia", assunto: "ass-pneumonia" },
   { id: "arboviroses", titulo: "Dengue, chikungunya, Zika e febre amarela", area: "Clínica Médica · Infectologia", assunto: "ass-arboviroses" },
   { id: "parasitoses", titulo: "Parasitoses intestinais e esquistossomose", area: "Clínica Médica · Infectologia", assunto: "ass-parasitoses" },
+  { id: "sepse", titulo: "Sepse e choque séptico", area: "Clínica Médica · Infectologia", assunto: "ass-sepse" },
 ];
