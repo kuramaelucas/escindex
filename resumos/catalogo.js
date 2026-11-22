@@ -59,4 +59,5 @@
   { id: "principios-do-sus", titulo: "Princípios e organização do SUS", area: "Medicina Preventiva · Saúde Coletiva", assunto: "ass-principiossus" },
   { id: "prevencao", titulo: "Prevenção, rastreamento e prevenção quaternária", area: "Medicina Preventiva · Prevenção", assunto: "ass-prevencao" },
   { id: "saude-do-trabalhador", titulo: "Saúde do trabalhador", area: "Medicina Preventiva · Saúde do Trabalhador", assunto: "ass-saudetrabalhador" },
+  { id: "imunizacao", titulo: "Imunização: adultos, gestantes, grupos especiais e pós-exposição", area: "Medicina Preventiva · Imunização", assunto: "ass-imunizacao" },
 ];

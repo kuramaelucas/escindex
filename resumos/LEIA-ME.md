@@ -156,3 +156,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `principios-do-sus` | `ass-principiossus` | 113 | 1 (anulada) |
 | `prevencao` | `ass-prevencao` | 88 | 2 (anuladas) |
 | `saude-do-trabalhador` | `ass-saudetrabalhador` | 79 (2 são reposições) | 4 (2 anuladas com reposição no resumo; 2 anuladas sem reposição) |
+| `imunizacao` | `ass-imunizacao` | 59 | 1 (anulada) |
