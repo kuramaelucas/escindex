@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Pancreatite aguda: o que fazer e o que não fazer no início</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Diagnóstico</text>
+    <text x="127" y="94">Dois de três critérios:</text>
+    <text x="127" y="118">dor típica em barra, com</text>
+    <text x="127" y="136">irradiação para o dorso</text>
+    <text x="127" y="160">Lipase ou amilase com</text>
+    <text x="127" y="178">3 vezes o limite superior</text>
+    <text x="127" y="202">Imagem compatível, só</text>
+    <text x="127" y="220">quando há dúvida</text>
+    <text x="127" y="246">Ultrassonografia: causa biliar</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Fazer</text>
+    <text x="360" y="94">Hidratação com Ringer lactato,</text>
+    <text x="360" y="112">moderada (1,5 mL/kg/h)</text>
+    <text x="360" y="136">Analgesia</text>
+    <text x="360" y="160">Dieta oral assim que a dor</text>
+    <text x="360" y="178">melhora; enteral em até</text>
+    <text x="360" y="196">48 horas se não tolerar</text>
+    <text x="360" y="220">Grave: UTI e reposição</text>
+    <text x="360" y="238">guiada por metas</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Não fazer</text>
+    <text x="592" y="94">Antibiótico profilático</text>
+    <text x="592" y="118">Nutrição parenteral de rotina</text>
+    <text x="592" y="142">Tomografia antes de 72 horas,</text>
+    <text x="592" y="160">sem dúvida diagnóstica</text>
+    <text x="592" y="184">CPRE de rotina: só na</text>
+    <text x="592" y="202">colangite ou obstrução</text>
+    <text x="592" y="226">Esperar a amilase normalizar</text>
+    <text x="592" y="244">para alimentar</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">A gravidade se define pela falência de órgãos, e não pelo valor das enzimas</text>
+</svg>

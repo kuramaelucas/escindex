@@ -164,3 +164,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `obstrucao-intestinal` | `ass-obstrucao` | 75 | 1 (anulada) |
 | `complicacoes-cirurgicas` | `ass-complicacoescir` | 68 | 1 (anulada) |
 | `cuidados-perioperatorios` | `ass-cuidadosperi` | 68 | 4 (1 anulada com reposição no resumo; 3 fora do tema) |
+| `pancreatite-aguda` | `ass-pancreatite` | 69 | 2 (anuladas, com reposição no resumo) |

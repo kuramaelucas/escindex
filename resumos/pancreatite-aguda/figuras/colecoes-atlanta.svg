@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Coleções da pancreatite aguda (Atlanta revisada)</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="335" height="110" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="187" y="68" font-weight="bold">Pancreatite edematosa intersticial</text>
+    <text x="187" y="94">Até 4 semanas: coleção líquida aguda</text>
+    <text x="187" y="118">Depois: pseudocisto (parede definida)</text>
+    <rect x="365" y="44" width="335" height="110" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="532" y="68" font-weight="bold">Pancreatite necrosante</text>
+    <text x="532" y="94">Até 4 semanas: coleção necrótica aguda</text>
+    <text x="532" y="118">Depois: necrose encapsulada</text>
+    <rect x="20" y="174" width="680" height="110" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="198" font-weight="bold">Conduta</text>
+    <text x="360" y="222">Sem sintoma e sem infecção: observar e repetir a imagem</text>
+    <text x="360" y="244">Com infecção (febre, leucocitose, gás): antibiótico e drenagem</text>
+    <text x="360" y="262">percutânea ou endoscópica; desbridar só se não melhorar</text>
+  </g>
+  <text x="360" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Cirurgia aberta precoce da necrose não é o tratamento padrão</text>
+</svg>

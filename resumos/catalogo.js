@@ -67,4 +67,5 @@
   { id: "obstrucao-intestinal", titulo: "Obstrução intestinal e abdome agudo obstrutivo", area: "Cirurgia · Abdome agudo", assunto: "ass-obstrucao" },
   { id: "complicacoes-cirurgicas", titulo: "Complicações cirúrgicas", area: "Cirurgia · Pós-operatório", assunto: "ass-complicacoescir" },
   { id: "cuidados-perioperatorios", titulo: "Cuidados perioperatórios", area: "Cirurgia · Perioperatório", assunto: "ass-cuidadosperi" },
+  { id: "pancreatite-aguda", titulo: "Pancreatite aguda e crônica", area: "Cirurgia · Pâncreas", assunto: "ass-pancreatite" },
 ];
