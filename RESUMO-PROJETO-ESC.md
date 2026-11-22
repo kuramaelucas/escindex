@@ -4,7 +4,7 @@
 Este documento existe para que uma nova conversa com o Claude comece sabendo tudo o que já foi decidido e construído. Anexe-o junto com o `CLAUDE.md` (como o código funciona e o mapa dos arquivos) e o arquivo da pasta `codigo/` que tem a tela ou a regra em questão; se a conversa for sobre conteúdo, com o arquivo da pasta `dados/` que interessa. No Claude Code, o `CLAUDE.md` já é lido sozinho.
 
 <!-- numeros:inicio -->
-> **Números do banco (gerados por `npm run publicar`):** 12.138 questões (9.305 reais, em 94 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
+> **Números do banco (gerados por `npm run publicar`):** 12.238 questões (9.405 reais, em 95 provas), 943 cartões da equipe e 237 assuntos (20 ainda sem cartão). Detalhe: `npm run dados` e `dados/CATALOGO.md`.
 <!-- numeros:fim -->
 
 > **Pendências abertas — só a coordenação pode fazer** (a rede de onde o código é escrito não alcança o Supabase). Enquanto não forem feitas, a plataforma funciona e não perde nada: pula o que falta, sincroniza o resto e avisa em *Perfil*.
