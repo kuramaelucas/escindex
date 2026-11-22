@@ -1,17 +1,17 @@
 # Referências de simulados autorais ainda com confirmação fraca
 
-Gerado por `npm run referencias-a-conferir` em 18/11/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
+Gerado por `npm run referencias-a-conferir` em 22/11/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
 
-Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
+Total: **142** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
 
 | Grupo | Questões |
 |---|---|
-| Livros-texto e outras fontes sem diretriz | 31 |
+| Livros-texto e outras fontes sem diretriz | 30 |
 | Ministério da Saúde, Conitec e leis (PCDT, manuais, portarias, SUS) | 28 |
 | Pediatria (SBP, AAP, AAOS pediátrico, OMS, ACMG) | 26 |
 | Epidemiologia e bioestatística (livros-texto) | 23 |
-| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 18 |
-| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 10 |
+| Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) | 17 |
+| Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) | 6 |
 | AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) | 2 |
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 2 |
@@ -21,7 +21,7 @@ Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 1 |
 | Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 1 |
 
-## Livros-texto e outras fontes sem diretriz (31)
+## Livros-texto e outras fontes sem diretriz (30)
 
 - `q-adap22-009` (gab. B, simulado-epm-3): Flint PW et al. Cummings Otolaryngology: Head and Neck Surgery, 7ª ed. Elsevier, 2021 (capítulo sobre trauma nasal e septal); Sociedade Brasileira de
 - `q-adap22-010` (gab. C, simulado-epm-3): American College of Surgeons. ATLS – Advanced Trauma Life Support, 9ª ed., 2012 (limites numéricos da tabela de classes de hemorragia); a 10ª (2018) e
@@ -46,7 +46,6 @@ Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 - `q-adap23-038` (gab. D, simulado-epm-5): Manual Cochrane de revisões sistemáticas de intervenções; declaração PRISMA (2020); Higgins e Thompson, quantificação da heterogeneidade (2002).
 - `q-adap23-039` (gab. C, simulado-epm-5): Manual de Urgências em Oftalmologia (Conselho Brasileiro de Oftalmologia); Advanced Trauma Life Support, avaliação ocular.
 - `q-adap23-040` (gab. A, simulado-epm-5): Diretrizes da Sociedade Europeia de Glaucoma (2021); Preferred Practice Pattern de glaucoma primário de ângulo fechado (Academia Americana de Oftalmol
-- `q-adap23-047` (gab. D, simulado-epm-5): Manual de Uroginecologia da Febrasgo; Diretriz da Associação Europeia de Urologia sobre incontinência urinária e fístulas (2023); Campbell-Walsh, Urol
 - `q-adap23-065` (gab. C, simulado-epm-5): Diretriz brasileira de anafilaxia (Associação Brasileira de Alergia e Imunologia, 2022); Parâmetros da Organização Mundial de Alergia sobre anafilaxia
 - `q-adap23-081` (gab. C, simulado-epm-5): Sociedade Brasileira de Oncologia Pediátrica, protocolo de tumor de Wilms; Diretrizes do Children's Oncology Group e da SIOP-RTSG; Instituto Nacional
 - `q-adap23-087` (gab. D, simulado-epm-5): Sociedade Brasileira de Cirurgia Pediátrica; Diretrizes da Sociedade Norte-Americana de Gastroenterologia Pediátrica (NASPGHAN) sobre vômito bilioso e
@@ -141,7 +140,7 @@ Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 - `q-adap23-028` (gab. B, simulado-epm-5): Medronho et al., Epidemiologia; Gordis, Epidemiologia; Rouquayrol e Gurgel, Epidemiologia & Saúde.
 - `q-adap23-030` (gab. B, simulado-epm-5): Vieira, Bioestatística: tópicos avançados; Fletcher, Epidemiologia Clínica; Altman, Practical Statistics for Medical Research.
 
-## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) (18)
+## Ginecologia e obstetrícia (ACOG, FIGO, ESHRE, NAMS, FEBRASGO, OMS/CDC MEC, ASCCP, IADPSG) (17)
 
 - `q-adap25-066` (gab. B, simulado-epm-2): Cameron AP et al. The AUA/SUFU Guideline on the Diagnosis and Treatment of Idiopathic Overactive Bladder. J Urol 2024;212:11-20 (as opções foram confe
 - `q-adap25-069` (gab. D, simulado-epm-2): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome. J
@@ -153,7 +152,6 @@ Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 - `q-adap22-029` (gab. B, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 228: Management of Symptomatic Uterine Leiomyomas. Obstet Gynecol 2021;137:
 - `q-adap22-034` (gab. C, simulado-epm-3): American College of Obstetricians and Gynecologists. Practice Bulletin No. 178: Shoulder Dystocia. Obstet Gynecol 2017;129:e123-33 (reafirmado). Texto
 - `q-adap26-047` (gab. B, simulado-epm-4): Practice Committee of the American Society for Reproductive Medicine. Current evaluation of amenorrhea (Fertil Steril 2008); Hughes IA et al. Androgen
-- `q-adap26-048` (gab. C, simulado-epm-4): Nambiar AK et al. EAU Guidelines on Assessment and Nonsurgical Management of Urinary Incontinence (Eur Urol 2022); Kobashi KC et al. Surgical Treatmen
 - `q-adap26-051` (gab. B, simulado-epm-4): Teede HJ et al. Recommendations from the 2023 international evidence-based guideline for the assessment and management of polycystic ovary syndrome (H
 - `q-adap26-053` (gab. C, simulado-epm-4): Ministério da Saúde/INCA, Diretrizes brasileiras para o rastreamento do câncer do colo do útero, 2ª ed. (2016) para o manejo das lesões; a atualização
 - `q-adap26-059` (gab. C, simulado-epm-4): ACOG Practice Bulletin 192: Management of alloimmunization during pregnancy (Obstet Gynecol 2018); Mari G et al. Noninvasive diagnosis by Doppler ultr
@@ -162,18 +160,14 @@ Total: **148** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 - `q-adap23-046` (gab. B, simulado-epm-5): Atlas BI-RADS do Colégio Americano de Radiologia (5ª edição, 2013); Diretrizes para a Detecção Precoce do Câncer de Mama no Brasil (INCA/Ministério da
 - `q-adap23-052` (gab. A, simulado-epm-5): Critérios de classificação de síndrome antifosfolípide do ACR/EULAR (2023); Recomendações da EULAR para síndrome antifosfolípide (2019); Diretriz da A
 
-## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) (10)
+## Cirurgia e trauma (WSES, ASCRS, ESVS/SVS, EAU, ACS, Tóquio, Bologna, HerniaSurge, ACG/AGA) (6)
 
-- `q-adap22-012` (gab. C, simulado-epm-3): EAU/ESPU. EAU Guidelines on Paediatric Urology (capítulos sobre uropatia obstrutiva e válvula de uretra posterior), edição de 2024; Partin AW et al. C
 - `q-adap22-018` (gab. B, simulado-epm-3): Björck M et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2020 Clinical Practice Guidelines on the Management of Acute Limb Ischa
 - `q-adap22-019` (gab. D, simulado-epm-3): De Maeseneer MG et al. Editor's Choice – European Society for Vascular Surgery (ESVS) 2022 Clinical Practice Guidelines on the Management of Chronic V
-- `q-adap26-012` (gab. D, simulado-epm-4): EAU Guidelines on Non-neurogenic Male LUTS (2024); Sociedade Brasileira de Urologia, I Consenso Brasileiro de Hiperplasia Prostática Benigna.
 - `q-adap26-016` (gab. C, simulado-epm-4): Yadlapati R et al. Esophageal motility disorders on high-resolution manometry: Chicago Classification v4.0 (Neurogastroenterol Motil 2021); Vaezi MF e
-- `q-adap23-080` (gab. C, simulado-epm-5): Diretriz da Associação Europeia de Urologia sobre carcinoma de células renais (2024); Diretriz da Associação Americana de Urologia sobre massa renal l
 - `q-adap23-083` (gab. C, simulado-epm-5): Diretrizes da American Society of Hematology para diagnóstico de tromboembolismo venoso (2018); escore de Wells (Lancet, 1997; modificado em 2003); Di
 - `q-adap23-084` (gab. C, simulado-epm-5): Diretriz da Sociedade Europeia de Cirurgia Vascular para aneurisma de aorta abdominal (2024); Diretriz da Sociedade de Cirurgia Vascular dos Estados U
 - `q-adap23-090` (gab. D, simulado-epm-5): Diretrizes da Sociedade Americana de Cirurgiões de Cólon e Reto para abscesso e fístula anorretal (2022); Sociedade Brasileira de Coloproctologia.
-- `q-adap23-099` (gab. D, simulado-epm-5): Diretrizes da Associação Europeia de Urologia Pediátrica sobre hipospádia (2024); Sociedade Brasileira de Urologia e Sociedade Brasileira de Cirurgia
 
 ## AHA/ACC/ESC — cardiologia (periop., aorta, valvas, SCA, PCR, ressuscitação) (2)
 
