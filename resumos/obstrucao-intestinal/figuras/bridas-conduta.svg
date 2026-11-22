@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Obstrução do delgado por bridas: tratar ou operar?</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="170" y="40" width="380" height="58" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="62" font-weight="bold">Cirurgia abdominal prévia, estável, sem peritonite</text>
+    <text x="360" y="82">Há sinais de sofrimento da alça?</text>
+    <rect x="20" y="140" width="320" height="170" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="180" y="164" font-weight="bold">Não: tratamento não operatório</text>
+    <text x="180" y="186">Jejum, sonda nasogástrica aberta,</text>
+    <text x="180" y="204">hidratação e correção de eletrólitos</text>
+    <text x="180" y="228">Contraste hidrossolúvel: diagnóstico</text>
+    <text x="180" y="246">e tratamento; sem bário e sem procinético</text>
+    <text x="180" y="270">Reavaliar a cada poucas horas</text>
+    <text x="180" y="288">Falha após 48 a 72 horas: operar</text>
+    <rect x="380" y="140" width="320" height="170" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="540" y="164" font-weight="bold">Sim: cirurgia</text>
+    <text x="540" y="186">Peritonite, febre, hipotensão,</text>
+    <text x="540" y="204">leucocitose e lactato elevados</text>
+    <text x="540" y="228">Tomografia: alça fechada, redemoinho,</text>
+    <text x="540" y="246">parede espessa e sem realce, líquido livre</text>
+    <text x="540" y="270">Laparoscopia em casos selecionados</text>
+    <text x="540" y="288">(menor morbidade, mais lesão de alça)</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#1f2d3d">
+    <path d="M300 98 L190 136" fill="none"/><path d="M186 128 L180 140 L194 138 Z"/>
+    <path d="M420 98 L530 136" fill="none"/><path d="M534 128 L540 140 L526 138 Z"/>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Sem cirurgia prévia, a causa costuma ser hérnia, tumor ou volvo, e a obstrução tende a operar</text>
+</svg>

@@ -161,3 +161,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `atls` | `ass-atls` | 109 | 1 (anulada) |
 | `trauma-abdominal` | `ass-traumaabd` | 86 | — |
 | `hernias` | `ass-hernias` | 85 | 1 (anulada) |
+| `obstrucao-intestinal` | `ass-obstrucao` | 75 | 1 (anulada) |

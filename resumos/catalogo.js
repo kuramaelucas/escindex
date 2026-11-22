@@ -64,4 +64,5 @@
   { id: "atls", titulo: "Atendimento inicial ao politraumatizado (ATLS)", area: "Cirurgia · Trauma", assunto: "ass-atls" },
   { id: "trauma-abdominal", titulo: "Trauma abdominal", area: "Cirurgia · Trauma", assunto: "ass-traumaabd" },
   { id: "hernias", titulo: "Hérnias da parede abdominal", area: "Cirurgia · Parede abdominal", assunto: "ass-hernias" },
+  { id: "obstrucao-intestinal", titulo: "Obstrução intestinal e abdome agudo obstrutivo", area: "Cirurgia · Abdome agudo", assunto: "ass-obstrucao" },
 ];
