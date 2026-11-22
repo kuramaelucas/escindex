@@ -313,6 +313,13 @@ tr:last-child td{border-bottom:none}
 .tabela-fina .icon-btn .icon{width:.95em;height:.95em}
 .table-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:var(--radius)}
 .table-wrap table{border:none}
+/* Tabelas do Painel da Turma: menos espaço por célula e título de coluna que quebra
+   linha, para caber na largura sem rolagem lateral (o table-wrap só rola em último caso). */
+.tabela-turma{font-size:12.5px}
+.tabela-turma th,.tabela-turma td{padding:.35rem .4rem;line-height:1.25}
+.tabela-turma th{white-space:normal;vertical-align:bottom}
+.tabela-turma .th-ordem{white-space:normal;text-align:left;padding:0;line-height:1.2}
+.tabela-turma td .text-xs{overflow-wrap:anywhere}
 
 /* ---------- estrutura autenticada (shell) ---------- */
 .shell{display:flex;min-height:100vh}

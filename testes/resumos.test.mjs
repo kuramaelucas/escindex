@@ -31,6 +31,8 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     assert.ok(await pagina.evaluate(() => navItemsParaPapel("aluno").some(i => i.id === "resumos") && GRUPO_DO_ITEM_ALUNO.resumos === "Estudar"), "Resumos está no menu lateral, no grupo Estudar");
     assert.equal(await pagina.locator("text=Abrir resumos").count(), 0, "a página Estudar não traz mais o cartão de Resumos");
     await pagina.evaluate(() => navigate("resumos"));
+    await pagina.waitForSelector(".resumo-area", { state: "attached" });
+    await pagina.evaluate(() => document.querySelectorAll(".resumo-area").forEach(d => { d.open = true; }));
     await pagina.waitForSelector("text=Doenças exantemáticas na infância");
     await pagina.evaluate(() => abrirResumo("exantematicas"));
     await pagina.waitForSelector(".resumo-caderno");
@@ -130,6 +132,11 @@ test("resumos: lista por grande área e por erro, voltar fecha o resumo, marcar 
       saveState();
       navigate("resumos");
     });
+    // áreas começam fechadas e só mostram os 5 de pior desempenho: abre todas para conferir
+    await pagina.waitForSelector(".resumo-area", { state: "attached" });
+    await pagina.evaluate(() => document.querySelectorAll(".resumo-area").forEach(d => { d.open = true; }));
+    const porArea = await pagina.evaluate(() => [...document.querySelectorAll(".resumo-area")].map(d => ({ cartoes: d.querySelectorAll(".card").length, total: Number(d.querySelector("summary").textContent.match(/\((\d+)\)/)[1]), mostrarTodos: !!d.querySelector("button.link-btn") })));
+    assert.ok(porArea.every(a => a.cartoes <= 5 && (a.total <= 5 || a.mostrarTodos)), "no máximo 5 por área, com 'Mostrar todos' quando há mais");
     await pagina.waitForSelector("text=Doenças exantemáticas na infância");
     const lista = await pagina.evaluate(() => ({
       areas: [...document.querySelectorAll("#app h3")].map(h => h.textContent),

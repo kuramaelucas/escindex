@@ -315,7 +315,7 @@ function renderPainelDaTurma(){
 
   ${f.ano==="todos" && linhasAnos.length > 1 ? `<div class="card mb-2">
     <div class="card-title">Ano a ano</div>
-    <div class="table-wrap"><table>
+    <div class="table-wrap"><table class="tabela-turma">
       <thead><tr><th>Ano</th><th>Alunos</th><th>Ativos (7 dias)</th><th>Questões/aluno (30 dias)</th><th>Acerto médio (30 dias)</th><th>Acerto médio geral</th><th>Cartões (30 dias)</th><th>Simulados feitos</th></tr></thead>
       <tbody>${linhasAnos.map(l => `<tr class="clicavel" onclick="mudarFiltroPainelTurma('ano', ${escapeHtml(JSON.stringify(l.ano))})">
         <td class="text-sm peso-600">${escapeHtml(l.ano)}</td><td class="text-sm">${l.n}</td>
@@ -331,7 +331,7 @@ function renderPainelDaTurma(){
     <summary><span class="card-title sem-m">Por turma</span><span class="text-xs muted">${linhasTurmas.length} ${flexionar(linhasTurmas.length, "turma(s)")}</span></summary>
     <div class="secao-corpo">
     <p class="text-xs muted">Cada turma do rodízio ("Grupo A", "Grupo B"…) e quem ainda não escolheu turma. O acerto médio só aparece com ${CONFIG.minAlunosParaMedia} alunos ou mais respondendo: com menos, seria o acerto de uma pessoa.</p>
-    <div class="table-wrap mt-1"><table>
+    <div class="table-wrap mt-1"><table class="tabela-turma">
       <thead><tr><th>Turma</th><th>Alunos</th><th>Ativos (7 dias)</th><th>Questões/aluno (30 dias)</th><th>Acerto médio (30 dias)</th><th>Cartões (30 dias)</th></tr></thead>
       <tbody>${linhasTurmas.map(l => `<tr>
         <td class="text-sm"><strong>${escapeHtml(nomeDoGrupoPainel(l.grupoId) || "Sem turma escolhida")}</strong>${f.ano==="todos" ? `<div class="text-xs muted">${escapeHtml(l.ano)}</div>` : ""}${l.faculdades.length ? `<div class="text-xs muted">${escapeHtml(l.faculdades.join(" · "))}</div>` : ""}</td>
@@ -356,7 +356,7 @@ function renderPainelDaTurma(){
     <div class="card">
       <div class="card-title">Grandes áreas</div>
       <p class="text-xs muted">Todas as respostas do recorte, somadas.</p>
-      ${mediaDoRecorte ? `<div class="table-wrap mt-1"><table>
+      ${mediaDoRecorte ? `<div class="table-wrap mt-1"><table class="tabela-turma">
         <thead><tr><th>Grande área</th><th>Questões</th><th>Acerto médio</th></tr></thead>
         <tbody>${areas.map(a=>`<tr><td class="text-sm">${escapeHtml(a.nome)}</td><td class="text-sm">${a.t}</td><td>${badgeTaxa(a.a, a.t)}</td></tr>`).join("")}</tbody>
       </table></div>` : `<p class="text-sm muted mt-1">Sem média para mostrar: ${escapeHtml(motivoSemMedia)}.</p>`}
@@ -378,7 +378,7 @@ function renderPainelDaTurma(){
         <button class="btn btn-secondary btn-sm" onclick="exportarPainelTurmaCsv()">${iconeSvg("download")} Baixar planilha (CSV)</button>
       </div>
     </div>
-    <div class="table-wrap mt-2"><table>
+    <div class="table-wrap mt-2"><table class="tabela-turma">
       <thead><tr>${[["nome", naEquipe ? "Pessoa" : "Aluno", "texto"], ["perfil", naEquipe ? "Papel" : "Ano / turma", "texto"], ["ultimo", "Último uso"], ["dias30", "Dias ativos (30)"], ["r30", "Questões (30 dias)"], ["respostas", "Questões (total)"], ["cartoes30", "Cartões (30 dias)"], ["simulados", "Simulados"], ["resumos", "Resumos lidos"]].concat(naEquipe ? [] : [["condicao", "Condição", "texto"]]).map(([c, r, t]) => cabecalhoOrdenavel("painel-turma", c, r, t)).join("")}</tr></thead>
       <tbody>${p.itens.map(a => {
         const al = a._al;
