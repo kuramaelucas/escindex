@@ -177,3 +177,28 @@ test("resumos: lista por grande área e por erro, voltar fecha o resumo, marcar 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("questão aberta na íntegra (busca) vem sem resposta e mostra o que a pessoa marcou da última vez", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await contexto.newPage();
+    await pagina.goto(semNuvem.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    const qid = await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const q = questoesAtivas().find(x => !ehDissertativa(x));
+      const errada = q.alternativas.find(a => a.id !== q.gabarito).id;
+      db.respostas.push({ id: "rx", usuarioId: usuarioAtual().id, questaoId: q.id, alternativaEscolhida: errada, correta: false, confianca: "duvida", data: hojeISO() });
+      saveState(); abrirQuestaoCompleta(q.id);
+      window.__errada = errada; return q.id;
+    });
+    await pagina.waitForSelector("#qic-resposta", { state: "attached" });
+    assert.equal(await pagina.locator("#qic-resposta").isVisible(), false, "a resposta começa escondida");
+    assert.equal(await pagina.locator(".qcard-alt.correct").count(), 0, "o gabarito não aparece marcado");
+    await pagina.click("text=Mostrar resposta");
+    assert.equal(await pagina.locator("#qic-resposta").isVisible(), true);
+    assert.equal(await pagina.locator(".qcard-alt.correct").count(), 1, "depois de mostrar, o gabarito aparece");
+    assert.equal(await pagina.locator(".qcard-alt.incorrect .qic-marcada").count(), 1, "a alternativa marcada da última vez fica sinalizada");
+  } finally { await contexto.close(); }
+});
