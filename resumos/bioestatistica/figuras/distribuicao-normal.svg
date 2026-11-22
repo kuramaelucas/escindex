@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Distribuição normal: média e desvio-padrão</text>
+  <path d="M60 270 C140 268 190 255 230 220 C270 170 300 70 360 60 C420 70 450 170 490 220 C530 255 580 268 660 270 Z" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+  <g stroke="#1f2d3d" stroke-width="1.5" stroke-dasharray="5 4">
+    <line x1="360" y1="60" x2="360" y2="270"/>
+    <line x1="290" y1="110" x2="290" y2="270"/><line x1="430" y1="110" x2="430" y2="270"/>
+    <line x1="220" y1="228" x2="220" y2="270"/><line x1="500" y1="228" x2="500" y2="270"/>
+  </g>
+  <line x1="40" y1="270" x2="680" y2="270" stroke="#1f2d3d" stroke-width="2"/>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="360" y="290" font-weight="bold">média</text>
+    <text x="290" y="290">−1 DP</text><text x="430" y="290">+1 DP</text>
+    <text x="220" y="290">−2 DP</text><text x="500" y="290">+2 DP</text>
+    <text x="360" y="320" font-weight="bold" fill="#8a3b12">≈ 68% em ±1 DP   |   ≈ 95% em ±2 DP   |   ≈ 99,7% em ±3 DP</text>
+  </g>
+  <text x="360" y="50" text-anchor="middle" font-size="13" fill="#1f2d3d">média = mediana = moda (distribuição simétrica)</text>
+</svg>
