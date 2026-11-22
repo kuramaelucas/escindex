@@ -74,4 +74,5 @@
   { id: "trauma-de-torax", titulo: "Trauma de tórax", area: "Cirurgia · Trauma", assunto: "ass-traumatorax" },
   { id: "hiv", titulo: "HIV/aids", area: "Clínica Médica · Infectologia", assunto: "ass-hiv" },
   { id: "meningites", titulo: "Meningites e encefalites", area: "Clínica Médica · Infectologia", assunto: "ass-meningites" },
+  { id: "pneumonia-comunitaria", titulo: "Pneumonia no adulto", area: "Clínica Médica · Pneumologia", assunto: "ass-pneumonia" },
 ];
