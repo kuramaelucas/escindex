@@ -155,3 +155,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `bioestatistica` | `ass-bioestatistica` | 124 (4 são reposições) | 10 (6 anuladas ou desatualizadas sem reposição; 4 com reposição no resumo) |
 | `principios-do-sus` | `ass-principiossus` | 113 | 1 (anulada) |
 | `prevencao` | `ass-prevencao` | 88 | 2 (anuladas) |
+| `saude-do-trabalhador` | `ass-saudetrabalhador` | 79 (2 são reposições) | 4 (2 anuladas com reposição no resumo; 2 anuladas sem reposição) |

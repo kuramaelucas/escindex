@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Acidente de trabalho: duas providências diferentes</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="220" y="44" width="280" height="62" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Acidente ou doença do trabalho</text>
+    <text x="360" y="88">típico ou de trajeto habitual (casa-trabalho)</text>
+    <rect x="20" y="150" width="320" height="130" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="180" y="174" font-weight="bold">CAT (previdência)</text>
+    <text x="180" y="196">emitida pela empresa; se não emitir:</text>
+    <text x="180" y="214">médico assistente, trabalhador,</text>
+    <text x="180" y="232">dependentes ou sindicato</text>
+    <text x="180" y="256">vale para o trabalhador com vínculo</text>
+    <rect x="380" y="150" width="320" height="130" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="540" y="174" font-weight="bold">Notificação no SINAN (vigilância)</text>
+    <text x="540" y="196">para todos: com ou sem carteira,</text>
+    <text x="540" y="214">no trajeto, leve ou grave;</text>
+    <text x="540" y="232">grave e fatal: imediata (24 horas)</text>
+    <rect x="20" y="304" width="680" height="56" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="328" font-weight="bold">Afastamento: empresa paga os 15 primeiros dias, INSS o restante</text>
+    <text x="360" y="348">Retorno após 30 dias ou mais: exame no primeiro dia, antes de reassumir</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="#1f2d3d">
+    <path d="M300 108 L200 146" fill="none"/><path d="M196 138 L190 150 L204 148 Z"/>
+    <path d="M420 108 L520 146" fill="none"/><path d="M524 138 L530 150 L516 148 Z"/>
+  </g>
+</svg>

@@ -58,4 +58,5 @@
   { id: "bioestatistica", titulo: "Bioestatística e testes diagnósticos", area: "Medicina Preventiva · Epidemiologia", assunto: "ass-bioestatistica" },
   { id: "principios-do-sus", titulo: "Princípios e organização do SUS", area: "Medicina Preventiva · Saúde Coletiva", assunto: "ass-principiossus" },
   { id: "prevencao", titulo: "Prevenção, rastreamento e prevenção quaternária", area: "Medicina Preventiva · Prevenção", assunto: "ass-prevencao" },
+  { id: "saude-do-trabalhador", titulo: "Saúde do trabalhador", area: "Medicina Preventiva · Saúde do Trabalhador", assunto: "ass-saudetrabalhador" },
 ];
