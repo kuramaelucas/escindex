@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Hérnias da virilha: onde cada uma sai (virilha direita, vista de frente)</text>
+  <text x="350" y="46" text-anchor="middle" font-size="12" fill="#1f2d3d">vasos epigástricos inferiores</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="30" y="54" width="305" height="112" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="182" y="78" font-weight="bold">INDIRETA</text>
+    <text x="182" y="98">lateral aos vasos epigástricos,</text>
+    <text x="182" y="116">pelo anel inguinal profundo;</text>
+    <text x="182" y="134">acompanha o cordão e toca a</text>
+    <text x="182" y="152">ponta do dedo no canal</text>
+    <rect x="365" y="54" width="325" height="112" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="527" y="78" font-weight="bold">DIRETA</text>
+    <text x="527" y="98">medial aos vasos epigástricos,</text>
+    <text x="527" y="116">no triângulo de Hesselbach (lateral</text>
+    <text x="527" y="134">ao reto abdominal); empurra a</text>
+    <text x="527" y="152">face palmar do dedo</text>
+    <rect x="30" y="178" width="660" height="26" rx="4" fill="#f3e6c8" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="196" font-weight="bold">Ligamento inguinal</text>
+    <rect x="30" y="216" width="305" height="100" rx="8" fill="#f2f2f2" stroke="#555555" stroke-width="2"/>
+    <text x="182" y="240" font-weight="bold">Vasos femorais</text>
+    <text x="182" y="260">de lateral para medial:</text>
+    <text x="182" y="278">nervo, artéria e veia</text>
+    <text x="182" y="296">(a hérnia não passa por aqui)</text>
+    <rect x="365" y="216" width="325" height="100" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="527" y="240" font-weight="bold">FEMORAL</text>
+    <text x="527" y="260">abaixo do ligamento inguinal,</text>
+    <text x="527" y="278">medial à veia femoral, pelo anel</text>
+    <text x="527" y="296">femoral estreito e rígido</text>
+  </g>
+  <path d="M350 52 L350 170" stroke="#1f2d3d" stroke-width="3" stroke-dasharray="6 4" fill="none"/>
+  <text x="360" y="344" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Ligamento inguinal: acima, inguinal; abaixo, femoral. Vasos epigástricos: indireta × direta</text>
+</svg>

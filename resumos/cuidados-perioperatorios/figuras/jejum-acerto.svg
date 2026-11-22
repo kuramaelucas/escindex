@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Jejum curto e recuperação acelerada (ACERTO)</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="50" width="215" height="200" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="127" y="74" font-weight="bold">Antes da anestesia</text>
+    <text x="127" y="100">Refeição leve até 6 horas</text>
+    <text x="127" y="124">Líquidos claros até 2 horas</text>
+    <text x="127" y="148">Bebida com carboidrato</text>
+    <text x="127" y="166">(maltodextrina) 2 horas antes</text>
+    <text x="127" y="190">Sem jejum de 12 horas e sem</text>
+    <text x="127" y="208">jejum desde a meia-noite</text>
+    <rect x="252" y="50" width="215" height="200" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="74" font-weight="bold">Na operação</text>
+        <text x="360" y="100">Antibiótico em dose única</text>
+    <text x="360" y="118">até 60 minutos antes da</text>
+    <text x="360" y="136">incisão; repetir se longa</text>
+    <rect x="484" y="50" width="216" height="200" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="592" y="74" font-weight="bold">Depois da operação</text>
+    <text x="592" y="100">Dieta em até 24 horas se</text>
+    <text x="592" y="118">estável (líquida no mesmo dia)</text>
+    <text x="592" y="142">Retirar a hidratação venosa</text>
+    <text x="592" y="160">em cerca de 12 horas</text>
+    <text x="592" y="184">Sentar fora do leito e</text>
+    <text x="592" y="202">deambular logo</text>
+  </g>
+  <text x="360" y="296" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Vale para o paciente sem retardo do esvaziamento gástrico</text>
+</svg>

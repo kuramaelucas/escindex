@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Dreno de tórax: quando tirar e quando suspeitar do dreno</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="335" height="250" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="187" y="68" font-weight="bold">Retirar o dreno</text>
+    <text x="187" y="94">Pulmão expandido na radiografia</text>
+    <text x="187" y="116">Sem escape aéreo, mesmo com Valsalva</text>
+    <text x="187" y="138">Débito seroso abaixo de 100 a 200 mL/dia</text>
+    <text x="187" y="164">Retirar com manobra de Valsalva,</text>
+    <text x="187" y="182">não durante a inspiração; depois,</text>
+    <text x="187" y="200">radiografia de controle</text>
+    <rect x="365" y="44" width="335" height="250" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="532" y="68" font-weight="bold">Pneumotórax que persiste</text>
+    <text x="532" y="94">Dreno mal posicionado: tirar e</text>
+    <text x="532" y="112">drenar de novo</text>
+    <text x="532" y="136">Grande escape aéreo, enfisema</text>
+    <text x="532" y="154">subcutâneo crescente: segundo dreno</text>
+    <text x="532" y="178">Fuga aérea por dias, mesmo com</text>
+    <text x="532" y="196">aspiração: lesão brônquica</text>
+    <text x="532" y="220">Hemotórax retido e febre: videotoracoscopia</text>
+  </g>
+  <text x="360" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Dreno inefetivo: reavaliar a posição antes de qualquer outra medida</text>
+</svg>

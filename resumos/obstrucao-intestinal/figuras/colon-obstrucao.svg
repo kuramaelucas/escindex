@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Cólon muito dilatado: três causas, três condutas</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="220" height="250" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="130" y="68" font-weight="bold">Volvo de sigmoide</text>
+    <text x="130" y="92">Idoso constipado ou chagásico;</text>
+    <text x="130" y="110">alça única em grão de café</text>
+    <text x="130" y="134">Sem isquemia: destorção por</text>
+    <text x="130" y="152">retossigmoidoscopia ou</text><text x="130" y="168">colonoscopia</text>
+    <text x="130" y="192">Depois: sigmoidectomia eletiva,</text>
+    <text x="130" y="210">pela recidiva alta</text>
+    <text x="130" y="234">Com isquemia ou perfuração:</text>
+    <text x="130" y="252">cirurgia de urgência</text>
+    <rect x="250" y="44" width="220" height="250" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Neoplasia estenosante</text>
+    <text x="360" y="92">Emagrecimento, fezes afiladas;</text>
+    <text x="360" y="110">válvula ileocecal continente</text>
+    <text x="360" y="134">Alça fechada: risco de perfuração</text>
+    <text x="360" y="152">do ceco (acima de 12 cm)</text>
+    <text x="360" y="176">Ressuscitar e operar: Hartmann</text>
+    <text x="360" y="194">ou stent como ponte para</text>
+    <text x="360" y="212">ressecção eletiva</text>
+    <rect x="480" y="44" width="220" height="250" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="590" y="68" font-weight="bold">Pseudo-obstrução (Ogilvie)</text>
+    <text x="590" y="92">Doente grave ou pós-operatório,</text>
+    <text x="590" y="110">sem obstáculo mecânico</text>
+    <text x="590" y="134">Corrigir eletrólitos, suspender</text>
+    <text x="590" y="152">opioides, sonda</text>
+    <text x="590" y="176">Persistindo ou ceco muito dilatado:</text>
+    <text x="590" y="194">descompressão colonoscópica</text>
+    <text x="590" y="212">ou neostigmina</text>
+  </g>
+  <text x="360" y="326" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Peritonite, isquemia ou perfuração em qualquer uma: laparotomia</text>
+</svg>

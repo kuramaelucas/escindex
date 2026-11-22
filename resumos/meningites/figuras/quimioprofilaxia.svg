@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 350" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="350" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Quimioprofilaxia da doença meningocócica</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="250" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Quem recebe</text>
+    <text x="127" y="94">Moradores da casa,</text>
+    <text x="127" y="112">vacinados ou não</text>
+    <text x="127" y="140">Mesma sala de creche ou</text>
+    <text x="127" y="158">escola, com contato longo</text>
+    <text x="127" y="186">Quem teve contato direto</text>
+    <text x="127" y="204">com secreção da boca ou do</text>
+    <text x="127" y="222">nariz sem proteção, como</text>
+    <text x="127" y="240">na intubação</text>
+    <rect x="252" y="44" width="215" height="250" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Quem não recebe</text>
+    <text x="360" y="94">Colega da escola inteira</text>
+    <text x="360" y="112">fora da sala</text>
+    <text x="360" y="140">Quem dividiu a sala de</text>
+    <text x="360" y="158">espera do pronto-socorro</text>
+    <text x="360" y="186">Contatos da meningite</text>
+    <text x="360" y="204">pneumocócica</text>
+    <text x="360" y="232">Ampicilina não elimina</text>
+    <text x="360" y="250">o meningococo da nasofaringe</text>
+    <rect x="484" y="44" width="216" height="250" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Com quê</text>
+    <text x="592" y="94">Rifampicina 12/12 horas,</text>
+    <text x="592" y="112">por 2 dias</text>
+    <text x="592" y="140">Ceftriaxona intramuscular,</text>
+    <text x="592" y="158">dose única (opção na</text>
+    <text x="592" y="176">gestação e na criança)</text>
+    <text x="592" y="204">Ciprofloxacino 500 mg,</text>
+    <text x="592" y="222">dose única, no adulto</text>
+    <text x="592" y="250">Haemophilus tipo b:</text>
+    <text x="592" y="268">rifampicina por 4 dias</text>
+  </g>
+  <text x="360" y="324" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Começar o quanto antes (ideal em 24 a 48 horas); a profilaxia evita casos secundários</text>
+</svg>

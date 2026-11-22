@@ -160,3 +160,20 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `comunicacao-clinica` | `ass-comunicacaoclinica` | 54 | 1 (anulada) |
 | `atls` | `ass-atls` | 109 | 1 (anulada) |
 | `trauma-abdominal` | `ass-traumaabd` | 86 | — |
+| `hernias` | `ass-hernias` | 85 | 1 (anulada) |
+| `obstrucao-intestinal` | `ass-obstrucao` | 75 | 1 (anulada) |
+| `complicacoes-cirurgicas` | `ass-complicacoescir` | 68 | 1 (anulada) |
+| `cuidados-perioperatorios` | `ass-cuidadosperi` | 68 | 4 (1 anulada com reposição no resumo; 3 fora do tema) |
+| `pancreatite-aguda` | `ass-pancreatite` | 69 | 2 (anuladas, com reposição no resumo) |
+| `colecistite-e-coledocolitiase` | `ass-colecistite` | 61 | 1 (anulada, com reposição no resumo) |
+| `tce` | `ass-neurocir-tce` | 62 | — |
+| `apendicite-aguda` | `ass-apendicite` | 58 | 1 (anulada) |
+| `trauma-de-torax` | `ass-traumatorax` | 59 | — |
+| `hiv` | `ass-hiv` | 248 | — |
+| `meningites` | `ass-meningites` | 220 | — |
+| `pneumonia-comunitaria` | `ass-pneumonia` | 198 | — |
+| `arboviroses` | `ass-arboviroses` | 195 | — |
+| `parasitoses` | `ass-parasitoses` | 163 | — |
+| `sepse` | `ass-sepse` | 132 | — |
+| `iras` | `ass-iras` | 147 | — |
+| `pele-partes-moles` | `ass-peleparte` | 188 | — |

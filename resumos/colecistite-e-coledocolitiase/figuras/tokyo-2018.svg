@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Colecistite aguda: gravidade (Tóquio 2018) e conduta</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Grau I (leve)</text>
+    <text x="127" y="94">Sem os critérios dos graus</text>
+    <text x="127" y="112">II e III; leucócitos até</text>
+    <text x="127" y="130">18.000 e menos de 72 horas</text>
+    <text x="127" y="164" font-weight="bold">Conduta</text>
+    <text x="127" y="188">Colecistectomia</text>
+    <text x="127" y="206">videolaparoscópica precoce,</text>
+    <text x="127" y="224">de preferência nas primeiras</text>
+    <text x="127" y="242">72 horas, na mesma internação</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Grau II (moderada)</text>
+    <text x="360" y="94">Leucócitos acima de 18.000,</text>
+    <text x="360" y="112">massa palpável, mais de 72</text>
+    <text x="360" y="130">horas ou inflamação local</text>
+    <text x="360" y="148">acentuada</text>
+    <text x="360" y="182" font-weight="bold">Conduta</text>
+    <text x="360" y="206">Colecistectomia precoce se o</text>
+    <text x="360" y="224">paciente e o serviço permitem;</text>
+    <text x="360" y="242">alto risco: drenagem</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Grau III (grave)</text>
+    <text x="592" y="94">Disfunção de órgão: choque</text>
+    <text x="592" y="112">com vasopressor, plaquetas</text>
+    <text x="592" y="130">abaixo de 100.000, creatinina</text>
+    <text x="592" y="148">acima de 2,0, hipoxemia</text>
+    <text x="592" y="182" font-weight="bold">Conduta</text>
+    <text x="592" y="206">Suporte, antibiótico e</text>
+    <text x="592" y="224">drenagem da vesícula</text>
+    <text x="592" y="242">(colecistostomia percutânea);</text>
+    <text x="592" y="260">cirurgia depois, se houver</text>
+    <text x="592" y="278">condição</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">No grau III, a meta é remover o foco infeccioso, não a litíase</text>
+</svg>

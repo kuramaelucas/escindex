@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Suspeita de meningite bacteriana: primeira conduta</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="210" y="40" width="300" height="40" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="360" y="65" font-weight="bold">Febre, cefaleia e rigidez de nuca</text>
+    <rect x="20" y="110" width="320" height="200" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="180" y="134" font-weight="bold">Sem sinal de hipertensão</text>
+    <text x="180" y="152" font-weight="bold">intracraniana, sem choque</text>
+    <text x="180" y="184">Hemocultura e punção lombar</text>
+    <text x="180" y="212">Antibiótico venoso logo</text>
+    <text x="180" y="230">em seguida</text>
+    <text x="180" y="258">Líquor define a causa e a</text>
+    <text x="180" y="276">duração do tratamento</text>
+    <rect x="380" y="110" width="320" height="200" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="540" y="134" font-weight="bold">Edema de papila, crise,</text>
+    <text x="540" y="152" font-weight="bold">déficit focal ou choque</text>
+    <text x="540" y="184">Hemocultura e antibiótico</text>
+    <text x="540" y="202">venoso imediato</text>
+    <text x="540" y="230">Tomografia de crânio depois</text>
+    <text x="540" y="258">Punção lombar só se a</text>
+    <text x="540" y="276">tomografia liberar</text>
+    <path d="M300 80 L180 108" stroke="#1f2d3d" stroke-width="2" fill="none"/>
+    <path d="M420 80 L540 108" stroke="#1f2d3d" stroke-width="2" fill="none"/>
+  </g>
+  <text x="360" y="344" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Esperar a tomografia ou o líquor atrasa o antibiótico, e o atraso piora o desfecho</text>
+  <text x="360" y="368" text-anchor="middle" font-size="13" fill="#1f2d3d">Dexametasona junto ou antes da primeira dose do antibiótico</text>
+</svg>

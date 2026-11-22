@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">TCE grave: degraus do tratamento da pressão intracraniana</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="270" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Medidas básicas</text>
+    <text x="127" y="94">Cabeceira a 30° e cabeça</text>
+    <text x="127" y="112">na linha média</text>
+    <text x="127" y="136">Normocapnia (PaCO2 35 a 40)</text>
+    <text x="127" y="160">Evitar hipotensão e hipóxia</text>
+    <text x="127" y="184">Normotermia</text>
+    <text x="127" y="208">Analgesia e sedação:</text>
+    <text x="127" y="226">fentanil contínuo primeiro</text>
+    <rect x="252" y="44" width="215" height="270" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Se a PIC persiste</text>
+    <text x="360" y="94">Solução salina hipertônica</text>
+    <text x="360" y="112">ou manitol (osmoterapia)</text>
+    <text x="360" y="136">Drenagem de líquor</text>
+    <text x="360" y="160">Bloqueio neuromuscular</text>
+    <text x="360" y="184">Não usar corticoide</text>
+    <rect x="484" y="44" width="216" height="270" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Resgate</text>
+    <text x="592" y="94">Herniação: hiperventilação</text>
+    <text x="592" y="112">breve (PaCO2 30 a 35),</text>
+    <text x="592" y="130">como ponte para a cirurgia</text>
+    <text x="592" y="154">PIC refratária: barbitúricos</text>
+    <text x="592" y="172">em dose alta (tiopental)</text>
+    <text x="592" y="196">Cirurgia descompressiva</text>
+  </g>
+  <text x="360" y="346" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">A hiperventilação prolongada causa isquemia: só como ponte</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Pneumonia comunitária: gravidade e antibiótico</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="44" width="215" height="300" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="127" y="68" font-weight="bold">Ambulatorial</text>
+    <text x="127" y="88">CURB-65 de 0 a 1</text>
+    <text x="127" y="118">Hígido, sem antibiótico</text>
+    <text x="127" y="136">recente: amoxicilina</text>
+    <text x="127" y="154">ou macrolídeo</text>
+    <text x="127" y="184">Comorbidade ou antibiótico</text>
+    <text x="127" y="202">nos últimos 3 meses:</text>
+    <text x="127" y="220">quinolona respiratória ou</text>
+    <text x="127" y="238">betalactâmico com macrolídeo</text>
+    <text x="127" y="268">Radiografia é o único</text>
+    <text x="127" y="286">exame necessário</text>
+    <rect x="252" y="44" width="215" height="300" rx="8" fill="#fdf3d8" stroke="#8a6b12" stroke-width="2"/>
+    <text x="360" y="68" font-weight="bold">Enfermaria</text>
+    <text x="360" y="88">CURB-65 de 2</text>
+    <text x="360" y="118">Betalactâmico (ceftriaxona)</text>
+    <text x="360" y="136">com macrolídeo</text>
+    <text x="360" y="164">ou quinolona respiratória</text>
+    <text x="360" y="182">em monoterapia</text>
+    <text x="360" y="212">Aspiração: acrescentar</text>
+    <text x="360" y="230">cobertura de anaeróbios</text>
+    <text x="360" y="260">Hemocultura só se grave</text>
+    <text x="360" y="278">ou sem resposta</text>
+    <rect x="484" y="44" width="216" height="300" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="592" y="68" font-weight="bold">Unidade de terapia intensiva</text>
+    <text x="592" y="88">CURB-65 de 3 ou mais</text>
+    <text x="592" y="118">1 critério maior ou 3</text>
+    <text x="592" y="136">ou mais menores (ATS/IDSA)</text>
+    <text x="592" y="166">Ceftriaxona com azitromicina</text>
+    <text x="592" y="184">ou betalactâmico com</text>
+    <text x="592" y="202">quinolona, na hora</text>
+    <text x="592" y="232">Hemocultura e, se choque,</text>
+    <text x="592" y="250">cristaloide e antibiótico</text>
+    <text x="592" y="268">na primeira hora</text>
+  </g>
+  <text x="360" y="372" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Ciprofloxacino não serve sozinho: tem atividade fraca contra o pneumococo</text>
+  <text x="360" y="394" text-anchor="middle" font-size="13" fill="#1f2d3d">Tratar por 5 a 7 dias, com estabilidade clínica de 48 a 72 horas</text>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Trauma de tórax: ameaças imediatas à vida e conduta</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="40" width="215" height="150" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="127" y="62" font-weight="bold">Pneumotórax hipertensivo</text>
+    <text x="127" y="86">Dispneia, choque, jugulares</text>
+    <text x="127" y="104">cheias, desvio da traqueia,</text>
+    <text x="127" y="122">murmúrio abolido e timpanismo</text>
+    <text x="127" y="146" font-weight="bold">Descompressão imediata</text>
+    <text x="127" y="164">e dreno; sem esperar radiografia</text>
+    <rect x="252" y="40" width="215" height="150" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="360" y="62" font-weight="bold">Pneumotórax aberto</text>
+    <text x="360" y="86">Ferida soprante, ruído de</text>
+    <text x="360" y="104">sucção, hipoxemia</text>
+    <text x="360" y="128" font-weight="bold">Curativo em três pontas</text>
+    <text x="360" y="146">e dreno em outro local</text>
+    <rect x="484" y="40" width="216" height="150" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="592" y="62" font-weight="bold">Hemotórax</text>
+    <text x="592" y="86">Murmúrio diminuído e</text>
+    <text x="592" y="104">macicez, choque, sem jugulares</text>
+    <text x="592" y="128" font-weight="bold">Drenagem torácica</text>
+    <text x="592" y="146">Débito alto ou instável: cirurgia</text>
+    <rect x="20" y="206" width="330" height="150" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="185" y="228" font-weight="bold">Tórax instável</text>
+    <text x="185" y="252">Dois ou mais arcos fraturados em</text>
+    <text x="185" y="270">dois pontos; a causa da hipoxemia é</text>
+    <text x="185" y="288">a contusão pulmonar e a dor</text>
+    <text x="185" y="312" font-weight="bold">Analgesia regional, oxigênio,</text>
+    <text x="185" y="330">fluidos criteriosos; VNI ou intubação</text>
+    <rect x="370" y="206" width="330" height="150" rx="8" fill="#f2f2f2" stroke="#555555" stroke-width="2"/>
+    <text x="535" y="228" font-weight="bold">Tamponamento cardíaco</text>
+    <text x="535" y="252">Hipotensão, jugulares cheias,</text>
+    <text x="535" y="270">bulhas hipofonéticas, líquido</text>
+    <text x="535" y="288">no pericárdio ao e-FAST</text>
+    <text x="535" y="312" font-weight="bold">Cirurgia: toracotomia ou</text>
+    <text x="535" y="330">esternotomia no centro cirúrgico</text>
+  </g>
+  <text x="360" y="382" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Tratar na avaliação primária, antes de exames de imagem</text>
+</svg>
