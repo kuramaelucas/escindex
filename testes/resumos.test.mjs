@@ -31,6 +31,8 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
     assert.ok(await pagina.evaluate(() => navItemsParaPapel("aluno").some(i => i.id === "resumos") && GRUPO_DO_ITEM_ALUNO.resumos === "Estudar"), "Resumos está no menu lateral, no grupo Estudar");
     assert.equal(await pagina.locator("text=Abrir resumos").count(), 0, "a página Estudar não traz mais o cartão de Resumos");
     await pagina.evaluate(() => navigate("resumos"));
+    await pagina.waitForSelector(".resumo-area", { state: "attached" });
+    await pagina.evaluate(() => document.querySelectorAll(".resumo-area").forEach(d => { d.open = true; }));
     await pagina.waitForSelector("text=Doenças exantemáticas na infância");
     await pagina.evaluate(() => abrirResumo("exantematicas"));
     await pagina.waitForSelector(".resumo-caderno");
@@ -130,6 +132,11 @@ test("resumos: lista por grande área e por erro, voltar fecha o resumo, marcar 
       saveState();
       navigate("resumos");
     });
+    // áreas começam fechadas e só mostram os 5 de pior desempenho: abre todas para conferir
+    await pagina.waitForSelector(".resumo-area", { state: "attached" });
+    await pagina.evaluate(() => document.querySelectorAll(".resumo-area").forEach(d => { d.open = true; }));
+    const porArea = await pagina.evaluate(() => [...document.querySelectorAll(".resumo-area")].map(d => ({ cartoes: d.querySelectorAll(".card").length, total: Number(d.querySelector("summary").textContent.match(/\((\d+)\)/)[1]), mostrarTodos: !!d.querySelector("button.link-btn") })));
+    assert.ok(porArea.every(a => a.cartoes <= 5 && (a.total <= 5 || a.mostrarTodos)), "no máximo 5 por área, com 'Mostrar todos' quando há mais");
     await pagina.waitForSelector("text=Doenças exantemáticas na infância");
     const lista = await pagina.evaluate(() => ({
       areas: [...document.querySelectorAll("#app h3")].map(h => h.textContent),
@@ -168,5 +175,30 @@ test("resumos: lista por grande área e por erro, voltar fecha o resumo, marcar 
     assert.equal(meta.atrasado.batida, false);
     assert.equal(meta.atrasado.faltam, 40, "210 × 4/7 = 120 esperado");
     assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("questão aberta na íntegra (busca) vem sem resposta e mostra o que a pessoa marcou da última vez", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  await contexto.route(/supabase\.co/, r => r.abort());
+  try {
+    const pagina = await contexto.newPage();
+    await pagina.goto(semNuvem.url + "index.html");
+    await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+    const qid = await pagina.evaluate(() => {
+      fazerLogin("aluno@esc.demo", "aluno123"); fecharModal();
+      const q = questoesAtivas().find(x => !ehDissertativa(x));
+      const errada = q.alternativas.find(a => a.id !== q.gabarito).id;
+      db.respostas.push({ id: "rx", usuarioId: usuarioAtual().id, questaoId: q.id, alternativaEscolhida: errada, correta: false, confianca: "duvida", data: hojeISO() });
+      saveState(); abrirQuestaoCompleta(q.id);
+      window.__errada = errada; return q.id;
+    });
+    await pagina.waitForSelector("#qic-resposta", { state: "attached" });
+    assert.equal(await pagina.locator("#qic-resposta").isVisible(), false, "a resposta começa escondida");
+    assert.equal(await pagina.locator(".qcard-alt.correct").count(), 0, "o gabarito não aparece marcado");
+    await pagina.click("text=Mostrar resposta");
+    assert.equal(await pagina.locator("#qic-resposta").isVisible(), true);
+    assert.equal(await pagina.locator(".qcard-alt.correct").count(), 1, "depois de mostrar, o gabarito aparece");
+    assert.equal(await pagina.locator(".qcard-alt.incorrect .qic-marcada").count(), 1, "a alternativa marcada da última vez fica sinalizada");
   } finally { await contexto.close(); }
 });

@@ -822,13 +822,16 @@ function abrirQuestaoCompleta(qid, opts){
     <div class="qcard-enunciado" style="font-size:var(--fs-base);margin-bottom:1rem" ${atributoDestacavel(alvoDeQuestao(q.id,"enunciado"))}>${htmlComDestaques(q.enunciado, alvoDeQuestao(q.id,"enunciado"))}</div>
     ${renderImagemQuestao(q)}
     ${ehDissertativa(q) ? "" : `    <div class="qcard-alts">
-      ${q.alternativas.map(alt=>`<div class="qcard-alt disabled ${alt.id===q.gabarito?"correct":""}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
+      ${q.alternativas.map(alt=>`<div class="qcard-alt disabled" data-letra="${escapeHtml(alt.id)}"><span class="alt-letter">${alt.id}</span><span class="alt-text" ${atributoDestacavel(alvoDeQuestao(q.id,"alt-"+alt.id))}>${htmlComDestaques(alt.texto, alvoDeQuestao(q.id,"alt-"+alt.id))}</span></div>`).join("")}
     </div>`}
+    <div class="mt-2" id="qic-botao-resposta"><button class="btn btn-secondary btn-sm" onclick="revelarRespostaDaQuestao('${q.id}')">${iconeSvg("eye")} Mostrar resposta</button></div>
+    <div id="qic-resposta" hidden data-gabarito="${escapeHtml(q.gabarito||"")}" data-marcada="${ultima && !ehDissertativa(q) ? escapeHtml(ultima.alternativaEscolhida||"") : ""}">
     ${ehDissertativa(q) ? `<div class="feedback-box ok mt-2"><strong>Resposta esperada pela banca:</strong><br><span ${atributoDestacavel(alvoDeQuestao(q.id,"resposta-esperada"))}>${htmlComDestaques(q.respostaEsperada||"", alvoDeQuestao(q.id,"resposta-esperada"))}</span>${q.explicacaoGeral?`<br><br><strong>Justificativa:</strong> <span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>`:""}</div>` : `<div class="feedback-box ok mt-2"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong>${q.explicacaoGeral?`<br><span ${atributoDestacavel(alvoDeQuestao(q.id,"explicacao"))}>${htmlComDestaques(q.explicacaoGeral, alvoDeQuestao(q.id,"explicacao"), true)}</span>${htmlMesDaJustificativa(q)}`:" (sem explicação cadastrada ainda)"}</div>`}
     ${htmlAvisoQuestaoAlterada(q)}
     ${renderReferenciasQuestao(q)}
     ${(q.explicacoesAlternativas && Object.keys(q.explicacoesAlternativas).length) ? `<div class="card-flat mt-2 text-sm">${Object.entries(q.explicacoesAlternativas).map(([letra,texto])=>`<div class="mb-1"><strong>${escapeHtml(letra)}:</strong> ${htmlComDestaques(texto, null, true)}</div>`).join("")}</div>` : ""}
     ${ultima ? `<div class="card-flat mt-2 text-xs muted">${iconeSvg("clock")} Sua última resposta: ${ehDissertativa(q) ? "escrita" : "marcou "+escapeHtml(ultima.alternativaEscolhida)} (${ultima.correta?"correta":"incorreta"}, ${escapeHtml(rotuloConfianca(ultima.confianca))}) em ${formatDataBR(ultima.data)}.</div>` : ""}
+    </div>
     ${minhaNota ? `<div class="nota-pessoal mt-2"><div class="nota-pessoal-titulo">${iconeSvg("message")} Minha anotação</div><div class="text-sm">${escapeHtml(minhaNota)}</div></div>` : ""}
     <div class="flex gap-1 mt-3 quebra">
       ${q.status==="ativa" ? `<button class="btn btn-primary btn-sm" onclick="praticarSoEstaQuestao('${q.id}')">${iconeSvg("book")} Praticar esta questão</button>` : ""}
@@ -839,6 +842,21 @@ function abrirQuestaoCompleta(qid, opts){
       <button class="btn btn-ghost btn-sm" onclick="fecharModal()">Fechar</button>
     </div>
   `, "lg");
+}
+/* A questão abre sem a resposta (pesquisar uma questão não pode entregar o gabarito antes
+   de a pessoa pensar). Ao mostrar, o gabarito é marcado e, se ela já respondeu antes, a
+   alternativa que marcou na última vez fica sinalizada, junto da frase "Sua última resposta". */
+function revelarRespostaDaQuestao(){
+  const r = document.getElementById("qic-resposta");
+  if(!r) return;
+  r.hidden = false;
+  const b = document.getElementById("qic-botao-resposta"); if(b) b.hidden = true;
+  const alts = [...document.querySelectorAll(".qcard-alt[data-letra]")];
+  alts.forEach(el => {
+    if(el.dataset.letra === r.dataset.gabarito) el.classList.add("correct");
+    else if(el.dataset.letra === r.dataset.marcada) el.classList.add("incorrect");
+    if(el.dataset.letra === r.dataset.marcada && !el.querySelector(".qic-marcada")) el.insertAdjacentHTML("beforeend", '<span class="badge badge-muted qic-marcada">você marcou</span>');
+  });
 }
 function praticarSoEstaQuestao(qid){
   fecharModal();
