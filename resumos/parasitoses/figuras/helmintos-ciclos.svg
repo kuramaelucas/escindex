@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="760" height="360" fill="#ffffff"/>
+  <text x="380" y="24" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Helmintos intestinais: como entram e o que dão</text>
+  <g font-size="12.5" fill="#1f2d3d">
+    <rect x="10" y="40" width="740" height="28" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="1.5"/>
+    <text x="22" y="59" font-weight="bold">Verme</text>
+    <text x="150" y="59" font-weight="bold">Entrada</text>
+    <text x="300" y="59" font-weight="bold">Passa pelo pulmão</text>
+    <text x="440" y="59" font-weight="bold">Marca clínica</text>
+    <text x="595" y="59" font-weight="bold">Tratamento</text>
+    <rect x="10" y="68" width="740" height="46" fill="#ffffff" stroke="#9db4c0"/>
+    <text x="22" y="88" font-weight="bold">Ascaris</text>
+    <text x="150" y="88">Ovo ingerido</text>
+    <text x="300" y="88">Sim</text>
+    <text x="440" y="88">Löffler e oclusão intestinal</text>
+    <text x="595" y="88">Albendazol</text>
+    <rect x="10" y="114" width="740" height="46" fill="#f4f8fa" stroke="#9db4c0"/>
+    <text x="22" y="134" font-weight="bold">Ancilostomídeos</text>
+    <text x="150" y="134">Larva pela pele</text>
+    <text x="300" y="134">Sim</text>
+    <text x="440" y="134">Anemia ferropriva</text>
+    <text x="595" y="134">Albendazol</text>
+    <rect x="10" y="160" width="740" height="46" fill="#ffffff" stroke="#9db4c0"/>
+    <text x="22" y="180" font-weight="bold">Strongyloides</text>
+    <text x="150" y="180">Larva pela pele</text>
+    <text x="300" y="180">Sim</text>
+    <text x="440" y="180">Hiperinfecção</text>
+    <text x="595" y="180">Ivermectina</text>
+    <rect x="10" y="206" width="740" height="46" fill="#f4f8fa" stroke="#9db4c0"/>
+    <text x="22" y="226" font-weight="bold">Trichuris</text>
+    <text x="150" y="226">Ovo ingerido</text>
+    <text x="300" y="226">Não</text>
+    <text x="440" y="226">Disenteria e prolapso retal</text>
+    <text x="595" y="226">Albendazol</text>
+    <rect x="10" y="252" width="740" height="46" fill="#ffffff" stroke="#9db4c0"/>
+    <text x="22" y="272" font-weight="bold">Enterobius</text>
+    <text x="150" y="272">Ovo ingerido</text>
+    <text x="300" y="272">Não</text>
+    <text x="440" y="266">Prurido anal à noite</text>
+    <text x="440" y="284">Sem eosinofilia</text>
+    <text x="595" y="266">Albendazol ou pirantel</text>
+    <text x="595" y="284">ou pirvínio</text>
+  </g>
+  <text x="380" y="330" text-anchor="middle" font-size="13" font-weight="bold" fill="#8a3b12">Strongyloides: tratar antes de dar corticoide ou imunossupressor</text>
+</svg>
