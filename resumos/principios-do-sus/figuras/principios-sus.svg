@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Princípios do SUS: o que cada um responde</text>
+  <text x="20" y="56" font-size="14" font-weight="bold" fill="#8a3b12">DOUTRINÁRIOS: o que o sistema garante</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="66" width="215" height="104" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="127" y="90" font-weight="bold">Universalidade</text>
+    <text x="127" y="112">Quem tem direito: todos,</text><text x="127" y="130">sem exigir plano, emprego</text><text x="127" y="148">ou documento</text>
+    <rect x="252" y="66" width="215" height="104" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="360" y="90" font-weight="bold">Equidade</text>
+    <text x="360" y="112">Como se distribui: conforme</text><text x="360" y="130">a necessidade, tratando</text><text x="360" y="148">desigualmente os desiguais</text>
+    <rect x="485" y="66" width="215" height="104" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="592" y="90" font-weight="bold">Integralidade</text>
+    <text x="592" y="112">O que se oferece: promoção,</text><text x="592" y="130">prevenção, tratamento e</text><text x="592" y="148">reabilitação, em todos os níveis</text>
+  </g>
+  <text x="20" y="204" font-size="14" font-weight="bold" fill="#1b5e7a">ORGANIZATIVOS: como o sistema se arranja</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="214" width="160" height="104" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="100" y="238" font-weight="bold">Descentralização</text>
+    <text x="100" y="260">Direção única em cada</text><text x="100" y="278">esfera; decide quem está</text><text x="100" y="296">mais perto da população</text>
+    <rect x="195" y="214" width="160" height="104" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="275" y="238" font-weight="bold">Regionalização</text>
+    <text x="275" y="260">Serviços numa região</text><text x="275" y="278">geográfica, com população</text><text x="275" y="296">definida</text>
+    <rect x="370" y="214" width="160" height="104" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="450" y="238" font-weight="bold">Hierarquização</text>
+    <text x="450" y="260">Níveis de complexidade</text><text x="450" y="278">crescente, com referência</text><text x="450" y="296">e contrarreferência</text>
+    <rect x="545" y="214" width="155" height="104" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="622" y="238" font-weight="bold">Participação</text>
+    <text x="622" y="260">Conselhos: 50% usuários,</text><text x="622" y="278">25% trabalhadores,</text><text x="622" y="296">25% gestores</text>
+  </g>
+  <text x="360" y="360" text-anchor="middle" font-size="13" fill="#1f2d3d">Gasto mínimo em saúde: 15% da receita nos municípios e 12% nos estados.</text>
+  <text x="360" y="384" text-anchor="middle" font-size="13" fill="#8a3b12" font-weight="bold">A iniciativa privada participa em caráter complementar.</text>
+</svg>

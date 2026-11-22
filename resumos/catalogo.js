@@ -56,4 +56,5 @@
   { id: "medidas-epidemiologicas", titulo: "Medidas epidemiológicas e indicadores de saúde", area: "Medicina Preventiva · Epidemiologia", assunto: "ass-medidasepi" },
   { id: "vigilancia-em-saude", titulo: "Vigilância em saúde, notificação e declaração de óbito", area: "Medicina Preventiva · Vigilância em Saúde", assunto: "ass-vigilancia" },
   { id: "bioestatistica", titulo: "Bioestatística e testes diagnósticos", area: "Medicina Preventiva · Epidemiologia", assunto: "ass-bioestatistica" },
+  { id: "principios-do-sus", titulo: "Princípios e organização do SUS", area: "Medicina Preventiva · Saúde Coletiva", assunto: "ass-principiossus" },
 ];
