@@ -39,10 +39,12 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
       introducao: `[[A icterícia avança da cabeça para os pés à medida que a bilirrubina sobe, e as zonas de Kramer estimam o nível; mas a estimativa visual erra, e por isso, havendo dúvida, dosa-se a bilirrubina.|q-iamspe2021-045,q-unifesp2025-094,q-tp20241-036]] [[O valor só se interpreta pela idade em horas: o mesmo número é normal com 4 dias e alto com 30 horas, e é o nomograma que diz o risco.|q-013,q-usp2022-048,q-sirio2022-059]]`,
       fragmentos: [
         { id: "ava-kramer", titulo: "Kramer e quando dosar", conferir: false, diretrizes: ["aap-hiperbilirrubinemia","sbp-ictericia"],
+          figuras: [{ arquivo: "figuras/kramer.svg", legenda: "Esquema autoral: zonas de Kramer e a bilirrubina aproximada de cada uma." }],
           questoes: ["q-iamspe2021-045","q-unifesp2025-094","q-tp20241-036","q-einstein2024-036","q-013","q-usp2022-048","q-sirio2022-059"],
           casos: ["q-einstein2024-036"],
           prosa: `A icterícia avança da cabeça para os pés à medida que a bilirrubina sobe, e por isso as zonas de Kramer estimam o nível; mas a avaliação visual erra, sobretudo em pele escura, e qualquer icterícia que preocupe se mede. O valor só tem sentido comparado à idade em horas, no nomograma.`,
-          texto: `- Zona II de Kramer: bilirrubina em torno de **9 mg/dL**. {q-iamspe2021-045}
+          texto: `- Zonas de Kramer (progressão **cefalocaudal**): **I** cabeça e pescoço (~6 mg/dL), **II** até o umbigo (~9), **III** até os joelhos (~12), **IV** até tornozelos e punhos (~15) e **V** palmas e plantas (acima de ~15 mg/dL). {q-iamspe2021-045}
+- Zona II de Kramer: bilirrubina em torno de **9 mg/dL**. {q-iamspe2021-045}
 - Icterícia visível que preocupa: **dosar a bilirrubina** (sérica ou transcutânea). {q-unifesp2025-094,q-tp20241-036}
 - Icterícia persistente após 2 semanas: **investigar** (frações, tireoide), mantendo o aleitamento. {q-einstein2024-036}
 - Interpretar pelo **nomograma por horas de vida**; fototerapia só acima do limiar. {q-013}
