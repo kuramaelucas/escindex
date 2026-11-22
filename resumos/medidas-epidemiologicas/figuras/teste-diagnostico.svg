@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Tabela 2×2 do teste diagnóstico</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="300" y="60" font-weight="bold">Doença presente</text>
+    <text x="460" y="60" font-weight="bold">Doença ausente</text>
+    <rect x="220" y="70" width="160" height="80" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="300" y="104" font-weight="bold">VP</text><text x="300" y="124">verdadeiro positivo</text>
+    <rect x="380" y="70" width="160" height="80" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="460" y="104" font-weight="bold">FP</text><text x="460" y="124">falso positivo</text>
+    <rect x="220" y="150" width="160" height="80" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="300" y="184" font-weight="bold">FN</text><text x="300" y="204">falso negativo</text>
+    <rect x="380" y="150" width="160" height="80" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="460" y="184" font-weight="bold">VN</text><text x="460" y="204">verdadeiro negativo</text>
+    <text x="150" y="116" font-weight="bold">Teste positivo</text>
+    <text x="150" y="196" font-weight="bold">Teste negativo</text>
+  </g>
+  <g font-size="14" fill="#1f2d3d">
+    <text x="40" y="270"><tspan font-weight="bold">Sensibilidade</tspan> = VP ÷ (VP + FN): acerta os doentes (coluna da doença presente)</text>
+    <text x="40" y="296"><tspan font-weight="bold">Especificidade</tspan> = VN ÷ (VN + FP): acerta os sadios (coluna da doença ausente)</text>
+    <text x="40" y="322"><tspan font-weight="bold">VPP</tspan> = VP ÷ (VP + FP): entre os positivos, quantos estão doentes (linha do teste positivo)</text>
+    <text x="40" y="348"><tspan font-weight="bold">VPN</tspan> = VN ÷ (VN + FN): entre os negativos, quantos estão sadios (linha do teste negativo)</text>
+    <text x="40" y="378" fill="#8a3b12" font-weight="bold">VPP e VPN mudam com a prevalência; sensibilidade e especificidade não.</text>
+  </g>
+</svg>

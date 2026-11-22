@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">De onde parte cada desenho e que medida produz</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="46" width="680" height="76" rx="8" fill="#fbe9dd" stroke="#8a3b12"/>
+    <text x="36" y="70" font-weight="bold">Coorte</text>
+    <text x="36" y="92">Parte da exposição, acompanha no tempo até o desfecho</text>
+    <text x="36" y="110" fill="#8a3b12" font-weight="bold">Mede incidência: risco relativo e risco atribuível</text>
+    <path d="M470 84 L670 84" stroke="#1f2d3d" stroke-width="2"/>
+    <path d="M660 78 L672 84 L660 90 Z" fill="#1f2d3d"/>
+    <text x="470" y="72">exposição</text><text x="628" y="72">desfecho</text>
+
+    <rect x="20" y="132" width="680" height="76" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="36" y="156" font-weight="bold">Caso-controle</text>
+    <text x="36" y="178">Parte do desfecho e olha para trás, à procura da exposição</text>
+    <text x="36" y="196" fill="#1b5e7a" font-weight="bold">Mede razão de chances (OR); bom para doença rara</text>
+    <path d="M670 170 L470 170" stroke="#1f2d3d" stroke-width="2"/>
+    <path d="M480 164 L468 170 L480 176 Z" fill="#1f2d3d"/>
+    <text x="470" y="158">exposição</text><text x="628" y="158">desfecho</text>
+
+    <rect x="20" y="218" width="680" height="76" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="36" y="242" font-weight="bold">Transversal</text>
+    <text x="36" y="264">Exposição e desfecho medidos no mesmo momento</text>
+    <text x="36" y="282" fill="#4d7a1b" font-weight="bold">Mede prevalência: razão de prevalências; não prova causa</text>
+    <line x1="560" y1="238" x2="560" y2="284" stroke="#1f2d3d" stroke-width="2"/>
+    <text x="580" y="264">um único momento</text>
+
+    <rect x="20" y="304" width="680" height="50" rx="8" fill="#f3e8f6" stroke="#6b3a7a"/>
+    <text x="36" y="326" font-weight="bold">Ecológico</text>
+    <text x="36" y="344">A unidade de análise é o grupo (município, país): dados agregados; risco de falácia ecológica</text>
+
+    <rect x="20" y="364" width="680" height="46" rx="8" fill="#fdf6d9" stroke="#8a7412"/>
+    <text x="36" y="384" font-weight="bold">Ensaio clínico randomizado</text>
+    <text x="36" y="402">O pesquisador atribui a intervenção por sorteio e acompanha; mede incidência (RR, NNT)</text>
+  </g>
+</svg>

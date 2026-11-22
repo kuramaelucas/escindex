@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="17" font-weight="bold" fill="#1f2d3d">Avaliação primária: trata-se o que mata primeiro</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="42" width="680" height="56" rx="8" fill="#fbe9dd" stroke="#8a3b12" stroke-width="2"/>
+    <text x="36" y="66" font-weight="bold">A  Via aérea com proteção da coluna cervical</text>
+    <text x="36" y="86">Fala? Estridor, sangue, trauma facial: intubar ou via aérea cirúrgica; jaw-thrust no lugar do chin-lift</text>
+    <rect x="20" y="106" width="680" height="56" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="36" y="130" font-weight="bold">B  Respiração e ventilação</text>
+    <text x="36" y="150">Murmúrio abolido com hipertimpanismo e choque: descompressão torácica imediata, sem radiografia</text>
+    <rect x="20" y="170" width="680" height="56" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="36" y="194" font-weight="bold">C  Circulação e controle da hemorragia</text>
+    <text x="36" y="214">Compressão e torniquete; cinta pélvica; acessos calibrosos; hemoderivados precoces; FAST</text>
+    <rect x="20" y="234" width="680" height="56" rx="8" fill="#f3e8f6" stroke="#6b3a7a" stroke-width="2"/>
+    <text x="36" y="258" font-weight="bold">D  Neurológico</text>
+    <text x="36" y="278">Glasgow (ocular 1 a 4, verbal 1 a 5, motor 1 a 6) e pupilas; Glasgow 8 ou menos: via aérea definitiva</text>
+    <rect x="20" y="298" width="680" height="56" rx="8" fill="#fdf6d9" stroke="#8a7412" stroke-width="2"/>
+    <text x="36" y="322" font-weight="bold">E  Exposição e controle do ambiente</text>
+    <text x="36" y="342">Despir, rolar em bloco, aquecer; hipotermia agrava a coagulopatia em qualquer clima</text>
+  </g>
+  <text x="360" y="382" text-anchor="middle" font-size="13" fill="#8a3b12" font-weight="bold">Tríade letal: acidose, hipotermia e coagulopatia</text>
+</svg>
