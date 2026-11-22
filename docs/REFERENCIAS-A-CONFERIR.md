@@ -2,7 +2,7 @@
 
 Gerado por `npm run referencias-a-conferir` em 22/11/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
 
-Total: **142** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
+Total: **141** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
 
 | Grupo | Questões |
 |---|---|
@@ -16,7 +16,6 @@ Total: **142** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 | Pneumologia (GINA, GOLD, BTS, ERS, SBPT, ATS/IDSA) | 2 |
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 2 |
 | Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) | 2 |
-| Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) | 1 |
 | Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 1 |
 | Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 1 |
 | Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 1 |
@@ -188,10 +187,6 @@ Total: **142** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 
 - `q-adap26-061` (gab. D, simulado-epm-4): Gardner A et al. Cauda equina syndrome: a review (Eur Spine J 2011); Todd NV. Cauda equina syndrome: the timing of surgery probably does influence out
 - `q-adap23-079` (gab. D, simulado-epm-5): ATLS, Suporte Avançado de Vida no Trauma, 10ª edição; Diretrizes da Associação Britânica de Ortopedia e da Sociedade Brasileira de Ortopedia e Traumat
-
-## Oncologia (ESMO, AJCC, IASLC, OMS tumores, Stupp, dor) (1)
-
-- `q-adap22-075` (gab. D, simulado-epm-3): Stupp R et al. Radiotherapy plus concomitant and adjuvant temozolomide for glioblastoma. N Engl J Med 2005;352:987-96; Louis DN et al. The 2021 WHO Cl
 
 ## Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) (1)
 
