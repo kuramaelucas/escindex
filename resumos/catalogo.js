@@ -71,4 +71,5 @@
   { id: "colecistite-e-coledocolitiase", titulo: "Colelitíase, colecistite e via biliar", area: "Cirurgia · Via biliar", assunto: "ass-colecistite" },
   { id: "tce", titulo: "Traumatismo cranioencefálico", area: "Cirurgia · Neurocirurgia", assunto: "ass-neurocir-tce" },
   { id: "apendicite-aguda", titulo: "Apendicite aguda", area: "Cirurgia · Abdome agudo", assunto: "ass-apendicite" },
+  { id: "trauma-de-torax", titulo: "Trauma de tórax", area: "Cirurgia · Trauma", assunto: "ass-traumatorax" },
 ];
