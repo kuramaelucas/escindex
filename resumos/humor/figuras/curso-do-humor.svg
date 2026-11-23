@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="sans-serif"><rect width="720" height="420" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">O humor no tempo</text>
+<g font-size="13" font-weight="bold" fill="#1b5e7a">
+<text x="20" y="90">Depressão</text><text x="20" y="106">recorrente</text>
+<text x="20" y="180">Bipolar I</text>
+<text x="20" y="270">Bipolar II</text>
+<text x="20" y="355">Ciclotimia</text></g>
+<g stroke="#ccc" stroke-dasharray="4 4"><line x1="130" y1="95" x2="700" y2="95"/><line x1="130" y1="180" x2="700" y2="180"/><line x1="130" y1="265" x2="700" y2="265"/><line x1="130" y1="350" x2="700" y2="350"/></g>
+<g fill="none" stroke-width="2.5">
+<path d="M130,95 L190,95 C210,95 220,115 250,115 C280,115 290,95 310,95 L420,95 C440,95 450,115 480,115 C510,115 520,95 540,95 L700,95" stroke="#1b5e7a"/>
+<path d="M130,180 L170,180 C190,180 200,152 230,152 C260,152 270,180 290,180 L360,180 C380,180 390,215 420,215 C450,215 460,180 480,180 L540,180 C560,180 570,152 600,152 C630,152 640,180 660,180 L700,180" stroke="#b03a2e"/>
+<path d="M130,265 L170,265 C185,265 195,245 215,245 C235,245 245,265 260,265 L300,265 C320,265 330,300 360,300 C390,300 400,265 420,265 L470,265 C485,265 495,245 515,245 C535,245 545,265 560,265 C580,265 590,300 620,300 C650,300 660,265 680,265 L700,265" stroke="#7a4d1b"/>
+<path d="M130,350 C150,335 170,335 190,350 C210,365 230,365 250,350 C270,335 290,335 310,350 C330,365 350,365 370,350 C390,335 410,335 430,350 C450,365 470,365 490,350 C510,335 530,335 550,350 C570,365 590,365 610,350 C630,335 650,335 670,350 L700,350" stroke="#4d7a1b"/>
+</g>
+<g font-size="11" fill="#333">
+<text x="225" y="129">depressão</text><text x="455" y="129">depressão</text>
+<text x="262" y="160">mania</text><text x="632" y="160">mania</text><text x="395" y="230">depressão</text>
+<text x="190" y="240">hipomania</text><text x="335" y="315">depressão maior</text><text x="595" y="315">depressão maior</text>
+<text x="300" y="380">oscilações leves por ≥ 2 anos, sem fechar episódio</text></g>
+<text x="360" y="408" text-anchor="middle" font-size="13" fill="#b03a2e">Uma única mania define bipolar I: antidepressivo isolado pode provocá-la.</text>
+</svg>

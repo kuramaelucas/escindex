@@ -289,3 +289,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de abortamento (ass-abortamento) |
 | 23/11/2026 | Resumo de miomatose uterina (ass-miomatose) |
 | 23/11/2026 | Resumo de vasculites (ass-reumato-vasculites) |
+| 23/11/2026 | Resumo de transtornos do humor (ass-psiq-humor) |

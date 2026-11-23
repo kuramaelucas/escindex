@@ -103,4 +103,5 @@
   { id: "abortamento", titulo: "Abortamento e sangramento do primeiro trimestre", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-abortamento" },
   { id: "miomatose", titulo: "Miomatose uterina e adenomiose", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-miomatose" },
   { id: "vasculites", titulo: "Vasculites", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-vasculites" },
+  { id: "humor", titulo: "Transtornos do humor: depressão, bipolar e suicídio", area: "Psiquiatria", assunto: "ass-psiq-humor" },
 ];
