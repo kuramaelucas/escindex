@@ -181,3 +181,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `protozooses` | `ass-leishmaniose` | 101 (malária, leishmaniose visceral e tegumentar, Chagas) | 4 (anuladas sem reposição) |
 | `endocardite` | `ass-endocardite` | 85 (13 dissertativas) | 5 (anuladas sem reposição) |
 | `neutropenia-febril` | `ass-neutropeniafebril` | 73 (3 dissertativas) | 4 (anuladas sem reposição) |
+| `micoses-invasivas` | `ass-micosesinvasivas` | 76 (1 dissertativa) | 1 (anulada sem reposição) |

@@ -84,4 +84,5 @@
   { id: "protozooses", titulo: "Malária, leishmanioses e doença de Chagas", area: "Clínica Médica · Infectologia", assunto: "ass-leishmaniose" },
   { id: "endocardite", titulo: "Endocardite infecciosa", area: "Clínica Médica · Infectologia", assunto: "ass-endocardite" },
   { id: "neutropenia-febril", titulo: "Neutropenia febril, febre e febre de origem indeterminada", area: "Clínica Médica · Infectologia", assunto: "ass-neutropeniafebril" },
+  { id: "micoses-invasivas", titulo: "Micoses sistêmicas e oportunistas", area: "Clínica Médica · Infectologia", assunto: "ass-micosesinvasivas" },
 ];
