@@ -313,3 +313,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de financiamento (ass-financiamento) |
 | 23/11/2026 | Resumo de anafilaxia (ass-alergia-anafilaxia) |
 | 23/11/2026 | Resumo de ventilação mecânica (ass-vm) |
+| 23/11/2026 | Resumo de litíase urinária (ass-uro-litiase) |

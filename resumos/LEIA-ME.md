@@ -224,3 +224,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `financiamento` | `ass-financiamento` | 37 questões (1 anulada fora); gasto público × privado, LC 141, Previne/cofinanciamento, privado complementar, ANS, rol, ressarcimento; 1 figura, 2 casos |
 | `anafilaxia` | `ass-alergia-anafilaxia` | 37 questões; IgE/mastócito, critérios, adrenalina IM, glucagon, observação 6 h, triptase, látex, urticária aguda, angioedema; 1 figura, 4 casos |
 | `ventilacao-mecanica` | `ass-vm` | 35 questões; indicação e VNI, modos, ajuste inicial, SDRA e protetora, prona, auto-PEEP, curvas, capnografia, desmame; 1 figura, 8 casos |
+| `litiase-urinaria` | `ass-uro-litiase` | 35 questões; cólica, TC × US, AINE, alfabloqueador, obstrução infectada, LECO/ureteroscopia/percutânea, tipos de cálculo e investigação metabólica; 1 figura, 3 casos |
