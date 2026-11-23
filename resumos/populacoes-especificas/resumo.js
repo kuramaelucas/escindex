@@ -35,7 +35,7 @@ Veja também: **Princípios do SUS** (equidade, universalidade, integralidade), 
 - Determinante que afeta a adesão: **distância até o serviço**. {q-sessp2025-095}
 - Obesidade, asma e depressão pelas condições do bairro: **determinantes sociais**. {q-unicampdis2025-046}
 - Casa sem janela com mofo e fogão a lenha: **modelo ecológico**. {q-sirio2026-082}
-- Doença respiratória perto do lixão: **I, II e IV**. {q-scmsp2026-088}
+- Doença respiratória perto do lixão: moradia e ambiente são determinantes **intermediários**, escolaridade e renda são **estruturais**, e a resposta é **intersetorial** (não é só fator individual). {q-scmsp2026-088}
 - Atlas: **três conjuntos de ativos**. {q-einstein2021-050}
 - Covid: **articulada às desigualdades**. {q-usp2024-086}
 - Mortes de adolescentes: **ações intersetoriais contra drogas e violência**. {q-tp20212-112}
@@ -49,7 +49,7 @@ Veja também: **Princípios do SUS** (equidade, universalidade, integralidade), 
 - Mulher em situação de rua que trabalha na rua: **vulnerabilidade social**. {q-usp2025-117}
 - Catadora negra com cinco filhos e hipertensão: **programática** (a prova). {q-einstein2024-071}
 - Insegurança alimentar no território: **projetos de cuidado e ações coletivas**. {q-unifesp2023-026}
-- Sofrimento psíquico: **I e III**. {q-amrigs2023-089}` },
+- Sofrimento psíquico: LGBTQIA+, negros e mulheres têm **risco maior**, e queixa somática vaga ou falta às consultas pede atenção; isso se acolhe na APS, **não** só em serviço especializado. {q-amrigs2023-089}` },
       ],
     },
     {

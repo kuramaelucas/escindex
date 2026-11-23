@@ -105,7 +105,7 @@ Ele se divide por **idade do óbito**: **neonatal precoce** (0 a 6 dias), **neon
 - **Baixo peso ao nascer** é o fator de risco isolado mais importante. {q-fmabc2023-051}
 - **Razão de mortalidade materna**: óbitos maternos ÷ **nascidos vivos** × 100.000. {q-tp20202-109,q-unesp2024-086,q-unesp2025-095}
 - **Natalidade**: nascidos vivos ÷ população × 1.000; **fecundidade**: nascidos vivos ÷ mulheres de 15 a 49 anos × 1.000. {q-unesp2024-085,q-unesp2023-081}
-- 254 óbitos infantis indígenas: neonatal tardio (29) = **11,42%**; afecções perinatais (69) = **27,16%**; fora do hospital (117) = **46,06%** (denominador: todos os óbitos). {q-unicamp2022-065}
+- 254 óbitos infantis indígenas: neonatal tardio (29) = **11,42%**; afecções perinatais (69) = **27,17%**; fora do hospital (117) = **46,06%** (denominador: todos os óbitos). {q-unicamp2022-065}
 - Cidade A (150 de 1.500 óbitos) × B (100 de 2.000): a mortalidade infantil **proporcional** é maior em A (10% × 5%); o coeficiente usa nascidos vivos como denominador e é outra medida. {q-unicamp2022-066}` },
         { id: "ind-padronizacao", titulo: "Padronização por idade e comparação de populações", conferir: true,
           questoes: ["q-unifesp2022-043","q-usp2025-099","q-usp2026-073","q-usp2026-076","q-unicampdis2024-059","q-unicampdis2024-060","q-didepm-050","q-unifesp2024-075","q-adap24-083"],
@@ -128,14 +128,14 @@ Ele se divide por **idade do óbito**: **neonatal precoce** (0 a 6 dias), **neon
 
 [[O **DALY** (anos de vida perdidos ajustados por incapacidade) soma anos perdidos por morte prematura e por incapacidade: mede **carga de doença** com mortalidade e morbidade juntas, e permite priorizar grupos para reduzir incapacidades. Os **anos potenciais de vida perdidos (APVP)** comparam causas que matam jovens e idosos.|q-iamspe2025-100,q-famema2021-070,q-sirio2022-084,q-unicamp2022-068]] [[O **excesso de óbitos** é a diferença entre o observado e o esperado (média dos anos anteriores): em março a julho, 40.000 contra 25.000 mostram o impacto da pandemia.|q-sirio2021-083,q-sirio2022-082]]
 
-A **razão de dependência** (idosos ÷ jovens) e a **mortalidade proporcional** por causa descrevem o perfil da população: 1.410 pessoas acima de 65 anos para 3.950 menores de 15 dá 0,356.`,
+O **índice de envelhecimento** (idosos ÷ menores de 15 anos) e a **mortalidade proporcional** por causa descrevem o perfil da população: 1.410 pessoas acima de 65 anos para 3.950 menores de 15 dá 0,356 (36 idosos para cada 100 jovens). Não confundir com a **razão de dependência**, que divide jovens **e** idosos pela população de 15 a 64 anos.`,
           texto: `- **Nelson de Moraes**: curvas de mortalidade proporcional por idade; o formato indica o nível de saúde (muito baixo a elevado). {q-iamspe2023-077,q-sessp2023-093,q-unesp2021-096,q-unesp2024-087}
 - **Swaroop-Uemura**: óbitos de 50 anos ou mais ÷ total; ambas usam o **grupo etário**. {q-fmabc2022-092,q-sessp2023-093}
 - **Esperança de vida ao nascer** sintetiza a mortalidade em **todas as idades**. {q-iamspe2021-071,q-sirio2026-092}
 - **DALY**: mortalidade e morbidade (incapacidade) numa só medida: carga de doença. {q-iamspe2025-100,q-famema2021-070,q-sirio2022-084}
 - **APVP**: compara o impacto de causas que matam em idades jovens (covid × DCV). {q-unicamp2022-068}
 - **Excesso de óbitos**: observado menos esperado em período de pandemia. {q-sirio2021-083,q-sirio2022-082}
-- Proporção de idosos ÷ menores de 15 (razão de dependência): 1.410/3.950 = 0,356. {q-unicampdis2025-041}
+- Idosos ÷ menores de 15 (**índice de envelhecimento**): 1.410/3.950 = 0,356; a razão de dependência é (jovens + idosos) ÷ 15–64 anos. {q-unicampdis2025-041}
 - Mortalidade proporcional por doença isquêmica = 12/120 = 10%. {q-unicampdis2025-042}
 - Os indicadores se classificam em seis dimensões (demográficos, socioeconômicos, mortalidade, morbidade, recursos e cobertura). {q-usp2024-078}` },
         { id: "ind-servicos", titulo: "Indicadores de serviço, de cuidado e critérios de um bom indicador", conferir: true, diretrizes: ["ripsa"],
@@ -229,7 +229,7 @@ A **fração atribuível** responde "que parte dos casos seria evitada sem a exp
 
 [[Exemplo: sensibilidade 90%, especificidade 80% e prevalência de 10% em 1.000 pessoas: 100 doentes, 90 verdadeiros positivos; 900 sadios, 180 falsos positivos; **VPP = 90/270 = 33%**. Em população com prevalência de 2% (sens. 95%, esp. 90%), o VPP cai para **16%**; em surto com prevalência de 50% e sensibilidade e especificidade de 99%, sobe para **99%**.|q-udisc20262-011,q-unifesp2024-076,q-adap25-057,q-adap24-048,q-uspsp2-119]]
 
-[[Por isso reduzir a idade de início da mamografia para 40 anos, onde a prevalência é menor, **reduz o VPP**, sem alterar sensibilidade nem especificidade; o PSA de 7 ng/dl com sens. 72%, esp. 46% e prevalência de 10% dá VPP de apenas 13%.|q-unifesp2025-057,q-famerp2024-008,q-famerp2025-038]] Se a incidência observada (24%) vem de teste com especificidade de 80%, a verdadeira é de 5%, porque os falsos positivos contam como casos.
+[[Por isso reduzir a idade de início da mamografia para 40 anos, onde a prevalência é menor, **reduz o VPP**, sem alterar sensibilidade nem especificidade; o PSA com sens. 72%, esp. 46% e prevalência de 10% dá VPP de apenas 13%.|q-unifesp2025-057,q-famerp2024-008,q-famerp2025-038]] Se a incidência observada (24%) vem de teste com especificidade de 80%, a verdadeira é de 5%, porque os falsos positivos contam como casos.
 
 A **razão de verossimilhança** (RV+ = sens./(1 − esp.)) não depende da prevalência e permite calcular a probabilidade pós-teste. [[Na consulta, a probabilidade **pré-teste** é a prevalência no contexto (APS, faixa etária, sexo); numa jovem com dor torácica no ambulatório, ela é baixa e o VPP também; e um achado de exame normal faz a rinossinusite bacteriana menos provável.|q-sessp2022-095,q-sessp2022-096,q-simepm89-066]]`,
           texto: `- **Sensibilidade** = VP/(VP+FN); **especificidade** = VN/(VN+FP); **VPP** = VP/(VP+FP); **VPN** = VN/(VN+FN). {q-einstein2021-046,q-uspsp2-109}
