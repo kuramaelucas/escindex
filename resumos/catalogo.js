@@ -100,4 +100,5 @@
   { id: "niveis-atencao", titulo: "Níveis de atenção e Redes de Atenção à Saúde", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-niveisatencao" },
   { id: "demencia-delirium", titulo: "Demência e delirium", area: "Clínica Médica · Geriatria", assunto: "ass-geriatria-demencia" },
   { id: "drc", titulo: "Doença renal crônica", area: "Clínica Médica", assunto: "ass-drc" },
+  { id: "abortamento", titulo: "Abortamento e sangramento do primeiro trimestre", area: "Ginecologia e Obstetrícia", assunto: "ass-abortamento" },
 ];
