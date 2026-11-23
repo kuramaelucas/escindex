@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Classificação de Forrest e conduta</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="44" width="680" height="44" rx="6" fill="#fbecec" stroke="#b03a2e"/>
+    <text x="36" y="71" font-weight="bold">Ia</text><text x="90" y="71">sangramento em jato</text><text x="420" y="71" fill="#b03a2e" font-weight="bold">alto risco → hemostasia combinada</text>
+    <rect x="20" y="94" width="680" height="44" rx="6" fill="#fbecec" stroke="#b03a2e"/>
+    <text x="36" y="121" font-weight="bold">Ib</text><text x="90" y="121">sangramento em babação</text><text x="420" y="121" fill="#b03a2e" font-weight="bold">alto risco → hemostasia combinada</text>
+    <rect x="20" y="144" width="680" height="44" rx="6" fill="#fbecec" stroke="#b03a2e"/>
+    <text x="36" y="171" font-weight="bold">IIa</text><text x="90" y="171">vaso visível</text><text x="420" y="171" fill="#b03a2e" font-weight="bold">alto risco → hemostasia combinada</text>
+    <rect x="20" y="194" width="680" height="44" rx="6" fill="#f7efe6" stroke="#7a4d1b"/>
+    <text x="36" y="221" font-weight="bold">IIb</text><text x="90" y="221">coágulo aderido</text><text x="420" y="221" fill="#7a4d1b" font-weight="bold">lavar, retirar e tratar o de baixo</text>
+    <rect x="20" y="244" width="680" height="44" rx="6" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="36" y="271" font-weight="bold">IIc</text><text x="90" y="271">base com hematina</text><text x="420" y="271" fill="#4d7a1b" font-weight="bold">sem terapia endoscópica</text>
+    <rect x="20" y="294" width="680" height="44" rx="6" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="36" y="321" font-weight="bold">III</text><text x="90" y="321">fundo limpo</text><text x="420" y="321" fill="#4d7a1b" font-weight="bold">sem terapia endoscópica</text>
+  </g>
+  <text x="360" y="364" text-anchor="middle" font-size="12" fill="#1f2d3d">Combinada = adrenalina + clipe ou térmico; depois IBP em dose alta venosa.</text>
+</svg>
