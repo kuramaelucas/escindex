@@ -309,3 +309,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de cardiopatias congênitas (ass-cardiopatiascongenitas) |
 | 23/11/2026 | Resumo de câncer gástrico (ass-cagastrico) |
 | 23/11/2026 | Resumo de lúpus e colagenoses (ass-reumato-les) |
+| 23/11/2026 | Resumo de psiquiatria infantil (ass-psiq-infantil) |

@@ -123,4 +123,5 @@
   { id: "cardiopatias-congenitas", titulo: "Cardiopatias congênitas", area: "Pediatria · Cardiologia Pediátrica", assunto: "ass-cardiopatiascongenitas" },
   { id: "cancer-gastrico", titulo: "Câncer gástrico e tumores do estômago e do esôfago", area: "Cirurgia · Cirurgia Oncológica", assunto: "ass-cagastrico" },
   { id: "lupus", titulo: "Lúpus e colagenoses", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-les" },
+  { id: "psiquiatria-infantil", titulo: "Psiquiatria da infância e adolescência", area: "Psiquiatria", assunto: "ass-psiq-infantil" },
 ];

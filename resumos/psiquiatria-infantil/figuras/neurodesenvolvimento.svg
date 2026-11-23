@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Criança com dificuldade escolar: o que é?</text>
+<g text-anchor="middle" font-size="13">
+<rect x="210" y="45" width="300" height="56" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="360" y="68" font-weight="bold" fill="#7a4d1b">Antes de tudo</text><text x="360" y="88" fill="#333">visão, audição, sono, telas, estresse em casa</text>
+<rect x="20" y="130" width="215" height="160" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="127" y="154" font-weight="bold" fill="#1b5e7a">TDAH</text>
+<text x="127" y="178" fill="#333">desatenção/hiperatividade</text><text x="127" y="196" fill="#333">antes dos 12 anos</text><text x="127" y="214" fill="#333">em casa E na escola</text><text x="127" y="250" fill="#1b5e7a">pais + escola + SNAP-IV</text><text x="127" y="268" fill="#1b5e7a">metilfenidato</text>
+<rect x="252" y="130" width="215" height="160" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="360" y="154" font-weight="bold" fill="#4d7a1b">Aprendizagem</text>
+<text x="360" y="178" fill="#333">entende bem falando</text><text x="360" y="196" fill="#333">lê lento, escreve mal</text><text x="360" y="214" fill="#333">inteligência normal</text><text x="360" y="250" fill="#4d7a1b">neuropsicológica</text><text x="360" y="268" fill="#4d7a1b">adaptação escolar</text>
+<rect x="484" y="130" width="215" height="160" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="591" y="154" font-weight="bold" fill="#b03a2e">TEA</text>
+<text x="591" y="178" fill="#333">interação social pobre</text><text x="591" y="196" fill="#333">rigidez, estereotipias</text><text x="591" y="214" fill="#333">sensibilidade sensorial</text><text x="591" y="250" fill="#b03a2e">M-CHAT-R 16–30 meses</text><text x="591" y="268" fill="#b03a2e">equipe multidisciplinar</text>
+<text x="360" y="325" fill="#333">Os três podem coexistir; o diagnóstico é clínico e precisa de mais de um informante.</text>
+</g></svg>
