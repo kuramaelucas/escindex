@@ -113,4 +113,5 @@
   { id: "vitalidade-fetal", titulo: "Vitalidade fetal, pós-datismo e indução do parto", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-vitalidadefetal" },
   { id: "queimaduras", titulo: "Queimaduras", area: "Cirurgia · Trauma", assunto: "ass-queimaduras" },
   { id: "leptospirose", titulo: "Leptospirose", area: "Clínica Médica · Infectologia", assunto: "ass-leptospirose" },
+  { id: "ira", titulo: "Lesão renal aguda", area: "Clínica Médica · Nefrologia", assunto: "ass-ira" },
 ];

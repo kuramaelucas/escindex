@@ -210,3 +210,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `vitalidade-fetal` | `ass-vitalidadefetal` | 41 questões; cardiotocografia anteparto e intraparto, categorias, reanimação, PBF, pós-datismo, Bishop, óbito fetal; 1 figura, 16 casos |
 | `queimaduras` | `ass-queimaduras` | 41 questões (3 anuladas, 1 com reposição); profundidade, regra dos nove, via aérea, Parkland × 2 mL, diurese, escarotomia, elétrica; 1 figura, 2 casos |
 | `leptospirose` | `ass-leptospirose` | 41 questões (2 anuladas fora); transmissão, fases, Weil, rim com hipocalemia, MAT, doxiciclina/penicilina, profilaxia; 1 figura, 1 caso |
+| `ira` | `ass-ira` | 41 questões (1 anulada fora); KDIGO, pré-renal × NTA × pós-renal, contraste, rabdomiólise, lise tumoral, SHU, hipercalemia, diálise; 1 figura, 5 casos |
