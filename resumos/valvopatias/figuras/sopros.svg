@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Os sopros no ciclo cardíaco</text>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="200" y="58">B1</text><text x="400" y="58">B2</text><text x="620" y="58">B1</text>
+<text x="300" y="58" fill="#1b5e7a">sístole</text><text x="510" y="58" fill="#1b5e7a">diástole</text></g>
+<g stroke="#333" stroke-width="3"><line x1="200" y1="66" x2="200" y2="350"/><line x1="400" y1="66" x2="400" y2="350"/><line x1="620" y1="66" x2="620" y2="350"/></g>
+<g font-size="13" font-weight="bold">
+<text x="20" y="105" fill="#b03a2e">Estenose aórtica</text><text x="20" y="175" fill="#7a4d1b">Insuf. mitral</text><text x="20" y="245" fill="#1b5e7a">Insuf. aórtica</text><text x="20" y="315" fill="#4d7a1b">Estenose mitral</text></g>
+<path d="M215,110 L300,80 L385,110 Z" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+<rect x="210" y="155" width="185" height="30" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+<path d="M405,225 L405,255 L560,255 Z" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+<path d="M440,320 L440,305 L520,312 L520,320 Z" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+<path d="M560,320 L612,295 L612,320 Z" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+<line x1="425" y1="290" x2="425" y2="320" stroke="#4d7a1b" stroke-width="3"/>
+<g font-size="11" fill="#333">
+<text x="215" y="128">ejetivo (diamante) → carótidas</text>
+<text x="215" y="200">holossistólico (de B1 a B2) → axila</text>
+<text x="410" y="272">aspirativo decrescente, logo após B2</text>
+<text x="410" y="340">estalido, ruflar, reforço pré-sistólico</text></g>
+</svg>
