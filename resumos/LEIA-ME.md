@@ -182,3 +182,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `endocardite` | `ass-endocardite` | 85 (13 dissertativas) | 5 (anuladas sem reposição) |
 | `neutropenia-febril` | `ass-neutropeniafebril` | 73 (3 dissertativas) | 4 (anuladas sem reposição) |
 | `micoses-invasivas` | `ass-micosesinvasivas` | 76 (1 dissertativa) | 1 (anulada sem reposição) |
+| `itu` | `ass-itu` | 72 (2 dissertativas) | 2 (anuladas sem reposição) |
