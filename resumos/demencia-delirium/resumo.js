@@ -96,7 +96,7 @@ Veja também: **Intoxicações** (anticolinérgicos), **Sepse**, **Cuidados peri
           texto: `- Desinibição, doces e higiene, memória boa: **frontotemporal comportamental**. {q-adap21-111}
 - Rituais e hipersexualidade: **lobos frontal e temporal; ISRS**. {q-tp20231-012}
 - Marcha, urgência e esquecimento: **hidrocefalia de pressão normal**. {q-uspsp2-022,q-tp20251-028}
-- Idoso que cai, demência e fraqueza à direita: **imagem do hematoma subdural** (1). {q-tp20202-039}` },
+- Idoso que cai, demência e fraqueza à direita: **tomografia: hematoma subdural crônico**. {q-tp20202-039}` },
       ],
     },
     {
