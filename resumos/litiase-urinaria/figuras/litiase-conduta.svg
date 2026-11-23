@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Cálculo no ureter: o que decide</text>
+<g text-anchor="middle" font-size="13">
+<rect x="230" y="45" width="260" height="46" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="360" y="66" font-weight="bold" fill="#1b5e7a">Cólica nefrética</text><text x="360" y="83" fill="#333">TC sem contraste · AINE</text>
+<g stroke="#555" stroke-width="2"><line x1="300" y1="91" x2="130" y2="128" marker-end="url(#s)"/><line x1="360" y1="91" x2="360" y2="128" marker-end="url(#s)"/><line x1="420" y1="91" x2="590" y2="128" marker-end="url(#s)"/></g>
+<rect x="20" y="132" width="220" height="130" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="130" y="155" font-weight="bold" fill="#b03a2e">Febre, infecção,</text><text x="130" y="173" font-weight="bold" fill="#b03a2e">rim único, LRA</text><text x="130" y="205" fill="#333">desobstruir já:</text><text x="130" y="223" fill="#333">duplo J ou nefrostomia</text><text x="130" y="241" fill="#333">+ antibiótico IV</text>
+<rect x="250" y="132" width="220" height="130" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="360" y="155" font-weight="bold" fill="#4d7a1b">≤ 10 mm, sem</text><text x="360" y="173" font-weight="bold" fill="#4d7a1b">infecção, dor controlada</text><text x="360" y="205" fill="#333">alfabloqueador</text><text x="360" y="223" fill="#333">(tansulosina)</text><text x="360" y="241" fill="#333">e vigilância</text>
+<rect x="480" y="132" width="220" height="130" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="590" y="155" font-weight="bold" fill="#7a4d1b">Grande ou que</text><text x="590" y="173" font-weight="bold" fill="#7a4d1b">não passa</text><text x="590" y="205" fill="#333">ureteroscopia / LECO</text><text x="590" y="223" fill="#333">rim ≥ 2 cm:</text><text x="590" y="241" fill="#333">nefrolitotripsia percutânea</text>
+<text x="360" y="300" fill="#333">Recorrente: análise do cálculo e urina de 24 horas.</text>
+<text x="360" y="325" fill="#b03a2e">Pus sob pressão não se trata só com antibiótico.</text>
+</g></svg>

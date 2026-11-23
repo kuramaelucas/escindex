@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Camadas da adrenal: o que cada uma faz e quem a comanda</text>
+<g text-anchor="middle" font-size="13">
+<rect x="40" y="55" width="260" height="60" rx="6" fill="#eef5e6" stroke="#4d7a1b"/><text x="170" y="80" font-weight="bold" fill="#4d7a1b">Glomerulosa → aldosterona</text><text x="170" y="100" fill="#333">comando: renina/angiotensina, potássio</text>
+<rect x="40" y="125" width="260" height="60" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="170" y="150" font-weight="bold" fill="#1b5e7a">Fasciculada → cortisol</text><text x="170" y="170" fill="#333">comando: ACTH</text>
+<rect x="40" y="195" width="260" height="60" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="170" y="220" font-weight="bold" fill="#7a4d1b">Reticular → andrógenos</text><text x="170" y="240" fill="#333">comando: ACTH</text>
+<rect x="40" y="265" width="260" height="60" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="170" y="290" font-weight="bold" fill="#b03a2e">Medula → catecolaminas</text><text x="170" y="310" fill="#333">comando: simpático</text>
+<g font-size="12" text-anchor="start" fill="#333">
+<text x="330" y="80">sobra: hiperaldosteronismo (K↓, renina↓)</text><text x="330" y="100">falta: Addison (Na↓, K↑) — poupada na secundária</text>
+<text x="330" y="150">sobra: Cushing (estrias, K↓)</text><text x="330" y="170">falta: crise adrenal (choque, hipoglicemia)</text>
+<text x="330" y="220">sobra: HAC 21-hidroxilase, carcinoma (virilização)</text><text x="330" y="240">desvio dos precursores quando falta cortisol</text>
+<text x="330" y="290">sobra: feocromocitoma (crises, metanefrinas)</text></g>
+<text x="360" y="355" fill="#1b5e7a">Primária: ACTH alto → pele escura. Secundária/corticoide: ACTH baixo, potássio normal.</text>
+</g></svg>

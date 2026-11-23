@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Atributos da atenção primária (Starfield)</text>
+  <text x="360" y="52" text-anchor="middle" font-size="13" font-weight="bold" fill="#1b5e7a">Essenciais</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="62" width="160" height="96" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="100" y="88" font-weight="bold">Primeiro contato</text><text x="100" y="110">porta de entrada</text><text x="100" y="128">preferencial</text>
+    <rect x="195" y="62" width="160" height="96" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="275" y="88" font-weight="bold">Longitudinalidade</text><text x="275" y="110">mesma equipe</text><text x="275" y="128">ao longo da vida</text>
+    <rect x="370" y="62" width="160" height="96" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="450" y="88" font-weight="bold">Integralidade</text><text x="450" y="110">todas as</text><text x="450" y="128">necessidades</text>
+    <rect x="545" y="62" width="160" height="96" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="625" y="88" font-weight="bold">Coordenação</text><text x="625" y="110">integra os pontos</text><text x="625" y="128">da rede</text>
+  </g>
+  <text x="360" y="194" text-anchor="middle" font-size="13" font-weight="bold" fill="#4d7a1b">Derivados</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="60" y="204" width="180" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="150" y="232" font-weight="bold">Orientação familiar</text><text x="150" y="254">contexto da família</text>
+    <rect x="270" y="204" width="180" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="360" y="232" font-weight="bold">Orientação comunitária</text><text x="360" y="254">o território</text>
+    <rect x="480" y="204" width="180" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="570" y="232" font-weight="bold">Competência cultural</text><text x="570" y="254">crenças e saberes</text>
+  </g>
+  <text x="360" y="320" text-anchor="middle" font-size="12" fill="#1f2d3d">Sistemas orientados pela atenção primária: menos mortes e menor custo.</text>
+</svg>

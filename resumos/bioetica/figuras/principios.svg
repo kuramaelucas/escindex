@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Os quatro princípios (Beauchamp e Childress)</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="44" width="330" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="36" y="70" font-weight="bold" fill="#1b5e7a">Respeito à autonomia</text>
+    <text x="36" y="94">a pessoa capaz decide sobre o próprio corpo</text>
+    <text x="36" y="118">ex.: recusa de transfusão registrada;</text>
+    <text x="36" y="138">segunda opinião</text>
+    <rect x="370" y="44" width="330" height="120" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="386" y="70" font-weight="bold" fill="#4d7a1b">Beneficência</text>
+    <text x="386" y="94">agir para o bem do paciente</text>
+    <text x="386" y="118">ex.: examinar e decidir mesmo</text>
+    <text x="386" y="138">quando a criança recusa</text>
+    <rect x="20" y="180" width="330" height="120" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="36" y="206" font-weight="bold" fill="#b03a2e">Não maleficência</text>
+    <text x="36" y="230">não causar dano</text>
+    <text x="36" y="254">ex.: não prescrever sem evidência;</text>
+    <text x="36" y="274">não prometer resultado</text>
+    <rect x="370" y="180" width="330" height="120" rx="8" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+    <text x="386" y="206" font-weight="bold" fill="#7a4d1b">Justiça</text>
+    <text x="386" y="230">distribuir recursos com equidade</text>
+    <text x="386" y="254">ex.: vacina escassa para os</text>
+    <text x="386" y="274">mais vulneráveis</text>
+  </g>
+  <text x="360" y="322" text-anchor="middle" font-size="12" fill="#1f2d3d">Nenhum vale sempre acima dos outros: quando colidem, pondera-se o caso.</text>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Diverticulite: a tomografia escolhe a conduta</text>
+<path d="M30,62 L690,62" stroke="#555" stroke-width="2" marker-end="url(#s)"/><text x="360" y="54" text-anchor="middle" font-size="12" fill="#555">gravidade crescente</text>
+<g text-anchor="middle" font-size="13">
+<rect x="20" y="80" width="125" height="160" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="82" y="104" font-weight="bold" fill="#4d7a1b">Não complicada</text><text x="82" y="124" fill="#333">espessamento,</text><text x="82" y="140" fill="#333">gordura densa</text>
+<text x="82" y="200" fill="#4d7a1b">sintomáticos;</text><text x="82" y="216" fill="#4d7a1b">ATB se risco</text>
+<rect x="160" y="80" width="125" height="160" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="222" y="104" font-weight="bold" fill="#1b5e7a">Hinchey I</text><text x="222" y="124" fill="#333">abscesso</text><text x="222" y="140" fill="#333">&lt; 4–5 cm</text>
+<text x="222" y="208" fill="#1b5e7a">antibiótico</text>
+<rect x="300" y="80" width="125" height="160" rx="8" fill="#f7efe6" stroke="#7a4d1b"/>
+<text x="362" y="104" font-weight="bold" fill="#7a4d1b">I–II</text><text x="362" y="124" fill="#333">abscesso ≥ 4–5 cm</text><text x="362" y="140" fill="#333">ou pélvico (II)</text>
+<text x="362" y="200" fill="#7a4d1b">drenagem</text><text x="362" y="216" fill="#7a4d1b">percutânea</text>
+<rect x="440" y="80" width="125" height="160" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="502" y="104" font-weight="bold" fill="#b03a2e">Hinchey III</text><text x="502" y="124" fill="#333">peritonite</text><text x="502" y="140" fill="#333">purulenta</text>
+<text x="502" y="200" fill="#b03a2e">cirurgia</text>
+<rect x="580" y="80" width="125" height="160" rx="8" fill="#f2c9c4" stroke="#b03a2e"/>
+<text x="642" y="104" font-weight="bold" fill="#b03a2e">Hinchey IV</text><text x="642" y="124" fill="#333">peritonite</text><text x="642" y="140" fill="#333">fecal</text>
+<text x="642" y="200" fill="#b03a2e">Hartmann</text>
+<rect x="20" y="265" width="685" height="70" rx="8" fill="#fff" stroke="#1b5e7a" stroke-dasharray="5 4"/>
+<text x="362" y="290" fill="#1b5e7a">Depois do episódio: colonoscopia em 6–8 semanas (excluir câncer).</text>
+<text x="362" y="312" fill="#1b5e7a">Cirurgia eletiva por fístula, estenose ou sintomas persistentes, não pelo número de crises.</text>
+</g></svg>

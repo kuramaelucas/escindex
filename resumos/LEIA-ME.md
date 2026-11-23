@@ -177,3 +177,51 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `sepse` | `ass-sepse` | 132 | — |
 | `iras` | `ass-iras` | 147 | — |
 | `pele-partes-moles` | `ass-peleparte` | 188 | — |
+| `antibioticoterapia` | `ass-atb` | 120 | 5 (anuladas sem reposição) |
+| `protozooses` | `ass-leishmaniose` | 101 (malária, leishmaniose visceral e tegumentar, Chagas) | 4 (anuladas sem reposição) |
+| `endocardite` | `ass-endocardite` | 85 (13 dissertativas) | 5 (anuladas sem reposição) |
+| `neutropenia-febril` | `ass-neutropeniafebril` | 73 (3 dissertativas) | 4 (anuladas sem reposição) |
+| `micoses-invasivas` | `ass-micosesinvasivas` | 76 (1 dissertativa) | 1 (anulada sem reposição) |
+| `itu` | `ass-itu` | 72 (2 dissertativas) | 2 (anuladas sem reposição) |
+| `fios-e-cicatrizacao` | `ass-toce-fios` | 57 (1 dissertativa) | 6 (2 anuladas; 4 de doença orificial classificadas por engano) |
+| `cancer-colorretal` | `ass-cacolorretal` | 57 (3 dissertativas) | 2 (anuladas sem reposição) |
+| `avc` | `ass-neuro-avc` | 57 | 1 (anulada sem reposição) |
+| `doenca-peptica` | `ass-doencapeptica` | 57 (1 dissertativa) | 1 (anulada sem reposição) |
+| `isquemia-arterial` | `ass-cirvasc-arterial` | 57 (4 dissertativas) | — |
+| `hemostasia` | `ass-hemato-hemostasia` | 55 (2 dissertativas) | 1 (anulada sem reposição) |
+| `sindromes-gripais` | `ass-infecto-covid` | 54 (2 dissertativas) | 1 (anulada sem reposição) |
+| `drge-esofago` | `ass-drge` | 55 (1 dissertativa) | — |
+| `populacoes-especificas` | `ass-saudepopulacoes` | 54 (2 dissertativas) | — |
+| `bioetica` | `ass-principiosbioetica` | 53 (4 dissertativas) | 1 (anulada sem reposição) |
+| `pleura` | `ass-cirtorax-pleura` | 53 (3 dissertativas) | 1 (desatualizada sem reposição) |
+| `niveis-atencao` | `ass-niveisatencao` | 52 | 1 (anulada sem reposição) |
+| `demencia-delirium` | `ass-geriatria-demencia` | 52 (1 dissertativa) | 1 (anulada sem reposição) |
+| `drc` | `ass-drc` | 53 questões (1 anulada fora); KDIGO G×A, nefroproteção, DMO, TRS; 2 figuras, 2 casos |
+| `abortamento` | `ass-abortamento` | 52 questões (3 anuladas fora); formas, inviabilidade, esvaziamento, ectópica, perda de repetição, aborto legal; 1 figura, 6 casos |
+| `miomatose` | `ass-miomatose` | 51 questões; FIGO, STEP-W, observar × clínico × histeroscopia × miomectomia × histerectomia, adenomiose; 1 figura, 7 casos |
+| `vasculites` | `ass-reumato-vasculites` | 48 questões; calibre, ACG/polimialgia, Takayasu, PAN, Kawasaki, IgA, ANCA, crio, SAF/ES; 1 figura, 5 casos |
+| `humor` | `ass-psiq-humor` | 48 questões (1 anulada fora); depressão, ISRS, perinatal, suicídio, bipolar, lítio; 1 figura |
+| `dpoc` | `ass-dpoc` | 48 questões (1 anulada com reposição); mecanismo, GOLD, LAMA/LABA/CI, O2, exacerbação, VNI, cor pulmonale; 1 figura, 7 casos |
+| `infertilidade` | `ass-infertilidade` | 47 questões; investigação, reserva, SOP/indução, tubário/uterino, espermograma, IIU/FIV/ICSI; 1 figura, 2 casos |
+| `diverticulite` | `ass-diverticulite` | 47 questões (1 anulada com reposição); TC, Hinchey/WSES, antibiótico × drenagem × Hartmann, fístula, HDB; 1 figura, 7 casos |
+| `vigilancia-sanitaria` | `ass-vigilanciasanitaria` | 44 questões; vigilâncias e Anvisa, receituários e resíduos, notificação imediata × semanal, declaração de óbito; 1 figura |
+| `adrenal` | `ass-adrenal` | 42 questões; insuficiência e crise, HAC, Cushing, hiperaldosteronismo, feocromocitoma, incidentaloma; 1 figura, 4 casos |
+| `politicas-nacionais` | `ass-politicasnacionais` | 42 questões; PNH, mulher/criança/homem/idoso/população negra, violência, saúde mental, alimentação, DCNT, telessaúde, transplantes; 1 figura |
+| `vitalidade-fetal` | `ass-vitalidadefetal` | 41 questões; cardiotocografia anteparto e intraparto, categorias, reanimação, PBF, pós-datismo, Bishop, óbito fetal; 1 figura, 16 casos |
+| `queimaduras` | `ass-queimaduras` | 41 questões (3 anuladas, 1 com reposição); profundidade, regra dos nove, via aérea, Parkland × 2 mL, diurese, escarotomia, elétrica; 1 figura, 2 casos |
+| `leptospirose` | `ass-leptospirose` | 41 questões (2 anuladas fora); transmissão, fases, Weil, rim com hipocalemia, MAT, doxiciclina/penicilina, profilaxia; 1 figura, 1 caso |
+| `ira` | `ass-ira` | 41 questões (1 anulada fora); KDIGO, pré-renal × NTA × pós-renal, contraste, rabdomiólise, lise tumoral, SHU, hipercalemia, diálise; 1 figura, 5 casos |
+| `colangite` | `ass-colangite` | 41 questões (1 anulada fora); icterícia obstrutiva, CPRE × colangiorressonância, Tóquio 2018, Klatskin, Courvoisier, cisto de colédoco; 1 figura, 10 casos |
+| `valvopatias` | `ass-valvopatias` | 40 questões (1 anulada com reposição); sopros, EAo/TAVI, IAo, EM/valvuloplastia, IM, tricúspide, gestação e prótese; 1 figura, 10 casos |
+| `artrites` | `ass-reumato-artrites` | 40 questões; padrão articular, séptica/gonocócica/gota, AR, espondiloartrites, psoriásica, AIJ/Still, fibromialgia; 1 figura, 6 casos |
+| `hepatites` | `ass-hepatites` | 40 questões (1 anulada com reposição); padrão enzimático, hepatite A e insuficiência aguda, marcadores e fases da B, transmissão vertical, hepatite C, CBP; 1 figura, 1 caso |
+| `neuromuscular` | `ass-neuro-neuromuscular` | 40 questões (1 anulada fora); topografia, Guillain-Barré, miastenia, ELA, EM, neurite óptica, NMO, anti-NMDA; 1 figura, 2 casos |
+| `cuidados-paliativos` | `ass-cuidadospaliativos` | 40 questões (1 anulada fora); indicação, PPS, DAV, distanásia/ortotanásia, morfina, dispneia, alimentação no fim de vida, luto; 1 figura |
+| `cardiopatias-congenitas` | `ass-cardiopatiascongenitas` | 39 questões (1 anulada fora); shunts, coraçãozinho, hiperóxia, IC no lactente, sopro inocente, CIV, CIA, coarctação, Fallot; 1 figura |
+| `cancer-gastrico` | `ass-cagastrico` | 39 questões; H. pylori/CagA, Lauren, estadiamento e laparoscopia, D2 e quimio perioperatória, dumping, GIST, linfoma, esôfago; 1 figura, 9 casos |
+| `lupus` | `ass-reumato-les` | 38 questões (1 anulada fora); LES, anticorpos, nefrite lúpica, lúpus induzido, anti-Ro na gestação, SAF, esclerose sistêmica, dermatomiosite, Sjögren; 1 figura, 7 casos |
+| `psiquiatria-infantil` | `ass-psiq-infantil` | 37 questões; TDAH, aprendizagem/dislexia, TEA e M-CHAT-R, ansiedade, enurese, autolesão, telas; 1 figura, 3 casos |
+| `financiamento` | `ass-financiamento` | 37 questões (1 anulada fora); gasto público × privado, LC 141, Previne/cofinanciamento, privado complementar, ANS, rol, ressarcimento; 1 figura, 2 casos |
+| `anafilaxia` | `ass-alergia-anafilaxia` | 37 questões; IgE/mastócito, critérios, adrenalina IM, glucagon, observação 6 h, triptase, látex, urticária aguda, angioedema; 1 figura, 4 casos |
+| `ventilacao-mecanica` | `ass-vm` | 35 questões; indicação e VNI, modos, ajuste inicial, SDRA e protetora, prona, auto-PEEP, curvas, capnografia, desmame; 1 figura, 8 casos |
+| `litiase-urinaria` | `ass-uro-litiase` | 35 questões; cólica, TC × US, AINE, alfabloqueador, obstrução infectada, LECO/ureteroscopia/percutânea, tipos de cálculo e investigação metabólica; 1 figura, 3 casos |

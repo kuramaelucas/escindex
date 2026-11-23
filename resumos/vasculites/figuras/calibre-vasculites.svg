@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Vasculites pelo calibre do vaso</text>
+<g stroke="#b03a2e" fill="#fbecec">
+<rect x="40" y="60" width="200" height="70" rx="35" stroke-width="3"/>
+<rect x="290" y="75" width="140" height="40" rx="20" stroke-width="2.5"/>
+<rect x="480" y="85" width="80" height="20" rx="10" stroke-width="2"/>
+<rect x="600" y="90" width="40" height="10" rx="5" stroke-width="1.5"/>
+</g>
+<g font-size="14" font-weight="bold" text-anchor="middle" fill="#1b5e7a">
+<text x="140" y="155">Grandes (aorta e ramos)</text><text x="360" y="155">Médios</text><text x="600" y="155">Pequenos</text></g>
+<g font-size="13">
+<text x="140" y="185" text-anchor="middle" fill="#7a4d1b" font-weight="bold">Células gigantes · Takayasu</text>
+<text x="140" y="210" text-anchor="middle" fill="#333">claudicação de membro/mandíbula</text>
+<text x="140" y="230" text-anchor="middle" fill="#333">pulsos assimétricos, sopros</text>
+<text x="140" y="250" text-anchor="middle" fill="#333">cegueira, AVC</text>
+<text x="360" y="185" text-anchor="middle" fill="#7a4d1b" font-weight="bold">Poliarterite nodosa · Kawasaki</text>
+<text x="360" y="210" text-anchor="middle" fill="#333">aneurismas (mesentérico, coronário)</text>
+<text x="360" y="230" text-anchor="middle" fill="#333">infarto de órgão</text>
+<text x="360" y="250" text-anchor="middle" fill="#333">mononeurite múltipla</text>
+<text x="590" y="185" text-anchor="middle" fill="#7a4d1b" font-weight="bold">ANCA · IgA · crio</text>
+<text x="590" y="210" text-anchor="middle" fill="#333">púrpura palpável</text>
+<text x="590" y="230" text-anchor="middle" fill="#333">glomerulonefrite</text>
+<text x="590" y="250" text-anchor="middle" fill="#333">hemorragia alveolar</text>
+</g>
+<rect x="40" y="290" width="640" height="56" rx="6" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="360" y="313" text-anchor="middle" font-size="13" fill="#4d7a1b">Comum a todas: febre, perda de peso, VHS e PCR altas.</text>
+<text x="360" y="333" text-anchor="middle" font-size="13" fill="#4d7a1b">Quanto menor o vaso, mais o rim, a pele e o pulmão sofrem.</text>
+</svg>

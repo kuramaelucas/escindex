@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Como cada fungo aparece no microscópio</text>
+  <g fill="none" stroke="#1b5e7a" stroke-width="2">
+    <rect x="20" y="44" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <rect x="250" y="44" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <rect x="480" y="44" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <rect x="20" y="226" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <rect x="250" y="226" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <rect x="480" y="226" width="220" height="170" rx="8" stroke="#c9d6df"/>
+    <!-- roda de leme -->
+    <circle cx="130" cy="120" r="28"/>
+    <circle cx="130" cy="82" r="8"/><circle cx="130" cy="158" r="8"/><circle cx="92" cy="120" r="8"/><circle cx="168" cy="120" r="8"/>
+    <circle cx="157" cy="93" r="7"/><circle cx="103" cy="93" r="7"/><circle cx="157" cy="147" r="7"/><circle cx="103" cy="147" r="7"/>
+    <!-- histoplasma: macrofago com leveduras -->
+    <ellipse cx="360" cy="120" rx="62" ry="44" stroke="#7a4d1b"/>
+    <circle cx="340" cy="108" r="5"/><circle cx="356" cy="100" r="5"/><circle cx="372" cy="112" r="5"/><circle cx="350" cy="128" r="5"/><circle cx="380" cy="132" r="5"/><circle cx="392" cy="104" r="5"/>
+    <!-- cryptococcus: capsula -->
+    <circle cx="590" cy="120" r="40" stroke="#9aa9b5" stroke-dasharray="3 3"/><circle cx="590" cy="120" r="16"/>
+    <!-- candida pseudo-hifas -->
+    <ellipse cx="80" cy="300" rx="16" ry="8"/><ellipse cx="112" cy="300" rx="16" ry="8"/><ellipse cx="144" cy="300" rx="16" ry="8"/><ellipse cx="174" cy="286" rx="14" ry="7" transform="rotate(-30 174 286)"/><circle cx="92" cy="330" r="7"/><circle cx="160" cy="330" r="7"/>
+    <!-- aspergillus angulo agudo, septada -->
+    <path d="M290 340 L410 280 M350 310 L410 330 M380 295 L430 262"/>
+    <path d="M318 320 l6 12 M346 306 l6 12 M374 292 l6 12 M396 320 l-4 12" stroke-width="1.5"/>
+    <!-- mucor larga angulo reto sem septo -->
+    <path d="M520 330 L680 330 M600 330 L600 270" stroke-width="8" stroke="#7a4d1b"/>
+  </g>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="130" y="186" font-weight="bold">Paracoccidioides</text><text x="130" y="204">levedura em roda de leme</text>
+    <text x="360" y="186" font-weight="bold">Histoplasma</text><text x="360" y="204">leveduras dentro do macrófago</text>
+    <text x="590" y="186" font-weight="bold">Cryptococcus</text><text x="590" y="204">cápsula (tinta nanquim)</text>
+    <text x="130" y="368" font-weight="bold">Candida</text><text x="130" y="386">pseudo-hifas e leveduras</text>
+    <text x="360" y="368" font-weight="bold">Aspergillus</text><text x="360" y="386">hifa septada, ângulo agudo</text>
+    <text x="590" y="368" font-weight="bold">Mucorales</text><text x="590" y="386">hifa larga sem septo, ângulo reto</text>
+  </g>
+</svg>

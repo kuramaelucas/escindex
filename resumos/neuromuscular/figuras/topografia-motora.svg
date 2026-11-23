@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">A via motora e onde cada doença age</text>
+<g text-anchor="middle" font-size="13">
+<rect x="30" y="55" width="160" height="50" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="110" y="78" font-weight="bold" fill="#1b5e7a">Neurônio superior</text><text x="110" y="95" fill="#333">córtex, via piramidal</text>
+<rect x="30" y="135" width="160" height="50" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="110" y="158" font-weight="bold" fill="#7a4d1b">Corno anterior</text><text x="110" y="175" fill="#333">neurônio inferior</text>
+<rect x="30" y="215" width="160" height="50" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="110" y="238" font-weight="bold" fill="#7a4d1b">Raiz e nervo</text><text x="110" y="255" fill="#333">mielina e axônio</text>
+<rect x="30" y="295" width="160" height="50" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="110" y="318" font-weight="bold" fill="#b03a2e">Junção e músculo</text><text x="110" y="335" fill="#333">sinapse, fibra</text>
+<g stroke="#555" stroke-width="2"><line x1="110" y1="105" x2="110" y2="133"/><line x1="110" y1="185" x2="110" y2="213"/><line x1="110" y1="265" x2="110" y2="293"/></g>
+</g>
+<g font-size="13" fill="#333">
+<text x="220" y="78">hiper-reflexia, Babinski, espasticidade — EM, mielite, NMO, ELA</text>
+<text x="220" y="158">atrofia, fasciculações — ELA (superior + inferior juntos)</text>
+<text x="220" y="238">flácida, arreflexa, ascendente — Guillain-Barré; túnel do carpo</text>
+<text x="220" y="318">fatigabilidade, reflexos normais — miastenia; miopatias</text></g>
+<text x="360" y="370" text-anchor="middle" font-size="13" fill="#b03a2e">Sensibilidade normal aponta para corno anterior, junção ou músculo.</text>
+</svg>

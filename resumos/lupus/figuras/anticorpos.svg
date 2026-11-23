@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Do FAN ao anticorpo específico</text>
+<g text-anchor="middle" font-size="13">
+<rect x="260" y="50" width="200" height="50" rx="25" fill="#e1f0f6" stroke="#1b5e7a"/><text x="360" y="72" font-weight="bold" fill="#1b5e7a">FAN (triagem)</text><text x="360" y="90" fill="#1b5e7a">sensível, pouco específico</text>
+<g stroke="#555" stroke-width="2"><line x1="300" y1="100" x2="110" y2="150" marker-end="url(#s)"/><line x1="340" y1="100" x2="290" y2="150" marker-end="url(#s)"/><line x1="380" y1="100" x2="440" y2="150" marker-end="url(#s)"/><line x1="420" y1="100" x2="610" y2="150" marker-end="url(#s)"/></g>
+<rect x="20" y="155" width="180" height="120" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="110" y="178" font-weight="bold" fill="#b03a2e">LES</text>
+<text x="110" y="200" fill="#333">anti-Sm: específico</text><text x="110" y="220" fill="#333">anti-DNA: atividade, rim</text><text x="110" y="240" fill="#333">C3/C4 baixos</text><text x="110" y="260" fill="#333">pontilhado / homogêneo</text>
+<rect x="210" y="155" width="160" height="120" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="290" y="178" font-weight="bold" fill="#7a4d1b">Anti-Ro</text>
+<text x="290" y="200" fill="#333">Sjögren, lúpus</text><text x="290" y="220" fill="#333">subagudo</text><text x="290" y="245" fill="#b03a2e">gestante: bloqueio</text><text x="290" y="263" fill="#b03a2e">cardíaco fetal</text>
+<rect x="380" y="155" width="150" height="120" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="455" y="178" font-weight="bold" fill="#4d7a1b">Esclerose sistêmica</text>
+<text x="455" y="200" fill="#333">anticentrômero:</text><text x="455" y="218" fill="#333">limitada, HP</text><text x="455" y="242" fill="#333">anti-Scl-70:</text><text x="455" y="260" fill="#333">difusa, pulmão</text>
+<rect x="540" y="155" width="160" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="620" y="178" font-weight="bold" fill="#1b5e7a">Miosite</text>
+<text x="620" y="200" fill="#333">anti-Jo-1</text><text x="620" y="220" fill="#333">heliótropo, Gottron</text><text x="620" y="240" fill="#333">fraqueza proximal</text>
+<text x="360" y="310" fill="#333">FAN negativo torna o lúpus muito improvável; FAN positivo sozinho não faz diagnóstico.</text>
+<text x="360" y="335" fill="#b03a2e">No lúpus ativo, imunocomplexos consomem complemento: C3 e C4 caem.</text>
+</g></svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Onde age cada classe de antibiótico</text>
+  <rect x="200" y="60" width="320" height="300" rx="70" fill="#f4f8fb" stroke="#1b5e7a" stroke-width="10"/>
+  <rect x="216" y="76" width="288" height="268" rx="58" fill="none" stroke="#7a4d1b" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="360" y="104" text-anchor="middle" font-size="12" fill="#1f2d3d">parede (peptidoglicano)</text>
+  <text x="360" y="122" text-anchor="middle" font-size="12" fill="#7a4d1b">membrana</text>
+  <circle cx="300" cy="190" r="20" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/><text x="300" y="194" text-anchor="middle" font-size="12" fill="#1f2d3d">50S</text>
+  <circle cx="300" cy="232" r="14" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/><text x="300" y="236" text-anchor="middle" font-size="11" fill="#1f2d3d">30S</text>
+  <path d="M390 170 q30 20 0 40 q-30 20 0 40 q30 20 0 40" fill="none" stroke="#4d7a1b" stroke-width="3"/>
+  <text x="430" y="234" text-anchor="middle" font-size="12" fill="#1f2d3d">DNA</text>
+  <text x="360" y="320" text-anchor="middle" font-size="12" fill="#1f2d3d">via do ácido fólico</text>
+  <g font-size="13" fill="#1f2d3d">
+    <line x1="200" y1="90" x2="180" y2="74" stroke="#1b5e7a" stroke-width="1.5"/>
+    <text x="14" y="58" font-weight="bold">Parede</text>
+    <text x="14" y="76">betalactâmicos (PBP),</text>
+    <text x="14" y="94">vancomicina, bacitracina,</text>
+    <text x="14" y="112">fosfomicina</text>
+    <line x1="280" y1="190" x2="192" y2="188" stroke="#1b5e7a" stroke-width="1.5"/>
+    <text x="14" y="168" font-weight="bold">Ribossomo 50S</text>
+    <text x="14" y="186">macrolídeos, clindamicina,</text>
+    <text x="14" y="204">cloranfenicol, linezolida</text>
+    <line x1="286" y1="236" x2="140" y2="262" stroke="#1b5e7a" stroke-width="1.5"/>
+    <text x="14" y="252" font-weight="bold">Ribossomo 30S</text>
+    <text x="14" y="270">aminoglicosídeos,</text>
+    <text x="14" y="288">tetraciclinas</text>
+    <line x1="440" y1="220" x2="560" y2="180" stroke="#4d7a1b" stroke-width="1.5"/>
+    <text x="566" y="168" font-weight="bold">DNA (girase e</text>
+    <text x="566" y="186" font-weight="bold">topoisomerase IV)</text>
+    <text x="566" y="204">quinolonas</text>
+    <line x1="420" y1="316" x2="560" y2="300" stroke="#1b5e7a" stroke-width="1.5"/>
+    <text x="566" y="288" font-weight="bold">Folato</text>
+    <text x="566" y="306">sulfametoxazol-</text>
+    <text x="566" y="324">trimetoprima</text>
+    <line x1="510" y1="100" x2="560" y2="80" stroke="#7a4d1b" stroke-width="1.5"/>
+    <text x="566" y="64" font-weight="bold">Membrana</text>
+    <text x="566" y="82">polimixinas (externa,</text>
+    <text x="566" y="100">Gram-negativos)</text>
+  </g>
+  <text x="360" y="396" text-anchor="middle" font-size="12" fill="#1f2d3d">Sem parede (Mycoplasma): betalactâmicos e carbapenêmicos não agem.</text>
+</svg>

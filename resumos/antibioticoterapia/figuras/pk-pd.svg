@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Tempo acima da CIM ou pico: como cada classe mata</text>
+  <line x1="70" y1="320" x2="660" y2="320" stroke="#1f2d3d" stroke-width="2"/>
+  <line x1="70" y1="320" x2="70" y2="50" stroke="#1f2d3d" stroke-width="2"/>
+  <text x="660" y="342" text-anchor="end" font-size="12" fill="#1f2d3d">tempo</text>
+  <text x="30" y="190" font-size="12" fill="#1f2d3d" transform="rotate(-90 30 190)" text-anchor="middle">concentração</text>
+  <line x1="70" y1="250" x2="660" y2="250" stroke="#b03a2e" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="472" y="244" text-anchor="end" font-size="12" fill="#b03a2e">CIM</text>
+  <path d="M70 320 L110 70 C170 140 260 220 400 285 C470 305 560 314 660 317" fill="none" stroke="#1b5e7a" stroke-width="3" stroke-dasharray="3 4"/>
+  <text x="118" y="66" font-size="12" fill="#1b5e7a">Cmáx (pico)</text>
+  <path d="M70 320 L95 200 C120 215 150 240 180 258 C200 270 220 300 250 315 L270 318 L295 200 C320 215 350 240 380 258 C400 270 420 300 450 315" fill="none" stroke="#4d7a1b" stroke-width="3"/>
+  <line x1="95" y1="250" x2="182" y2="250" stroke="#4d7a1b" stroke-width="7" opacity="0.35"/>
+  <line x1="295" y1="250" x2="382" y2="250" stroke="#4d7a1b" stroke-width="7" opacity="0.35"/>
+  <text x="140" y="292" text-anchor="middle" font-size="12" fill="#4d7a1b">T &gt; CIM</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="480" y="56" width="225" height="86" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/>
+    <text x="490" y="76" font-weight="bold" fill="#1b5e7a">Pico alto (tracejado)</text>
+    <text x="490" y="96">aminoglicosídeos, quinolonas:</text>
+    <text x="490" y="114">dose única diária,</text>
+    <text x="490" y="132">efeito pós-antibiótico</text>
+    <rect x="480" y="150" width="225" height="86" rx="6" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="490" y="170" font-weight="bold" fill="#4d7a1b">T acima da CIM (contínua)</text>
+    <text x="490" y="190">betalactâmicos: doses</text>
+    <text x="490" y="208">frequentes ou infusão</text>
+    <text x="490" y="226">prolongada</text>
+  </g>
+  <text x="360" y="372" text-anchor="middle" font-size="12" fill="#1f2d3d">Subir a dose do betalactâmico ajuda menos do que manter o nível acima da CIM.</text>
+</svg>

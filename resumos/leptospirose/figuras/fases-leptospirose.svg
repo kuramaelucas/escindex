@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Leptospirose: duas fases</text>
+<line x1="40" y1="200" x2="690" y2="200" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="60" y="218">exposição</text><text x="190" y="218">7–14 dias</text><text x="330" y="218">1.ª semana</text><text x="560" y="218">2.ª semana</text></g>
+<g fill="none" stroke-width="3">
+<path d="M190,190 C230,70 330,70 400,180" stroke="#b03a2e"/>
+<path d="M330,190 C420,180 470,80 690,70" stroke="#1b5e7a"/></g>
+<text x="260" y="70" font-size="13" fill="#b03a2e" font-weight="bold">bactéria no sangue</text>
+<text x="560" y="62" font-size="13" fill="#1b5e7a" font-weight="bold">anticorpos</text>
+<g font-size="13" text-anchor="middle">
+<rect x="150" y="235" width="250" height="110" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="275" y="257" font-weight="bold" fill="#b03a2e">Precoce (leptospirêmica)</text>
+<text x="275" y="279" fill="#333">febre, panturrilhas, sufusão</text><text x="275" y="297" fill="#333">conjuntival; 85–90% param aqui</text>
+<text x="275" y="327" fill="#b03a2e">cultura, PCR · doxiciclina</text>
+<rect x="420" y="235" width="280" height="110" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="560" y="257" font-weight="bold" fill="#1b5e7a">Imune / grave</text>
+<text x="560" y="279" fill="#333">meningite asséptica, uveíte; Weil:</text><text x="560" y="297" fill="#333">icterícia + LRA (K↓) + hemorragia</text>
+<text x="560" y="327" fill="#1b5e7a">ELISA IgM, MAT · penicilina IV</text>
+</g></svg>

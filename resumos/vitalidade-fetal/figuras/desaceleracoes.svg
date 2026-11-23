@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="sans-serif"><rect width="720" height="420" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Desacelerações: quando caem em relação à contração</text>
+<g font-size="13" font-weight="bold">
+<text x="20" y="85" fill="#4d7a1b">DIP I</text><text x="20" y="102" fill="#4d7a1b" font-weight="normal" font-size="11">cabeça</text>
+<text x="20" y="200" fill="#b03a2e">DIP II</text><text x="20" y="217" fill="#b03a2e" font-weight="normal" font-size="11">placenta</text>
+<text x="20" y="315" fill="#7a4d1b">Variável</text><text x="20" y="332" fill="#7a4d1b" font-weight="normal" font-size="11">cordão</text></g>
+<g fill="none" stroke-width="2.5">
+<path d="M110,70 L260,70 C290,70 300,95 330,95 C360,95 370,70 400,70 L690,70" stroke="#4d7a1b"/>
+<path d="M110,120 L260,120 C290,120 300,140 330,140 C360,140 370,120 400,120 L690,120" stroke="#1b5e7a" stroke-dasharray="5 4"/>
+<path d="M110,185 L320,185 C350,185 370,212 400,212 C430,212 450,185 480,185 L690,185" stroke="#b03a2e"/>
+<path d="M110,235 L260,235 C290,235 300,255 330,255 C360,255 370,235 400,235 L690,235" stroke="#1b5e7a" stroke-dasharray="5 4"/>
+<path d="M110,300 L200,300 L215,335 L230,300 L470,300 L480,330 L500,330 L510,300 L690,300" stroke="#7a4d1b"/>
+<path d="M110,350 L260,350 C290,350 300,370 330,370 C360,370 370,350 400,350 L690,350" stroke="#1b5e7a" stroke-dasharray="5 4"/></g>
+<g font-size="11" fill="#333">
+<text x="420" y="92">espelha a contração: fisiológica</text>
+<text x="500" y="210">começa e termina depois: hipóxia</text>
+<text x="530" y="328">queda abrupta, sem relação fixa</text></g>
+<g font-size="11" fill="#1b5e7a"><text x="410" y="140">contração</text><text x="410" y="255">contração</text><text x="410" y="370">contração</text></g>
+<text x="360" y="405" text-anchor="middle" font-size="13" fill="#b03a2e">Variabilidade ausente com DIP II ou variáveis recorrentes = categoria III: parto imediato.</text>
+</svg>

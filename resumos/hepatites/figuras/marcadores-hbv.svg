@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Hepatite B aguda que cura: os marcadores no tempo</text>
+<line x1="60" y1="300" x2="690" y2="300" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="60" y="318">contágio</text><text x="230" y="318">1–3 meses</text><text x="400" y="318">6 meses</text><text x="620" y="318">anos</text></g>
+<line x1="400" y1="60" x2="400" y2="300" stroke="#ccc" stroke-dasharray="5 4"/>
+<g fill="none" stroke-width="3">
+<path d="M110,300 C160,120 300,120 360,300" stroke="#b03a2e"/>
+<path d="M200,300 C230,150 330,150 400,300" stroke="#7a4d1b"/>
+<path d="M180,300 C220,90 300,90 360,200 C400,240 500,200 690,190" stroke="#1b5e7a"/>
+<path d="M360,300 C420,140 520,110 690,110" stroke="#4d7a1b"/></g>
+<g font-size="13" font-weight="bold">
+<text x="125" y="140" fill="#b03a2e">HBsAg</text><text x="405" y="285" fill="#7a4d1b">← anti-HBc IgM</text>
+<text x="500" y="182" fill="#1b5e7a">anti-HBc IgG (para sempre)</text><text x="540" y="100" fill="#4d7a1b">anti-HBs (cura)</text></g>
+<g font-size="12" fill="#333">
+<text x="60" y="345">HBsAg depois de 6 meses = crônica (sem anti-HBs).</text>
+<text x="60" y="365">Vacinado: só anti-HBs, sem anti-HBc.</text></g>
+</svg>

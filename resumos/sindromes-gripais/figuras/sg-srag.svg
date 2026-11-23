@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Síndrome gripal ou SRAG?</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="170" y="42" width="380" height="60" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="360" y="66" font-weight="bold">Síndrome gripal</text>
+    <text x="360" y="86">febre (mesmo referida) + tosse ou dor de garganta</text>
+    <rect x="20" y="146" width="330" height="128" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="185" y="170" font-weight="bold" fill="#b03a2e">Algum sinal de gravidade = SRAG</text>
+    <text x="185" y="192">dispneia ou desconforto respiratório</text>
+    <text x="185" y="210">SpO2 &lt; 95% em ar ambiente</text>
+    <text x="185" y="228">cianose, hipotensão</text>
+    <text x="185" y="246">piora da doença de base</text>
+    <rect x="370" y="146" width="330" height="128" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="535" y="170" font-weight="bold" fill="#4d7a1b">Sem gravidade</text>
+    <text x="535" y="194">com fator de risco (gestante, idoso,</text>
+    <text x="535" y="212">doença crônica): oseltamivir</text>
+    <text x="535" y="236">sem fator de risco: sintomáticos</text>
+    <text x="535" y="254">e sinais de alerta</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <line x1="300" y1="102" x2="200" y2="140"/><polyline points="210,132 198,142 212,144"/>
+    <line x1="420" y1="102" x2="520" y2="140"/><polyline points="508,144 522,142 512,132"/>
+  </g>
+  <text x="360" y="310" text-anchor="middle" font-size="13" font-weight="bold" fill="#1f2d3d">SRAG: internar, notificar (SIVEP-Gripe), colher secreção para pesquisa viral</text>
+  <text x="360" y="332" text-anchor="middle" font-size="13" fill="#1f2d3d">e oseltamivir já, sem esperar o exame e mesmo depois de 48 horas.</text>
+</svg>

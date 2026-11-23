@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">AVC isquêmico: as primeiras horas</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="210" y="42" width="300" height="56" rx="8" fill="#f4f8fb" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="360" y="66" font-weight="bold">Déficit súbito</text>
+    <text x="360" y="86">glicemia capilar + tomografia sem contraste</text>
+    <rect x="20" y="130" width="200" height="60" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="120" y="156" font-weight="bold">Sangue</text>
+    <text x="120" y="176">AVC hemorrágico</text>
+    <rect x="260" y="130" width="440" height="60" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="480" y="156" font-weight="bold">Sem sangue: angiotomografia</text>
+    <text x="480" y="176">procura oclusão de grande artéria</text>
+    <rect x="260" y="222" width="210" height="96" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="365" y="246" font-weight="bold">Até 4,5 horas</text>
+    <text x="365" y="266">trombolítico venoso</text>
+    <text x="365" y="286">PA &lt; 185/110 antes;</text>
+    <text x="365" y="304">&lt; 180/105 depois</text>
+    <rect x="490" y="222" width="210" height="96" rx="8" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+    <text x="595" y="246" font-weight="bold">Oclusão proximal</text>
+    <text x="595" y="266">trombectomia até 6 h,</text>
+    <text x="595" y="286">até 24 h com penumbra;</text>
+    <text x="595" y="304">sem esperar a resposta</text>
+    <rect x="20" y="222" width="220" height="96" rx="8" fill="#ffffff" stroke="#9aa9b5" stroke-width="2"/>
+    <text x="130" y="246" font-weight="bold">Acordou com déficit</text>
+    <text x="130" y="266">RM: difusão positiva</text>
+    <text x="130" y="286">e FLAIR negativo</text>
+    <text x="130" y="304">= menos de 4,5 h</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <line x1="300" y1="98" x2="160" y2="124"/><polyline points="170,116 158,126 172,128"/>
+    <line x1="420" y1="98" x2="470" y2="124"/><polyline points="458,124 472,126 466,114"/>
+    <line x1="400" y1="190" x2="370" y2="216"/><polyline points="368,206 368,218 379,212"/>
+    <line x1="560" y1="190" x2="590" y2="216"/><polyline points="581,212 592,218 591,206"/>
+  </g>
+  <text x="360" y="356" text-anchor="middle" font-size="12" fill="#1f2d3d">Hipodensidade extensa na tomografia: infarto estabelecido, sem reperfusão; suporte clínico.</text>
+  <text x="360" y="378" text-anchor="middle" font-size="12" fill="#1f2d3d">Contraindicações vêm do risco de sangrar (sangramento recente, RNI &gt; 1,7, plaquetas baixas).</text>
+</svg>

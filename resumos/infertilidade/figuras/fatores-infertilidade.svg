@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Infertilidade: quatro fatores, um exame para cada</text>
+<g text-anchor="middle" font-size="13">
+<rect x="20" y="55" width="160" height="200" rx="8" fill="#f7efe6" stroke="#7a4d1b"/>
+<text x="100" y="82" font-weight="bold" font-size="15" fill="#7a4d1b">Ovulação</text>
+<text x="100" y="110" fill="#333">o oócito sai?</text>
+<text x="100" y="150" fill="#7a4d1b">progesterona</text><text x="100" y="168" fill="#7a4d1b">de fase lútea</text><text x="100" y="186" fill="#7a4d1b">TSH, prolactina</text>
+<text x="100" y="225" fill="#b03a2e">SOP → letrozol</text>
+<rect x="195" y="55" width="160" height="200" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="275" y="82" font-weight="bold" font-size="15" fill="#1b5e7a">Tubas</text>
+<text x="275" y="110" fill="#333">o caminho está livre?</text>
+<text x="275" y="150" fill="#1b5e7a">histerossalpingo-</text><text x="275" y="168" fill="#1b5e7a">grafia</text>
+<text x="275" y="225" fill="#b03a2e">DIP → FIV</text>
+<rect x="370" y="55" width="160" height="200" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="450" y="82" font-weight="bold" font-size="15" fill="#b03a2e">Útero</text>
+<text x="450" y="110" fill="#333">o embrião implanta?</text>
+<text x="450" y="150" fill="#b03a2e">USG transvaginal</text><text x="450" y="168" fill="#b03a2e">histeroscopia</text>
+<text x="450" y="225" fill="#b03a2e">sinéquia → lise</text>
+<rect x="545" y="55" width="160" height="200" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="625" y="82" font-weight="bold" font-size="15" fill="#4d7a1b">Sêmen</text>
+<text x="625" y="110" fill="#333">fecunda?</text>
+<text x="625" y="150" fill="#4d7a1b">espermograma</text><text x="625" y="168" fill="#4d7a1b">(repetir em 3 meses)</text>
+<text x="625" y="225" fill="#b03a2e">grave → ICSI</text>
+<rect x="20" y="275" width="685" height="60" rx="8" fill="#fff" stroke="#7a4d1b" stroke-dasharray="5 4"/>
+<text x="362" y="300" fill="#7a4d1b">Por trás de tudo, a idade da mulher: reserva por FSH no 3.º dia e AMH.</text>
+<text x="362" y="320" fill="#7a4d1b">Investigar após 12 meses, ou 6 a partir dos 35 anos.</text>
+</g></svg>

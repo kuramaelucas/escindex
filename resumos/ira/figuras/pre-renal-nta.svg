@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="sans-serif"><rect width="720" height="340" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Lesão renal aguda: antes, dentro ou depois do rim</text>
+<g text-anchor="middle" font-size="13">
+<rect x="20" y="55" width="210" height="190" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="125" y="80" font-weight="bold" font-size="15" fill="#1b5e7a">Pré-renal</text>
+<text x="125" y="104" fill="#333">pouco sangue chega</text><text x="125" y="122" fill="#333">túbulo bom segura Na e água</text>
+<text x="125" y="156" fill="#1b5e7a">FeNa &lt; 1%, FeUreia &lt; 35%</text><text x="125" y="176" fill="#1b5e7a">urina concentrada</text><text x="125" y="196" fill="#1b5e7a">cilindros hialinos</text>
+<text x="125" y="228" font-weight="bold" fill="#4d7a1b">volume</text>
+<rect x="255" y="55" width="210" height="190" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="360" y="80" font-weight="bold" font-size="15" fill="#b03a2e">Renal (NTA)</text>
+<text x="360" y="104" fill="#333">túbulo morreu: sepse,</text><text x="360" y="122" fill="#333">isquemia, tóxico, mioglobina</text>
+<text x="360" y="156" fill="#b03a2e">FeNa &gt; 2%</text><text x="360" y="176" fill="#b03a2e">urina isostenúrica</text><text x="360" y="196" fill="#b03a2e">cilindros granulosos</text>
+<text x="360" y="228" font-weight="bold" fill="#4d7a1b">tirar a causa, suporte</text>
+<rect x="490" y="55" width="210" height="190" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="595" y="80" font-weight="bold" font-size="15" fill="#7a4d1b">Pós-renal</text>
+<text x="595" y="104" fill="#333">urina não sai: próstata,</text><text x="595" y="122" fill="#333">cálculo, tumor pélvico</text>
+<text x="595" y="156" fill="#7a4d1b">bexiga palpável</text><text x="595" y="176" fill="#7a4d1b">hidronefrose na USG</text>
+<text x="595" y="228" font-weight="bold" fill="#4d7a1b">sonda, desobstruir</text>
+<path d="M230,150 L251,150" stroke="#555" stroke-width="2" marker-end="url(#s)"/>
+<text x="360" y="280" fill="#333">Pré-renal prolongado vira NTA: a isquemia mata o túbulo.</text>
+<text x="360" y="305" fill="#b03a2e">KDIGO: creatinina +0,3 em 48 h ou ×1,5 em 7 dias, ou diurese &lt; 0,5 mL/kg/h por 6 h.</text>
+</g></svg>
