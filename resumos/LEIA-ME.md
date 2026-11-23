@@ -178,3 +178,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `iras` | `ass-iras` | 147 | — |
 | `pele-partes-moles` | `ass-peleparte` | 188 | — |
 | `antibioticoterapia` | `ass-atb` | 120 | 5 (anuladas sem reposição) |
+| `protozooses` | `ass-leishmaniose` | 101 (malária, leishmaniose visceral e tegumentar, Chagas) | 4 (anuladas sem reposição) |

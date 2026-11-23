@@ -81,4 +81,5 @@
   { id: "iras", titulo: "Infecções relacionadas à assistência à saúde", area: "Clínica Médica · Infectologia", assunto: "ass-iras" },
   { id: "pele-partes-moles", titulo: "Infecções de pele e partes moles", area: "Clínica Médica · Infectologia", assunto: "ass-peleparte" },
   { id: "antibioticoterapia", titulo: "Antibioticoterapia e resistência bacteriana", area: "Clínica Médica · Infectologia", assunto: "ass-atb" },
+  { id: "protozooses", titulo: "Malária, leishmanioses e doença de Chagas", area: "Clínica Médica · Infectologia", assunto: "ass-leishmaniose" },
 ];

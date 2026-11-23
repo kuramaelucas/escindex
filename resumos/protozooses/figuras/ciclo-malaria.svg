@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Malária por P. vivax: onde age cada droga</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="60" width="160" height="80" rx="8" fill="#f4f8fb" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="100" y="88" font-weight="bold">Picada do</text>
+    <text x="100" y="106" font-weight="bold">Anopheles (fêmea)</text>
+    <text x="100" y="126">esporozoítos</text>
+    <rect x="250" y="60" width="200" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="350" y="88" font-weight="bold">Fígado</text>
+    <text x="350" y="108">multiplicação; merozoítos</text>
+    <text x="350" y="126">vão para o sangue</text>
+    <rect x="250" y="200" width="200" height="90" rx="8" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+    <text x="350" y="226" font-weight="bold">Hipnozoítos</text>
+    <text x="350" y="246">formas dormentes no fígado</text>
+    <text x="350" y="266">acordam meses depois:</text>
+    <text x="350" y="282">recaída</text>
+    <rect x="520" y="60" width="180" height="120" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="610" y="88" font-weight="bold">Hemácias</text>
+    <text x="610" y="108">ciclo de 48 horas;</text>
+    <text x="610" y="126">ruptura sincronizada:</text>
+    <text x="610" y="144">calafrio, febre e suor</text>
+    <text x="610" y="166" font-size="12">(gota espessa vê aqui)</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <line x1="180" y1="100" x2="244" y2="100"/><polyline points="236,94 246,100 236,106"/>
+    <line x1="450" y1="100" x2="514" y2="100"/><polyline points="506,94 516,100 506,106"/>
+    <line x1="350" y1="140" x2="350" y2="194"/><polyline points="344,186 350,196 356,186"/>
+    <path d="M450 245 C520 245 600 230 610 186"/><polyline points="603,194 610,184 616,195"/>
+  </g>
+  <g font-size="13" text-anchor="middle">
+    <rect x="520" y="300" width="180" height="56" rx="6" fill="#ffffff" stroke="#b03a2e" stroke-dasharray="5 3"/>
+    <text x="610" y="324" fill="#b03a2e" font-weight="bold">Cloroquina (3 dias)</text>
+    <text x="610" y="344" fill="#1f2d3d">mata as formas do sangue</text>
+    <rect x="250" y="306" width="200" height="56" rx="6" fill="#ffffff" stroke="#7a4d1b" stroke-dasharray="5 3"/>
+    <text x="350" y="330" fill="#7a4d1b" font-weight="bold">Primaquina (7 dias)</text>
+    <text x="350" y="350" fill="#1f2d3d">mata os hipnozoítos</text>
+  </g>
+  <text x="20" y="320" font-size="12" fill="#1f2d3d">Primaquina: não usar se</text>
+  <text x="20" y="338" font-size="12" fill="#1f2d3d">G6PD abaixo de 30% nem</text>
+  <text x="20" y="356" font-size="12" fill="#1f2d3d">na gestação (hemólise).</text>
+</svg>
