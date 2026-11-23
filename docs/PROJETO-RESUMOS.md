@@ -304,3 +304,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de valvopatias (ass-valvopatias) |
 | 23/11/2026 | Resumo de artrites (ass-reumato-artrites) |
 | 23/11/2026 | Resumo de hepatites (ass-hepatites) |
+| 23/11/2026 | Resumo de neuromusculares e desmielinizantes (ass-neuro-neuromuscular) |
