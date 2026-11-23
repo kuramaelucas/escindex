@@ -192,3 +192,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `sindromes-gripais` | `ass-infecto-covid` | 54 (2 dissertativas) | 1 (anulada sem reposição) |
 | `drge-esofago` | `ass-drge` | 55 (1 dissertativa) | — |
 | `populacoes-especificas` | `ass-saudepopulacoes` | 54 (2 dissertativas) | — |
+| `bioetica` | `ass-principiosbioetica` | 53 (4 dissertativas) | 1 (anulada sem reposição) |

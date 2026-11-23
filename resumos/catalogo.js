@@ -95,4 +95,5 @@
   { id: "sindromes-gripais", titulo: "Síndromes gripais: influenza, SRAG e covid-19", area: "Clínica Médica · Infectologia", assunto: "ass-infecto-covid" },
   { id: "drge-esofago", titulo: "DRGE e distúrbios motores do esôfago", area: "Clínica Médica · Gastroenterologia", assunto: "ass-drge" },
   { id: "populacoes-especificas", titulo: "Saúde de populações específicas e determinantes sociais", area: "Medicina Preventiva · Saúde da Família", assunto: "ass-saudepopulacoes" },
+  { id: "bioetica", titulo: "Princípios bioéticos e ética médica", area: "Medicina Preventiva · Bioética", assunto: "ass-principiosbioetica" },
 ];
