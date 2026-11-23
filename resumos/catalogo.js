@@ -80,4 +80,5 @@
   { id: "sepse", titulo: "Sepse e choque séptico", area: "Clínica Médica · Infectologia", assunto: "ass-sepse" },
   { id: "iras", titulo: "Infecções relacionadas à assistência à saúde", area: "Clínica Médica · Infectologia", assunto: "ass-iras" },
   { id: "pele-partes-moles", titulo: "Infecções de pele e partes moles", area: "Clínica Médica · Infectologia", assunto: "ass-peleparte" },
+  { id: "antibioticoterapia", titulo: "Antibioticoterapia e resistência bacteriana", area: "Clínica Médica · Infectologia", assunto: "ass-atb" },
 ];
