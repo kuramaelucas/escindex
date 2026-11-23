@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Critérios de Duke para endocardite infecciosa</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="44" width="330" height="204" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="185" y="68" text-anchor="middle" font-weight="bold" fill="#b03a2e">Maiores</text>
+    <text x="34" y="96" font-weight="bold">Sangue</text>
+    <text x="34" y="116">hemoculturas positivas em amostras</text>
+    <text x="34" y="134">separadas, com germe típico</text>
+    <text x="34" y="164" font-weight="bold">Imagem</text>
+    <text x="34" y="184">vegetação, abscesso,</text>
+    <text x="34" y="202">regurgitação nova,</text>
+    <text x="34" y="220">deiscência nova de prótese</text>
+    <rect x="370" y="44" width="330" height="204" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="535" y="68" text-anchor="middle" font-weight="bold" fill="#1b5e7a">Menores</text>
+    <text x="384" y="96">predisposição: valvopatia, prótese,</text>
+    <text x="384" y="114">droga injetável</text>
+    <text x="384" y="140">febre de 38 °C ou mais</text>
+    <text x="384" y="166">vasculares: embolia, Janeway,</text>
+    <text x="384" y="184">infarto séptico pulmonar</text>
+    <text x="384" y="210">imunológicos: glomerulonefrite,</text>
+    <text x="384" y="228">Osler, Roth, fator reumatoide</text>
+  </g>
+  <rect x="20" y="264" width="680" height="76" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+  <text x="360" y="290" text-anchor="middle" font-size="14" font-weight="bold" fill="#4d7a1b">Endocardite definida</text>
+  <text x="360" y="318" text-anchor="middle" font-size="14" fill="#1f2d3d">2 maiores   ou   1 maior + 3 menores   ou   5 menores</text>
+  <text x="360" y="372" text-anchor="middle" font-size="12" fill="#1f2d3d">VHS alta não é critério. Hemocultura que não preenche o critério maior conta como menor.</text>
+</svg>
