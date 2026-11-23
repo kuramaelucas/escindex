@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Neutrófilos depois de um ciclo de quimioterapia</text>
+  <line x1="70" y1="260" x2="680" y2="260" stroke="#1f2d3d" stroke-width="2"/>
+  <line x1="70" y1="260" x2="70" y2="50" stroke="#1f2d3d" stroke-width="2"/>
+  <text x="34" y="160" font-size="12" fill="#1f2d3d" transform="rotate(-90 34 160)" text-anchor="middle">neutrófilos</text>
+  <g font-size="12" fill="#1f2d3d" text-anchor="middle">
+    <text x="90" y="278">dia 0</text><text x="250" y="278">dia 7</text><text x="410" y="278">dia 14</text><text x="570" y="278">dia 21</text>
+  </g>
+  <line x1="70" y1="210" x2="680" y2="210" stroke="#b03a2e" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="676" y="202" text-anchor="end" font-size="12" fill="#b03a2e">500/mm³</text>
+  <rect x="250" y="56" width="160" height="204" fill="#fbecec" opacity="0.6"/>
+  <text x="330" y="74" text-anchor="middle" font-size="13" font-weight="bold" fill="#b03a2e">nadir</text>
+  <path d="M90 80 C160 90 210 180 260 236 C300 252 360 252 400 236 C470 180 520 100 600 84 L670 82" fill="none" stroke="#1b5e7a" stroke-width="3"/>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="70" y="300" width="610" height="84" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="84" y="324" font-weight="bold" fill="#4d7a1b">Febre no nadir (38,3 °C, ou 38 °C por 1 hora)</text>
+    <text x="84" y="346">hemoculturas e urocultura → betalactâmico antipseudomonas na 1ª hora, sem esperar o hemograma</text>
+    <text x="84" y="368">vancomicina só com instabilidade, cateter, pele, pneumonia ou MRSA</text>
+  </g>
+</svg>

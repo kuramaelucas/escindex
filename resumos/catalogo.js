@@ -83,4 +83,5 @@
   { id: "antibioticoterapia", titulo: "Antibioticoterapia e resistência bacteriana", area: "Clínica Médica · Infectologia", assunto: "ass-atb" },
   { id: "protozooses", titulo: "Malária, leishmanioses e doença de Chagas", area: "Clínica Médica · Infectologia", assunto: "ass-leishmaniose" },
   { id: "endocardite", titulo: "Endocardite infecciosa", area: "Clínica Médica · Infectologia", assunto: "ass-endocardite" },
+  { id: "neutropenia-febril", titulo: "Neutropenia febril, febre e febre de origem indeterminada", area: "Clínica Médica · Infectologia", assunto: "ass-neutropeniafebril" },
 ];
