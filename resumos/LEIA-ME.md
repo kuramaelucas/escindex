@@ -207,3 +207,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `vigilancia-sanitaria` | `ass-vigilanciasanitaria` | 44 questões; vigilâncias e Anvisa, receituários e resíduos, notificação imediata × semanal, declaração de óbito; 1 figura |
 | `adrenal` | `ass-adrenal` | 42 questões; insuficiência e crise, HAC, Cushing, hiperaldosteronismo, feocromocitoma, incidentaloma; 1 figura, 4 casos |
 | `politicas-nacionais` | `ass-politicasnacionais` | 42 questões; PNH, mulher/criança/homem/idoso/população negra, violência, saúde mental, alimentação, DCNT, telessaúde, transplantes; 1 figura |
+| `vitalidade-fetal` | `ass-vitalidadefetal` | 41 questões; cardiotocografia anteparto e intraparto, categorias, reanimação, PBF, pós-datismo, Bishop, óbito fetal; 1 figura, 16 casos |
