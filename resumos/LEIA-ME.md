@@ -194,3 +194,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `populacoes-especificas` | `ass-saudepopulacoes` | 54 (2 dissertativas) | — |
 | `bioetica` | `ass-principiosbioetica` | 53 (4 dissertativas) | 1 (anulada sem reposição) |
 | `pleura` | `ass-cirtorax-pleura` | 53 (3 dissertativas) | 1 (desatualizada sem reposição) |
+| `niveis-atencao` | `ass-niveisatencao` | 52 | 1 (anulada sem reposição) |

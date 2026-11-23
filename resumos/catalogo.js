@@ -97,4 +97,5 @@
   { id: "populacoes-especificas", titulo: "Saúde de populações específicas e determinantes sociais", area: "Medicina Preventiva · Saúde da Família", assunto: "ass-saudepopulacoes" },
   { id: "bioetica", titulo: "Princípios bioéticos e ética médica", area: "Medicina Preventiva · Bioética", assunto: "ass-principiosbioetica" },
   { id: "pleura", titulo: "Pneumotórax e doenças pleurais", area: "Cirurgia · Cirurgia Torácica", assunto: "ass-cirtorax-pleura" },
+  { id: "niveis-atencao", titulo: "Níveis de atenção e Redes de Atenção à Saúde", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-niveisatencao" },
 ];
