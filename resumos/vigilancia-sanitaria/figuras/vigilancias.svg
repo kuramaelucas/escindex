@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Vigilância em saúde: quem faz o quê</text>
+<g text-anchor="middle" font-size="13">
+<rect x="20" y="50" width="220" height="170" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="130" y="76" font-weight="bold" font-size="15" fill="#b03a2e">Sanitária</text>
+<text x="130" y="102" fill="#333">riscos de produtos, serviços</text><text x="130" y="120" fill="#333">e ambiente</text>
+<text x="130" y="150" fill="#b03a2e" font-weight="bold">poder de polícia</text>
+<text x="130" y="176" fill="#333">inspeciona, interdita, recolhe</text><text x="130" y="196" fill="#333">Anvisa coordena o SNVS</text>
+<rect x="250" y="50" width="220" height="170" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="360" y="76" font-weight="bold" font-size="15" fill="#1b5e7a">Epidemiológica</text>
+<text x="360" y="102" fill="#333">doenças e agravos</text>
+<text x="360" y="130" fill="#333">notificação no SINAN</text><text x="360" y="150" fill="#333">investigação, bloqueio</text>
+<text x="360" y="176" fill="#333">declaração de óbito → SIM</text>
+<rect x="480" y="50" width="220" height="170" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="590" y="76" font-weight="bold" font-size="15" fill="#4d7a1b">Ambiental e do trabalhador</text>
+<text x="590" y="102" fill="#333">água, ar, solo, agrotóxicos</text>
+<text x="590" y="130" fill="#333">acidentes e doenças</text><text x="590" y="150" fill="#333">relacionadas ao trabalho</text>
+<rect x="20" y="240" width="335" height="120" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="187" y="264" font-weight="bold" fill="#b03a2e">Imediata: até 24 horas</text>
+<text x="187" y="288" fill="#333">sarampo, paralisia flácida, febre amarela</text>
+<text x="187" y="308" fill="#333">botulismo, raiva, óbito por dengue</text>
+<text x="187" y="328" fill="#333">zika em gestante, doença emergente</text>
+<rect x="365" y="240" width="335" height="120" rx="8" fill="#f7efe6" stroke="#7a4d1b"/>
+<text x="532" y="264" font-weight="bold" fill="#7a4d1b">Semanal: até 7 dias</text>
+<text x="532" y="288" fill="#333">sífilis e HIV em gestante</text>
+<text x="532" y="308" fill="#333">acidente com material biológico</text>
+<text x="532" y="328" fill="#333">violência; notificação negativa</text>
+</g></svg>

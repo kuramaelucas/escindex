@@ -204,3 +204,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `dpoc` | `ass-dpoc` | 48 questões (1 anulada com reposição); mecanismo, GOLD, LAMA/LABA/CI, O2, exacerbação, VNI, cor pulmonale; 1 figura, 7 casos |
 | `infertilidade` | `ass-infertilidade` | 47 questões; investigação, reserva, SOP/indução, tubário/uterino, espermograma, IIU/FIV/ICSI; 1 figura, 2 casos |
 | `diverticulite` | `ass-diverticulite` | 47 questões (1 anulada com reposição); TC, Hinchey/WSES, antibiótico × drenagem × Hartmann, fístula, HDB; 1 figura, 7 casos |
+| `vigilancia-sanitaria` | `ass-vigilanciasanitaria` | 44 questões; vigilâncias e Anvisa, receituários e resíduos, notificação imediata × semanal, declaração de óbito; 1 figura |
