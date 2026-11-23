@@ -111,4 +111,5 @@
   { id: "adrenal", titulo: "Doenças da adrenal", area: "Clínica Médica · Endocrinologia", assunto: "ass-adrenal" },
   { id: "politicas-nacionais", titulo: "Políticas nacionais de saúde", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-politicasnacionais" },
   { id: "vitalidade-fetal", titulo: "Vitalidade fetal, pós-datismo e indução do parto", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-vitalidadefetal" },
+  { id: "queimaduras", titulo: "Queimaduras", area: "Cirurgia · Trauma", assunto: "ass-queimaduras" },
 ];

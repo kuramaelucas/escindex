@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="sans-serif"><rect width="720" height="400" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Regra dos nove (adulto)</text>
+<g fill="#fbecec" stroke="#b03a2e" stroke-width="2">
+<circle cx="200" cy="80" r="28"/>
+<rect x="160" y="112" width="80" height="120" rx="10"/>
+<rect x="110" y="115" width="44" height="120" rx="14"/><rect x="246" y="115" width="44" height="120" rx="14"/>
+<rect x="160" y="238" width="38" height="135" rx="14"/><rect x="202" y="238" width="38" height="135" rx="14"/>
+</g>
+<g text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e7a">
+<text x="200" y="86">9%</text><text x="200" y="160">18% frente</text><text x="200" y="180">18% costas</text>
+<text x="132" y="180">9%</text><text x="268" y="180">9%</text><text x="179" y="310">18%</text><text x="221" y="310">18%</text></g>
+<text x="250" y="252" font-size="11" fill="#333">← períneo 1%</text>
+<g font-size="13" fill="#333">
+<text x="360" y="90" font-weight="bold" fill="#4d7a1b">Como contar</text>
+<text x="360" y="114">• só 2.º e 3.º graus entram</text>
+<text x="360" y="136">• palma da mão do paciente ≈ 1%</text>
+<text x="360" y="158">• criança: cabeça até 18%, pernas menores</text>
+<text x="360" y="180">  (Lund-Browder é mais exato)</text>
+<text x="360" y="222" font-weight="bold" fill="#b03a2e">Reposição</text>
+<text x="360" y="246">• 2 mL (ATLS/ABA) ou 4 mL (Parkland)</text>
+<text x="360" y="268">  × peso × % SCQ</text>
+<text x="360" y="290">• metade nas 8 h após a queimadura</text>
+<text x="360" y="312">• ajustar pela diurese 0,5 mL/kg/h</text>
+<text x="360" y="334">  (1–1,5 mL/kg/h no elétrico)</text></g>
+</svg>

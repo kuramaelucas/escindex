@@ -208,3 +208,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `adrenal` | `ass-adrenal` | 42 questões; insuficiência e crise, HAC, Cushing, hiperaldosteronismo, feocromocitoma, incidentaloma; 1 figura, 4 casos |
 | `politicas-nacionais` | `ass-politicasnacionais` | 42 questões; PNH, mulher/criança/homem/idoso/população negra, violência, saúde mental, alimentação, DCNT, telessaúde, transplantes; 1 figura |
 | `vitalidade-fetal` | `ass-vitalidadefetal` | 41 questões; cardiotocografia anteparto e intraparto, categorias, reanimação, PBF, pós-datismo, Bishop, óbito fetal; 1 figura, 16 casos |
+| `queimaduras` | `ass-queimaduras` | 41 questões (3 anuladas, 1 com reposição); profundidade, regra dos nove, via aérea, Parkland × 2 mL, diurese, escarotomia, elétrica; 1 figura, 2 casos |
