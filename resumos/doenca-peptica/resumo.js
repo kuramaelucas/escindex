@@ -28,7 +28,7 @@ Veja também: **Cirrose** (varizes de esôfago, outra causa de hemorragia alta),
           questoes: ["q-tp20202-007","q-tp20212-018","q-fmabc2023-028"],
           prosa: `[[A célula principal, que faz proteína para exportar, tem citoplasma basal basofílico (retículo rugoso) e grânulos de pepsinogênio no ápice; a parietal é grande e eosinofílica, cheia de mitocôndrias para bombear ácido.|q-tp20202-007,q-tp20212-018]]`,
           texto: `- Estômago: **células mucosas, parietais e principais**. {q-tp20202-007}
-- Célula principal: **B** na figura. {q-tp20212-018}
+- Célula principal: **citoplasma basal basofílico** e grânulos de **pepsinogênio** no ápice. {q-tp20212-018}
 - Hipergastrinemia sem úlcera: **anemia perniciosa**. {q-fmabc2023-028}` },
         { id: "hp-dispepsia", titulo: "Dispepsia: testar e tratar ou endoscopia", conferir: true, diretrizes: ["consenso-hp","roma"],
           questoes: ["q-usprp2024-046","q-sirio2026-012","q-uspsp5-022","q-usp2024-052","q-usp2025-080","q-sirio2021-060"],
@@ -54,7 +54,7 @@ Veja também: **Cirrose** (varizes de esôfago, outra causa de hemorragia alta),
         { id: "ulc-classificacao", titulo: "Johnson, Sakita e complicações crônicas", conferir: true,
           questoes: ["q-amrigs2022-023","q-amrigs2023-024","q-famema2022-064","q-fmabc2026-004","q-unifesp2025-018","q-unicamp2023-011","q-amrigs2024-025","q-amrigs2022-024"],
           prosa: `[[A classificação de Johnson une lugar e ácido: tipo I na pequena curvatura (incisura), com ácido normal ou baixo; II, gástrica com duodenal; III, pré-pilórica (as duas com hipercloridria, como a duodenal); IV, alta, perto da cárdia, com ácido baixo; V, em qualquer lugar, causada por anti-inflamatório ou AAS.|q-amrigs2022-023,q-amrigs2023-024,q-famema2022-064]] [[Sakita dá a fase: A (ativa, fundo com fibrina e bordas edemaciadas), H (cicatrizando) e S (cicatriz).|q-fmabc2026-004]] [[A úlcera gástrica com biópsia benigna é repetida na endoscopia depois do tratamento, com novas biópsias, até cicatrizar.|q-unifesp2025-018,q-unicamp2023-011]] [[No adulto, a estenose pilórica vem da úlcera duodenal ou pré-pilórica que cicatriza com fibrose. Depois de gastrectomia parcial com Billroth II, a bile reflui para o estômago (gastrite alcalina), mas nem todos têm sintomas; quem não melhora vai para a reconstrução em Y de Roux.|q-amrigs2024-025,q-amrigs2022-024]]`,
-          texto: `- Johnson tipo V (a prova): **perto da cárdia e com AAS**. {q-amrigs2022-023}
+          texto: `- Johnson tipo V: por **AINE ou AAS, em qualquer lugar** do estômago (a prova o pôs perto da cárdia, que é o IV). {q-amrigs2022-023}
 - Tipo III: **pré-pilórica, hipercloridria**. {q-amrigs2023-024}
 - Úlceras na cárdia e parede anterior com AAS e clopidogrel: **tipo V**. {q-famema2022-064}
 - Fundo com fibrina e vaso visível: **Sakita A1, Forrest IIa**. {q-fmabc2026-004}
@@ -108,8 +108,8 @@ Veja também: **Cirrose** (varizes de esôfago, outra causa de hemorragia alta),
 - Hipertimpanismo hepático: **sinal de Jobert**. {q-tp20251-061}
 - Radiografia com ar livre após AINE: **abdome agudo perfurativo**. {q-unicampdis2024-082}
 - Dor súbita em andar superior: **perfuração de úlcera**. {q-famema2025-025}
-- Imunossuprimida com cetoprofeno: **tomografia com pneumoperitônio** (A). {q-usp2023-003}
-- Achado operatório esperado: **perfuração** (B). {q-usp2026-040}
+- Imunossuprimida com cetoprofeno: **tomografia com pneumoperitônio**. {q-usp2023-003}
+- Achado operatório esperado: **perfuração** da úlcera. {q-usp2026-040}
 - Pouco ar e paciente estável: **tomografia com contraste**. {q-scmsp2025-025}
 - Dor que migrou para a fossa ilíaca direita: **úlcera duodenal perfurada**. {q-usprp2027-073}` },
         { id: "perf-tratamento", titulo: "Tratamento", conferir: true,

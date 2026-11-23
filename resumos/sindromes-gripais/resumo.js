@@ -49,7 +49,7 @@ Veja também: **Pneumonia adquirida na comunidade** (complicação bacteriana), 
           texto: `- Asmático com síndrome gripal: **oseltamivir, de preferência em 48 h**. {q-famerp2026-011}
 - Hipoxemia após viagem: **oseltamivir**. {q-gdinfluenza-003}
 - Errada: administrar **nas primeiras 6 horas**. {q-gdinfluenza-010}
-- Dose, náusea e benefício: **I, II e III**. {q-gdinfluenza-013}
+- Oseltamivir: **75 mg 12/12 h por 5 dias**, com comida para reduzir a náusea; encurta os sintomas se começa em até 2 dias. {q-gdinfluenza-013}
 - Indicação: **grupo de risco** (gestante, idoso). {q-gdinfluenza-014}
 - Gestante: **oseltamivir**. {q-gdinfluenza-015}
 - SRAG em idosa: **PCR viral, oxigênio e oseltamivir**. {q-gdinfluenza-017}

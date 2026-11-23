@@ -58,7 +58,7 @@ Veja também: **Doença péptica** (dispepsia e *H. pylori*), **Malária, leishm
 - Barrett sem displasia: **omeprazol**. {q-einstein2022-030}
 - Próxima endoscopia: **3 a 5 anos**. {q-unifesp2023-004}
 - Ablação por radiofrequência: **erradica displasia de alto grau**. {q-amrigs2024-034}
-- Curto < 3 cm, longo ≥ 3 cm: **só a III é correta**. {q-amrigs2025-028}` },
+- Barrett **curto < 3 cm, longo ≥ 3 cm**; aparece também com refluxo não ácido, e não é indicação absoluta de cirurgia. {q-amrigs2025-028}` },
         { id: "drge-hernia", titulo: "Hérnia de hiato", conferir: true,
           questoes: ["q-amrigs2024-028","q-amrigs2024-036","q-usp2026-046"],
           prosa: `[[O abdome tem pressão positiva e o tórax, negativa: é essa diferença que puxa o estômago para cima pelo hiato. Tipo I, por deslizamento (a junção sobe), é a comum e ligada ao refluxo; tipo II, paraesofágica (o fundo sobe ao lado do esôfago, a junção fica no lugar); III, mista; IV, com outras vísceras. As paraesofágicas dão saciedade precoce, disfagia e dor torácica e podem torcer (volvo); a assintomática ou pouco sintomática pode ser seguida.|q-amrigs2024-028,q-amrigs2024-036,q-usp2026-046]]`,

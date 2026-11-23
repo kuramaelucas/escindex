@@ -31,7 +31,7 @@ Veja também: **Hipertensão arterial** (emergência hipertensiva), **Arritmias*
 - Horner e dissociação cruzada da sensibilidade: **cerebelar inferior posterior**. {q-tp20202-019}
 - Diplopia, ptose e hemiparesia oposta: **tronco encefálico**. {q-tp20251-020}
 - Vertigem, nistagmo, disartria e dismetria: **AVC da circulação posterior**. {q-tp20252-104}
-- Negligência do lado esquerdo: **imagem do hemisfério direito** (A). {q-usp2026-011}
+- Negligência do lado esquerdo: **lesão no hemisfério direito**. {q-usp2026-011}
 - Desvio da rima com testa paralisada e força normal: **paralisia facial periférica**. {q-sirio2021-014}
 - Cistos meses depois do infarto: **necrose liquefativa**. {q-tp20212-012}
 - Frequência de sintomas: **II, III e I** (intraparenquimatosa, isquêmico, subaracnoide). {q-sirio2023-009}
@@ -90,7 +90,7 @@ Veja também: **Hipertensão arterial** (emergência hipertensiva), **Arritmias*
           prosa: `[[O tratamento tenta impedir o hematoma de crescer: reduzir a pressão sistólica para 130 a 150 mmHg e reverter qualquer anticoagulação na hora (varfarina com complexo protrombínico de quatro fatores e vitamina K venosa).|q-adap21-090]] [[Hemorragia na ponte dá coma, tetraplegia, pupilas puntiformes e respiração anormal. Sangue que invade os ventrículos bloqueia o líquor e causa hidrocefalia, tratada com derivação ventricular externa.|q-usprp2021-090,q-unesp2023-073,q-unesp2022-079]]`,
           texto: `- Hematoma com RNI 3,8: **complexo protrombínico, vitamina K e PAS 130–150**. {q-adap21-090}
 - Coma, tetraplegia e respiração apnêustica: **ponte**. {q-usprp2021-090}
-- Cefaleia, vômitos e rebaixamento: **tomografia com hematoma** (A). {q-unesp2022-079}
+- Cefaleia, vômitos e rebaixamento: **tomografia com hematoma**. {q-unesp2022-079}
 - Hemorragia com hidrocefalia e Glasgow 7: **derivação ventricular externa**. {q-unesp2023-073}` },
         { id: "hem-hsa", titulo: "Hemorragia subaracnoide", conferir: true, diretrizes: ["aha-hsa"],
           casos: ["q-usp2025-076","q-sessp2025-010","q-unesp2021-072"],

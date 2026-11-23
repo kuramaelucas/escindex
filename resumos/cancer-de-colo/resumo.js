@@ -125,7 +125,7 @@ Veja também: **IST** (verrugas pelo HPV, dono das lesões genitais benignas), *
           casos: ["q-usp2025-009"],
           prosa: `[[Na gestante, o colo só se biopsia se houver suspeita de invasão; a NIC é seguida e tratada depois do parto, porque a progressão na gestação é rara.|q-adap22-030]] [[Adenocarcinoma in situ e lesões que entram no canal pedem conização, que tira um cone mais profundo.|q-sirio2025-072,q-sessp2024-068]] [[No "ver e tratar", com HSIL, zona tipo 1 ou 2 e achado maior sem suspeita de invasão, a exérese é feita na primeira colposcopia.|q-unesp2022-034]]`,
           texto: `- NIC 3 aos 31: **EZT tipo 1 ou 2** com análise da peça. {q-adap26-053}
-- Procedimento para alto grau: **cirurgia de alta frequência** (figura A). {q-usp2025-009}
+- Procedimento para alto grau: **cirurgia de alta frequência** (exérese com alça). {q-usp2025-009}
 - ZT tipo 2 com NIC 2: **CAF tipo 2**. {q-scmsp2022-045}
 - HSIL com ZT tipo 1 visível: **ver e tratar**. {q-unesp2022-034}
 - JEC não vista, ASC-H: **CAF**. {q-unesp2024-035}
