@@ -52,6 +52,7 @@ function renderPerfil(){
     </div>
   </div>` : ""}
   ${renderCardModoPlataforma(u)}
+  ${renderCardModoDeInicio(u)}
   ${renderCardControle()}
   ${renderCardEstudoOffline()}
   ${renderCardIaDuvidas(u)}

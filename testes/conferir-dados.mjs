@@ -27,6 +27,7 @@
    Com --json, imprime o relatório em JSON (usado pelo teste automático).
    ========================================================================== */
 import { problemasDeReferencia } from "../ferramentas/lib-referencias.mjs";
+import { conferirConjuntos } from "../ferramentas/lib-conjuntos.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import vm from "node:vm";
@@ -250,6 +251,8 @@ export function conferir(){
   const comCartao = new Set(D.flashcards.map(c => c.assuntoId));
   const semCartao = tax.assuntos.filter(a => !comCartao.has(a.id));
 
+  // conjunto planejado de cada tema com resumo (docs/PROJETO-INTEGRACAO-RESUMOS.md): questão que sumiu ou foi anulada não pode ir ao aluno
+  { const c = conferirConjuntos(D.questoes); erros.push(...c.erros); avisos.push(...c.avisos); }
   return {
     erros, avisos, pendenciasImagem,
     totais: { questoes: D.questoes.length, reais: D.questoes.filter(q => q.real).length, cartoes: D.flashcards.length, assuntos: tax.assuntos.length, assuntosSemCartao: semCartao.length, provas: provas.size },

@@ -393,6 +393,8 @@ function nuvemAplicarPerfilLocal(p){
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
   // a escolha feita neste aparelho vale mais que a que desce: o perfil de lá pode ser anterior a ela
   if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
+  // como começar (06e): mesma regra do modo da plataforma — a escolha deste aparelho vale mais
+  if(p.modo_inicio && !u.modoDeInicio && MODOS_DE_INICIO[p.modo_inicio]) u.modoDeInicio = p.modo_inicio;
   // a coluna pode nem existir neste banco (esquema.sql ainda não rodado de novo): só quem a traz decide
   if("prova_alvo_data" in p){ if(p.prova_alvo_data) u.provaAlvoData = p.prova_alvo_data; else delete u.provaAlvoData; }
   // os assuntos pulados da trilha: o que está neste aparelho vale mais que o que desce (mesma regra do modo da plataforma)
@@ -436,6 +438,7 @@ function linhaDoPerfil(usuario){
     boas_vindas_em: usuario.boasVindasEm || null,
     prova_alvo_data: usuario.provaAlvoData || null,
     modo_plataforma: usuario.modoPlataforma || null,
+    modo_inicio: usuario.modoDeInicio || null,
     trilha: linhaDaTrilhaDoPerfil(usuario),
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],

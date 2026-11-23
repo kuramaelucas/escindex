@@ -564,6 +564,7 @@ function renderInicioAluno(u){
     </div>` : ""}
     ${htmlCardProvaAlvo(u)}
   </div>
+  ${htmlCartaoDoCicloPorTema(u)}
   ${renderAvisosCard(u)}
   ${renderNotificacoesCard(u)}
   ${resumido ? htmlAlertaConfiancaResumido(calibracao) : `<div class="grid grid-2 mt-2">

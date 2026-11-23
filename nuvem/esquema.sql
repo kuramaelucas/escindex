@@ -204,6 +204,9 @@ alter table public.perfis add column if not exists prova_alvo_data date;
 -- ou 'estatistico'. Nulo = ainda não escolheu (vale o resumido e a pergunta
 -- aparece uma vez). Só muda a apresentação; nenhum dado de estudo depende dele.
 alter table public.perfis add column if not exists modo_plataforma text;
+-- como o aluno quer começar (codigo/06e-modo-de-inicio.js): 'zero', 'reparar-tema'
+-- ou 'reparar'. Nulo = ainda não escolheu (só 6º ano e Formado(a) escolhem).
+alter table public.perfis add column if not exists modo_inicio text;
 -- resumos marcados como lidos (Estudar › Resumos): { resumoId: 'AAAA-MM-DD' | false }
 alter table public.perfis add column if not exists resumos_lidos jsonb not null default '{}'::jsonb;
 -- meta semanal de questões (nula = meta diária)
