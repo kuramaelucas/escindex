@@ -2,7 +2,7 @@
 
 Gerado por `npm run referencias-a-conferir` em 22/11/2026 a partir de `dados/` (bancos: banco-simulado-epm-2, banco-unifesp-2024-adaptado, banco-simulado-epm-3, banco-simulado-epm-4, banco-simulado-epm-5). Lista as questões cuja referência ainda diz "não conferida", "de memória", "texto não aberto" ou "em resumos" e que **não** têm nota de conferência datada.
 
-Total: **141** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
+Total: **140** questões. Para conferir uma: `npm run dados -- q-id`, abra o texto oficial (ver `.claude/skills/conferir-referencias/SKILL.md`) e registre com `npm run anotar-conferencia`.
 
 | Grupo | Questões |
 |---|---|
@@ -17,7 +17,6 @@ Total: **141** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 | Endocrinologia (ADA, SBD, ATA, AACE, Endocrine Society, paratireoide) | 2 |
 | Gastro/hepato (EASL, AASLD, ACG, Roma, Chicago) | 2 |
 | Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) | 1 |
-| Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) | 1 |
 | Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) | 1 |
 
 ## Livros-texto e outras fontes sem diretriz (30)
@@ -191,10 +190,6 @@ Total: **141** questões. Para conferir uma: `npm run dados -- q-id`, abra o tex
 ## Neurologia, psiquiatria e geriatria (MDS, APA, ASAM, NICE, Lewy, Lancet Commission, Beers) (1)
 
 - `q-adap22-088` (gab. A, simulado-epm-3): Stabler SP. Vitamin B12 deficiency. N Engl J Med 2013;368:149-60; Hunt A et al. Pernicious anaemia: BMJ 2014;349:g5226. Textos não abertos nesta rodad
-
-## Sepse, UTI e ventilação (SSC, ATS/ACCP, AMIB, SBPT) (1)
-
-- `q-adap23-019` (gab. A, simulado-epm-5): Terceiro Consenso Internacional de Definições para Sepse e Choque Séptico, Sepsis-3 (JAMA, 2016); Surviving Sepsis Campaign (2021).
 
 ## Infectologia (IDSA, CDC, OMS, SBI, RECOVERY) (1)
 
