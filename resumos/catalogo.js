@@ -119,4 +119,5 @@
   { id: "artrites", titulo: "Artrites e reumatismos de partes moles", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-artrites" },
   { id: "hepatites", titulo: "Hepatites virais e outras hepatopatias", area: "Clínica Médica · Gastroenterologia", assunto: "ass-hepatites" },
   { id: "neuromuscular", titulo: "Doenças neuromusculares e desmielinizantes", area: "Clínica Médica · Neurologia", assunto: "ass-neuro-neuromuscular" },
+  { id: "cuidados-paliativos", titulo: "Cuidados paliativos", area: "Clínica Médica · Geriatria", assunto: "ass-cuidadospaliativos" },
 ];

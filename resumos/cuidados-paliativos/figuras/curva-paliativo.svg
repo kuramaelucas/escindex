@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="sans-serif"><rect width="720" height="340" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Cuidado paliativo ao longo da doença</text>
+<line x1="60" y1="260" x2="680" y2="260" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="80" y="280">diagnóstico</text><text x="560" y="280">óbito</text><text x="640" y="280">luto</text></g>
+<line x1="560" y1="60" x2="560" y2="260" stroke="#ccc" stroke-dasharray="5 4"/>
+<path d="M70,80 L560,240 L560,260 L70,260 Z" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+<path d="M70,240 L560,80 L560,260 L70,260 Z" fill="#eef5e6" fill-opacity="0.7" stroke="#4d7a1b" stroke-width="2"/>
+<rect x="560" y="150" width="110" height="110" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+<g font-size="13" font-weight="bold">
+<text x="80" y="185" fill="#1b5e7a">tratamento modificador</text>
+<text x="380" y="130" fill="#4d7a1b">cuidado paliativo</text>
+<text x="575" y="200" fill="#7a4d1b">família,</text><text x="575" y="218" fill="#7a4d1b">luto</text></g>
+<text x="360" y="315" text-anchor="middle" font-size="13" fill="#333">Começa junto, cresce com a progressão (PPS e internações) e não termina no óbito.</text>
+</svg>

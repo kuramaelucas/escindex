@@ -216,3 +216,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `artrites` | `ass-reumato-artrites` | 40 questões; padrão articular, séptica/gonocócica/gota, AR, espondiloartrites, psoriásica, AIJ/Still, fibromialgia; 1 figura, 6 casos |
 | `hepatites` | `ass-hepatites` | 40 questões (1 anulada com reposição); padrão enzimático, hepatite A e insuficiência aguda, marcadores e fases da B, transmissão vertical, hepatite C, CBP; 1 figura, 1 caso |
 | `neuromuscular` | `ass-neuro-neuromuscular` | 40 questões (1 anulada fora); topografia, Guillain-Barré, miastenia, ELA, EM, neurite óptica, NMO, anti-NMDA; 1 figura, 2 casos |
+| `cuidados-paliativos` | `ass-cuidadospaliativos` | 40 questões (1 anulada fora); indicação, PPS, DAV, distanásia/ortotanásia, morfina, dispneia, alimentação no fim de vida, luto; 1 figura |
