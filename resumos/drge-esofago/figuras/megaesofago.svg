@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Graus do megaesôfago no esofagograma</text>
+  <g fill="none" stroke="#1b5e7a" stroke-width="3">
+    <path d="M85 50 L85 200 Q90 230 95 240 L100 260 Q103 270 110 270"/>
+    <path d="M115 50 L115 200 Q112 230 106 245"/>
+    <path d="M250 50 Q240 120 245 190 Q255 240 270 255 L276 270"/>
+    <path d="M300 50 Q312 120 305 190 Q295 240 282 255"/>
+    <path d="M400 50 Q370 130 380 200 Q395 250 425 262 L432 272"/>
+    <path d="M470 50 Q500 130 490 200 Q470 250 440 262"/>
+    <path d="M560 50 Q520 110 545 170 Q600 210 560 250 Q600 270 640 262 L650 272"/>
+    <path d="M620 50 Q600 110 625 160 Q680 210 640 250"/>
+  </g>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="100" y="296" font-weight="bold">I</text><text x="100" y="314">calibre normal,</text><text x="100" y="330">retenção</text>
+    <text x="275" y="296" font-weight="bold">II</text><text x="275" y="314">pequena dilatação,</text><text x="275" y="330">ondas terciárias</text>
+    <text x="435" y="296" font-weight="bold">III</text><text x="435" y="314">grande dilatação,</text><text x="435" y="330">bico de pássaro</text>
+    <text x="600" y="296" font-weight="bold">IV</text><text x="600" y="314">dolicomegaesôfago,</text><text x="600" y="330">alongado e dobrado</text>
+  </g>
+  <text x="360" y="364" text-anchor="middle" font-size="12" fill="#1f2d3d">I a III: cardiomiotomia + fundoplicatura parcial (ou dilatação). IV: esofagectomia.</text>
+</svg>
