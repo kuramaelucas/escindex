@@ -206,3 +206,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `diverticulite` | `ass-diverticulite` | 47 questões (1 anulada com reposição); TC, Hinchey/WSES, antibiótico × drenagem × Hartmann, fístula, HDB; 1 figura, 7 casos |
 | `vigilancia-sanitaria` | `ass-vigilanciasanitaria` | 44 questões; vigilâncias e Anvisa, receituários e resíduos, notificação imediata × semanal, declaração de óbito; 1 figura |
 | `adrenal` | `ass-adrenal` | 42 questões; insuficiência e crise, HAC, Cushing, hiperaldosteronismo, feocromocitoma, incidentaloma; 1 figura, 4 casos |
+| `politicas-nacionais` | `ass-politicasnacionais` | 42 questões; PNH, mulher/criança/homem/idoso/população negra, violência, saúde mental, alimentação, DCNT, telessaúde, transplantes; 1 figura |

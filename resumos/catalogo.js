@@ -109,4 +109,5 @@
   { id: "diverticulite", titulo: "Doença diverticular: diverticulite e sangramento", area: "Cirurgia · Coloproctologia", assunto: "ass-diverticulite" },
   { id: "vigilancia-sanitaria", titulo: "Vigilância sanitária, notificação compulsória e declaração de óbito", area: "Medicina Preventiva · Vigilância em Saúde", assunto: "ass-vigilanciasanitaria" },
   { id: "adrenal", titulo: "Doenças da adrenal", area: "Clínica Médica · Endocrinologia", assunto: "ass-adrenal" },
+  { id: "politicas-nacionais", titulo: "Políticas nacionais de saúde", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-politicasnacionais" },
 ];

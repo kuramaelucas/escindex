@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Políticas nacionais: quatro eixos</text>
+<g text-anchor="middle" font-size="13">
+<rect x="250" y="150" width="220" height="70" rx="35" fill="#e1f0f6" stroke="#1b5e7a"/><text x="360" y="180" font-weight="bold" fill="#1b5e7a">SUS: integralidade</text><text x="360" y="200" fill="#1b5e7a">e equidade</text>
+<rect x="20" y="50" width="300" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="170" y="74" font-weight="bold" fill="#4d7a1b">Modo de cuidar</text><text x="170" y="96" fill="#333">PNH: acolhimento, ambiência,</text><text x="170" y="114" fill="#333">clínica ampliada, equipe de referência</text>
+<rect x="400" y="50" width="300" height="80" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="550" y="74" font-weight="bold" fill="#7a4d1b">Populações</text><text x="550" y="96" fill="#333">mulher, criança, homem, idoso,</text><text x="550" y="114" fill="#333">deficiência, população negra, LGBT</text>
+<rect x="20" y="240" width="300" height="80" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="170" y="264" font-weight="bold" fill="#b03a2e">Condições</text><text x="170" y="286" fill="#333">saúde mental (CAPS), alimentação,</text><text x="170" y="304" fill="#333">DCNT, câncer, atenção especializada</text>
+<rect x="400" y="240" width="300" height="80" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="550" y="264" font-weight="bold" fill="#1b5e7a">Intersetorialidade</text><text x="550" y="286" fill="#333">PSE (escola), violência (Justiça),</text><text x="550" y="304" fill="#333">agricultura e alimentação</text>
+<g stroke="#999" stroke-width="2"><line x1="240" y1="130" x2="290" y2="152"/><line x1="480" y1="130" x2="430" y2="152"/><line x1="240" y1="240" x2="290" y2="218"/><line x1="480" y1="240" x2="430" y2="218"/></g>
+<text x="360" y="352" fill="#b03a2e">Cada política nomeia uma barreira de acesso e diz como removê-la.</text>
+</g></svg>

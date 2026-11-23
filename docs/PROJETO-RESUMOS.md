@@ -295,3 +295,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de doença diverticular (ass-diverticulite) |
 | 23/11/2026 | Resumo de vigilância sanitária e notificação (ass-vigilanciasanitaria) |
 | 23/11/2026 | Resumo de doenças da adrenal (ass-adrenal) |
+| 23/11/2026 | Resumo de políticas nacionais de saúde (ass-politicasnacionais) |
