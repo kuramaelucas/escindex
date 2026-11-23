@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Isquemia aguda do membro: Rutherford</text>
+  <g font-size="12" fill="#1f2d3d">
+    <rect x="20" y="40" width="680" height="34" fill="#f4f8fb" stroke="#c9d6df"/>
+    <text x="34" y="62" font-weight="bold">Grau</text><text x="120" y="62" font-weight="bold">Sensibilidade</text><text x="290" y="62" font-weight="bold">Força</text><text x="400" y="62" font-weight="bold">Doppler</text><text x="530" y="62" font-weight="bold">Conduta</text>
+    <rect x="20" y="78" width="680" height="54" fill="#eef5e6" stroke="#4d7a1b"/>
+    <text x="34" y="110" font-weight="bold">I viável</text><text x="120" y="110">normal</text><text x="290" y="110">normal</text><text x="400" y="110">arterial audível</text><text x="530" y="110">heparina, imagem</text>
+    <rect x="20" y="136" width="680" height="54" fill="#f7efe6" stroke="#7a4d1b"/>
+    <text x="34" y="160" font-weight="bold">IIa</text><text x="34" y="178">ameaçado</text><text x="120" y="168">perda só nos dedos</text><text x="290" y="168">normal</text><text x="400" y="168">arterial inaudível</text><text x="530" y="160">heparina +</text><text x="530" y="178">revascularização urgente</text>
+    <rect x="20" y="194" width="680" height="54" fill="#fbecec" stroke="#b03a2e"/>
+    <text x="34" y="218" font-weight="bold">IIb</text><text x="34" y="236">imediato</text><text x="120" y="218">perda além</text><text x="120" y="236">dos dedos</text><text x="290" y="226">fraqueza</text><text x="400" y="226">arterial inaudível</text><text x="530" y="218">heparina +</text><text x="530" y="236">revascularização imediata</text>
+    <rect x="20" y="252" width="680" height="54" fill="#e6e6e6" stroke="#555555"/>
+    <text x="34" y="276" font-weight="bold">III</text><text x="34" y="294">irreversível</text><text x="120" y="284">anestesia</text><text x="290" y="276">paralisia,</text><text x="290" y="294">rigidez</text><text x="400" y="276">sem fluxo arterial</text><text x="400" y="294">nem venoso</text><text x="530" y="284">amputação primária</text>
+  </g>
+  <text x="360" y="336" text-anchor="middle" font-size="12" fill="#1f2d3d">Cianose fixa e dor que "melhorou" com a perna parada indicam membro já perdido.</text>
+</svg>

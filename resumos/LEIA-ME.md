@@ -187,3 +187,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `cancer-colorretal` | `ass-cacolorretal` | 57 (3 dissertativas) | 2 (anuladas sem reposição) |
 | `avc` | `ass-neuro-avc` | 57 | 1 (anulada sem reposição) |
 | `doenca-peptica` | `ass-doencapeptica` | 57 (1 dissertativa) | 1 (anulada sem reposição) |
+| `isquemia-arterial` | `ass-cirvasc-arterial` | 57 (4 dissertativas) | — |
