@@ -133,4 +133,9 @@
   { id: "doenca-venosa", titulo: "Doença venosa: TVP e varizes", area: "Cirurgia · Cirurgia Vascular", assunto: "ass-cirvasc-venosa" },
   { id: "neoplasia-pulmonar", titulo: "Neoplasia pulmonar cirúrgica", area: "Cirurgia · Cirurgia Torácica", assunto: "ass-cirtorax-neoplasia" },
   { id: "prostata", titulo: "Próstata: hiperplasia e câncer", area: "Cirurgia · Urologia", assunto: "ass-uro-prostata" },
+  { id: "doenca-falciforme", titulo: "Doença falciforme e hemoglobinopatias", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-hemoglobinopatias" },
+  { id: "dislipidemia", titulo: "Dislipidemia e risco cardiovascular", area: "Clínica Médica · Cardiologia", assunto: "ass-dislipidemia" },
+  { id: "dermatoses-inflamatorias", titulo: "Dermatoses inflamatórias e autoimunes", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-autoimunes" },
+  { id: "tep", titulo: "Tromboembolismo pulmonar", area: "Clínica Médica · Pneumologia", assunto: "ass-tep" },
+  { id: "dii", titulo: "Doença inflamatória intestinal", area: "Clínica Médica · Gastroenterologia", assunto: "ass-dii" },
 ];

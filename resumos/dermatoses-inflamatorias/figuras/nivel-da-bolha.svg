@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="sans-serif"><rect width="760" height="360" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Onde a pele se separa decide como é a bolha</text>
+<g font-size="13" fill="#333">
+<rect x="30" y="60" width="300" height="40" fill="#f6efe1" stroke="#8a6a1b"/><text x="180" y="85" text-anchor="middle">camada córnea e granulosa</text>
+<rect x="30" y="100" width="300" height="80" fill="#f4e7da" stroke="#8a6a1b"/><text x="180" y="145" text-anchor="middle">camada espinhosa (desmossomos)</text>
+<rect x="30" y="180" width="300" height="24" fill="#e8d3c0" stroke="#8a6a1b"/><text x="180" y="197" text-anchor="middle" font-size="12">camada basal</text>
+<rect x="30" y="204" width="300" height="10" fill="#555"/>
+<rect x="30" y="214" width="300" height="90" fill="#fbecec" stroke="#b03a2e"/><text x="180" y="265" text-anchor="middle">derme</text>
+<text x="40" y="230" font-size="12" fill="#555" text-anchor="start">membrana basal (acima)</text>
+<g stroke-width="3"><line x1="330" y1="100" x2="420" y2="100" stroke="#8a6a1b"/><line x1="330" y1="180" x2="420" y2="160" stroke="#1b5e7a"/><line x1="330" y1="210" x2="420" y2="250" stroke="#b03a2e"/></g>
+<rect x="425" y="70" width="310" height="60" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="440" y="93" font-weight="bold" fill="#8a6a1b">Subcórnea: pênfigo foliáceo</text><text x="440" y="115">desmogleína 1; áreas seborreicas, sem mucosa</text>
+<rect x="425" y="140" width="310" height="60" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="440" y="163" font-weight="bold" fill="#1b5e7a">Suprabasal: pênfigo vulgar</text><text x="440" y="185">desmogleína 3; mucosa, bolha flácida, Nikolsky +</text>
+<rect x="425" y="220" width="310" height="60" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="440" y="243" font-weight="bold" fill="#b03a2e">Subepidérmica: penfigoide bolhoso</text><text x="440" y="265">idoso, bolha tensa, prurido, Nikolsky −</text>
+</g>
+<text x="380" y="340" text-anchor="middle" font-size="12" fill="#555">Quanto mais alta a separação, mais fino o teto e mais flácida a bolha.</text>
+</svg>

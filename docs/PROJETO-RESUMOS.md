@@ -320,3 +320,9 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de neoplasia pulmonar cirúrgica (ass-cirtorax-neoplasia) |
 | 23/11/2026 | Resumo de próstata: hiperplasia e câncer (ass-uro-prostata) |
 | 23/11/2026 | Regra do conjunto de 20 (`lib-conjuntos.mjs`): questão idêntica (mesmo enunciado e mesma resposta) entra uma vez só; parecidas ficam; cobertura dos fragmentos continua antes da dificuldade |
+| 23/11/2026 | Resumo de doença falciforme e hemoglobinopatias (ass-hemato-hemoglobinopatias) |
+| 23/11/2026 | Resumo de dislipidemia e risco cardiovascular (ass-dislipidemia) |
+| 23/11/2026 | Resumo de dermatoses inflamatórias e autoimunes (ass-derm-autoimunes) |
+| 23/11/2026 | Resumo de tromboembolismo pulmonar (ass-tep) |
+| 23/11/2026 | Resumo de doença inflamatória intestinal (ass-dii) |
+| 23/11/2026 | Conjunto de 20: "idêntica" passa a ignorar pontuação e espaços (TP reaplicado com uma vírgula a mais) |

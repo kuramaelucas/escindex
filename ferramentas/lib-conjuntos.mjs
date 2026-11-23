@@ -39,10 +39,10 @@ export function montarConjunto(r, porId, tamanho = TAMANHO_DO_CONJUNTO){
   }
   const fragsDa = new Map();   // questão → fragmentos que ela cobre (pode cobrir mais de um)
   for(const f of frags) for(const q of f.qs){ if(!fragsDa.has(q.id)) fragsDa.set(q.id, []); fragsDa.get(q.id).push(f); }
-  // Questão idêntica em duas provas (mesmo enunciado e mesma resposta, palavra por palavra: TP
+  // Questão idêntica em duas provas (mesmo enunciado e mesma resposta, palavra por palavra, ignorando pontuação e espaços: TP
   // reaplicado, banco autoral copiado entre assuntos) entra uma vez só. Parecidas ficam: a pergunta
   // costuma ser outra (decisão da equipe, 23/11/2026).
-  const assinatura = q => `${q.enunciado || ""}\u0000${((q.alternativas || []).find(a => a.id === q.gabarito) || {}).texto || ""}`.replace(/\s+/g, " ").trim().toLowerCase();
+  const assinatura = q => `${q.enunciado || ""}\u0000${((q.alternativas || []).find(a => a.id === q.gabarito) || {}).texto || ""}`.toLowerCase().normalize("NFD").replace(/[^a-z0-9\u0000]+/g, "");
   const porAssinatura = new Map();
   for(const id of fragsDa.keys()){ const q = porId.get(id), k = assinatura(q); if(!porAssinatura.has(k)) porAssinatura.set(k, []); porAssinatura.get(k).push(id); }
   const escolhidas = [], usadas = new Set(), contaNivel = { fundamental: 0, intermediario: 0, avancado: 0 };
