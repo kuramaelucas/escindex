@@ -298,3 +298,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de políticas nacionais de saúde (ass-politicasnacionais) |
 | 23/11/2026 | Resumo de vitalidade fetal (ass-vitalidadefetal) |
 | 23/11/2026 | Resumo de queimaduras (ass-queimaduras) |
+| 23/11/2026 | Resumo de leptospirose (ass-leptospirose) |
