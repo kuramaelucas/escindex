@@ -183,3 +183,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `neutropenia-febril` | `ass-neutropeniafebril` | 73 (3 dissertativas) | 4 (anuladas sem reposição) |
 | `micoses-invasivas` | `ass-micosesinvasivas` | 76 (1 dissertativa) | 1 (anulada sem reposição) |
 | `itu` | `ass-itu` | 72 (2 dissertativas) | 2 (anuladas sem reposição) |
+| `fios-e-cicatrizacao` | `ass-toce-fios` | 57 (1 dissertativa) | 6 (2 anuladas; 4 de doença orificial classificadas por engano) |

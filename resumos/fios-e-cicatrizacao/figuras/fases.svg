@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="360" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Fases da cicatrização</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="40" y="50" width="160" height="70" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="120" y="74" text-anchor="middle" font-weight="bold">Inflamatória</text>
+    <text x="120" y="94" text-anchor="middle">primeiros dias</text>
+    <text x="120" y="112" text-anchor="middle">neutrófilo, macrófago</text>
+    <rect x="160" y="132" width="260" height="70" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="290" y="156" text-anchor="middle" font-weight="bold">Proliferativa</text>
+    <text x="290" y="176" text-anchor="middle">4º dia a ~3 semanas: angiogênese,</text>
+    <text x="290" y="194" text-anchor="middle">fibroplasia (colágeno III), epitelização</text>
+    <rect x="360" y="214" width="320" height="70" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="520" y="238" text-anchor="middle" font-weight="bold">Remodelação</text>
+    <text x="520" y="258" text-anchor="middle">meses a 1 ano</text>
+    <text x="520" y="276" text-anchor="middle">colágeno III trocado pelo I</text>
+  </g>
+  <line x1="40" y1="306" x2="680" y2="306" stroke="#1f2d3d" stroke-width="2"/>
+  <g font-size="12" fill="#1f2d3d" text-anchor="middle">
+    <text x="40" y="324">0</text><text x="160" y="324">4 dias</text><text x="400" y="324">3 semanas</text><text x="680" y="324" text-anchor="end">1 ano</text>
+  </g>
+  <text x="360" y="348" text-anchor="middle" font-size="12" fill="#1f2d3d">Força tênsil: cerca de 20% da pele em 3 semanas; no fim, 70 a 80%, nunca 100%.</text>
+</svg>
