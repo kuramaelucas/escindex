@@ -92,4 +92,5 @@
   { id: "doenca-peptica", titulo: "Doença péptica e hemorragia digestiva alta", area: "Clínica Médica · Gastroenterologia", assunto: "ass-doencapeptica" },
   { id: "isquemia-arterial", titulo: "Isquemia arterial aguda e crônica", area: "Cirurgia · Cirurgia Vascular", assunto: "ass-cirvasc-arterial" },
   { id: "hemostasia", titulo: "Distúrbios da hemostasia e anticoagulação", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-hemostasia" },
+  { id: "sindromes-gripais", titulo: "Síndromes gripais: influenza, SRAG e covid-19", area: "Clínica Médica · Infectologia", assunto: "ass-infecto-covid" },
 ];
