@@ -108,4 +108,5 @@
   { id: "infertilidade", titulo: "Infertilidade conjugal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-infertilidade" },
   { id: "diverticulite", titulo: "Doença diverticular: diverticulite e sangramento", area: "Cirurgia · Coloproctologia", assunto: "ass-diverticulite" },
   { id: "vigilancia-sanitaria", titulo: "Vigilância sanitária, notificação compulsória e declaração de óbito", area: "Medicina Preventiva · Vigilância em Saúde", assunto: "ass-vigilanciasanitaria" },
+  { id: "adrenal", titulo: "Doenças da adrenal", area: "Clínica Médica · Endocrinologia", assunto: "ass-adrenal" },
 ];
