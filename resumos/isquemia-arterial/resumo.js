@@ -90,9 +90,9 @@ Veja também: **AVC** (embolia de origem cardíaca e carótida), **Arritmias** (
 - Oclusão na origem da AMS: **jejuno, íleo, ceco, ascendente e transverso proximal**. {q-unesp2024-062}
 - Dor súbita sem peritonismo: **tomografia**; abdome agudo **vascular**. {q-simepm89-007,q-simepm89-008}
 - Exame de escolha: **angiotomografia**. {q-udisc20262-069}
-- Imagem compatível: **B**. {q-uspsp4-049}
+- Tomografia da isquemia mesentérica: **alças com parede espessa e pouco realce, pneumatose** e **falha de enchimento na mesentérica superior**. {q-uspsp4-049}
 - Êmbolo na AMS sem necrose: **revascularização endovascular**. {q-usprp2027-078}
-- Causa mais frequente (a prova): **isquemia não oclusiva**. {q-scmsp2023-037}
+- Causa mais frequente: **embolia** (40 a 50%); uma prova deu a não oclusiva (ver armadilhas). {q-scmsp2023-037}
 - Coronariopata com dobutamina e noradrenalina: **isquemia não oclusiva**. {q-usp2024-038}
 - Colite isquêmica: **ângulo esplênico**. {q-fmabc2023-034}` },
         { id: "mes-cronica", titulo: "Isquemia mesentérica crônica", conferir: true, diretrizes: ["esvs-mesenterica"],

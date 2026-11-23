@@ -32,7 +32,7 @@ Veja também: **Trauma abdominal** (FAST, laparotomia), **Trauma de tórax** (dr
 
 [[A **hemorragia externa** controla-se primeiro por **compressão direta**; o **torniquete** entra quando a compressão falha ou há lesão exanguinante de membro, e é a primeira medida junto da intubação e do transporte rápido no politrauma grave.|q-amrigs2022-039,q-scmsp2026-032]] [[O **choque no trauma é hemorrágico até prova em contrário**; o choque **neurogênico** (hipotensão com bradicardia e déficit) e o **obstrutivo** (pneumotórax hipertensivo, tamponamento) vêm depois na lista, e o **RUSH** (ultrassom à beira do leito) procura a causa do choque quando não há hemorragia evidente.|q-scmsp2026-031,q-usprp2021-030]]
 
-A **escala de coma de Glasgow** soma abertura ocular (1 a 4), resposta verbal (1 a 5) e motora (1 a 6): abertura ao comando de voz (3), verbal confusa (4) e localiza a dor (5) dão **12**; sem abertura ocular (1), verbal incompreensível (2) e flexão anormal (3) ou retirada somam **8**. **Glasgow ≤ 8** indica via aérea definitiva. [[Na **exposição**, retira-se toda a roupa, rola-se o paciente em bloco e **evita-se a hipotermia em qualquer clima**, porque a hipotermia agrava a coagulopatia; nos ferimentos por projétil, procura-se o orifício de saída.|q-sessp2022-030]]
+A **escala de coma de Glasgow** soma abertura ocular (1 a 4), resposta verbal (1 a 5) e motora (1 a 6): abertura ao comando de voz (3), verbal confusa (4) e localiza a dor (5) dão **12**; sem abertura ocular (1), verbal incompreensível (2) e localiza a dor (5) somam **8**. **Glasgow ≤ 8** indica via aérea definitiva. [[Na **exposição**, retira-se toda a roupa, rola-se o paciente em bloco e **evita-se a hipotermia em qualquer clima**, porque a hipotermia agrava a coagulopatia; nos ferimentos por projétil, procura-se o orifício de saída.|q-sessp2022-030]]
 
 [[Nos **adjuntos**, a radiografia de tórax e a de pelve e o FAST se fazem na sala de trauma. As fontes de choque de uma paciente intubada com tórax expandindo bilateralmente e fraturas de fêmur e perna são **abdome, pelve e ossos longos**.|q-sessp2022-028,q-sirio2024-025]] [[Na **triagem em desastre**, a classificação START vê respiração, perfusão e nível de consciência; a vítima **preta** é a que está em óbito ou agônica.|q-fmabc2022-006]]`,
           texto: `- Sequência: **A** (via aérea + coluna cervical), **B**, **C** (hemorragia), **D** (neurológico), **E** (exposição, hipotermia). {q-fmabc2021-002,q-sessp2022-030}
@@ -42,7 +42,7 @@ A **escala de coma de Glasgow** soma abertura ocular (1 a 4), resposta verbal (1
 - **Hemorragia externa**: primeiro **compressão** do local; torniquete na falha ou lesão exanguinante. {q-amrigs2022-039,q-scmsp2026-032}
 - Choque em trauma: **hemorrágico até prova em contrário**; o **RUSH** busca a causa quando é obscura. {q-scmsp2026-031}
 - Criança intubada que piora subitamente com murmúrio reduzido e hipertimpanismo: **choque obstrutivo**. {q-usprp2021-030}
-- **Glasgow**: voz (3) + confusa (4) + localiza (5) = **12**; sem abertura ocular, sons incompreensíveis, flexão: **8**. {q-amrigs2020-024,q-fmabc2026-027}
+- **Glasgow**: voz (3) + confusa (4) + localiza (5) = **12**; sem abertura ocular, sons incompreensíveis, localiza a dor: **8**. {q-amrigs2020-024,q-fmabc2026-027}
 - Paciente com Glasgow de 8 ou menos e via aérea comprometida: **via aérea definitiva**. {q-unesp2022-069,q-unicampdis2022-021}
 - Exposição: retirar toda a roupa, rolar em bloco; a prevenção de hipotermia vale **em qualquer clima**. {q-sessp2022-030}
 - Fontes de choque em paciente intubada com tórax normal: **abdome, pelve e ossos longos**. {q-sessp2022-028}
@@ -162,7 +162,7 @@ O **índice de choque** é **FC ÷ PAS**: 140/80 = 1,75, e acima de 1 já indica
 - Diástase de sínfise > 3 cm e lavado peritoneal positivo: **estabilizar o anel e depois laparotomia**. {q-famema2021-007}
 - Pelve e laceração perineal extensa: controle de sangramento e **contaminação** no centro cirúrgico; **fixação externa e colostomia**. {q-uspsp3-106,q-sirio2023-021}
 - Queda de 8 m com instabilidade da bacia: a figura da prova pede a **posição correta da cinta pélvica** (posição 3, nos trocânteres maiores). {q-usp2024-035}
-- Queda do terceiro andar com FC 120 e PAS 100: a figura da prova pede a **imagem C**. {q-usp2023-119}
+- Queda do terceiro andar com bacia instável e choque: o FAST mostra **líquido livre anecoico** (hemoperitônio). {q-usp2023-119}
 - Impacto no períneo e retenção urinária: **uretrografia retrógrada antes da sonda**; cistostomia se houver lesão. {q-adap25-003}
 - Fratura de coluna com pneumotórax e bexiga: **sondagem vesical de demora**. {q-unifesp2025-003}` },
       ],

@@ -58,7 +58,7 @@ Veja também: **Prevenção** (rastreamento na atenção primária), **Obstruç�
 - Colonoscopia **diagnostica e trata**. {q-einstein2025-028}
 - Pai com câncer aos 65: **sangue oculto imunológico anual** é válido. {q-einstein2026-004}
 - Dois adenomas pediculados de 1,2 e 1,5 cm: **colonoscopia em 3 anos**. {q-sessp2023-002}
-- Três adenomas tubulares de baixo grau: **3 anos** (a prova). {q-usprp2027-091}
+- Três adenomas tubulares pequenos de baixo grau: **3 a 5 anos** (uma prova marcou 3). {q-usprp2027-091}
 - pT1 favorável ressecado: **vigilância colonoscópica**. {q-011}` },
       ],
     },

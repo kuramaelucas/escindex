@@ -143,12 +143,12 @@ No **megacólon chagásico**, [[a cirurgia eletiva é indicada após **volvo tra
           questoes: ["q-usp2026-026","q-usprp2023-098","q-usprp2025-099","q-sirio2021-027","q-fmabc2021-004"],
           prosa: `[[A **síndrome de Ogilvie** é a dilatação do cólon, sobretudo do ceco e do cólon direito, **sem obstáculo mecânico**, por desequilíbrio autonômico: aparece no pós-operatório (cirurgia cardíaca, ortopédica), no acamado, no queimado grave e no doente de UTI, com distúrbio eletrolítico.|q-usp2026-026,q-usprp2023-098,q-usprp2025-099]] A tomografia mostra o cólon dilatado sem ponto de obstrução, e o risco é isquemia e perfuração do ceco acima de 12 cm.
 
-[[O **suporte** vem primeiro: sonda, jejum, hidratação, correção de **potássio** e demais eletrólitos e suspensão de opioides e anticolinérgicos; o preparo do cólon com manitol e o corticoide estão errados.|q-usprp2025-099,q-usp2026-026]] [[Persistindo, ou com o ceco muito dilatado e PCR em ascensão, descomprime-se: a **colonoscopia descompressiva** é a conduta nas provas, em lugar da neostigmina, que tem contraindicações cardíacas e causa bradicardia.|q-usprp2023-098,q-sirio2021-027,q-fmabc2021-004]]`,
+[[O **suporte** vem primeiro: sonda, jejum, hidratação, correção de **potássio** e demais eletrólitos e suspensão de opioides e anticolinérgicos; o preparo do cólon com manitol e o corticoide estão errados.|q-usprp2025-099,q-usp2026-026]] [[Persistindo, ou com o ceco muito dilatado, descomprime-se: a **neostigmina** venosa (que estimula o cólon pela via colinérgica) é a primeira linha das diretrizes, com monitor cardíaco, porque causa bradicardia e é contraindicada na bradicardia, no broncoespasmo e na obstrução mecânica; quando ela não pode ser usada ou falha, a **colonoscopia descompressiva**, que é a resposta de várias provas.|q-usprp2023-098,q-sirio2021-027,q-fmabc2021-004]]`,
           texto: `- Idosa no 6º pós-operatório de troca valvar, distensão sem peritonite, K 3,1: **Ogilvie**, corrigir eletrólitos e descomprimir se persistir. {q-usp2026-026}
 - Idoso de 90 anos acamado, dilatação gasosa de todo o cólon: **pseudo-obstrução**, **descompressão endoscópica**. {q-usprp2023-098}
 - Queimado grave em CTI, distensão sem ponto obstrutivo: **sonda nasogástrica e correção dos eletrólitos**. {q-usprp2025-099}
 - Covid grave, PCR em ascensão, cólon muito dilatado: **colonoscopia descompressiva**. {q-sirio2021-027}
-- Idosa em UTI, droga vasoativa, cólon muito dilatado: **colonoscopia descompressiva**, não neostigmina. {q-fmabc2021-004}` },
+- Idosa em UTI, droga vasoativa, cólon muito dilatado: **colonoscopia descompressiva** (a neostigmina é a primeira linha, mas exige ritmo cardíaco estável). {q-fmabc2021-004}` },
       ],
     },
     {

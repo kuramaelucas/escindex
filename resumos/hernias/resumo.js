@@ -260,7 +260,7 @@ A tela é um corpo estranho, e a sua integração depende do campo. [[A rejeiç�
 - Regra: tela em campo contaminado é controversa; a prova (Simulado USP-SP 2025) cobrou **enterectomia e Lichtenstein**, a (Einstein 2023), **polipropileno** na incisional encarcerada, e a (AMRIGS 2025), que a tela é **controversa** na umbilical estrangulada. {q-uspsp3-100,q-einstein2023-029,q-amrigs2025-025}
 - Regra: a hérnia direta fica **medial** aos vasos epigástricos; a prova (Sírio 2026) descreveu abaulamento "superior e medial ao ligamento" e cobrou **indireta**, pelo toque na ponta do dedo. {q-sirio2026-035}
 - Regra: Rives-Stoppa é plano **retromuscular**; a prova (FAMEMA 2022) cobrou o espaço de **Retzius**, pré-peritoneal. {q-famema2022-068}
-- Regra: hérnia que reduz espontaneamente e já encarcerou deve ser corrigida; a prova (UNIFESP 2026) cobriu a via **laparoscópica**, enquanto a aberta também trata. {q-unifesp2026-015}` },
+- Regra: hérnia que reduz espontaneamente e já encarcerou deve ser corrigida; a prova (UNIFESP 2026) cobrou a via **laparoscópica**, enquanto a aberta também trata. {q-unifesp2026-015}` },
       ],
     },
     {
