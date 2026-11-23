@@ -505,6 +505,7 @@ function _renderCaderno(r){
       <div class="resumo-lido card-flat mt-2 flex justify-between items-center gap-1 quebra">${resumoLidoEm(u, r.id)
         ? `<span class="text-sm">${iconeSvg("check")} Você marcou este resumo como lido em ${formatDataBR(resumoLidoEm(u, r.id))}.</span><button class="btn btn-ghost btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', false)">Desmarcar</button>`
         : `<span class="text-sm">Terminou a leitura?</span><button class="btn btn-primary btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', true)">${iconeSvg("check")} Marcar como lido</button>`}</div>
+      ${htmlPosLeituraDoResumo(u, r.id)}
     </article>
     </div>`;
 }

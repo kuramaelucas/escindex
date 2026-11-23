@@ -18,6 +18,8 @@ async function abrir(){
   pagina.on("pageerror", e => erros.push(e.message));
   await pagina.goto(servidor.url + "index.html");
   await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+  // partes ainda desligadas no ar (CONFIG.integracaoResumos): o teste as liga para conferir o código que espera a fase 3
+  await pagina.evaluate(() => { CONFIG.integracaoResumos.modoDeInicio = true; CONFIG.integracaoResumos.cicloNoInicio = true; });
   return { pagina, contexto, erros };
 }
 

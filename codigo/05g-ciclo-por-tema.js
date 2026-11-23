@@ -153,6 +153,7 @@ function _htmlResultadoDoTema(e){
       : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} Reler o resumo</button>`}</div></div>`;
 }
 function htmlCartaoDoCicloPorTema(u){
+  if(!CONFIG.integracaoResumos.cicloNoInicio) return "";
   const ciclo = cicloDoAluno(u);
   if(!ciclo) return "";
   const e = ciclo.atual, cam = ciclo.caminho;
@@ -180,4 +181,23 @@ function htmlCartaoDoCicloPorTema(u){
     ${corpo}
     ${_htmlResultadoDoTema(ciclo.ultimoConcluido)}
   </div>`;
+}
+
+/* ---------------------------- pós-leitura (no fim do resumo) ----------------------------
+   A parte do ciclo que já está no ar (CONFIG.integracaoResumos.posLeitura): marcou o resumo como
+   lido, o conjunto planejado do tema aparece logo abaixo. Mesma régua do ciclo — primeira resposta,
+   continua de onde parou, < 75% sugere reler — e nada trava. */
+function htmlPosLeituraDoResumo(u, resumoId){
+  if(!CONFIG.integracaoResumos.posLeitura || !u || !resumoLidoEm(u, resumoId)) return "";
+  if(!conjuntosPorTema()) return "";
+  const e = estadoDoTema(u, resumoId);
+  if(!e || !e.ids.length) return "";
+  const pctTxt = e.taxa === null ? "" : Math.round(e.taxa * 100) + "%";
+  let linha, botao = "";
+  if(!e.feitas) { linha = `Agora, <strong>${e.ids.length} questões pós-leitura</strong>, escolhidas para cobrir cada parte deste tema.`; botao = "Fazer as questões pós-leitura"; }
+  else if(!e.concluido) { linha = `Questões pós-leitura: <strong>${e.feitas} de ${e.ids.length}</strong> · ${pctTxt} de acerto até aqui. Você continua das que ainda não fez.`; botao = "Continuar as questões"; }
+  else linha = `Questões pós-leitura feitas: <strong>${pctTxt}</strong> de acerto (${e.acertos} de ${e.feitas}).` + (e.abaixoDoCorte
+    ? ` Abaixo de ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}%: vale reler os trechos marcados acima — opcional.` : "");
+  return `<div class="resumo-pos-leitura card-flat mt-1 flex justify-between items-center gap-1 quebra"><span class="text-sm">${linha}</span>${botao
+    ? `<button class="btn btn-primary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(resumoId)}')">${botao}</button>` : ""}</div>`;
 }

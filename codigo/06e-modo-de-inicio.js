@@ -81,6 +81,7 @@ function _cartoesDoModoDeInicio(grupo, atual, acao){
 function perguntarModoDeInicio(opts){
   opts = opts || {};
   const u = usuarioAtual(), grupo = grupoDoModoDeInicio(u);
+  if(!CONFIG.integracaoResumos.modoDeInicio) return false;
   if(!u || !grupo || state.modoAluno || u.modoDeInicio) return false;
   if(!opts.mesmoComAutomacao && typeof navigator !== "undefined" && navigator.webdriver) return false;
   if(document.getElementById("modalOverlayAtivo")) return false;
@@ -99,6 +100,7 @@ function perguntarModoDeInicio(opts){
 
 // O cartão de Perfil e configurações. Antes do 6º ano explica por que não há escolha.
 function renderCardModoDeInicio(u){
+  if(!CONFIG.integracaoResumos.modoDeInicio) return "";
   if(!u || !(u.papel === "aluno" || state.modoAluno)) return "";
   const grupo = grupoDoModoDeInicio(u);
   if(!grupo) return `<div class="card mt-2" style="max-width:460px">

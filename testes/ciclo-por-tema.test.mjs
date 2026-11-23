@@ -19,6 +19,8 @@ async function abrir(){
   pagina.on("pageerror", e => erros.push(e.message));
   await pagina.goto(servidor.url + "index.html");
   await pagina.waitForFunction(() => typeof db !== "undefined" && db && typeof render === "function");
+  // partes ainda desligadas no ar (CONFIG.integracaoResumos): o teste as liga para conferir o código que espera a fase 3
+  await pagina.evaluate(() => { CONFIG.integracaoResumos.modoDeInicio = true; CONFIG.integracaoResumos.cicloNoInicio = true; });
   await pagina.evaluate(() => { fazerLoginDemo("aluno"); fecharModal(); conjuntosPorTema(); resumoDoAssunto(null); });
   await pagina.waitForFunction(() => window.EscResumos && window.EscResumos.conjuntos && window.EscResumos.catalogo);
   return { pagina, contexto, erros };
@@ -86,6 +88,34 @@ test("ciclo: reparar por tema vai direto às questões; Formado 'como está' fic
     assert.equal(r.caminho, "reparar-tema"); assert.ok(r.semLeitura);
     assert.equal(r.zero, "zero");
     assert.deepEqual([r.semResumo, r.obrigSem, r.abriuSemResumo], [true, false, true]);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("no ar hoje: só a pós-leitura — sem pergunta de início nem cartão no Início; marcou lido, o conjunto aparece no fim do resumo", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      Object.assign(CONFIG.integracaoResumos, { modoDeInicio: false, cicloNoInicio: false, posLeitura: true });
+      const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; delete u.modoDeInicio; db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const pergunta = perguntarModoDeInicio({ mesmoComAutomacao: true });
+      navigate("inicio"); const cartao = document.body.innerText.includes("Seu tema");
+      const id = window.EscResumos.catalogo[0].id;
+      lerResumoDoAssunto(id);
+      return { pergunta, cartao, id };
+    });
+    await pagina.waitForSelector(".resumo-lido");
+    const r2 = await pagina.evaluate(id => {
+      const antes = !!document.querySelector(".resumo-pos-leitura");
+      marcarResumoComoLido(id, true);
+      const depois = document.querySelector(".resumo-pos-leitura"), texto = depois ? depois.innerText : "";
+      if(depois) depois.querySelector("button").click();
+      return { antes, texto, sessao: state.route === "sessao" && state.sessaoAtual.itens.length };
+    }, r.id);
+    Object.assign(r, r2);
+    assert.equal(r.pergunta, false); assert.equal(r.cartao, false); assert.equal(r.antes, false);
+    assert.match(r.texto, /questões pós-leitura/);
+    assert.ok(r.sessao > 0);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

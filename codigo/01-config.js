@@ -228,6 +228,12 @@ const CONFIG = {
      no sorteio. É a reta final: depois de cumprido o cronograma da faculdade,
      o treino é com a prova de verdade, e sem desperdiçar tempo no que já se
      sabe. */
+  /* Integração resumos × questões (docs/PROJETO-INTEGRACAO-RESUMOS.md). Liga por parte, porque
+     as partes ficam prontas em tempos diferentes: hoje só as questões PÓS-LEITURA estão no ar (no
+     fim do resumo marcado como lido, o conjunto planejado do tema). A pergunta "do zero × reparar
+     falhas" (06e) e o cartão "Seu tema" do Início (05g) esperam a fase 3, que reparte a meta por
+     tema — sem ela o cartão prometeria um cronograma que a sessão recomendada ainda não segue. */
+  integracaoResumos: { posLeitura: true, modoDeInicio: false, cicloNoInicio: false },
   cronogramaDoSextoAno: { anos: ["6º ano"], questoesNoSistema: 30, pesoExtras: 10, sessaoMinimaDeProva: 10 },
   /* Com a prova-alvo por perto, a revisão espaçada não pode empurrar uma
      questão ou cartão para depois da prova: o intervalo agendado passa a ser
