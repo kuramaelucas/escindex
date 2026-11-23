@@ -93,6 +93,7 @@ Instalar: `npm ci`. Antes de abrir um arquivo de `codigo/` ou `dados/`, use `npm
 | `05b-desempenho-e-metas.js` | 4 | desempenho, calibração, metas, lembrete, o que mais cai, nota estimada |
 | `05d-trilha-de-estudos.js` | 4 | trilha por taxa de erro: assuntos com mais erro recebem mais questões; janela de montagem e cartão de sugestão (`abrirTrilhaDeEstudos`) |
 | `05f-revisao-sugerida.js` | 4-D | revisão sugerida: assuntos já estudados que esfriaram (erro, depois tempo parado), conjunto no tamanho pedido, janela e cartão (`abrirRevisaoSugerida`) |
+| `05g-ciclo-por-tema.js` | 4-E | ciclo por tema (`docs/PROJETO-INTEGRACAO-RESUMOS.md`): ler o resumo → conjunto planejado (`resumos/conjuntos-por-tema.js`, sob demanda) → resultado → releitura opcional < 75%; nada novo guardado (leitura = `resumosLidos`, progresso = 1ª resposta); ordem pelo bloco do calendário ou pela trilha de Formados; cartão "Seu tema" no Início (`cicloDoAluno`, `estadoDoTema`, `iniciarQuestoesDoTema`, `htmlCartaoDoCicloPorTema`) |
 | `05e-trilha-de-formados.js` | 4-C | trilha do cronograma de Formado(a): fila `dados/trilha-formados.js` (demanda × pré-requisitos), assuntos em estudo/consolidados/esperando, tela “Minha trilha” (`trilhaDeFormado`, `abrirTrilhaDeFormado`) |
 | `06-entrada-e-estrutura.js` | 5–7 | login local, roteador (moldura sem `db`: `desenharMoldura`, `aposBancoPronto`), gesto de arrastar, menu e topo |
 | `06b-busca-global.js` | 5-B | busca global (Ctrl/Cmd+K e botão do topo): telas, assuntos e questões pelo enunciado (`abrirBuscaGlobal`) |
