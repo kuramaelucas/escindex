@@ -102,4 +102,5 @@
   { id: "drc", titulo: "Doença renal crônica", area: "Clínica Médica · Nefrologia", assunto: "ass-drc" },
   { id: "abortamento", titulo: "Abortamento e sangramento do primeiro trimestre", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-abortamento" },
   { id: "miomatose", titulo: "Miomatose uterina e adenomiose", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-miomatose" },
+  { id: "vasculites", titulo: "Vasculites", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-vasculites" },
 ];
