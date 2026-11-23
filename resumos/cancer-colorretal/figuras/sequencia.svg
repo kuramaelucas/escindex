@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 300" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="300" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Sequência adenoma-carcinoma (via clássica)</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="20" y="70" width="140" height="70" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="90" y="100" font-weight="bold">Mucosa normal</text>
+    <rect x="200" y="70" width="140" height="70" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="270" y="100" font-weight="bold">Adenoma</text><text x="270" y="120">pequeno</text>
+    <rect x="380" y="70" width="140" height="70" rx="8" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+    <text x="450" y="100" font-weight="bold">Adenoma</text><text x="450" y="120">grande</text>
+    <rect x="560" y="70" width="140" height="70" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="630" y="100" font-weight="bold">Carcinoma</text><text x="630" y="120">invade a submucosa</text>
+    <text x="180" y="170" font-weight="bold" fill="#1b5e7a">perda do APC</text>
+    <text x="360" y="170" font-weight="bold" fill="#7a4d1b">ativação do KRAS</text>
+    <text x="540" y="170" font-weight="bold" fill="#b03a2e">perda do TP53</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <line x1="160" y1="105" x2="194" y2="105"/><polyline points="186,99 196,105 186,111"/>
+    <line x1="340" y1="105" x2="374" y2="105"/><polyline points="366,99 376,105 366,111"/>
+    <line x1="520" y1="105" x2="554" y2="105"/><polyline points="546,99 556,105 546,111"/>
+  </g>
+  <text x="360" y="230" text-anchor="middle" font-size="13" fill="#1f2d3d">Leva anos: é por isso que retirar o pólipo na colonoscopia previne o câncer.</text>
+  <text x="360" y="256" text-anchor="middle" font-size="12" fill="#1f2d3d">Outra via: falha do reparo de malpareamento do DNA (instabilidade de microssatélites) e pólipos serrilhados.</text>
+</svg>
