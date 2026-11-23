@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">DPOC: do cigarro à dispneia</text>
+<g font-size="13" text-anchor="middle">
+<rect x="20" y="55" width="180" height="50" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="110" y="76" fill="#7a4d1b">Fumaça: inflamação</text><text x="110" y="94" fill="#7a4d1b">e proteases</text>
+<rect x="270" y="45" width="180" height="40" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="360" y="70" fill="#1b5e7a">Bronquíolo estreito, muco</text>
+<rect x="270" y="105" width="180" height="40" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="360" y="130" fill="#1b5e7a">Perda da retração elástica</text>
+<rect x="520" y="70" width="180" height="50" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="610" y="91" fill="#b03a2e">Colapso expiratório:</text><text x="610" y="109" fill="#b03a2e">ar preso</text>
+<rect x="520" y="170" width="180" height="50" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="610" y="191" fill="#b03a2e">Hiperinsuflação</text><text x="610" y="209" fill="#b03a2e">dinâmica no esforço</text>
+<rect x="270" y="170" width="180" height="50" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="360" y="191" fill="#b03a2e">Dispneia, trabalho</text><text x="360" y="209" fill="#b03a2e">respiratório alto</text>
+<rect x="20" y="170" width="180" height="50" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="110" y="191" fill="#7a4d1b">Hipoxemia, CO2 retido</text><text x="110" y="209" fill="#7a4d1b">na exacerbação</text>
+<rect x="20" y="265" width="180" height="50" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="110" y="286" fill="#7a4d1b">Vasoconstrição hipóxica</text><text x="110" y="304" fill="#7a4d1b">→ cor pulmonale</text>
+<rect x="270" y="255" width="430" height="100" rx="6" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="485" y="278" font-weight="bold" fill="#4d7a1b">Onde cada tratamento age</text>
+<text x="485" y="300" fill="#4d7a1b">parar de fumar: freia a origem · LAMA/LABA: abre e desinsufla</text>
+<text x="485" y="320" fill="#4d7a1b">reabilitação: tolera mais esforço · VNI: descansa o músculo</text>
+<text x="485" y="340" fill="#4d7a1b">oxigênio contínuo: desfaz a vasoconstrição, reduz mortalidade</text>
+</g>
+<g stroke="#555" stroke-width="2" fill="none">
+<path d="M200,72 L266,66" marker-end="url(#s)"/><path d="M200,90 L266,122" marker-end="url(#s)"/>
+<path d="M450,66 L516,88" marker-end="url(#s)"/><path d="M450,125 L516,102" marker-end="url(#s)"/>
+<path d="M610,120 L610,166" marker-end="url(#s)"/><path d="M520,195 L454,195" marker-end="url(#s)"/><path d="M270,195 L204,195" marker-end="url(#s)"/><path d="M110,220 L110,261" marker-end="url(#s)"/>
+</g>
+</svg>

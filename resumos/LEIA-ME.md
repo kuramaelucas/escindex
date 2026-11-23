@@ -201,3 +201,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `miomatose` | `ass-miomatose` | 51 questões; FIGO, STEP-W, observar × clínico × histeroscopia × miomectomia × histerectomia, adenomiose; 1 figura, 7 casos |
 | `vasculites` | `ass-reumato-vasculites` | 48 questões; calibre, ACG/polimialgia, Takayasu, PAN, Kawasaki, IgA, ANCA, crio, SAF/ES; 1 figura, 5 casos |
 | `humor` | `ass-psiq-humor` | 48 questões (1 anulada fora); depressão, ISRS, perinatal, suicídio, bipolar, lítio; 1 figura |
+| `dpoc` | `ass-dpoc` | 48 questões (1 anulada com reposição); mecanismo, GOLD, LAMA/LABA/CI, O2, exacerbação, VNI, cor pulmonale; 1 figura, 7 casos |
