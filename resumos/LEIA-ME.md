@@ -214,3 +214,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `colangite` | `ass-colangite` | 41 questões (1 anulada fora); icterícia obstrutiva, CPRE × colangiorressonância, Tóquio 2018, Klatskin, Courvoisier, cisto de colédoco; 1 figura, 10 casos |
 | `valvopatias` | `ass-valvopatias` | 40 questões (1 anulada com reposição); sopros, EAo/TAVI, IAo, EM/valvuloplastia, IM, tricúspide, gestação e prótese; 1 figura, 10 casos |
 | `artrites` | `ass-reumato-artrites` | 40 questões; padrão articular, séptica/gonocócica/gota, AR, espondiloartrites, psoriásica, AIJ/Still, fibromialgia; 1 figura, 6 casos |
+| `hepatites` | `ass-hepatites` | 40 questões (1 anulada com reposição); padrão enzimático, hepatite A e insuficiência aguda, marcadores e fases da B, transmissão vertical, hepatite C, CBP; 1 figura, 1 caso |

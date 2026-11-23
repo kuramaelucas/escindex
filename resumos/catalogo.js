@@ -117,4 +117,5 @@
   { id: "colangite", titulo: "Colangite, coledocolitíase e icterícia obstrutiva", area: "Cirurgia · Via biliar", assunto: "ass-colangite" },
   { id: "valvopatias", titulo: "Valvopatias", area: "Clínica Médica · Cardiologia", assunto: "ass-valvopatias" },
   { id: "artrites", titulo: "Artrites e reumatismos de partes moles", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-artrites" },
+  { id: "hepatites", titulo: "Hepatites virais e outras hepatopatias", area: "Clínica Médica · Gastroenterologia", assunto: "ass-hepatites" },
 ];
