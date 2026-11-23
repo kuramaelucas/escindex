@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="340" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Cognição no tempo: demência e delirium sobreposto</text>
+  <line x1="60" y1="250" x2="680" y2="250" stroke="#1f2d3d" stroke-width="2"/>
+  <line x1="60" y1="250" x2="60" y2="50" stroke="#1f2d3d" stroke-width="2"/>
+  <text x="30" y="150" font-size="12" fill="#1f2d3d" transform="rotate(-90 30 150)" text-anchor="middle">cognição</text>
+  <text x="676" y="244" text-anchor="end" font-size="12" fill="#1f2d3d">tempo</text>
+  <path d="M60 70 C200 80 330 110 420 125 L680 160" fill="none" stroke="#1b5e7a" stroke-width="3"/>
+  <path d="M420 125 L440 200 L455 150 L470 215 L485 160 L500 205 L520 140 L560 132" fill="none" stroke="#b03a2e" stroke-width="3"/>
+  <g font-size="13" fill="#1f2d3d">
+    <text x="120" y="66" fill="#1b5e7a" font-weight="bold">demência: queda lenta, por anos</text>
+    <text x="470" y="236" fill="#b03a2e" font-weight="bold">delirium: queda em dias, flutua</text>
+  </g>
+  <rect x="60" y="270" width="620" height="60" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+  <text x="370" y="294" text-anchor="middle" font-size="13" fill="#1f2d3d">Piora súbita na demência: procurar infecção, eletrólitos, desidratação,</text>
+  <text x="370" y="314" text-anchor="middle" font-size="13" fill="#1f2d3d">retenção urinária, dor e remédios (benzodiazepínico, anticolinérgico)</text>
+</svg>
