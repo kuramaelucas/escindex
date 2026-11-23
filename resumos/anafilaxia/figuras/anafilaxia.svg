@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Anafilaxia: do mastócito à conduta</text>
+<g text-anchor="middle" font-size="13">
+<circle cx="110" cy="150" r="60" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/><text x="110" y="140" font-weight="bold" fill="#7a4d1b">mastócito</text><text x="110" y="160" fill="#333">IgE + alérgeno</text><text x="110" y="178" fill="#333">degranula</text>
+<g stroke="#555" stroke-width="2"><line x1="170" y1="120" x2="236" y2="80" marker-end="url(#s)"/><line x1="170" y1="140" x2="236" y2="130" marker-end="url(#s)"/><line x1="170" y1="160" x2="236" y2="180" marker-end="url(#s)"/><line x1="170" y1="180" x2="236" y2="230" marker-end="url(#s)"/></g>
+<rect x="240" y="60" width="180" height="38" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="330" y="84" fill="#b03a2e">pele: urtica, angioedema</text>
+<rect x="240" y="110" width="180" height="38" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="330" y="134" fill="#b03a2e">vias aéreas: estridor, sibilo</text>
+<rect x="240" y="160" width="180" height="38" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="330" y="184" fill="#b03a2e">vasos: hipotensão, síncope</text>
+<rect x="240" y="210" width="180" height="38" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="330" y="234" fill="#b03a2e">intestino: vômito, cólica</text>
+<rect x="460" y="60" width="240" height="190" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="580" y="84" font-weight="bold" fill="#4d7a1b">Na ordem</text>
+<text x="580" y="110" fill="#333">1. adrenalina IM 1:1.000</text><text x="580" y="128" fill="#333">0,01 mg/kg (máx. 0,5 mg), coxa</text>
+<text x="580" y="152" fill="#333">2. deitar, pernas elevadas</text><text x="580" y="176" fill="#333">3. O2, acesso, volume</text>
+<text x="580" y="200" fill="#333">4. repetir em 5–15 min</text><text x="580" y="224" fill="#333">betabloqueado: glucagon</text>
+<text x="360" y="290" fill="#333">Pele + outro sistema = anafilaxia. Só pele = urticária: anti-histamínico.</text>
+<text x="360" y="315" fill="#b03a2e">Depois: observar ≥ 6 h, adrenalina autoinjetável, plano escrito, alergista.</text>
+</g></svg>

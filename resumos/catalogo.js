@@ -125,4 +125,5 @@
   { id: "lupus", titulo: "Lúpus e colagenoses", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-les" },
   { id: "psiquiatria-infantil", titulo: "Psiquiatria da infância e adolescência", area: "Psiquiatria", assunto: "ass-psiq-infantil" },
   { id: "financiamento", titulo: "Financiamento do SUS e saúde suplementar", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-financiamento" },
+  { id: "anafilaxia", titulo: "Anafilaxia, urticária e angioedema", area: "Clínica Médica · Emergência", assunto: "ass-alergia-anafilaxia" },
 ];

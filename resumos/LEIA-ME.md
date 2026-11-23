@@ -222,3 +222,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `lupus` | `ass-reumato-les` | 38 questões (1 anulada fora); LES, anticorpos, nefrite lúpica, lúpus induzido, anti-Ro na gestação, SAF, esclerose sistêmica, dermatomiosite, Sjögren; 1 figura, 7 casos |
 | `psiquiatria-infantil` | `ass-psiq-infantil` | 37 questões; TDAH, aprendizagem/dislexia, TEA e M-CHAT-R, ansiedade, enurese, autolesão, telas; 1 figura, 3 casos |
 | `financiamento` | `ass-financiamento` | 37 questões (1 anulada fora); gasto público × privado, LC 141, Previne/cofinanciamento, privado complementar, ANS, rol, ressarcimento; 1 figura, 2 casos |
+| `anafilaxia` | `ass-alergia-anafilaxia` | 37 questões; IgE/mastócito, critérios, adrenalina IM, glucagon, observação 6 h, triptase, látex, urticária aguda, angioedema; 1 figura, 5 casos |
