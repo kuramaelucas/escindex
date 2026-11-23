@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Dois caminhos para o câncer gástrico</text>
+<g text-anchor="middle" font-size="12">
+<rect x="20" y="60" width="110" height="44" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="75" y="80" fill="#7a4d1b">H. pylori</text><text x="75" y="96" fill="#7a4d1b">(CagA), sal</text>
+<rect x="155" y="60" width="95" height="44" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="202" y="87" fill="#1b5e7a">gastrite</text>
+<rect x="270" y="60" width="95" height="44" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="317" y="87" fill="#1b5e7a">atrofia</text>
+<rect x="385" y="60" width="95" height="44" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="432" y="80" fill="#1b5e7a">metaplasia</text><text x="432" y="96" fill="#1b5e7a">intestinal</text>
+<rect x="500" y="60" width="85" height="44" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="542" y="87" fill="#1b5e7a">displasia</text>
+<rect x="605" y="60" width="100" height="44" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="655" y="80" fill="#b03a2e" font-weight="bold">tipo</text><text x="655" y="96" fill="#b03a2e" font-weight="bold">intestinal</text>
+<g stroke="#555" stroke-width="2"><line x1="130" y1="82" x2="151" y2="82" marker-end="url(#s)"/><line x1="250" y1="82" x2="266" y2="82" marker-end="url(#s)"/><line x1="365" y1="82" x2="381" y2="82" marker-end="url(#s)"/><line x1="480" y1="82" x2="496" y2="82" marker-end="url(#s)"/><line x1="585" y1="82" x2="601" y2="82" marker-end="url(#s)"/></g>
+<rect x="20" y="150" width="200" height="44" rx="6" fill="#f7efe6" stroke="#7a4d1b"/><text x="120" y="170" fill="#7a4d1b">CDH1 (E-caderina),</text><text x="120" y="186" fill="#7a4d1b">sem lesão precursora</text>
+<rect x="605" y="150" width="100" height="44" rx="6" fill="#fbecec" stroke="#b03a2e"/><text x="655" y="170" fill="#b03a2e" font-weight="bold">tipo</text><text x="655" y="186" fill="#b03a2e" font-weight="bold">difuso</text>
+<line x1="220" y1="172" x2="601" y2="172" stroke="#555" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#s)"/>
+</g>
+<g font-size="13" fill="#333">
+<text x="40" y="235" font-weight="bold" fill="#b03a2e">Intestinal</text>
+<text x="40" y="256">forma glândulas · distal · homem idoso · ligado ao ambiente</text>
+<text x="40" y="290" font-weight="bold" fill="#b03a2e">Difuso</text>
+<text x="40" y="311">anel de sinete · infiltra a parede (linite) · jovem e mulher · pior prognóstico</text>
+<text x="40" y="340" fill="#1b5e7a">Precoce = até a submucosa, com ou sem linfonodo.</text></g>
+</svg>

@@ -218,3 +218,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `neuromuscular` | `ass-neuro-neuromuscular` | 40 questões (1 anulada fora); topografia, Guillain-Barré, miastenia, ELA, EM, neurite óptica, NMO, anti-NMDA; 1 figura, 2 casos |
 | `cuidados-paliativos` | `ass-cuidadospaliativos` | 40 questões (1 anulada fora); indicação, PPS, DAV, distanásia/ortotanásia, morfina, dispneia, alimentação no fim de vida, luto; 1 figura |
 | `cardiopatias-congenitas` | `ass-cardiopatiascongenitas` | 39 questões (1 anulada fora); shunts, coraçãozinho, hiperóxia, IC no lactente, sopro inocente, CIV, CIA, coarctação, Fallot; 1 figura |
+| `cancer-gastrico` | `ass-cagastrico` | 39 questões; H. pylori/CagA, Lauren, estadiamento e laparoscopia, D2 e quimio perioperatória, dumping, GIST, linfoma, esôfago; 1 figura, 9 casos |

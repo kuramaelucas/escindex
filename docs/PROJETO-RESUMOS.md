@@ -307,3 +307,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de neuromusculares e desmielinizantes (ass-neuro-neuromuscular) |
 | 23/11/2026 | Resumo de cuidados paliativos (ass-cuidadospaliativos) |
 | 23/11/2026 | Resumo de cardiopatias congênitas (ass-cardiopatiascongenitas) |
+| 23/11/2026 | Resumo de câncer gástrico (ass-cagastrico) |

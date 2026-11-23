@@ -121,4 +121,5 @@
   { id: "neuromuscular", titulo: "Doenças neuromusculares e desmielinizantes", area: "Clínica Médica · Neurologia", assunto: "ass-neuro-neuromuscular" },
   { id: "cuidados-paliativos", titulo: "Cuidados paliativos", area: "Clínica Médica · Geriatria", assunto: "ass-cuidadospaliativos" },
   { id: "cardiopatias-congenitas", titulo: "Cardiopatias congênitas", area: "Pediatria · Cardiologia Pediátrica", assunto: "ass-cardiopatiascongenitas" },
+  { id: "cancer-gastrico", titulo: "Câncer gástrico e tumores do estômago e do esôfago", area: "Cirurgia · Cirurgia Oncológica", assunto: "ass-cagastrico" },
 ];
