@@ -88,4 +88,5 @@
   { id: "itu", titulo: "Infecção do trato urinário", area: "Clínica Médica · Infectologia", assunto: "ass-itu" },
   { id: "fios-e-cicatrizacao", titulo: "Cicatrização, fios e suturas", area: "Cirurgia · Técnica Operatória", assunto: "ass-toce-fios" },
   { id: "cancer-colorretal", titulo: "Câncer colorretal", area: "Cirurgia · Cirurgia Oncológica", assunto: "ass-cacolorretal" },
+  { id: "avc", titulo: "Acidente vascular cerebral", area: "Clínica Médica · Neurologia", assunto: "ass-neuro-avc" },
 ];
