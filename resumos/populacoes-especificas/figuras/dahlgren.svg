@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="400" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Determinantes sociais da saúde (Dahlgren e Whitehead)</text>
+  <g stroke="#ffffff" stroke-width="2">
+    <path d="M40 370 A320 320 0 0 1 680 370 Z" fill="#e1f0f6"/>
+    <path d="M100 370 A260 260 0 0 1 620 370 Z" fill="#eef5e6"/>
+    <path d="M160 370 A200 200 0 0 1 560 370 Z" fill="#f7efe6"/>
+    <path d="M220 370 A140 140 0 0 1 500 370 Z" fill="#fbecec"/>
+    <path d="M280 370 A80 80 0 0 1 440 370 Z" fill="#e6e6e6"/>
+  </g>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <text x="360" y="76">5. Condições socioeconômicas, culturais e ambientais gerais</text>
+    <text x="360" y="136">4. Condições de vida e trabalho</text>
+    <text x="360" y="154" font-size="12">alimentação, moradia, saneamento, educação, trabalho, serviços</text>
+    <text x="360" y="206">3. Redes sociais e comunitárias</text>
+    <text x="360" y="268">2. Estilo de vida</text>
+    <text x="360" y="330">1. Idade, sexo,</text>
+    <text x="360" y="348">genética</text>
+  </g>
+  <text x="360" y="392" text-anchor="middle" font-size="12" fill="#1f2d3d">Redes de apoio e participação comunitária agem na camada 3.</text>
+</svg>
