@@ -217,3 +217,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `hepatites` | `ass-hepatites` | 40 questões (1 anulada com reposição); padrão enzimático, hepatite A e insuficiência aguda, marcadores e fases da B, transmissão vertical, hepatite C, CBP; 1 figura, 1 caso |
 | `neuromuscular` | `ass-neuro-neuromuscular` | 40 questões (1 anulada fora); topografia, Guillain-Barré, miastenia, ELA, EM, neurite óptica, NMO, anti-NMDA; 1 figura, 2 casos |
 | `cuidados-paliativos` | `ass-cuidadospaliativos` | 40 questões (1 anulada fora); indicação, PPS, DAV, distanásia/ortotanásia, morfina, dispneia, alimentação no fim de vida, luto; 1 figura |
+| `cardiopatias-congenitas` | `ass-cardiopatiascongenitas` | 39 questões (1 anulada fora); shunts, coraçãozinho, hiperóxia, IC no lactente, sopro inocente, CIV, CIA, coarctação, Fallot; 1 figura |

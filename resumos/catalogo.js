@@ -120,4 +120,5 @@
   { id: "hepatites", titulo: "Hepatites virais e outras hepatopatias", area: "Clínica Médica · Gastroenterologia", assunto: "ass-hepatites" },
   { id: "neuromuscular", titulo: "Doenças neuromusculares e desmielinizantes", area: "Clínica Médica · Neurologia", assunto: "ass-neuro-neuromuscular" },
   { id: "cuidados-paliativos", titulo: "Cuidados paliativos", area: "Clínica Médica · Geriatria", assunto: "ass-cuidadospaliativos" },
+  { id: "cardiopatias-congenitas", titulo: "Cardiopatias congênitas", area: "Pediatria · Cardiologia Pediátrica", assunto: "ass-cardiopatiascongenitas" },
 ];
