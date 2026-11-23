@@ -319,4 +319,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de doença venosa: TVP e varizes (ass-cirvasc-venosa) |
 | 23/11/2026 | Resumo de neoplasia pulmonar cirúrgica (ass-cirtorax-neoplasia) |
 | 23/11/2026 | Resumo de próstata: hiperplasia e câncer (ass-uro-prostata) |
-| 23/11/2026 | Regra do conjunto de 20 (`lib-conjuntos.mjs`): versão quase igual (TP reaplicado) sai do sorteio; nível abaixo da mistura vem antes da cobertura extra dentro do fragmento |
+| 23/11/2026 | Regra do conjunto de 20 (`lib-conjuntos.mjs`): questão idêntica (mesmo enunciado e mesma resposta) entra uma vez só; parecidas ficam; cobertura dos fragmentos continua antes da dificuldade |

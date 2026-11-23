@@ -39,6 +39,12 @@ export function montarConjunto(r, porId, tamanho = TAMANHO_DO_CONJUNTO){
   }
   const fragsDa = new Map();   // questão → fragmentos que ela cobre (pode cobrir mais de um)
   for(const f of frags) for(const q of f.qs){ if(!fragsDa.has(q.id)) fragsDa.set(q.id, []); fragsDa.get(q.id).push(f); }
+  // Questão idêntica em duas provas (mesmo enunciado e mesma resposta, palavra por palavra: TP
+  // reaplicado, banco autoral copiado entre assuntos) entra uma vez só. Parecidas ficam: a pergunta
+  // costuma ser outra (decisão da equipe, 23/11/2026).
+  const assinatura = q => `${q.enunciado || ""}\u0000${((q.alternativas || []).find(a => a.id === q.gabarito) || {}).texto || ""}`.replace(/\s+/g, " ").trim().toLowerCase();
+  const porAssinatura = new Map();
+  for(const id of fragsDa.keys()){ const q = porId.get(id), k = assinatura(q); if(!porAssinatura.has(k)) porAssinatura.set(k, []); porAssinatura.get(k).push(id); }
   const escolhidas = [], usadas = new Set(), contaNivel = { fundamental: 0, intermediario: 0, avancado: 0 };
   const falta = n => MISTURA[n] * (escolhidas.length + 1) - contaNivel[n];   // > 0: o nível está abaixo da mistura
   // Rodadas: na 1ª cada fragmento recebe no máximo uma questão; só na 2ª um fragmento repete.
@@ -55,6 +61,7 @@ export function montarConjunto(r, porId, tamanho = TAMANHO_DO_CONJUNTO){
         .sort((x, y) => nota(y) - nota(x) || falta(nivel(y)) - falta(nivel(x)) || (+y.ano || 0) - (+x.ano || 0) || x.id.localeCompare(y.id));
       const q = cand[0];
       escolhidas.push(q); usadas.add(q.id); contaNivel[nivel(q)]++; pegouNaRodada = true;
+      for(const gemea of porAssinatura.get(assinatura(q))) usadas.add(gemea);
       for(const f of fragsDa.get(q.id)) cobertos.add(f.id);
     }
     if(!pegouNaRodada) break;   // tema com menos questões que o tamanho: usa todas
