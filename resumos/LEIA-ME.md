@@ -198,3 +198,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `demencia-delirium` | `ass-geriatria-demencia` | 52 (1 dissertativa) | 1 (anulada sem reposição) |
 | `drc` | `ass-drc` | 53 questões (1 anulada fora); KDIGO G×A, nefroproteção, DMO, TRS; 2 figuras, 2 casos |
 | `abortamento` | `ass-abortamento` | 52 questões (3 anuladas fora); formas, inviabilidade, esvaziamento, ectópica, perda de repetição, aborto legal; 1 figura, 6 casos |
+| `miomatose` | `ass-miomatose` | 51 questões; FIGO, STEP-W, observar × clínico × histeroscopia × miomectomia × histerectomia, adenomiose; 1 figura, 7 casos |
