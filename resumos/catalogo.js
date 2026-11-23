@@ -128,4 +128,9 @@
   { id: "anafilaxia", titulo: "Anafilaxia, urticária e angioedema", area: "Clínica Médica · Emergência", assunto: "ass-alergia-anafilaxia" },
   { id: "ventilacao-mecanica", titulo: "Ventilação mecânica", area: "Clínica Médica · Emergência", assunto: "ass-vm" },
   { id: "litiase-urinaria", titulo: "Litíase urinária", area: "Cirurgia · Urologia", assunto: "ass-uro-litiase" },
+  { id: "hanseniase", titulo: "Hanseníase", area: "Clínica Médica · Infectologia", assunto: "ass-hanseniase" },
+  { id: "sindromes-geneticas", titulo: "Síndromes genéticas e teratógenos", area: "Pediatria · Genética Médica", assunto: "ass-genetica-sindromes" },
+  { id: "doenca-venosa", titulo: "Doença venosa: TVP e varizes", area: "Cirurgia · Cirurgia Vascular", assunto: "ass-cirvasc-venosa" },
+  { id: "neoplasia-pulmonar", titulo: "Neoplasia pulmonar cirúrgica", area: "Cirurgia · Cirurgia Torácica", assunto: "ass-cirtorax-neoplasia" },
+  { id: "prostata", titulo: "Próstata: hiperplasia e câncer", area: "Cirurgia · Urologia", assunto: "ass-uro-prostata" },
 ];

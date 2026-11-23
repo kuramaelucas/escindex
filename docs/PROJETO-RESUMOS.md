@@ -314,3 +314,9 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de anafilaxia (ass-alergia-anafilaxia) |
 | 23/11/2026 | Resumo de ventilação mecânica (ass-vm) |
 | 23/11/2026 | Resumo de litíase urinária (ass-uro-litiase) |
+| 23/11/2026 | Resumo de hanseníase (ass-hanseniase): PCDT 2022 lido; espectro, sinais cardinais, PQT-U, reações, contatos |
+| 23/11/2026 | Resumo de síndromes genéticas e teratógenos (ass-genetica-sindromes) |
+| 23/11/2026 | Resumo de doença venosa: TVP e varizes (ass-cirvasc-venosa) |
+| 23/11/2026 | Resumo de neoplasia pulmonar cirúrgica (ass-cirtorax-neoplasia) |
+| 23/11/2026 | Resumo de próstata: hiperplasia e câncer (ass-uro-prostata) |
+| 23/11/2026 | Regra do conjunto de 20 (`lib-conjuntos.mjs`): versão quase igual (TP reaplicado) sai do sorteio; nível abaixo da mistura vem antes da cobertura extra dentro do fragmento |

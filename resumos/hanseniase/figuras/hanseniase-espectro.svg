@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="sans-serif"><rect width="760" height="380" fill="#fff"/>
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#e1f0f6"/><stop offset="1" stop-color="#fbecec"/></linearGradient>
+<marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">O espectro da hanseníase segue a imunidade celular</text>
+<rect x="30" y="48" width="700" height="40" rx="8" fill="url(#g)" stroke="#999"/>
+<text x="45" y="73" font-size="13" font-weight="bold" fill="#1b5e7a">Imunidade celular forte (Th1)</text>
+<text x="715" y="73" font-size="13" font-weight="bold" fill="#b03a2e" text-anchor="end">Imunidade celular fraca (Th2)</text>
+<g font-size="13" text-anchor="middle">
+<rect x="30" y="104" width="160" height="150" rx="8" fill="#f4f4f4" stroke="#777"/>
+<text x="110" y="126" font-weight="bold" fill="#333">Indeterminada</text>
+<text x="110" y="150" fill="#333">mácula hipocrômica</text><text x="110" y="168" fill="#333">bordas imprecisas</text><text x="110" y="186" fill="#333">sensibilidade térmica</text><text x="110" y="204" fill="#333">alterada</text><text x="110" y="232" fill="#333">baciloscopia −</text>
+<rect x="210" y="104" width="160" height="150" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="290" y="126" font-weight="bold" fill="#1b5e7a">Tuberculoide</text>
+<text x="290" y="150" fill="#333">placa bem delimitada</text><text x="290" y="168" fill="#333">poucas lesões, anestesia</text><text x="290" y="186" fill="#333">granuloma epitelioide</text><text x="290" y="204" fill="#333">Mitsuda +</text><text x="290" y="232" fill="#333">baciloscopia −</text>
+<rect x="390" y="104" width="160" height="150" rx="8" fill="#f6efe1" stroke="#8a6a1b"/>
+<text x="470" y="126" font-weight="bold" fill="#8a6a1b">Dimorfa</text>
+<text x="470" y="150" fill="#333">muitas placas</text><text x="470" y="168" fill="#333">borda interna nítida,</text><text x="470" y="186" fill="#333">externa imprecisa</text><text x="470" y="204" fill="#333">vários nervos</text><text x="470" y="232" fill="#333">baciloscopia ±</text>
+<rect x="570" y="104" width="160" height="150" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="650" y="126" font-weight="bold" fill="#b03a2e">Virchowiana</text>
+<text x="650" y="150" fill="#333">infiltração difusa</text><text x="650" y="168" fill="#333">madarose, hansenomas</text><text x="650" y="186" fill="#333">macrófagos espumosos</text><text x="650" y="204" fill="#333">Mitsuda −</text><text x="650" y="232" fill="#333">baciloscopia +</text>
+</g>
+<rect x="30" y="272" width="340" height="40" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="200" y="297" text-anchor="middle" font-size="14" font-weight="bold" fill="#1b5e7a">Paucibacilar: 1 a 5 lesões e baciloscopia −</text>
+<rect x="390" y="272" width="340" height="40" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="560" y="297" text-anchor="middle" font-size="14" font-weight="bold" fill="#b03a2e">Multibacilar: mais de 5 lesões ou baciloscopia +</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<text x="200" y="340">Reação tipo 1 (reversa): imunidade celular</text><text x="200" y="358">mais comum nos dimorfos</text>
+<text x="560" y="340">Reação tipo 2 (eritema nodoso hansênico):</text><text x="560" y="358">imunocomplexos, só multibacilares</text>
+</g>
+</svg>

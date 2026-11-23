@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="sans-serif"><rect width="760" height="380" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Duas doenças, duas zonas da próstata</text>
+<ellipse cx="190" cy="180" rx="150" ry="120" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+<ellipse cx="190" cy="150" rx="78" ry="62" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+<rect x="183" y="70" width="14" height="140" fill="#fff" stroke="#555"/>
+<g font-size="13" text-anchor="middle" fill="#333">
+<text x="190" y="62" font-size="12">uretra</text>
+<text x="148" y="146" font-weight="bold" fill="#1b5e7a">zona de</text><text x="148" y="162" font-weight="bold" fill="#1b5e7a">transição</text>
+<text x="190" y="262" font-weight="bold" fill="#b03a2e">zona periférica</text><text x="190" y="280">(voltada para o reto)</text>
+</g>
+<g font-size="13" fill="#333">
+<rect x="380" y="56" width="350" height="140" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="395" y="80" font-weight="bold" fill="#1b5e7a">Hiperplasia benigna (zona de transição)</text>
+<text x="395" y="104">cresce em volta da uretra e a aperta</text>
+<text x="395" y="126">componente estático (volume):</text>
+<text x="410" y="144">inibidor da 5-alfarredutase reduz a glândula</text>
+<text x="395" y="166">componente dinâmico (músculo liso):</text>
+<text x="410" y="184">alfabloqueador relaxa e alivia em dias</text>
+<rect x="380" y="214" width="350" height="110" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="395" y="238" font-weight="bold" fill="#b03a2e">Câncer (zona periférica)</text>
+<text x="395" y="262">longe da uretra: quase sempre sem sintoma</text>
+<text x="395" y="284">palpável no toque retal como nódulo duro</text>
+<text x="395" y="306">suspeita: PSA e toque → ressonância → biópsia</text>
+</g>
+</svg>
