@@ -106,4 +106,5 @@
   { id: "humor", titulo: "Transtornos do humor: depressão, bipolar e suicídio", area: "Psiquiatria", assunto: "ass-psiq-humor" },
   { id: "dpoc", titulo: "Doença pulmonar obstrutiva crônica", area: "Clínica Médica · Pneumologia", assunto: "ass-dpoc" },
   { id: "infertilidade", titulo: "Infertilidade conjugal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-infertilidade" },
+  { id: "diverticulite", titulo: "Doença diverticular: diverticulite e sangramento", area: "Cirurgia · Coloproctologia", assunto: "ass-diverticulite" },
 ];
