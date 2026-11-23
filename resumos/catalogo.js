@@ -99,4 +99,5 @@
   { id: "pleura", titulo: "Pneumotórax e doenças pleurais", area: "Cirurgia · Cirurgia Torácica", assunto: "ass-cirtorax-pleura" },
   { id: "niveis-atencao", titulo: "Níveis de atenção e Redes de Atenção à Saúde", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-niveisatencao" },
   { id: "demencia-delirium", titulo: "Demência e delirium", area: "Clínica Médica · Geriatria", assunto: "ass-geriatria-demencia" },
+  { id: "drc", titulo: "Doença renal crônica", area: "Clínica Médica", assunto: "ass-drc" },
 ];

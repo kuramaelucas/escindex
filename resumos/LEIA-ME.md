@@ -196,3 +196,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `pleura` | `ass-cirtorax-pleura` | 53 (3 dissertativas) | 1 (desatualizada sem reposição) |
 | `niveis-atencao` | `ass-niveisatencao` | 52 | 1 (anulada sem reposição) |
 | `demencia-delirium` | `ass-geriatria-demencia` | 52 (1 dissertativa) | 1 (anulada sem reposição) |
+| `drc` | `ass-drc` | 53 questões (1 anulada fora); KDIGO G×A, nefroproteção, DMO, TRS; 2 figuras, 2 casos |
