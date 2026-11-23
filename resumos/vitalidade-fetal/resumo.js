@@ -84,7 +84,7 @@ Veja também: **Assistência ao parto**, **Pré-eclâmpsia**, **Restrição de c
           prosa: `[[**Óbito fetal a termo**: a regra prefere induzir com misoprostol (einstein2022-058, sirio2027-069); a einstein2024-047 respondeu **conduta expectante por até 4 semanas** com retorno semanal.|q-einstein2024-047]] [[**Mecônio no pós-termo**: mecônio não indica cesárea por si; a famerp2024-038 respondeu **cesárea** com colo pérvio e mecônio na amnioscopia.|q-famerp2024-038]] [[**Seguimento após a DPP**: a regra é vigiar a vitalidade e induzir em 41 semanas; a fmabc2022-078 marcou como certa uma frase de redação confusa sobre **não** associar o pós-datismo à insuficiência placentária.|q-fmabc2022-078]] [[**Classificação anteparto × intraparto**: as categorias I–III são para o trabalho de parto; fora dele, a uspsp3-051 classificou o traçado como **feto ativo**.|q-uspsp3-051]]`,
           texto: `- Óbito fetal: a prova deu **expectante 4 semanas**. {q-einstein2024-047}
 - Mecônio: a prova deu **cesárea**. {q-famerp2024-038}
-- Redação confusa no pós-datismo. {q-fmabc2022-078}
+- Pós-datismo e insuficiência placentária andam juntos; uma prova, com redação confusa, marcou o contrário. {q-fmabc2022-078}
 - Anteparto: **feto ativo**, não categoria. {q-uspsp3-051}` },
       ],
     },
