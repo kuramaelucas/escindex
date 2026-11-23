@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" font-family="sans-serif"><rect width="720" height="340" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">De onde vem e para onde vai o dinheiro da saúde</text>
+<g text-anchor="middle" font-size="13">
+<rect x="20" y="55" width="150" height="50" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="95" y="77" font-weight="bold" fill="#1b5e7a">União</text><text x="95" y="95" fill="#333">regra própria</text>
+<rect x="20" y="120" width="150" height="50" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="95" y="142" font-weight="bold" fill="#1b5e7a">Estados</text><text x="95" y="160" fill="#333">12% da receita</text>
+<rect x="20" y="185" width="150" height="50" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="95" y="207" font-weight="bold" fill="#1b5e7a">Municípios</text><text x="95" y="225" fill="#333">15% da receita</text>
+<rect x="250" y="110" width="170" height="70" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="335" y="135" font-weight="bold" fill="#4d7a1b">Fundo de saúde</text><text x="335" y="155" fill="#333">exige conselho, plano</text><text x="335" y="170" fill="#333">e relatório (RDQA)</text>
+<g stroke="#555" stroke-width="2"><line x1="170" y1="80" x2="246" y2="125" marker-end="url(#s)"/><line x1="170" y1="145" x2="246" y2="145" marker-end="url(#s)"/><line x1="170" y1="210" x2="246" y2="165" marker-end="url(#s)"/><line x1="420" y1="145" x2="496" y2="100" marker-end="url(#s)"/><line x1="420" y1="145" x2="496" y2="190" marker-end="url(#s)"/></g>
+<rect x="500" y="65" width="200" height="60" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="600" y="88" font-weight="bold" fill="#1b5e7a">APS</text><text x="600" y="108" fill="#333">captação + desempenho + ações</text>
+<rect x="500" y="160" width="200" height="60" rx="8" fill="#f7efe6" stroke="#7a4d1b"/><text x="600" y="183" font-weight="bold" fill="#7a4d1b">Privado complementar</text><text x="600" y="203" fill="#333">contrato; filantrópico primeiro</text>
+<rect x="20" y="260" width="680" height="55" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="360" y="283" fill="#b03a2e" font-weight="bold">Saúde suplementar (ANS): planos pagos por pessoas e empresas</text><text x="360" y="303" fill="#333">quando o beneficiário usa o SUS, o plano ressarce · o gasto privado já supera o público no Brasil</text>
+</g></svg>

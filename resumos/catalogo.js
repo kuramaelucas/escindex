@@ -124,4 +124,5 @@
   { id: "cancer-gastrico", titulo: "Câncer gástrico e tumores do estômago e do esôfago", area: "Cirurgia · Cirurgia Oncológica", assunto: "ass-cagastrico" },
   { id: "lupus", titulo: "Lúpus e colagenoses", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-les" },
   { id: "psiquiatria-infantil", titulo: "Psiquiatria da infância e adolescência", area: "Psiquiatria", assunto: "ass-psiq-infantil" },
+  { id: "financiamento", titulo: "Financiamento do SUS e saúde suplementar", area: "Medicina Preventiva · SUS e Políticas de Saúde", assunto: "ass-financiamento" },
 ];
