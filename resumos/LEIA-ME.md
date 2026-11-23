@@ -202,3 +202,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `vasculites` | `ass-reumato-vasculites` | 48 questões; calibre, ACG/polimialgia, Takayasu, PAN, Kawasaki, IgA, ANCA, crio, SAF/ES; 1 figura, 5 casos |
 | `humor` | `ass-psiq-humor` | 48 questões (1 anulada fora); depressão, ISRS, perinatal, suicídio, bipolar, lítio; 1 figura |
 | `dpoc` | `ass-dpoc` | 48 questões (1 anulada com reposição); mecanismo, GOLD, LAMA/LABA/CI, O2, exacerbação, VNI, cor pulmonale; 1 figura, 7 casos |
+| `infertilidade` | `ass-infertilidade` | 47 questões; investigação, reserva, SOP/indução, tubário/uterino, espermograma, IIU/FIV/ICSI; 1 figura, 2 casos |

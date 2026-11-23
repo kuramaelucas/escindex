@@ -291,3 +291,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de vasculites (ass-reumato-vasculites) |
 | 23/11/2026 | Resumo de transtornos do humor (ass-psiq-humor) |
 | 23/11/2026 | Resumo de DPOC (ass-dpoc) |
+| 23/11/2026 | Resumo de infertilidade (ass-infertilidade) |

@@ -105,4 +105,5 @@
   { id: "vasculites", titulo: "Vasculites", area: "Clínica Médica · Reumatologia", assunto: "ass-reumato-vasculites" },
   { id: "humor", titulo: "Transtornos do humor: depressão, bipolar e suicídio", area: "Psiquiatria", assunto: "ass-psiq-humor" },
   { id: "dpoc", titulo: "Doença pulmonar obstrutiva crônica", area: "Clínica Médica · Pneumologia", assunto: "ass-dpoc" },
+  { id: "infertilidade", titulo: "Infertilidade conjugal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-infertilidade" },
 ];
