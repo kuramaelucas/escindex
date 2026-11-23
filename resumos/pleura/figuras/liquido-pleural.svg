@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 370" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="370" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Toracocentese: critérios de Light</text>
+  <g font-size="13" fill="#1f2d3d" text-anchor="middle">
+    <rect x="140" y="42" width="440" height="96" rx="8" fill="#f4f8fb" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="360" y="66" font-weight="bold">Exsudato se pelo menos um:</text>
+    <text x="360" y="88">proteína líquido/soro &gt; 0,5</text>
+    <text x="360" y="106">DHL líquido/soro &gt; 0,6</text>
+    <text x="360" y="124">DHL do líquido &gt; 2/3 do limite superior do soro</text>
+    <rect x="20" y="180" width="320" height="150" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="180" y="206" font-weight="bold" fill="#4d7a1b">Transudato (pleura sã)</text>
+    <text x="180" y="230">insuficiência cardíaca</text>
+    <text x="180" y="250">cirrose, síndrome nefrótica</text>
+    <text x="180" y="278">com diurético, parece exsudato:</text>
+    <text x="180" y="298">gradiente de albumina &gt; 1,2</text>
+    <rect x="380" y="180" width="320" height="150" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="540" y="206" font-weight="bold" fill="#b03a2e">Exsudato (pleura doente)</text>
+    <text x="540" y="230">pneumonia: pH &lt; 7,2, glicose &lt; 60 → drenar</text>
+    <text x="540" y="250">tuberculose: linfócitos, ADA &gt; 40</text>
+    <text x="540" y="270">neoplasia: citologia, biópsia</text>
+    <text x="540" y="290">quilotórax: triglicerídeos &gt; 110</text>
+  </g>
+  <g stroke="#1f2d3d" stroke-width="2" fill="none">
+    <line x1="300" y1="138" x2="200" y2="174"/><polyline points="210,166 198,176 212,178"/>
+    <line x1="420" y1="138" x2="520" y2="174"/><polyline points="508,178 522,176 512,166"/>
+  </g>
+  <text x="180" y="166" text-anchor="middle" font-size="12" fill="#1f2d3d">nenhum</text>
+  <text x="540" y="166" text-anchor="middle" font-size="12" fill="#1f2d3d">algum</text>
+</svg>

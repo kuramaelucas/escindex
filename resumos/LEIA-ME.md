@@ -193,3 +193,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `drge-esofago` | `ass-drge` | 55 (1 dissertativa) | — |
 | `populacoes-especificas` | `ass-saudepopulacoes` | 54 (2 dissertativas) | — |
 | `bioetica` | `ass-principiosbioetica` | 53 (4 dissertativas) | 1 (anulada sem reposição) |
+| `pleura` | `ass-cirtorax-pleura` | 53 (3 dissertativas) | 1 (desatualizada sem reposição) |
