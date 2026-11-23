@@ -213,3 +213,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `ira` | `ass-ira` | 41 questões (1 anulada fora); KDIGO, pré-renal × NTA × pós-renal, contraste, rabdomiólise, lise tumoral, SHU, hipercalemia, diálise; 1 figura, 5 casos |
 | `colangite` | `ass-colangite` | 41 questões (1 anulada fora); icterícia obstrutiva, CPRE × colangiorressonância, Tóquio 2018, Klatskin, Courvoisier, cisto de colédoco; 1 figura, 10 casos |
 | `valvopatias` | `ass-valvopatias` | 40 questões (1 anulada com reposição); sopros, EAo/TAVI, IAo, EM/valvuloplastia, IM, tricúspide, gestação e prótese; 1 figura, 10 casos |
+| `artrites` | `ass-reumato-artrites` | 40 questões; padrão articular, séptica/gonocócica/gota, AR, espondiloartrites, psoriásica, AIJ/Still, fibromialgia; 1 figura, 6 casos |

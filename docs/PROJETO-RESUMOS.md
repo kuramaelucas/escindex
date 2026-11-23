@@ -302,3 +302,4 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de lesão renal aguda (ass-ira) |
 | 23/11/2026 | Resumo de colangite e via biliar (ass-colangite) |
 | 23/11/2026 | Resumo de valvopatias (ass-valvopatias) |
+| 23/11/2026 | Resumo de artrites (ass-reumato-artrites) |

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="sans-serif"><rect width="720" height="360" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Onde a doença ataca na mão</text>
+<g fill="#f7efe6" stroke="#7a4d1b" stroke-width="2">
+<rect x="90" y="220" width="150" height="110" rx="20"/>
+<rect x="95" y="120" width="26" height="95" rx="10"/><rect x="130" y="95" width="26" height="120" rx="10"/><rect x="165" y="90" width="26" height="125" rx="10"/><rect x="200" y="105" width="26" height="110" rx="10"/>
+<rect x="245" y="220" width="26" height="70" rx="10" transform="rotate(-35 258 255)"/></g>
+<g fill="#b03a2e"><circle cx="108" cy="205" r="8"/><circle cx="143" cy="205" r="8"/><circle cx="178" cy="205" r="8"/><circle cx="213" cy="205" r="8"/>
+<circle cx="108" cy="165" r="7"/><circle cx="143" cy="155" r="7"/><circle cx="178" cy="152" r="7"/><circle cx="213" cy="160" r="7"/><circle cx="165" cy="320" r="9"/></g>
+<g fill="#1b5e7a"><circle cx="108" cy="132" r="7"/><circle cx="143" cy="110" r="7"/><circle cx="178" cy="105" r="7"/><circle cx="213" cy="120" r="7"/></g>
+<g font-size="13">
+<circle cx="330" cy="100" r="8" fill="#b03a2e"/><text x="345" y="105" font-weight="bold" fill="#b03a2e">Artrite reumatoide</text>
+<text x="345" y="125" fill="#333">punho, metacarpofalângicas, interfalângicas</text><text x="345" y="143" fill="#333">proximais; simétrica; poupa as distais</text>
+<circle cx="330" cy="185" r="8" fill="#1b5e7a"/><text x="345" y="190" font-weight="bold" fill="#1b5e7a">Psoriásica (e artrose nodal)</text>
+<text x="345" y="210" fill="#333">interfalângicas distais, unhas, dactilite</text>
+<text x="330" y="260" font-weight="bold" fill="#4d7a1b">Fora da mão</text>
+<text x="345" y="280" fill="#333">coluna e enteses: espondiloartrite (HLA-B27)</text>
+<text x="345" y="300" fill="#333">hálux: gota · joelho quente e febril: séptica</text></g>
+</svg>
