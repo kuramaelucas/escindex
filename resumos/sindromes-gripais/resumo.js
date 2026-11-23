@@ -140,6 +140,7 @@ Veja também: **Pneumonia adquirida na comunidade** (complicação bacteriana), 
           prosa: `[[As duas causam síndrome gripal e SRAG; diferem no ritmo e no tratamento.|q-sirio2021-081,q-gdinfluenza-018,q-adap22-097,q-iamspe2021-009]]
 
 | | Influenza | Covid-19 |
+|---|---|---|
 | Vírus | RNA segmentado, H e N | coronavírus envelopado, spike-ECA2 |
 | Incubação | 1 a 4 dias | mais longa (2 a 14 dias) |
 | Pico | primeiros dias | piora inflamatória após o 7º dia |

@@ -256,6 +256,7 @@ Veja também: **Sepse** (antibiótico na primeira hora), **Infecções relaciona
           prosa: `[[A pergunta que separa as drogas é sempre a mesma: cobre MRSA? *Pseudomonas*? anaeróbio? enterococo? ESBL?|q-gdantibioticos-107,q-gdantibioticos-119,q-gdantibioticos-015]]
 
 | Droga | MRSA | *Pseudomonas* | Anaeróbios | Enterococo | ESBL |
+|---|---|---|---|---|---|
 | Ceftriaxona | não | não | não | não | não |
 | Ceftazidima / cefepima | não | sim | não | não | não (ESBL invasiva) |
 | Ceftarolina | sim | não | não | não | não |

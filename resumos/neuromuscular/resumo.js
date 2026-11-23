@@ -105,6 +105,7 @@ Veja também: **AVC**, **Demência e delirium**, **Cefaleias**, **Infecções do
           prosa: `[[Reflexos, sensibilidade e curso separam as causas.|q-tp20232-012,q-unifesp2025-062,q-simepm89-048,q-usp2023-058,q-didepm-051]]
 
 | | Guillain-Barré | Miastenia | ELA | Mielite | Esclerose múltipla |
+|---|---|---|---|---|---|
 | Reflexos | abolidos | normais | aumentados e atrofia | aumentados (depois) | aumentados |
 | Sensibilidade | parestesias leves | normal | normal | nível sensitivo | variável |
 | Marca | ascendente pós-infecção | fatigabilidade, ptose | fasciculações | esfíncteres | surtos, bandas |

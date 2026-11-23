@@ -134,6 +134,7 @@ Veja também: **Doença péptica** (dispepsia e *H. pylori*), **Malária, leishm
           prosa: `[[O ritmo da disfagia e o sintoma dominante separam as três.|q-003,q-uspsp1-046,q-tp20241-062,q-unesp2025-062]]
 
 | | DRGE | Acalasia | Câncer de esôfago |
+|---|---|---|---|
 | Sintoma | pirose, regurgitação ácida | disfagia a sólidos e líquidos, regurgitação de alimento | disfagia progressiva sólidos → líquidos |
 | Tempo | meses a anos | anos | semanas a meses |
 | Peso | estável | cai devagar | cai rápido |

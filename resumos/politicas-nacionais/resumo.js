@@ -101,6 +101,7 @@ Veja também: **Princípios e organização do SUS**, **Atenção primária e Sa
           prosa: `[[Cada política tem uma ideia-chave que a prova cobra.|q-tp20222-120,q-famema2025-072,q-tp20202-116,q-famema2022-006,q-sirio2026-093,q-unesp2022-090]]
 
 | Política | Ideia-chave |
+|---|---|
 | Humanização (PNH) | acolhimento, ambiência, clínica ampliada, equipe de referência |
 | Mulher (PNAISM) | necessidades além da gestação; morte materna obstétrica direta |
 | Homem (PNAISH) | chega tarde: horário estendido, ir aos espaços dos homens |

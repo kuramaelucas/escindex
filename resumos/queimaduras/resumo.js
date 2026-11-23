@@ -95,6 +95,7 @@ Veja também: **Atendimento inicial ao trauma**, **Via aérea**, **Rabdomiólise
           prosa: `[[A aparência diz a profundidade e a conduta.|q-tp20241-072,q-tp20252-059,q-usprp2024-025,q-uspsp4-072]]
 
 | | 1.º grau | 2.º superficial | 2.º profundo | 3.º grau |
+|---|---|---|---|---|
 | Aspecto | eritema seco | bolhas, rosado, úmido | pálido, bolhas rotas | seco, branco/marrom, coriáceo |
 | Dor | sim | intensa | menor | ausente |
 | Entra na hidratação | não | sim | sim | sim |

@@ -146,6 +146,7 @@ Veja também: **Cirrose** (varizes de esôfago, outra causa de hemorragia alta),
           prosa: `[[Cada complicação tem sua parede e sua conduta.|q-amrigs2024-037,q-fmabc2022-033,q-amrigs2024-025,q-didepm-061]]
 
 | | Sangramento | Perfuração | Obstrução |
+|---|---|---|---|
 | Onde | parede posterior do bulbo (gastroduodenal) | parede anterior | pré-pilórica ou duodenal |
 | Quadro | melena, hematêmese, choque | dor súbita, peritonite, Jobert | vômitos pós-prandiais, estômago dilatado |
 | Exame | endoscopia em 24 h | radiografia em pé; tomografia | endoscopia |

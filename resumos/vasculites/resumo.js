@@ -126,6 +126,7 @@ Veja também: **Endocardite** (simula vasculite), **Glomerulopatias**, **Lúpus*
           prosa: `[[Idade, calibre e o órgão atingido separam as vasculites.|q-tp20232-017,q-tp20241-056,q-sirio2026-014,q-adap21-114,q-usprp2025-009,q-adap24-016]]
 
 | | ACG | Takayasu | PAN | Kawasaki | IgA | ANCA |
+|---|---|---|---|---|---|---|
 | Quem | > 50 anos | mulher < 40 | adulto, hepatite B | < 5 anos | criança 3–10 | adulto |
 | Calibre | grande | grande | médio | médio | pequeno | pequeno |
 | Marca | claudicação de mandíbula, cegueira | pulso ausente, PA assimétrica | mononeurite, microaneurisma, ANCA − | febre ≥ 5 dias, coronária | púrpura, plaquetas normais | GNRP, hemorragia alveolar |

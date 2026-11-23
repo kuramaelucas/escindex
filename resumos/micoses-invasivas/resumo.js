@@ -168,6 +168,7 @@ Veja também: **Infecções e infestações da pele** (micoses superficiais e es
           prosa: `[[Cada fungo tem seu terreno, sua imagem no microscópio e sua droga.|q-gdmicoses-014,q-gdmicoses-012,q-gdmicoses-059,q-gdmicoses-030,q-gdmicoses-068,q-gdmicoses-020]]
 
 | Fungo | Terreno | Quadro | No microscópio | Droga |
+|---|---|---|---|---|
 | *Paracoccidioides* | lavrador, solo rural | pulmão e úlcera oral; juvenil linfática | levedura em roda de leme | itraconazol; sulfametoxazol-trimetoprima |
 | *Histoplasma* | caverna, morcego, ave; AIDS | pneumonia aguda; disseminada com fígado e baço | levedura pequena dentro do macrófago | itraconazol; anfotericina na grave |
 | *Cryptococcus* | pombo; AIDS | meningite subaguda | levedura com cápsula (nanquim) | anfotericina + flucitosina, depois fluconazol |

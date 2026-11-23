@@ -96,6 +96,7 @@ Veja também: **Transtornos do humor**, **Desenvolvimento neuropsicomotor**, **A
           prosa: `[[O núcleo do problema separa os quadros.|q-adap21-036,q-unifesp2026-092,q-usprp2021-036,q-sessp2026-051]]
 
 | | TDAH | Aprendizagem | TEA | Ansiedade |
+|---|---|---|---|---|
 | Núcleo | atenção e impulsividade | ler, escrever, calcular | interação social, repetição | medo, evitação |
 | Onde aparece | 2+ ambientes | escola, tarefas escritas | todos, desde cedo | situações temidas |
 | Avaliação | pais + escola + SNAP-IV | neuropsicológica | M-CHAT-R, clínica | entrevista |

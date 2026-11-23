@@ -33,7 +33,7 @@ Veja também: **Anemias** (profilaxia de ferro, completa lá), **Desconforto res
 - Prematuro extremo: **corticoide antenatal**, reanimação sem hipotermia, ventilação adequada e **surfactante precoce** previnem a **síndrome do desconforto respiratório**. {q-uspsp1-021,q-uspsp1-022}
 - **Hemorragia da matriz germinativa**: vasos subependimários frágeis; pesquisar com **ultrassom transfontanelar**. {q-unesp2023-019,q-unifesp2023-068}
 - Prevenção da hemorragia: **corticoide antenatal**, **ventilação não invasiva** e **manuseio mínimo**. {q-famema2021-094}
-- Retinopatia: cegueira por **descolamento da retina**; 1º fundo de olho com **4 semanas de vida** (repetir a cada 1 a 2 semanas). {q-fmabc2022-060,q-adap23-068}
+- Retinopatia: cegueira por **descolamento da retina**; triagem de quem nasceu com **≤ 32 semanas ou ≤ 1.500 g**; 1º fundo de olho entre **4 e 6 semanas de vida** (repetir a cada 1 a 2 semanas). {q-fmabc2022-060,q-adap23-068}
 - Apneia da prematuridade: **citrato de cafeína** (ataque 20 mg/kg, manutenção 5 a 10 mg/kg/dia). {q-iamspe2026-063,q-didepm-029}
 - Transferência: só após **vaga, consentimento e estabilização**. {q-unesp2025-003}
 - Hérnia inguinal encarcerada no prematuro: **reduzir manualmente** e operar quando estiver estável. {q-tp20231-060}` },

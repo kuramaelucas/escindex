@@ -153,6 +153,7 @@ Veja também: **Princípios do SUS** (equidade, universalidade, integralidade), 
           prosa: `[[Cada população tem uma política própria dentro do SUS.|q-famema2022-012,q-unifesp2025-045,q-tp20251-109,q-scmsp2021-082,q-famema2023-015]]
 
 | População | Política | Estrutura | Ideia central |
+|---|---|---|---|
 | Negra | PNSIPN | toda a rede | reconhecer o racismo institucional; equidade |
 | Indígena | PNASPI, SasiSUS | SESAI, DSEIs, equipes nas aldeias | competência cultural; referência no SUS |
 | Situação de rua | Política Nacional (Decreto 7.053) | Consultório na Rua | atendimento sem documento; tratamento observado |

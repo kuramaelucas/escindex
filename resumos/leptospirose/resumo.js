@@ -80,6 +80,7 @@ Veja também: **Febre amarela e hepatites**, **Hantavirose e febres hemorrágica
           prosa: `[[O laboratório separa as febres ictéricas.|q-inf-25,q-gdsfiha-035,q-gdleptospirose-005,q-gdhepatoesplenomegalias-058]]
 
 | | Leptospirose | Febre amarela | Hepatite viral | Hantavirose |
+|---|---|---|---|---|
 | Exposição | enchente, rato | mata, sem vacina | variada | roedor silvestre, poeira |
 | Transaminases | < 200 | muito altas (milhares) | muito altas | moderadas |
 | Rim | LRA com **hipocalemia** | LRA | raro | LRA |

@@ -97,6 +97,7 @@ Veja também: **Assistência ao parto**, **Pré-eclâmpsia**, **Restrição de c
           prosa: `[[A categoria decide a conduta no trabalho de parto.|q-famerp2026-030,q-tp20252-037,q-famerp2024-036,q-sirio2021-072]]
 
 | | Categoria I | Categoria II | Categoria III |
+|---|---|---|---|
 | Linha de base | 110–160 | taqui ou bradicardia sem ausência de variabilidade | bradicardia com variabilidade ausente |
 | Variabilidade | moderada (6–25) | mínima ou acentuada | ausente |
 | Desacelerações | ausentes ou precoces | tardias ou variáveis com variabilidade | tardias ou variáveis recorrentes; sinusoidal |

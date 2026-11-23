@@ -135,6 +135,7 @@ Veja também: **Hipertensão arterial** (emergência hipertensiva), **Arritmias*
           prosa: `[[O início, a cefaleia e a tomografia separam os subtipos.|q-sirio2023-009,q-einstein2021-006,q-adap21-090,q-adap25-064]]
 
 | | Isquêmico | Hemorragia intraparenquimatosa | Hemorragia subaracnoide |
+|---|---|---|---|
 | Causa | aterosclerose, cardioembolia, pequenas artérias | hipertensão (núcleos da base, ponte, cerebelo) | aneurisma sacular roto |
 | Quadro | déficit focal súbito, pouca cefaleia | déficit com cefaleia, vômito e rebaixamento | cefaleia em trovoada, rigidez de nuca, síncope |
 | Tomografia | normal nas primeiras horas | hematoma | sangue nas cisternas (Fisher) |

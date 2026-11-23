@@ -147,6 +147,7 @@ Veja também: **AVC** (embolia de origem cardíaca e carótida), **Arritmias** (
           prosa: `[[A história e o outro membro separam as duas.|q-unesp2024-078,q-usprp2026-002,q-unesp2022-064,q-adap22-018]]
 
 | | Embolia | Trombose |
+|---|---|---|
 | Origem | coração (FA, prótese) | placa aterosclerótica |
 | História | sem claudicação prévia | claudicação antiga |
 | Início | súbito e grave | mais lento (colaterais) |

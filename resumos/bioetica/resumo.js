@@ -148,6 +148,7 @@ Veja também: **Comunicação clínica** (más notícias, decisão compartilhada
           prosa: `[[O que separa é o risco de dano.|q-scmsp2023-041,q-amrigs2025-061,q-tp20212-045,q-iamspe2022-079]]
 
 | Mantém o sigilo | Quebra o sigilo |
+|---|---|
 | iniciação sexual | risco de vida (ideação suicida, autoagressão) |
 | contracepção | uso escalonado de álcool e drogas |
 | IST tratável | transtorno alimentar grave |

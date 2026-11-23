@@ -100,6 +100,7 @@ Veja também: **Asma**, **Tabagismo**, **Insuficiência respiratória e ventila�
           prosa: `[[Cada situação tem uma medida principal.|q-sessp2026-003,q-adap21-098,q-adap26-040,q-002,q-adap23-014]]
 
 | Situação | Medida principal | Por quê |
+|---|---|---|
 | Estável, sintomático | LAMA + LABA, resgate, reabilitação | abre via aérea, reduz hiperinsuflação |
 | Exacerba com eosinófilos ≥ 300 | + corticoide inalatório | reduz exacerbações nesse fenótipo |
 | PaO2 ≤ 55 em repouso | O2 ≥ 15 h/dia | reduz mortalidade |

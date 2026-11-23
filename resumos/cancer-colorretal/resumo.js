@@ -160,6 +160,7 @@ Veja também: **Prevenção** (rastreamento na atenção primária), **Obstruç�
           prosa: `[[O lado decide o sintoma, o estadiamento e a cirurgia.|q-unifesp2024-012,q-sessp2026-030,q-scmsp2021-024,q-einstein2024-028,q-adap26-017]]
 
 | | Cólon direito | Cólon esquerdo e sigmoide | Reto |
+|---|---|---|---|
 | Quadro | anemia ferropriva, massa, perda de peso | mudança do hábito, fezes afiladas, sangue, obstrução | sangue vivo, tenesmo |
 | Estadiamento | colonoscopia, TC, CEA | colonoscopia, TC, CEA | + RM de pelve |
 | Cirurgia | colectomia direita | retossigmoidectomia ou colectomia esquerda | excisão total do mesorreto |

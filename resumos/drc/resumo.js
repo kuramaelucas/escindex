@@ -143,6 +143,7 @@ Veja também: **Diabetes** (antidiabéticos na DRC), **Hipertensão arterial**, 
           prosa: `[[A conduta acumula conforme a TFG cai.|q-006,q-adap22-076,q-adap23-064,q-adap21-118,q-tp20252-107]]
 
 | | G1–G2 | G3a–G3b | G4 | G5 |
+|---|---|---|---|---|
 | TFG | ≥ 60 com lesão | 30–59 | 15–29 | < 15 |
 | Nefroproteção | IECA/BRA se albuminúria; iSGLT2 | + finerenona se albuminúria persiste | iSGLT2 até TFG 20 (mantido depois) | — |
 | Complicações | — | anemia, PTH, acidose: rastrear | quelante, ferro, bicarbonato | uremia |

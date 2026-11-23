@@ -98,6 +98,7 @@ Veja também: **Endometriose**, **Síndrome dos ovários policísticos**, **Doen
           prosa: `[[Cada fator tem um exame e um tratamento.|q-adap26-051,q-adap21-070,q-adap24-031,q-didepm-043,q-usprp2021-070]]
 
 | Fator | Exame | Causa típica | Tratamento |
+|---|---|---|---|
 | Ovulatório | progesterona de fase lútea, TSH, prolactina | SOP | peso, letrozol, gonadotrofinas |
 | Tubário | histerossalpingografia | DIP, hidrossalpinge | FIV (salpingectomia antes) |
 | Uterino | USG, histeroscopia | sinéquia, pólipo, submucoso | histeroscopia |

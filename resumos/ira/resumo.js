@@ -92,6 +92,7 @@ Veja também: **Doença renal crônica**, **Sepse**, **Hiperpotassemia e distúr
           prosa: `[[A urina e a história separam os três.|q-unifesp2025-028,q-tp20231-006,q-tp20252-012,q-famema2023-031]]
 
 | | Pré-renal | NTA | Pós-renal |
+|---|---|---|---|
 | FeNa | < 1% | > 2% | variável |
 | FeUreia | < 35% | > 50% | — |
 | Densidade / osmolalidade | > 1.020 / > 500 | ~1.010 / ~300 | variável |

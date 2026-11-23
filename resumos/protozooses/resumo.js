@@ -204,6 +204,7 @@ Veja também: **Arboviroses** (outras febres agudas de área endêmica), **Paras
           prosa: `[[A pergunta é sempre: de onde vem, há quanto tempo tem febre e o que mostra o sangue.|q-gdhepatoesplenomegalias-017,q-gdhepatoesplenomegalias-027,q-gdhepatoesplenomegalias-037,q-tp20231-120]]
 
 | | Malária | Leishmaniose visceral | Chagas aguda |
+|---|---|---|---|
 | Vetor ou via | *Anopheles* (fêmea) | *Lutzomyia* (cão reservatório) | triatomíneo; oral (açaí), transfusão |
 | Onde | Amazônia | cidades e Nordeste, em expansão | surtos na Amazônia (oral) |
 | Febre | em crises (48 ou 72 horas), dias | irregular, semanas a meses | contínua, semanas |
