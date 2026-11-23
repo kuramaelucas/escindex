@@ -32,9 +32,9 @@ Veja também: **Transtornos do humor**, **Desenvolvimento neuropsicomotor**, **A
 - Neurobiológico, persiste no adulto. {q-amrigs2021-080,q-amrigs2022-020,q-amrigs2025-080}` },
         { id: "tdah-tratamento", titulo: "Tratamento", conferir: true, diretrizes: ["aap-tdah"],
           questoes: ["q-adap26-092","q-amrigs2023-062","q-amrigs2025-079","q-amrigs2020-062","q-tp20251-113"],
-          prosa: `[[Em idade escolar: **metilfenidato** (primeira linha) com **orientação aos pais, à escola** e intervenção comportamental; benzodiazepínico não trata TDAH. O estimulante melhora atenção, impulsividade e também irritabilidade, autoestima e relações.|q-adap26-092,q-amrigs2023-062,q-amrigs2025-079]] [[Estimulante é contraindicado em cardiopatia ou arritmia conhecida; na atenção primária, o **relato dos professores** monitora a resposta.|q-amrigs2020-062,q-tp20251-113]]`,
+          prosa: `[[Em idade escolar: **metilfenidato** (primeira linha) com **orientação aos pais, à escola** e intervenção comportamental; benzodiazepínico não trata TDAH. O estimulante melhora atenção, impulsividade e também irritabilidade, autoestima e relações.|q-adap26-092,q-amrigs2023-062,q-amrigs2025-079]] [[Na cardiopatia estrutural ou arritmia conhecida, o estimulante é **contraindicação relativa**: o cardiologista avalia antes, porque ele sobe a frequência e a pressão; na atenção primária, o **relato dos professores** monitora a resposta.|q-amrigs2020-062,q-tp20251-113]]`,
           texto: `- **Metilfenidato + pais + escola**. {q-adap26-092,q-amrigs2023-062,q-amrigs2025-079}
-- Cardiopatia: contraindicação; monitorar pela escola. {q-amrigs2020-062,q-tp20251-113}` },
+- Cardiopatia: **avaliação cardiológica antes** (contraindicação relativa); monitorar pela escola. {q-amrigs2020-062,q-tp20251-113}` },
       ],
     },
     {
