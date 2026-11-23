@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" font-family="sans-serif"><rect width="720" height="380" fill="#fff"/>
+<text x="360" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#1b5e7a">Via biliar: o nível da obstrução muda o quadro</text>
+<g fill="none" stroke="#4d7a1b" stroke-width="10" stroke-linecap="round">
+<path d="M90,80 L170,150"/><path d="M250,80 L170,150"/><path d="M170,150 L170,310"/><path d="M170,190 L240,215"/></g>
+<ellipse cx="270" cy="230" rx="38" ry="22" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+<rect x="130" y="305" width="150" height="40" rx="10" fill="#f7efe6" stroke="#7a4d1b"/><text x="205" y="330" text-anchor="middle" font-size="12" fill="#7a4d1b">duodeno / papila</text>
+<g font-size="12" fill="#555"><text x="40" y="70">hepáticos</text><text x="185" y="270">colédoco</text><text x="245" y="265">vesícula</text></g>
+<circle cx="170" cy="150" r="13" fill="#b03a2e"/><circle cx="170" cy="290" r="13" fill="#7a4d1b"/>
+<g font-size="13">
+<text x="340" y="80" font-weight="bold" fill="#b03a2e">● Hilo (Klatskin)</text>
+<text x="360" y="100" fill="#333">só vias intra-hepáticas dilatadas</text>
+<text x="360" y="118" fill="#333">vesícula murcha → drenagem trans-hepática</text>
+<text x="340" y="160" font-weight="bold" fill="#7a4d1b">● Distal (cálculo, periampular)</text>
+<text x="360" y="180" fill="#333">tudo dilatado; cálculo dói e flutua</text>
+<text x="360" y="198" fill="#333">tumor: vesícula palpável (Courvoisier)</text>
+<text x="360" y="216" fill="#333">→ CPRE / colangiorressonância</text>
+<text x="340" y="262" font-weight="bold" fill="#1b5e7a">Infectou (colangite)</text>
+<text x="360" y="282" fill="#333">Charcot; Reynolds = + choque e confusão</text>
+<text x="360" y="300" fill="#333">Tóquio III/II → drenar urgente/precoce</text></g>
+</svg>

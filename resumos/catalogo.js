@@ -114,4 +114,5 @@
   { id: "queimaduras", titulo: "Queimaduras", area: "Cirurgia · Trauma", assunto: "ass-queimaduras" },
   { id: "leptospirose", titulo: "Leptospirose", area: "Clínica Médica · Infectologia", assunto: "ass-leptospirose" },
   { id: "ira", titulo: "Lesão renal aguda", area: "Clínica Médica · Nefrologia", assunto: "ass-ira" },
+  { id: "colangite", titulo: "Colangite, coledocolitíase e icterícia obstrutiva", area: "Cirurgia · Via biliar", assunto: "ass-colangite" },
 ];
