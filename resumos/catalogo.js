@@ -91,4 +91,5 @@
   { id: "avc", titulo: "Acidente vascular cerebral", area: "Clínica Médica · Neurologia", assunto: "ass-neuro-avc" },
   { id: "doenca-peptica", titulo: "Doença péptica e hemorragia digestiva alta", area: "Clínica Médica · Gastroenterologia", assunto: "ass-doencapeptica" },
   { id: "isquemia-arterial", titulo: "Isquemia arterial aguda e crônica", area: "Cirurgia · Cirurgia Vascular", assunto: "ass-cirvasc-arterial" },
+  { id: "hemostasia", titulo: "Distúrbios da hemostasia e anticoagulação", area: "Clínica Médica · Hematologia", assunto: "ass-hemato-hemostasia" },
 ];

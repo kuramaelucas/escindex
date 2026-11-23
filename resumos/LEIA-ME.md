@@ -188,3 +188,4 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `avc` | `ass-neuro-avc` | 57 | 1 (anulada sem reposição) |
 | `doenca-peptica` | `ass-doencapeptica` | 57 (1 dissertativa) | 1 (anulada sem reposição) |
 | `isquemia-arterial` | `ass-cirvasc-arterial` | 57 (4 dissertativas) | — |
+| `hemostasia` | `ass-hemato-hemostasia` | 55 (2 dissertativas) | 1 (anulada sem reposição) |

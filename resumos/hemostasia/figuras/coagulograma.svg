@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 330" font-family="Arial, Helvetica, sans-serif">
+  <rect width="720" height="330" fill="#ffffff"/>
+  <text x="360" y="26" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2d3d">Lendo o coagulograma</text>
+  <g font-size="13" fill="#1f2d3d">
+    <rect x="20" y="44" width="330" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a" stroke-width="2"/>
+    <text x="36" y="70" font-weight="bold" fill="#1b5e7a">Só o TP (INR) alargado</text>
+    <text x="36" y="94">fator VII</text>
+    <text x="36" y="114">falta de vitamina K</text>
+    <text x="36" y="134">varfarina (início)</text>
+    <rect x="370" y="44" width="330" height="120" rx="8" fill="#f7efe6" stroke="#7a4d1b" stroke-width="2"/>
+    <text x="386" y="70" font-weight="bold" fill="#7a4d1b">Só o TTPa alargado</text>
+    <text x="386" y="94">fatores VIII, IX, XI (hemofilias)</text>
+    <text x="386" y="114">heparina não fracionada</text>
+    <text x="386" y="134">anticoagulante lúpico (trombose)</text>
+    <rect x="20" y="180" width="330" height="110" rx="8" fill="#fbecec" stroke="#b03a2e" stroke-width="2"/>
+    <text x="36" y="206" font-weight="bold" fill="#b03a2e">TP e TTPa alargados</text>
+    <text x="36" y="230">via comum (X, V, II, fibrinogênio)</text>
+    <text x="36" y="250">hepatopatia</text>
+    <text x="36" y="270">coagulação intravascular disseminada</text>
+    <rect x="370" y="180" width="330" height="110" rx="8" fill="#eef5e6" stroke="#4d7a1b" stroke-width="2"/>
+    <text x="386" y="206" font-weight="bold" fill="#4d7a1b">TP e TTPa normais, sangra</text>
+    <text x="386" y="230">plaquetas baixas ou disfuncionais</text>
+    <text x="386" y="250">doença de von Willebrand</text>
+    <text x="386" y="270">(pele e mucosa)</text>
+  </g>
+  <text x="360" y="316" text-anchor="middle" font-size="12" fill="#1f2d3d">Mucosa e pele: hemostasia primária. Articulação e músculo: coagulação.</text>
+</svg>
