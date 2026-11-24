@@ -38,7 +38,7 @@ Veja também: **Síndromes genéticas e teratógenos**, **Pré-natal**, **Infec�
 - **Doppler de uterinas**: risco de pré-eclâmpsia. {q-sessp2026-063}` },
         { id: "ras-nipt", titulo: "DNA fetal livre (NIPT)", conferir: true, diretrizes: ["acog-aneuploidia"],
           questoes: ["q-iamspe2023-057"],
-          prosa: `[[O **NIPT** analisa o **DNA fetal livre** (da placenta) no sangue materno a partir de 10 semanas; é o rastreamento mais sensível para trissomia 21, e a versão ampliada vê também microdeleções. Continua sendo **rastreamento**: resultado alterado se confirma com exame invasivo.|q-iamspe2023-057]]`,
+          prosa: `[[O **NIPT** analisa o **DNA fetal livre** (da placenta) no sangue materno a partir de 10 semanas; é o rastreamento mais sensível para trissomia 21, e a versão ampliada vê também microdeleções, cujo rastreio de rotina não é recomendado (muito falso positivo). Continua sendo **rastreamento**: resultado alterado se confirma com exame invasivo.|q-iamspe2023-057]]`,
           texto: `- NIPT: **DNA fetal livre** no sangue materno; é rastreio, não diagnóstico. {q-iamspe2023-057}` },
       ],
     },
@@ -55,7 +55,7 @@ Veja também: **Síndromes genéticas e teratógenos**, **Pré-natal**, **Infec�
 - Teratoma cervical: **sem bolha gástrica**, polidrâmnio. {q-sessp2023-056}` },
         { id: "mor-eco", titulo: "Ecocardiograma fetal", conferir: true,
           questoes: ["q-usp2024-118"],
-          prosa: `[[O **ecocardiograma fetal** entre **24 e 28 semanas** é indicado nas gestações de risco para cardiopatia: idade materna avançada com fertilização assistida, diabetes, marcadores alterados, história familiar.|q-usp2024-118]]`,
+          prosa: `[[O **ecocardiograma fetal** (a prova citou **24 a 28 semanas**; o habitual é entre 18 e 22–24) é indicado nas gestações de risco para cardiopatia: idade materna avançada com fertilização assistida, diabetes, marcadores alterados, história familiar.|q-usp2024-118]]`,
           texto: `- Gestação de risco, 24–28 semanas: **ecocardiograma fetal**. {q-usp2024-118}` },
       ],
     },
@@ -65,7 +65,7 @@ Veja também: **Síndromes genéticas e teratógenos**, **Pré-natal**, **Infec�
       fragmentos: [
         { id: "inv-procedimentos", titulo: "Vilo corial e amniocentese", conferir: true, diretrizes: ["acog-aneuploidia"],
           questoes: ["q-didepm-093","q-unifesp2026-059","q-sessp2023-053","q-scmsp2025-071"],
-          prosa: `[[Com rastreio muito alterado no **primeiro trimestre** (TN 4,2 mm, osso nasal ausente), o exame é a **biópsia de vilo corial** (11 a 14 semanas), com cariótipo ou microarray; a **amniocentese** só a partir de **15 semanas**. O NIPT não substitui o diagnóstico.|q-didepm-093,q-unifesp2026-059]] [[Depois de qualquer procedimento invasivo, a gestante **Rh negativo** recebe **imunoglobulina anti-D**.|q-sessp2023-053]] [[Para infecção fetal (rubéola, citomegalovírus), a **PCR no líquido amniótico** só é confiável depois de **18 a 20 semanas** e de algumas semanas da infecção materna.|q-scmsp2025-071]]`,
+          prosa: `[[Com rastreio muito alterado no **primeiro trimestre** (TN 4,2 mm, osso nasal ausente), o exame é a **biópsia de vilo corial** (11 a 14 semanas), com cariótipo ou microarray; a **amniocentese** só a partir de **15 semanas**. O NIPT não substitui o diagnóstico.|q-didepm-093,q-unifesp2026-059]] [[Depois de qualquer procedimento invasivo, a gestante **Rh negativo** recebe **imunoglobulina anti-D**.|q-sessp2023-053]] [[Para infecção fetal (rubéola, citomegalovírus), a **PCR no líquido amniótico** só é confiável depois de **18 a 20 semanas** e de algumas semanas da infecção materna (no citomegalovírus, a partir de **21 semanas** e 6–8 semanas após a infecção).|q-scmsp2025-071]]`,
           texto: `- 1º trimestre: **vilo corial**; amniocentese **≥ 15 semanas**. {q-didepm-093,q-unifesp2026-059}
 - Rh negativo: **anti-D** após procedimento. {q-sessp2023-053}
 - Infecção: **PCR no líquido após 18–20 semanas**. {q-scmsp2025-071}` },
@@ -92,8 +92,8 @@ Veja também: **Síndromes genéticas e teratógenos**, **Pré-natal**, **Infec�
       fragmentos: [
         { id: "con-cirurgia", titulo: "Cirurgia fetal da mielomeningocele", conferir: true,
           questoes: ["q-iamspe2026-051"],
-          prosa: `[[A correção da **mielomeningocele** antes do nascimento (até cerca de 26 semanas) reduz a hidrocefalia que precisa de derivação e melhora a marcha. É possível também em **gemelares**; os riscos principais são **parto prematuro** e rotura de membranas.|q-iamspe2026-051]]`,
-          texto: `- Cirurgia fetal da mielomeningocele: possível em **gemelares**; risco de **prematuridade**. {q-iamspe2026-051}` },
+          prosa: `[[A correção da **mielomeningocele** antes do nascimento (até cerca de 26 semanas) reduz a hidrocefalia que precisa de derivação e melhora a marcha. A prova deu como possível também em **gemelares**, mas o ensaio que a validou (MOMS) só incluiu gestação única: em gemelares é experiência de casos; os riscos principais são **parto prematuro** e rotura de membranas.|q-iamspe2026-051]]`,
+          texto: `- Cirurgia fetal da mielomeningocele: a prova deu possível em **gemelares** (sem ensaio que sustente); risco de **prematuridade**. {q-iamspe2026-051}` },
         { id: "con-lei", titulo: "Interrupção e anomalia fetal", conferir: true,
           questoes: ["q-einstein2024-048"],
           prosa: `[[A lei permite o aborto em caso de **estupro**, **risco de vida materno** e, por decisão do STF (ADPF 54), **anencefalia**. **Trissomias não estão contempladas**; outras malformações graves dependem de autorização judicial.|q-einstein2024-048]]`,

@@ -74,18 +74,18 @@ Veja também: **ATLS**, **Trauma abdominal**, **Isquemia arterial** e **Doença 
     },
     {
       id: "quadril", titulo: "Fratura do quadril",
-      introducao: `[[A fratura do quadril do idoso vem de queda da própria altura sobre osso osteoporótico. O membro fica **encurtado e em rotação externa**: o **iliopsoas** puxa o fêmur para cima e para fora, e o **glúteo médio** encurta. Operar em **até 48 horas** reduz a mortalidade, porque deixa o idoso sentar e andar logo.|q-usp2023-019,q-unifesp2023-079,q-uspsp3-113]]`,
+      introducao: `[[A fratura do quadril do idoso vem de queda da própria altura sobre osso osteoporótico. O membro fica **encurtado e em rotação externa**: a tração muscular (iliopsoas, glúteos e adutores) sobe o fragmento distal e o iliopsoas o roda para fora. Operar em **até 48 horas** reduz a mortalidade, porque deixa o idoso sentar e andar logo.|q-usp2023-019,q-unifesp2023-079,q-uspsp3-113]]`,
       fragmentos: [
         { id: "qua-clinica", titulo: "Como o membro fica", conferir: true,
           casos: ["q-usp2023-019"],
           questoes: ["q-usp2023-019","q-unifesp2023-079"],
-          prosa: `[[Idoso que caiu sobre o quadril e não anda: **membro inferior encurtado e em rotação externa**, pela tração do **iliopsoas** e do **glúteo médio** sobre o fragmento distal.|q-usp2023-019,q-unifesp2023-079]]`,
-          texto: `- **Encurtamento + rotação externa** (iliopsoas, glúteo médio). {q-usp2023-019,q-unifesp2023-079}` },
+          prosa: `[[Idoso que caiu sobre o quadril e não anda: **membro inferior encurtado e em rotação externa**, pela tração conjunta dos músculos do quadril (iliopsoas, glúteos e adutores) sobre o fragmento distal.|q-usp2023-019,q-unifesp2023-079]]`,
+          texto: `- **Encurtamento + rotação externa** (tração do iliopsoas, glúteos e adutores). {q-usp2023-019,q-unifesp2023-079}` },
         { id: "qua-colo-idoso", titulo: "Colo do fêmur no idoso: artroplastia", conferir: true, diretrizes: ["aaos-quadril"],
           figuras: [{ arquivo: "figuras/fratura-quadril.svg", legenda: "Esquema autoral: conduta na fratura do quadril pela localização e pelo paciente." }],
           casos: ["q-tp20232-071"],
           questoes: ["q-unifesp2025-059","q-unifesp2026-020","q-scmsp2021-031","q-tp20232-071","q-tp20261-036"],
-          prosa: `[[O colo do fêmur é **intracapsular**: a fratura desviada rompe os vasos que nutrem a cabeça, que tende a necrosar e não consolidar. No idoso com fratura **desviada**, por isso, **troca-se a cabeça**: **artroplastia**. Tratamento conservador condena ao leito e não é opção.|q-scmsp2021-031,q-tp20232-071,q-tp20261-036]] [[Paciente **ativo e independente**: **artroplastia total**; **dependente, com demência**, pouca expectativa de marcha: **artroplastia parcial** (só a cabeça), mais curta.|q-unifesp2025-059,q-unifesp2026-020]]`,
+          prosa: `[[O colo do fêmur é **intracapsular**: a fratura desviada rompe os vasos que nutrem a cabeça, que tende a necrosar e não consolidar. No idoso com fratura **desviada**, por isso, **troca-se a cabeça**: **artroplastia**. Tratamento conservador condena ao leito e não é opção.|q-scmsp2021-031,q-tp20232-071,q-tp20261-036]] [[Paciente **ativo e independente**: **artroplastia total**; **dependente, com demência**, pouca expectativa de marcha: **artroplastia parcial** (só a cabeça), mais curta. Não é regra binária: pesam função prévia, comorbidades, risco de luxação e expectativa de vida.|q-unifesp2025-059,q-unifesp2026-020]]`,
           texto: `- Idoso, colo desviado: **artroplastia**, não fixação nem conservador. {q-scmsp2021-031,q-tp20232-071,q-tp20261-036}
 - Ativo: **total**; dependente/demência: **parcial**. {q-unifesp2025-059,q-unifesp2026-020}` },
         { id: "qua-colo-jovem", titulo: "Colo do fêmur no jovem: salvar a cabeça", conferir: true, diretrizes: ["aaos-quadril"],

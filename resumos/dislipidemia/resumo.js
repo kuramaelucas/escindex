@@ -96,7 +96,7 @@ Veja também: **Doença coronariana**, **Diabetes**, **Hipertensão** e **Preven
 - LDL alto após mudança de vida, ≥ 8–10 anos: **estatina**. {q-usprp2025-012}` },
         { id: "inf-obesidade", titulo: "Dislipidemia da obesidade e síndrome metabólica na criança", conferir: true, diretrizes: ["idf-sm"],
           questoes: ["q-udisc20262-041","q-unesp2026-007"],
-          prosa: `[[Criança obesa com **triglicérides altos e HDL baixo** e LDL pouco alterado tem **dislipidemia da obesidade**, que melhora com perda de peso.|q-udisc20262-041]] [[Com cintura e pressão acima do percentil 95, acantose nigricans e lipídios alterados já há critérios de **síndrome metabólica** antes da puberdade completa: mudança de estilo de vida e avaliação metabólica.|q-unesp2026-007]]`,
+          prosa: `[[Criança obesa com **triglicérides altos e HDL baixo** e LDL pouco alterado tem **dislipidemia da obesidade**, que melhora com perda de peso.|q-udisc20262-041]] [[Com cintura e pressão acima do percentil 95, acantose nigricans e lipídios alterados já há critérios de **síndrome metabólica** na menina de 11 anos, antes da puberdade completa (a IDF só a diagnostica a partir dos 10 anos, com cintura alta e mais dois componentes): mudança de estilo de vida e avaliação metabólica.|q-unesp2026-007]]`,
           texto: `- Obesa com TG alto e HDL baixo: **dislipidemia da obesidade**. {q-udisc20262-041}
 - Criança pode ter **síndrome metabólica**. {q-unesp2026-007}` },
       ],

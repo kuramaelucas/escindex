@@ -27,7 +27,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
           prosa: `Classificar a anemia é procurar o mecanismo antes da causa: a medula responde (reticulócitos) ou não? E as hemácias saem pequenas, normais ou grandes? Cada combinação reduz a lista de causas a poucas, e só então se pede o exame específico. Quando outras linhagens também caem, o problema está na medula, e o mielograma entra.`,
           texto: `- Sangramento há 7 dias com reticulócitos 10%: **normocítica, hiper-regenerativa**. {q-adap24-023}
 - Pós-quimioterapia: **normocítica, hiporregenerativa**. {q-unifesp2024-033}
-- **Reticulócitos altos** indicam hemólise. {q-usp2023-053}
+- **Reticulócitos altos** indicam medula respondendo: hemólise ou perda aguda (bilirrubina indireta, DHL e haptoglobina separam). {q-usp2023-053}
 - Anemia com produção aumentada = reticulocitose; o índice de reticulócitos **corrige pelo grau** de anemia. {q-amrigs2025-009}
 - Artrite inflamatória: **reticulócitos baixos**. {q-usprp2026-095}
 - Hemogramas: hemólise (reticulócitos), doença crônica (ferritina alta), álcool (VCM alto), ferro (VCM baixo). {q-scmsp2021-002}
@@ -52,7 +52,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
 - Mulher de 47 anos: perguntar o **fluxo menstrual**. {q-usprp2025-027}
 - Idoso: **sangramento digestivo**. {q-sessp2024-003,q-tp20231-015,q-sessp2025-014}
 - Idosa com ferropenia: **endoscopia**; com sangue oculto, **colonoscopia**. {q-usprp2025-071,q-einstein2023-073}
-- Bariátrica: **ferro endovenoso** (não absorve oral). {q-usp2024-041}
+- Bariátrica: a prova deu **ferro endovenoso** (absorve mal o oral); o oral pode ser tentado, e o venoso entra na falha, intolerância ou anemia importante. {q-usp2024-041}
 - Ferropenia com DRC: **EDA e colonoscopia** e ferro EV. {q-uspsp5-016}
 - Idosa hipertensa e diabética: **ferropriva**. {q-einstein2025-015}` },
         { id: "fer-crianca", titulo: "Criança: profilaxia, diagnóstico e tratamento", conferir: false, diretrizes: ["sbp-ferro"],
@@ -99,7 +99,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
 - Neuropatia com macrocitose: **degeneração combinada**, B12. {q-unicampdis2024-008,q-usprp2022-066}
 - Metformina e omeprazol: **deficiência de B12**. {q-unifesp2024-067,q-famerp2022-056}
 - Perniciosa: **anti-fator intrínseco e gastrite atrófica**. {q-unesp2024-048,q-tp20202-023}
-- Tratamento: **B12 IM** em ataque e mensal por toda a vida. {q-adap22-088,q-tp20231-019,q-famerp2023-071}
+- Tratamento: **B12 IM** em ataque e mensal por toda a vida na anemia perniciosa (causa irreversível); nas reversíveis, o tempo depende da causa. {q-adap22-088,q-tp20231-019,q-famerp2023-071}
 - Criança com hipersegmentação: **hidroxicobalamina 1.000 mcg IM** dias alternados, depois semanal. {q-tp20261-095}
 - Esfregaço macrocítico: **B12**. {q-sirio2025-012}` },
       ],

@@ -80,7 +80,7 @@ Veja também: **Doenças exantemáticas na infância** (varicela, escarlatina), 
           texto: `- Virilha com hifas artrosporadas: **tinha crural**. {q-usp2022-009}
 - Lesão anular: diagnóstico **clínico, confirmado por micológico**. {q-simepm89-086}
 - Exame direto da tinha do corpo: **hifas septadas**. {q-usprp2022-071}
-- Tinha do couro cabeludo: **griseofulvina ou terbinafina oral 6–8 semanas**. {q-adap21-102,q-unicampdis2022-052,q-unicampdis2025-093}
+- Tinha do couro cabeludo: **griseofulvina ou terbinafina oral 6–8 semanas** (*Microsporum* responde melhor à griseofulvina; *Trichophyton*, à terbinafina, em curso mais curto). {q-adap21-102,q-unicampdis2022-052,q-unicampdis2025-093}
 - Onicomicose: **terbinafina 250 mg/dia por 12 semanas**. {q-usp2025-060,q-uspsp5-092}` },
         { id: "mic-candida", titulo: "Candidíase e pitiríase versicolor", conferir: true,
           casos: ["q-usp2024-061","q-unesp2025-016"],

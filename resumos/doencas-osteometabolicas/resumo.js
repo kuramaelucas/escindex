@@ -31,7 +31,7 @@ Veja também: **Climatério**, **Fraturas e luxações**, **Câncer de mama** (i
         { id: "ost-diagnostico", titulo: "Densitometria e fratura por fragilidade", conferir: true, diretrizes: ["pcdt-osteoporose"],
           figuras: [{ arquivo: "figuras/t-score.svg", legenda: "Esquema autoral: classificação densitométrica e o diagnóstico clínico pela fratura por fragilidade." }],
           questoes: ["q-unifesp2022-083","q-sessp2026-079","q-tp20232-020","q-sirio2024-014","q-unesp2024-038","q-unesp2026-039"],
-          prosa: `[[O **T-score** compara a densidade com a do adulto jovem e expressa **risco relativo**: cada desvio-padrão abaixo aumenta o risco de fratura. **Osteoporose**: T **≤ −2,5** em coluna lombar, colo ou fêmur total (basta um sítio); **osteopenia**: entre −1,0 e −2,5, já com risco maior que o normal.|q-sessp2026-079,q-sirio2024-014,q-unesp2024-038,q-unesp2026-039]] [[A osteoporose também se diagnostica **sem densitometria**, pela **fratura por fragilidade**. Mulher com fratura por queda e cifose dolorosa faz **densitometria** para quantificar e acompanhar.|q-unifesp2022-083,q-tp20232-020]]`,
+          prosa: `[[O **T-score** compara a densidade com a do adulto jovem e expressa **risco relativo**: cada desvio-padrão abaixo aumenta o risco de fratura. **Osteoporose**: T **≤ −2,5** em coluna lombar, colo ou fêmur total (basta um sítio); **osteopenia**: entre −1,0 e −2,5, já com risco maior que o normal.|q-sessp2026-079,q-sirio2024-014,q-unesp2024-038,q-unesp2026-039]] [[A osteoporose também se diagnostica **sem densitometria**, pela **fratura por fragilidade** de **quadril ou vértebra** (em outros sítios, como punho e úmero, com densitometria de osteopenia). Mulher com fratura por queda e cifose dolorosa faz **densitometria** para quantificar e acompanhar.|q-unifesp2022-083,q-tp20232-020]]`,
           texto: `- **T ≤ −2,5** em um sítio = osteoporose; T-score = **risco relativo**. {q-sessp2026-079,q-sirio2024-014,q-unesp2026-039}
 - Osteopenia já tem risco maior. {q-unesp2024-038}
 - **Fratura por fragilidade** diagnostica; densitometria quantifica. {q-unifesp2022-083,q-tp20232-020}` },
@@ -43,9 +43,9 @@ Veja também: **Climatério**, **Fraturas e luxações**, **Câncer de mama** (i
 - Bisfosfonato compromete **implante dentário**. {q-usp2025-008}` },
         { id: "ost-outros", titulo: "Raloxifeno, denosumabe e vitamina D", conferir: true, diretrizes: ["aace-osteoporose"],
           questoes: ["q-amrigs2024-015","q-uspsp4-008","q-sessp2023-065"],
-          prosa: `[[O **raloxifeno** (modulador do receptor de estrogênio) reduz fratura **vertebral**, não de quadril, e serve à mulher sem fogachos.|q-amrigs2024-015]] [[Com **clearance abaixo de 30–35**, bisfosfonato não é usado; o **denosumabe** (anticorpo contra o RANKL) não depende do rim. O romosozumabe é evitado após **infarto recente**.|q-uspsp4-008]] [[Vitamina D baixa (< 20 ng/mL) se repõe com **50.000 UI por semana por 8 semanas** e depois manutenção; dose alta para todos não é recomendada.|q-sessp2023-065,q-amrigs2024-015]]`,
+          prosa: `[[O **raloxifeno** (modulador do receptor de estrogênio) reduz fratura **vertebral**, não de quadril, e serve à mulher sem fogachos.|q-amrigs2024-015]] [[Com **clearance abaixo de 30–35**, bisfosfonato não é usado; o **denosumabe** (anticorpo contra o RANKL) não é eliminado pelo rim, mas na doença renal avançada e na diálise causa **hipocalcemia grave** (alerta da FDA, 2024): corrigir cálcio, vitamina D e PTH antes e monitorar. O romosozumabe é evitado após **infarto recente**.|q-uspsp4-008]] [[Vitamina D baixa (< 20 ng/mL) se repõe com **50.000 UI por semana por 8 semanas** e depois manutenção; dose alta para todos não é recomendada.|q-sessp2023-065,q-amrigs2024-015]]`,
           texto: `- Raloxifeno: reduz **só fratura vertebral**. {q-amrigs2024-015}
-- Rim ruim ou infarto recente: **denosumabe**. {q-uspsp4-008}
+- Rim ruim ou infarto recente: **denosumabe**, com cálcio e vitamina D em dia e cálcio monitorado (hipocalcemia grave na DRC avançada). {q-uspsp4-008}
 - Vitamina D < 20: **50.000 UI/semana por 8 semanas**. {q-sessp2023-065}` },
       ],
     },
