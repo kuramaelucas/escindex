@@ -67,6 +67,8 @@ function normalizarPessoaDaNuvem(l){
     dias30: +l.dias_ativos_30d || 0, ultimaResposta: l.ultima_resposta || null,
     cartoes: +l.cartoes_total || 0, cartoes30: +l.cartoes_30d || 0, ultimoCartao: l.ultimo_cartao || null,
     simulados: +l.simulados || 0, trilha: l.trilha || null, resumosLidos: +l.resumos_lidos || 0,
+    // undefined = banco sem a coluna (esquema.sql antigo): aí o painel não conta quem está sem enviar
+    ultimoEnvio: l.ultimo_envio === undefined ? undefined : (l.ultimo_envio || null),
   };
 }
 /* Uma linha de acerto somado. `ano` nulo = todos os anos; `grupoId` nulo =
@@ -145,6 +147,19 @@ function carregarPainelTurma(forcar){
       : (e.message || "Não foi possível carregar o painel.") };
     if(state.route === "painel-turma") render();
   });
+}
+/* Quantos do recorte não sobem nada há mais de NUVEM_HORAS_SEM_ENVIO horas.
+   O estudo nunca trava sem rede (PWA offline), então o administrador precisa
+   saber o quanto os números estão completos. O banco não registra a
+   sincronização, só o que chegou: quem não estudou entra na conta também — o
+   texto diz isso para não ler como "estão offline". */
+function htmlSemEnvioNoPainel(pessoas){
+  const comCampo = pessoas.filter(a => a.ultimoEnvio !== undefined);
+  if(!comCampo.length) return "";
+  const limite = Date.now() - NUVEM_HORAS_SEM_ENVIO * 3600 * 1000;
+  const n = comCampo.filter(a => !a.ultimoEnvio || new Date(a.ultimoEnvio).getTime() < limite).length;
+  if(!n) return "";
+  return ` · <strong>${n} ${n === 1 ? "pessoa sem enviar" : "pessoas sem enviar"} há mais de ${NUVEM_HORAS_SEM_ENVIO} h</strong> <span title="Inclui quem só não estudou nesse tempo. Quem estudou sem internet aparece com os números incompletos até o aparelho conectar.">(o que estudaram sem internet ainda não está aqui)</span>`;
 }
 function diasDesde(iso){ return iso ? diasEntre(iso, hojeISO()) : null; }
 /* Só de uso: em dia, parou de estudar ou nunca começou. Acerto não vira
@@ -292,7 +307,7 @@ function renderPainelDaTurma(){
   const p = paginar(lista, "painel-turma", { assinatura: JSON.stringify(f) + assinaturaOrdemDaTabela("painel-turma") });
 
   const origem = pd.origem === "nuvem"
-    ? `Dados da nuvem — todos os cadastrados, de qualquer aparelho. Atualizado ${pd.em ? "às " + new Date(pd.em).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"}) : ""}. <button class="link-btn" onclick="carregarPainelTurma(true); render()">atualizar</button>`
+    ? `Dados da nuvem — todos os cadastrados, de qualquer aparelho. Atualizado ${pd.em ? "às " + new Date(pd.em).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"}) : ""}. <button class="link-btn" onclick="carregarPainelTurma(true); render()">atualizar</button>${htmlSemEnvioNoPainel(aprovados)}`
     : (nuvemLigada() ? "Você não está numa conta da nuvem: estes são só as pessoas com conta NESTE navegador. Entre com a sua conta da nuvem para ver a turma inteira."
                      : "Nuvem desligada: estas são as pessoas com conta neste navegador.");
 

@@ -782,6 +782,20 @@ function nuvemResumoStatus(){
   return { rotulo:"Tudo sincronizado", detalhe: q ? ("Última vez às " + new Date(q).toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"})) : "Conta ligada.", cor:"accent", icone:"check" };
 }
 
+/* Faixa "seus dados não sobem": o estudo nunca bloqueia sem rede (PWA
+   offline), mas quem tem conta na nuvem precisa saber que o que fez só está
+   neste aparelho. A hora vem de db.nuvem.ultimaSyncEm, que a sincronização
+   (03b) já grava a cada ida e volta bem-sucedida — nenhum campo novo. Some
+   sozinha no próximo envio, porque o render seguinte já lê a hora nova. */
+const NUVEM_HORAS_SEM_ENVIO = 12;
+function htmlFaixaSemEnvio(){
+  if(!nuvemConectado() || !db || !db.nuvem || !db.nuvem.ultimaSyncEm) return "";
+  const ultima = new Date(db.nuvem.ultimaSyncEm);
+  if(Date.now() - ultima.getTime() < NUVEM_HORAS_SEM_ENVIO * 3600 * 1000) return "";
+  const quando = ultima.toLocaleDateString("pt-BR", {day:"2-digit", month:"2-digit"}) + " " + ultima.toLocaleTimeString("pt-BR", {hour:"2-digit", minute:"2-digit"});
+  return `<div class="faixa-sem-envio" role="status">${iconeSvg("alert")} <span>Seus dados não sobem desde ${escapeHtml(quando)} — conecte para salvar na nuvem. Você pode continuar estudando: tudo fica guardado neste aparelho.</span></div>`;
+}
+
 function renderChipNuvem(){
   if(!nuvemLigada()) return "";
   const s = nuvemResumoStatus();

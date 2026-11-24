@@ -481,6 +481,8 @@ function desenharTela(conteudoHtml){
     const trocouDeTela = _telaDesenhada.rota !== state.route;
     menu.innerHTML = htmlMenuLateral(u);
     topo.innerHTML = htmlTopo(u);
+    const faixa = document.getElementById("faixaSemEnvio");
+    if(faixa) faixa.innerHTML = htmlFaixaSemEnvio();
     const campos = (_renderEmSegundoPlano && !trocouDeTela) ? guardarCamposDaPagina(pagina) : null;
     pagina.innerHTML = conteudoHtml;
     if(campos) devolverCamposDaPagina(pagina, campos);
@@ -829,6 +831,7 @@ function renderShell(conteudoHtml){
     <aside class="sidebar" id="sidebarMenu">${htmlMenuLateral(u)}</aside>
     <div class="main">
       <div class="topbar" id="topoBarra">${htmlTopo(u)}</div>
+      <div id="faixaSemEnvio">${htmlFaixaSemEnvio()}</div>
       <div class="page entrando" id="conteudoPagina">${conteudoHtml}</div>
     </div>
   </div>`;

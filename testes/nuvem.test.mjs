@@ -120,7 +120,7 @@ test("esqueci a senha: o link volta para a troca de senha, que usa o token do e-
 test("comentário na questão sobe para a nuvem com o nome de quem escreveu", async () => {
   const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "nova@turma.br" };
   const { pagina, contexto, pedidos, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado"), sessao });
-  await pagina.evaluate(async () => {
+  const estado = await pagina.evaluate(async () => {
     const u = nuvemAplicarPerfilLocal({ id: "11111111-2222-3333-4444-555555555555", nome: "Nova Aluna", papel: "aluno", status: "aprovado" });
     state.usuarioAtualId = u.id;
     registrarComentario("q-unifesp2024-001", "Por que não é a A?", false);
@@ -200,6 +200,44 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
   assert.match(daEquipe, /Prof Teste/);
   assert.doesNotMatch(daEquipe, /Doutora Admin/);
   assert.doesNotMatch(daEquipe, /Ana|Beto/);
+  assert.deepEqual(erros, []);
+  await contexto.close();
+});
+
+test("sem enviar há mais de 12 h: faixa para o aluno (some no próximo envio) e contagem no Painel da Turma", async () => {
+  const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "nova@turma.br" };
+  const { pagina, contexto, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado"), sessao });
+  const estado = await pagina.evaluate(async () => {
+    const u = nuvemAplicarPerfilLocal({ id: "11111111-2222-3333-4444-555555555555", nome: "Nova Aluna", papel: "aluno", status: "aprovado" });
+    state.usuarioAtualId = u.id;
+    // espera a sincronização da abertura e roda mais uma, com a pessoa já na tela
+    for(let i = 0; i < 50 && nuvemEstado.sincronizando; i++) await new Promise(r => setTimeout(r, 100));
+    await nuvemSincronizarAgora({ semRedesenhar: true });
+    navigate("perfil");   // tela com moldura (o Início de quem acabou de entrar é a boas-vindas, sem topo)
+    return { erro: nuvemEstado.ultimoErro, conectado: nuvemConectado() };
+  });
+  assert.ok(await pagina.evaluate(() => !!db.nuvem.ultimaSyncEm), "a sincronização grava a hora do envio: " + JSON.stringify(estado));
+  assert.equal(await pagina.locator(".faixa-sem-envio").count(), 0, "envio recente: sem faixa");
+  // o relógio anda 13 h sem nenhum envio
+  const ultima = await pagina.evaluate(() => db.nuvem.ultimaSyncEm);
+  await pagina.clock.setFixedTime(new Date(new Date(ultima).getTime() + 13 * 3600 * 1000));
+  await pagina.evaluate(() => render());
+  const faixa = await pagina.locator(".faixa-sem-envio").innerText();
+  assert.match(faixa, /Seus dados não sobem desde \d\d\/\d\d \d\d:\d\d/);
+  assert.match(faixa, /continuar estudando/, "o estudo não trava");
+  await pagina.evaluate(() => nuvemSincronizarAgora({ semRedesenhar: true }).then(() => render()));
+  assert.equal(await pagina.locator(".faixa-sem-envio").count(), 0, "o envio seguinte tira a faixa");
+
+  // o painel: uma pessoa sem envio recente, uma recente, uma de banco antigo (sem a coluna) não conta
+  const agora = await pagina.evaluate(() => Date.now());
+  const recente = new Date(agora - 3600 * 1000).toISOString(), velho = new Date(agora - 20 * 3600 * 1000).toISOString();
+  const texto = await pagina.evaluate(([recente, velho]) => {
+    const pessoas = [{ ultimo_envio: recente }, { ultimo_envio: velho }, { ultimo_envio: null }].map((x, i) => normalizarPessoaDaNuvem(Object.assign({ usuario_id: "p" + i, nome: "P" + i }, x)));
+    const antigas = [normalizarPessoaDaNuvem({ usuario_id: "z", nome: "Z" })];
+    return { n: htmlSemEnvioNoPainel(pessoas), antigo: htmlSemEnvioNoPainel(antigas) };
+  }, [recente, velho]);
+  assert.match(texto.n, /2 pessoas sem enviar há mais de 12 h/);
+  assert.equal(texto.antigo, "", "banco sem ultimo_envio: não conta");
   assert.deepEqual(erros, []);
   await contexto.close();
 });

@@ -205,6 +205,8 @@ tr.linha-clicavel:hover td{background:var(--surface-2, rgba(127,127,127,.08))}
 .badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .6rem;border-radius:100px;font-size:var(--fs-2xs);font-weight:600;white-space:nowrap}
 .badge-accent{background:var(--accent-soft);color:var(--accent-dark)}
 .badge-amber{background:var(--amber-soft);color:var(--amber)}
+.faixa-sem-envio{display:flex;gap:.5rem;align-items:center;padding:.5rem 1rem;background:var(--amber-soft);color:var(--amber);font-size:.85rem;border-bottom:1px solid var(--border)}
+.faixa-sem-envio svg{flex:none;width:16px;height:16px}
 .badge-danger{background:var(--danger-soft);color:var(--danger)}
 .badge-muted{background:var(--surface-2);color:var(--muted);border:1px solid var(--border)}
 .pill{display:inline-flex;align-items:center;gap:.35rem;padding:.4rem .8rem;border-radius:100px;border:1px solid var(--border-strong);background:var(--surface);font-size:var(--fs-sm);font-weight:600;cursor:pointer;transition:border-color .12s ease,background .12s ease,transform .08s ease}
