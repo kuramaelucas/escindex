@@ -19,7 +19,7 @@
   doencas: [
     {
       id: "urina", titulo: "O que a urina diz",
-      introducao: `[[A hemácia que atravessa o glomérulo lesado sai deformada (dismórfica) e se cola na proteína do túbulo formando cilindros hemáticos; hematúria com cilindro hemático, dismorfismo ou proteinúria acima de 500 mg/dia é glomerular.|q-amrigs2022-010,q-iamspe2021-007]] [[Cada cilindro aponta um lugar: hemático, glomérulo inflamado; gorduroso (corpos ovais com lipídio), síndrome nefrótica; granuloso pigmentado, necrose tubular aguda.|q-sirio2023-004,q-scmsp2025-009,q-usprp2022-074]]
+      introducao: `[[A hemácia que atravessa o glomérulo lesado sai deformada (dismórfica) e se cola na proteína do túbulo formando cilindros hemáticos; hematúria com cilindro hemático ou dismorfismo é glomerular; a proteinúria acima de 500 mg/dia junto reforça a suspeita.|q-amrigs2022-010,q-iamspe2021-007]] [[Cada cilindro aponta um lugar: hemático, glomérulo inflamado; gorduroso (corpos ovais com lipídio), síndrome nefrótica; granuloso pigmentado, necrose tubular aguda.|q-sirio2023-004,q-scmsp2025-009,q-usprp2022-074]]
 
 Veja também: **Hipertensão arterial** e **Diabetes mellitus** (proteinúria e proteção renal) e **Diarreia aguda e desidratação** (síndrome hemolítico-urêmica).`,
       fragmentos: [

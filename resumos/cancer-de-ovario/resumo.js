@@ -20,7 +20,7 @@
   doencas: [
     {
       id: "risco", titulo: "Fatores de risco, genética e rastreamento",
-      introducao: `[[A maioria dos carcinomas serosos de alto grau do "ovário" nasce, na verdade, na **fímbria da tuba**, a partir de células que se renovam a cada ovulação. Por isso o risco **sobe com o número de ovulações** (nuliparidade, menarca precoce, menopausa tardia) e **cai com o que as suprime**: gestação, amamentação e **anticoncepcional hormonal**.|q-famema2022-056,q-sessp2023-041,q-adap24-029]]
+      introducao: `[[A maioria dos carcinomas serosos de alto grau do "ovário" nasce, na verdade, na **fímbria da tuba**, a partir de células que se renovam a cada ovulação. Por isso o risco **sobe com o número de ovulações** (nuliparidade, menarca precoce, menopausa tardia) e **cai com o que as suprime**: gestação, amamentação e **anticoncepcional oral combinado** (a evidência mais forte é a da pílula).|q-famema2022-056,q-sessp2023-041,q-adap24-029]]
 
 Veja também: **Câncer de mama**, **Câncer de endométrio**, **Endometriose** e **Climatério**.`,
       fragmentos: [
@@ -53,7 +53,7 @@ Veja também: **Câncer de mama**, **Câncer de endométrio**, **Endometriose** 
 - Ectópica **nem sempre** é cirúrgica. {q-amrigs2023-040}` },
         { id: "mas-benignos", titulo: "Cistoadenomas, teratoma e pseudomixoma", conferir: true,
           questoes: ["q-unesp2026-040","q-famerp2022-036","q-sirio2022-067","q-tp20241-040","q-unesp2024-031"],
-          prosa: `[[O **cistoadenoma seroso** costuma ser **unilocular, de septos finos**; o **mucinoso** é multiloculado, cresce muito e quase sempre é **unilateral**.|q-unesp2026-040]] [[A ruptura do tumor **mucinoso** espalha mucina que continua sendo produzida no peritônio: **pseudomixoma peritoneal**, com distensão e dor meses depois.|q-famerp2022-036,q-sirio2022-067]] [[O **teratoma maduro** (cisto dermoide) é o tumor germinativo benigno mais comum: cisto com gordura, cabelo e calcificação (sombra acústica) na jovem.|q-tp20241-040,q-unesp2024-031]]`,
+          prosa: `[[O **cistoadenoma seroso** costuma ser **unilocular, de septos finos**; o **mucinoso** é multiloculado, cresce muito e quase sempre é **unilateral**.|q-unesp2026-040]] [[A ruptura do tumor **mucinoso** espalha mucina que continua sendo produzida no peritônio: **pseudomixoma peritoneal**, com distensão e dor meses depois.|q-famerp2022-036,q-sirio2022-067]] Hoje se sabe que a origem quase sempre é uma **neoplasia mucinosa do apêndice** (o tumor ovariano costuma ser metástase): investiga-se e retira-se o apêndice. [[O **teratoma maduro** (cisto dermoide) é o tumor germinativo benigno mais comum: cisto com gordura, cabelo e calcificação (sombra acústica) na jovem.|q-tp20241-040,q-unesp2024-031]]`,
           texto: `- Seroso: **unilocular, septo fino**; mucinoso: unilateral, grande. {q-unesp2026-040}
 - Mucinoso roto: **pseudomixoma peritoneal**. {q-famerp2022-036,q-sirio2022-067}
 - Benigno germinativo mais comum: **teratoma maduro**. {q-tp20241-040,q-unesp2024-031}` },
@@ -75,7 +75,7 @@ Veja também: **Câncer de mama**, **Câncer de endométrio**, **Endometriose** 
 - Pior prognóstico: **implante peritoneal** (estádio III). {q-usp2024-104}` },
         { id: "epi-cirurgia", titulo: "Citorredução e quimioterapia", conferir: true, diretrizes: ["esmo-esgo-ovario","nccn"],
           questoes: ["q-tp20232-098","q-tp20261-097","q-unesp2023-033","q-iamspe2025-047","q-adap21-066","q-unifesp2022-024"],
-          prosa: `[[O que mais muda a sobrevida é a **cirurgia citorredutora** que não deixa **nenhuma doença residual**, seguida de **carboplatina e paclitaxel**. Massa anexial suspeita com ascite vai para **cirurgia com estadiamento e congelação**; biópsia por agulha não é o caminho.|q-tp20232-098,q-tp20261-097,q-adap21-066,q-unifesp2022-024]] [[Quando a doença parece **irressecável** (fígado, muitas alças, mesentério), a **laparoscopia** confirma o diagnóstico com biópsia e avalia se dá para ressecar tudo; se não dá, faz-se **quimioterapia neoadjuvante** e cirurgia de intervalo.|q-unesp2023-033,q-iamspe2025-047]]`,
+          prosa: `[[O que mais muda a sobrevida é a **cirurgia citorredutora** que não deixa **nenhuma doença residual**, seguida de **carboplatina e paclitaxel**. Massa anexial suspeita com ascite e doença que parece ressecável vai para **cirurgia com estadiamento e congelação**; biópsia por agulha não é o caminho (na irressecável, confirma-se a histologia antes da quimioterapia neoadjuvante).|q-tp20232-098,q-tp20261-097,q-adap21-066,q-unifesp2022-024]] [[Quando a doença parece **irressecável** (fígado, muitas alças, mesentério), a **laparoscopia** confirma o diagnóstico com biópsia e avalia se dá para ressecar tudo; se não dá, faz-se **quimioterapia neoadjuvante** e cirurgia de intervalo.|q-unesp2023-033,q-iamspe2025-047]]`,
           texto: `- **Citorredução sem doença residual + carboplatina/paclitaxel**. {q-tp20232-098,q-tp20261-097,q-adap21-066,q-unifesp2022-024}
 - Parece irressecável: **laparoscopia com biópsia** → neoadjuvante. {q-unesp2023-033,q-iamspe2025-047}` },
         { id: "epi-krukenberg", titulo: "Tumor de Krukenberg", conferir: true,

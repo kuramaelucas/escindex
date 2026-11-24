@@ -52,8 +52,8 @@ Veja também: **Emergências pediátricas** (parada e insuficiência respiratór
 - Sintomas frequentes: **não controlada**, iniciar ou subir CI. {q-amrigs2021-014,q-tp20202-048}
 - Antes de subir: **técnica, adesão, gatilhos, diagnóstico**. {q-adap22-069,q-usprp2022-003}
 - Causa mais comum de descontrole: **má adesão**. {q-amrigs2020-006}
-- Asmático com propranolol: **retirar o betabloqueador**. {q-tp20241-117,q-tp20261-033}
-- AINE e refluxo pioram; **vacina de influenza anual**. {q-sirio2021-015}
+- Asmático com propranolol (não seletivo): **retirar o betabloqueador**; o cardiosseletivo com indicação cardiovascular forte (infarto) se pesa caso a caso. {q-tp20241-117,q-tp20261-033}
+- AINE piora quem já reagiu a ele (doença respiratória exacerbada por AAS); refluxo piora; **vacina de influenza anual**. {q-sirio2021-015}
 - Rinite descontrolada e uso irregular: **asma grave não controlada?** — tratar rinite e adesão. {q-unicamp2022-046}
 - Asma de difícil controle: **aumentar o degrau**. {q-einstein2025-008}
 - Controlada há meses: **manter** o tratamento (reduzir só com estabilidade). {q-adap21-032}

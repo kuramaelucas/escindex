@@ -24,7 +24,7 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
       fragmentos: [
         { id: "pre-vulvovaginite", titulo: "Vulvovaginite inespecífica", conferir: true, diretrizes: ["febrasgo-infanto"],
           questoes: ["q-unifesp2023-042","q-famema2021-049","q-usprp2025-059"],
-          prosa: `[[A vulvovaginite da menina é quase sempre **inespecífica**, por higiene e irritação; trata-se com **higiene com água e sabonete neutro**, **calcinha de algodão** e evitar irritantes. Corrimento sem odor, sem lesão e com hímen íntegro não é indício de abuso.|q-unifesp2023-042,q-famema2021-049]] [[Sangramento pequeno, com irritação vulvar e sem outros achados, também começa por **orientação de higiene**.|q-usprp2025-059]]`,
+          prosa: `[[A vulvovaginite da menina é quase sempre **inespecífica**, por higiene e irritação; trata-se com **higiene com água e sabonete neutro**, **calcinha de algodão** e evitar irritantes. Corrimento sem odor e sem lesão, sozinho, não é indício de abuso — mas hímen íntegro e exame normal **não excluem** abuso: a história e o contexto mandam.|q-unifesp2023-042,q-famema2021-049]] [[Sangramento pequeno, com irritação vulvar e sem outros achados, também começa por **orientação de higiene**.|q-usprp2025-059]]`,
           texto: `- Vulvovaginite inespecífica: **higiene e roupa de algodão**. {q-unifesp2023-042,q-famema2021-049}
 - Sangramento discreto com irritação: **higiene**. {q-usprp2025-059}` },
         { id: "pre-corpo-estranho", titulo: "Sangramento e odor: corpo estranho", conferir: true,
@@ -34,7 +34,7 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
         { id: "pre-sinequia", titulo: "Sinéquia de pequenos lábios", conferir: true,
           questoes: ["q-adap23-042"],
           prosa: `[[Sem estrogênio e com irritação, os pequenos lábios colam na linha média (linha fina translúcida), desviando o jato urinário. Trata-se com **creme de estrogênio** por poucas semanas e higiene; separar à força ou operar causa dor e recidiva.|q-adap23-042]]`,
-          texto: `- Sinéquia: **estrogênio tópico**, não separar à força. {q-adap23-042}` },
+          texto: `- Sinéquia: assintomática, **observar** e higiene; com sintoma (jato urinário desviado, infecção), **estrogênio tópico**; não separar à força. {q-adap23-042}` },
         { id: "pre-puberdade", titulo: "Puberdade precoce", conferir: true,
           questoes: ["q-sessp2022-061","q-sessp2026-072","q-uspsp1-081"],
           prosa: `[[Puberdade antes dos **8 anos** na menina. Quando o eixo hipotálamo-hipófise acorda cedo (**central**, quase sempre **idiopática** na menina), há telarca, pelos, aceleração do crescimento e menarca; o tratamento é o **análogo de GnRH**, que dessensibiliza a hipófise e interrompe a puberdade.|q-sessp2022-061,q-sessp2026-072]] [[Só a mama aumentada (M2), sem outros sinais e com **FSH e estradiol normais**, é **telarca precoce isolada** ou variante normal: observar.|q-uspsp1-081]]`,
@@ -88,7 +88,7 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
     },
     {
       id: "adolescente", titulo: "A adolescente na consulta",
-      introducao: `[[Nos primeiros anos depois da menarca o eixo ainda amadurece: muitos ciclos são anovulatórios e irregulares. E a adolescente tem direito a **consulta sozinha e sigilo**, que só se quebra diante de risco à vida dela ou de terceiros.|q-famerp2024-047,q-sirio2023-082,q-scmsp2022-094]]`,
+      introducao: `[[Nos primeiros anos depois da menarca o eixo ainda amadurece: muitos ciclos são anovulatórios e irregulares. E a adolescente tem direito a **consulta sozinha e sigilo**, que se quebra diante de risco à vida dela ou de terceiros, de suspeita de violência ou abuso e de dever legal (notificação).|q-famerp2024-047,q-sirio2023-082,q-scmsp2022-094]]`,
       fragmentos: [
         { id: "ado-ciclo", titulo: "Ciclo irregular depois da menarca", conferir: true,
           questoes: ["q-famerp2024-047"],
@@ -107,7 +107,7 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
       fragmentos: [
         { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
           questoes: ["q-scmsp2025-079","q-usp2026-107","q-scmsp2026-078","q-unifesp2023-042"],
-          prosa: `[[**Septo de 12 mm**: pelos critérios da ASRM o arqueado tem reentrância menor que 1 cm e o septado, maior que 1,5 cm; o valor intermediário é ambíguo, e a scmsp2025-079 marcou **arqueado**.|q-scmsp2025-079]] [[**Hipogonadotrófico com baixa estatura**: a causa mais comum é o atraso constitucional; entre as alternativas, a usp2026-107 cobrou **hiperprolactinemia**.|q-usp2026-107]] [[**Mamas sem pelos** é a pista da insensibilidade; Rokitansky tem pelos normais.|q-scmsp2026-078]] [[**Corrimento na menina**: sem lesão nem outros sinais, não justifica acionar o conselho tutelar.|q-unifesp2023-042]]`,
+          prosa: `[[**Septo de 12 mm**: pela ASRM de 2016 o arqueado tem reentrância menor que 1 cm e o septado, maior que 1,5 cm (valor intermediário ambíguo); a classificação ASRM de 2021 chama de septado o septo maior que 1 cm com ângulo menor que 90°, o que faria do septo de 12 mm um septado, e a scmsp2025-079 marcou **arqueado**.|q-scmsp2025-079]] [[**Hipogonadotrófico com baixa estatura**: a causa mais comum é o atraso constitucional; entre as alternativas, a usp2026-107 cobrou **hiperprolactinemia**.|q-usp2026-107]] [[**Mamas sem pelos** é a pista da insensibilidade; Rokitansky tem pelos normais.|q-scmsp2026-078]] [[**Corrimento na menina**: sem lesão nem outros sinais, não justifica acionar o conselho tutelar.|q-unifesp2023-042]]`,
           texto: `- Septo de 12 mm: a prova cobrou **arqueado**. {q-scmsp2025-079}
 - Hipogonadotrófico: a prova cobrou **hiperprolactinemia**. {q-usp2026-107}
 - **Sem pelos** = insensibilidade. {q-scmsp2026-078}
