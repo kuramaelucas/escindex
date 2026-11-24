@@ -1579,8 +1579,7 @@ returns table (
   simulados         bigint,
   trilha            jsonb,
   faculdade         text,
-  resumos_lidos     bigint,
-  ultimo_envio      timestamptz
+  resumos_lidos     bigint
 )
 language sql
 stable
@@ -1599,14 +1598,7 @@ as $$
     p.trilha -> 'resumo',
     p.faculdade,
     (select count(*) from jsonb_each(case when jsonb_typeof(p.resumos_lidos) = 'object' then p.resumos_lidos else '{}'::jsonb end) e
-      where e.value not in ('false'::jsonb, 'null'::jsonb)),
-    -- a última vez que o aparelho dela subiu algo: o carimbo mais novo das
-    -- linhas que mais mudam. Não há registro da sincronização em si (o banco
-    -- só guarda), então quem não estudou também aparece "sem enviar".
-    greatest(p.atualizado_em,
-      (select max(x.criado_em) from public.respostas x where x.usuario_id = p.id),
-      (select max(v.atualizado_em) from public.revisoes v where v.usuario_id = p.id),
-      (select max(v.atualizado_em) from public.revisoes_flashcards v where v.usuario_id = p.id))
+      where e.value not in ('false'::jsonb, 'null'::jsonb))
   from public.perfis p
   cross join hoje
   left join lateral (

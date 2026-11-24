@@ -102,8 +102,6 @@ select pg_temp.igual((select count(*) from acerto_por_questao()), 0, 'residente 
 select set_config('request.jwt.claim.sub','00000000-0000-0000-0000-00000000000c',false);
 select pg_temp.igual((select count(*) from painel_turma()), 6, 'professor vê os alunos e a equipe (o uso da equipe também interessa)');
 select pg_temp.igual((select count(*) from painel_turma() where papel<>'aluno'), 2, 'a equipe aparece no painel, com o papel');
--- o último envio de cada pessoa: perfil sempre existe, então nunca vem nulo
-select pg_temp.igual((select count(*) from painel_turma() where ultimo_envio is null), 0, 'painel_turma devolve o último envio de todos');
 -- a taxa de acerto de cada pessoa não sai do banco, nem para a equipe
 select pg_temp.igual((select count(*) from painel_turma() t, jsonb_object_keys(to_jsonb(t)) k where k ~ 'acerto' or k in ('por_area','media_simulados')), 0, 'painel_turma não devolve acerto de ninguém');
 -- o acerto da turma só existe somado, e só com 3 alunos ou mais

@@ -204,7 +204,7 @@ test("Painel da Turma lê as funções do banco, separa por ano, mostra a equipe
   await contexto.close();
 });
 
-test("sem enviar há mais de 12 h: faixa para o aluno (some no próximo envio) e contagem no Painel da Turma", async () => {
+test("sem enviar há mais de 12 h: faixa para o aluno, que some no próximo envio", async () => {
   const sessao = { token: TOKEN, refresh: "r1", usuarioId: ID, email: "nova@turma.br" };
   const { pagina, contexto, erros } = await abrirComNuvemFalsa({ perfil: perfilDe("aprovado"), sessao });
   const estado = await pagina.evaluate(async () => {
@@ -228,16 +228,6 @@ test("sem enviar há mais de 12 h: faixa para o aluno (some no próximo envio) e
   await pagina.evaluate(() => nuvemSincronizarAgora({ semRedesenhar: true }).then(() => render()));
   assert.equal(await pagina.locator(".faixa-sem-envio").count(), 0, "o envio seguinte tira a faixa");
 
-  // o painel: uma pessoa sem envio recente, uma recente, uma de banco antigo (sem a coluna) não conta
-  const agora = await pagina.evaluate(() => Date.now());
-  const recente = new Date(agora - 3600 * 1000).toISOString(), velho = new Date(agora - 20 * 3600 * 1000).toISOString();
-  const texto = await pagina.evaluate(([recente, velho]) => {
-    const pessoas = [{ ultimo_envio: recente }, { ultimo_envio: velho }, { ultimo_envio: null }].map((x, i) => normalizarPessoaDaNuvem(Object.assign({ usuario_id: "p" + i, nome: "P" + i }, x)));
-    const antigas = [normalizarPessoaDaNuvem({ usuario_id: "z", nome: "Z" })];
-    return { n: htmlSemEnvioNoPainel(pessoas), antigo: htmlSemEnvioNoPainel(antigas) };
-  }, [recente, velho]);
-  assert.match(texto.n, /2 pessoas sem enviar há mais de 12 h/);
-  assert.equal(texto.antigo, "", "banco sem ultimo_envio: não conta");
   assert.deepEqual(erros, []);
   await contexto.close();
 });
