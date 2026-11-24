@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Quadril da criança: a idade sugere a doença</text>
+<line x1="40" y1="290" x2="720" y2="290" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="60" y="310">nascimento</text><text x="220" y="310">3 anos</text><text x="400" y="310">8 anos</text><text x="560" y="310">11 anos</text><text x="700" y="310">15 anos</text></g>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="30" y="50" width="160" height="110" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="110" y="74" font-weight="bold" fill="#1b5e7a">Displasia (DDQ)</text><text x="110" y="98">Ortolani, Barlow</text><text x="110" y="116">US até 4–6 meses</text><text x="110" y="134">Pavlik</text>
+<rect x="210" y="50" width="180" height="110" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="300" y="74" font-weight="bold" fill="#4d7a1b">Sinovite transitória</text><text x="300" y="98">após virose, sem febre</text><text x="300" y="116">derrame no US</text><text x="300" y="134">repouso, analgésico</text>
+<rect x="250" y="176" width="200" height="100" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="350" y="200" font-weight="bold" fill="#8a6a1b">Legg-Calvé-Perthes</text><text x="350" y="222">menino de 4 a 8 anos</text><text x="350" y="240">claudicação há meses</text><text x="350" y="258">necrose da cabeça</text>
+<rect x="490" y="70" width="230" height="120" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="605" y="94" font-weight="bold" fill="#b03a2e">Epifisiólise</text><text x="605" y="118">adolescente obeso</text><text x="605" y="136">dor no joelho ou coxa</text><text x="605" y="154">rotação externa ao fletir</text><text x="605" y="172">fixação cirúrgica</text>
+</g>
+<text x="600" y="240" text-anchor="middle" font-size="12" fill="#555">Dor no joelho da criança:</text><text x="600" y="256" text-anchor="middle" font-size="12" fill="#555">examine o quadril.</text>
+</svg>

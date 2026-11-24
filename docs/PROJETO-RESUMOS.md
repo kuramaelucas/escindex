@@ -331,3 +331,8 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 24/11/2026 | Resumo de transtornos por uso de substâncias (ass-psiq-substancias) |
 | 24/11/2026 | Resumo de fraturas e luxações (ass-orto-fraturas) |
 | 24/11/2026 | Resumo de câncer de ovário e massas anexiais (ass-caovario) |
+| 24/11/2026 | Resumo de genitália masculina e disfunção sexual (ass-uro-escroto) |
+| 24/11/2026 | Resumo de emergências ambientais: peçonhentos, afogamento e hipotermia (ass-emerg-ambientais); passa a ser o dono de "animais peçonhentos" (o capítulo de `intoxicacoes` remete a ele) |
+| 24/11/2026 | Resumo de ortopedia pediátrica (ass-orto-pediatrica) |
+| 24/11/2026 | Resumo de ginecologia da infância e adolescência (ass-ginecoinfantil) |
+| 24/11/2026 | Resumo de febre maculosa, Lyme, hantavírus e Ebola (ass-febremaculosa) |

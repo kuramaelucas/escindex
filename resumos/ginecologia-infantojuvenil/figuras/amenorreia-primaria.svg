@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 380" font-family="sans-serif"><rect width="760" height="380" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Amenorreia primária: mamas e útero organizam o raciocínio</text>
+<g font-size="13" text-anchor="middle" fill="#333">
+<rect x="280" y="44" width="200" height="36" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="380" y="67" font-weight="bold" fill="#1b5e7a">Há mamas?</text>
+<g stroke="#555" stroke-width="2"><line x1="320" y1="80" x2="190" y2="112" marker-end="url(#s)"/><line x1="440" y1="80" x2="570" y2="112" marker-end="url(#s)"/></g>
+<text x="180" y="96" font-size="12" fill="#555" text-anchor="end">não (sem estrogênio)</text><text x="535" y="98" font-size="12" fill="#555">sim</text>
+<rect x="60" y="116" width="260" height="36" rx="8" fill="#f4f4f4" stroke="#777"/><text x="190" y="139" font-weight="bold">Dosar FSH</text>
+<rect x="440" y="116" width="260" height="36" rx="8" fill="#f4f4f4" stroke="#777"/><text x="570" y="139" font-weight="bold">Há útero (ultrassom)?</text>
+<g stroke="#555" stroke-width="2"><line x1="140" y1="152" x2="100" y2="190" marker-end="url(#s)"/><line x1="240" y1="152" x2="280" y2="190" marker-end="url(#s)"/><line x1="520" y1="152" x2="480" y2="190" marker-end="url(#s)"/><line x1="620" y1="152" x2="660" y2="190" marker-end="url(#s)"/></g>
+<rect x="20" y="194" width="170" height="130" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="105" y="216" font-weight="bold" fill="#b03a2e">FSH alto</text><text x="105" y="240">o ovário falhou:</text><text x="105" y="258">Turner (45,X),</text><text x="105" y="276">disgenesia gonadal</text><text x="105" y="300">→ cariótipo</text>
+<rect x="200" y="194" width="170" height="130" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="285" y="216" font-weight="bold" fill="#8a6a1b">FSH baixo</text><text x="285" y="240">falta o comando:</text><text x="285" y="258">hipotálamo/hipófise,</text><text x="285" y="276">prolactina, atraso</text><text x="285" y="294">constitucional</text>
+<rect x="390" y="194" width="170" height="130" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="475" y="216" font-weight="bold" fill="#4d7a1b">Útero presente</text><text x="475" y="240">obstrução (hímen</text><text x="475" y="258">imperfurado: dor</text><text x="475" y="276">cíclica) ou causa</text><text x="475" y="294">hormonal</text>
+<rect x="570" y="194" width="170" height="130" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="655" y="216" font-weight="bold" fill="#1b5e7a">Útero ausente</text><text x="655" y="240">pelos normais:</text><text x="655" y="258">Rokitansky (46,XX)</text><text x="655" y="282">pelos escassos:</text><text x="655" y="300">insensibilidade (46,XY)</text>
+<text x="380" y="356">Investigar: 13 anos sem mamas, 15 anos com mamas, ou 5 anos depois da telarca sem menarca.</text>
+</g>
+</svg>

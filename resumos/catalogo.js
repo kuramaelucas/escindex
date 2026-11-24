@@ -143,4 +143,9 @@
   { id: "uso-de-substancias", titulo: "Transtornos por uso de substâncias", area: "Clínica Médica · Psiquiatria", assunto: "ass-psiq-substancias" },
   { id: "fraturas", titulo: "Fraturas e luxações", area: "Cirurgia · Ortopedia e Traumatologia", assunto: "ass-orto-fraturas" },
   { id: "cancer-de-ovario", titulo: "Câncer de ovário e massas anexiais", area: "Ginecologia e Obstetrícia · Oncologia Ginecológica", assunto: "ass-caovario" },
+  { id: "genitalia-masculina", titulo: "Genitália masculina e disfunção sexual", area: "Cirurgia · Urologia", assunto: "ass-uro-escroto" },
+  { id: "emergencias-ambientais", titulo: "Emergências ambientais: peçonhentos, afogamento e hipotermia", area: "Clínica Médica · Emergência", assunto: "ass-emerg-ambientais" },
+  { id: "ortopedia-pediatrica", titulo: "Ortopedia pediátrica", area: "Pediatria · Ortopedia Pediátrica", assunto: "ass-orto-pediatrica" },
+  { id: "ginecologia-infantojuvenil", titulo: "Ginecologia da infância e adolescência", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-ginecoinfantil" },
+  { id: "zoonoses-e-febres-hemorragicas", titulo: "Febre maculosa, Lyme, hantavírus e Ebola", area: "Clínica Médica · Infectologia", assunto: "ass-febremaculosa" },
 ];

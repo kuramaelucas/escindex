@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="sans-serif"><rect width="760" height="320" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Febre maculosa: não espere o exantema nem o exame</text>
+<line x1="40" y1="250" x2="720" y2="250" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="60" y="270">picada</text><text x="220" y="270">2 a 14 dias</text><text x="380" y="270">3º–5º dia de febre</text><text x="560" y="270">fim da 1ª semana</text><text x="690" y="270">14–21 dias</text></g>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="20" y="60" width="160" height="80" rx="8" fill="#f4f4f4" stroke="#777"/><text x="100" y="84" font-weight="bold">Carrapato</text><text x="100" y="104">Amblyomma, preso</text><text x="100" y="122">por horas</text>
+<rect x="150" y="150" width="170" height="80" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="235" y="174" font-weight="bold" fill="#1b5e7a">Febre súbita</text><text x="235" y="194">cefaleia, mialgia</text><text x="235" y="212">intensa</text>
+<rect x="300" y="60" width="180" height="80" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="390" y="84" font-weight="bold" fill="#8a6a1b">Exantema</text><text x="390" y="104">punhos e tornozelos,</text><text x="390" y="122">palmas e plantas</text>
+<rect x="470" y="150" width="180" height="80" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="560" y="174" font-weight="bold" fill="#b03a2e">Formas graves</text><text x="560" y="194">petéquias, sangramento,</text><text x="560" y="212">icterícia, torpor</text>
+<rect x="600" y="60" width="150" height="80" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="675" y="84" font-weight="bold" fill="#4d7a1b">2ª sorologia</text><text x="675" y="104">(confirma pela</text><text x="675" y="122">soroconversão)</text>
+</g>
+<text x="380" y="300" text-anchor="middle" font-size="13" fill="#b03a2e" font-weight="bold">Suspeitou: doxiciclina já, em qualquer idade, e notificação imediata.</text>
+</svg>
