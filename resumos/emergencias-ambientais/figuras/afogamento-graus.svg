@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Afogamento: o grau segue o pulmão e a circulação</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="20" y="50" width="110" height="180" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="75" y="74" font-weight="bold" fill="#4d7a1b">Grau 1</text><text x="75" y="100">tosse,</text><text x="75" y="118">ausculta</text><text x="75" y="136">normal</text><text x="75" y="196" font-size="12">liberar</text>
+<rect x="142" y="50" width="110" height="180" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="197" y="74" font-weight="bold" fill="#8a6a1b">Grau 2</text><text x="197" y="100">estertores</text><text x="197" y="118">em alguns</text><text x="197" y="136">campos</text><text x="197" y="196" font-size="12">O2 baixo fluxo,</text><text x="197" y="212" font-size="12">internar</text>
+<rect x="264" y="50" width="110" height="180" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="319" y="74" font-weight="bold" fill="#8a6a1b">Grau 3</text><text x="319" y="100">edema</text><text x="319" y="118">pulmonar,</text><text x="319" y="136">PA normal</text><text x="319" y="196" font-size="12">O2 alto fluxo,</text><text x="319" y="212" font-size="12">UTI</text>
+<rect x="386" y="50" width="110" height="180" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="441" y="74" font-weight="bold" fill="#b03a2e">Grau 4</text><text x="441" y="100">edema</text><text x="441" y="118">pulmonar com</text><text x="441" y="136">hipotensão</text><text x="441" y="196" font-size="12">ventilar,</text><text x="441" y="212" font-size="12">volume, UTI</text>
+<rect x="508" y="50" width="110" height="180" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="563" y="74" font-weight="bold" fill="#b03a2e">Grau 5</text><text x="563" y="100">parada</text><text x="563" y="118">respiratória,</text><text x="563" y="136">com pulso</text><text x="563" y="196" font-size="12">ventilar já</text>
+<rect x="630" y="50" width="110" height="180" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="685" y="74" font-weight="bold" fill="#b03a2e">Grau 6</text><text x="685" y="100">parada</text><text x="685" y="118">cardiorrespi-</text><text x="685" y="136">ratória</text><text x="685" y="196" font-size="12">RCP com</text><text x="685" y="212" font-size="12">ventilação</text>
+<text x="380" y="266">Do grau 2 ao 6, hospitalizar. A hipoxemia é o que mata: ventilar vem antes de tudo.</text>
+<text x="380" y="292" font-size="12" fill="#555">Hipotermia junto: tirar a roupa molhada e aquecer (passivo na leve, ativo na moderada e grave).</text>
+</g>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="sans-serif"><rect width="760" height="340" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Hemorroida interna: o grau é o prolapso</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<g>
+<rect x="30" y="60" width="160" height="150" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="110" y="84" font-weight="bold" fill="#4d7a1b">Grau I</text><text x="110" y="110">sangra,</text><text x="110" y="128">não prolapsa</text>
+<rect x="210" y="60" width="160" height="150" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="290" y="84" font-weight="bold" fill="#4d7a1b">Grau II</text><text x="290" y="110">prolapsa e volta</text><text x="290" y="128">sozinha</text>
+<rect x="390" y="60" width="160" height="150" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="470" y="84" font-weight="bold" fill="#8a6a1b">Grau III</text><text x="470" y="110">prolapsa e só</text><text x="470" y="128">volta com a mão</text>
+<rect x="570" y="60" width="160" height="150" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="650" y="84" font-weight="bold" fill="#b03a2e">Grau IV</text><text x="650" y="110">prolapsada,</text><text x="650" y="128">não reduz</text>
+</g>
+<text x="110" y="180">fibra, água</text><text x="110" y="196">e ligadura</text>
+<text x="290" y="180">ligadura</text><text x="290" y="196">elástica</text>
+<text x="470" y="172">ligadura ou</text><text x="470" y="188">hemorroidectomia</text>
+<text x="650" y="180">hemorroidectomia</text>
+<rect x="30" y="236" width="700" height="80" rx="8" fill="#f4f4f4" stroke="#777"/>
+<text x="380" y="262">Acima da linha pectínea (interna): mucosa sem dor somática → sangra e prolapsa.</text>
+<text x="380" y="286">Abaixo dela (externa): pele com nervos → dói, trombosa; não se faz ligadura.</text>
+<text x="380" y="306" font-size="12" fill="#555">Fibra e água valem para todos os graus.</text>
+</g>
+</svg>

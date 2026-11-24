@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="sans-serif"><rect width="760" height="360" fill="#fff"/>
+<defs><marker id="s" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#555"/></marker></defs>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Fratura do quadril: onde quebrou e quem é o paciente</text>
+<g font-size="13" text-anchor="middle" fill="#333">
+<rect x="250" y="44" width="260" height="44" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="380" y="64" font-weight="bold" fill="#1b5e7a">Encurtamento + rotação externa</text><text x="380" y="80">cirurgia em até 48 h</text>
+<g stroke="#555" stroke-width="2"><line x1="320" y1="88" x2="200" y2="120" marker-end="url(#s)"/><line x1="440" y1="88" x2="600" y2="120" marker-end="url(#s)"/></g>
+<rect x="60" y="124" width="280" height="40" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="200" y="149" font-weight="bold" fill="#8a6a1b">Colo (intracapsular)</text>
+<rect x="460" y="124" width="280" height="40" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="600" y="149" font-weight="bold" fill="#4d7a1b">Transtrocantérica (extracapsular)</text>
+<g stroke="#555" stroke-width="2"><line x1="140" y1="164" x2="100" y2="196" marker-end="url(#s)"/><line x1="260" y1="164" x2="290" y2="196" marker-end="url(#s)"/><line x1="600" y1="164" x2="600" y2="196" marker-end="url(#s)"/></g>
+<rect x="20" y="200" width="170" height="130" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="105" y="222" font-weight="bold" fill="#1b5e7a">Jovem</text><text x="105" y="246">salvar a cabeça:</text><text x="105" y="264">redução anatômica</text><text x="105" y="282">e parafusos</text><text x="105" y="300">canulados, urgente</text>
+<rect x="200" y="200" width="250" height="130" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="325" y="222" font-weight="bold" fill="#b03a2e">Idoso, desviada</text><text x="325" y="246">trocar a cabeça:</text><text x="325" y="268">ativo → artroplastia total</text><text x="325" y="290">dependente, demência →</text><text x="325" y="308">artroplastia parcial</text>
+<rect x="470" y="200" width="270" height="130" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="605" y="222" font-weight="bold" fill="#4d7a1b">Qualquer idade</text><text x="605" y="246">osso bem irrigado,</text><text x="605" y="264">consolida:</text><text x="605" y="288">fixação interna</text><text x="605" y="306">(haste cefalomedular)</text>
+</g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 360" font-family="sans-serif"><rect width="760" height="360" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Onde e quão fundo a inflamação vai</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<text x="190" y="58" font-weight="bold" fill="#8a6a1b">Doença de Crohn</text>
+<text x="570" y="58" font-weight="bold" fill="#1b5e7a">Retocolite ulcerativa</text>
+<g fill="none" stroke-width="16" stroke-linecap="round">
+<path d="M90,290 L90,110 L290,110 L290,290 L230,290" stroke="#ddd"/>
+<path d="M470,290 L470,110 L670,110 L670,290 L610,290" stroke="#ddd"/>
+</g>
+<g fill="none" stroke-width="16" stroke-linecap="butt" stroke="#b03a2e">
+<path d="M90,290 L90,240"/><path d="M90,180 L90,150"/><path d="M180,110 L220,110"/><path d="M290,200 L290,240"/>
+<path d="M610,290 L670,290 L670,180"/>
+</g>
+<text x="60" y="300" font-size="12">íleo</text>
+<text x="190" y="140">áreas doentes</text><text x="190" y="158">entre áreas sãs</text>
+<text x="190" y="190">da boca ao ânus</text><text x="190" y="208">(mais no íleo terminal)</text>
+<text x="570" y="160">começa no reto</text><text x="570" y="178">e sobe sem pular</text>
+<text x="600" y="310" font-size="12">reto</text>
+<rect x="40" y="320" width="300" height="34" rx="6" fill="#f6efe1" stroke="#8a6a1b"/><text x="190" y="342">transmural: fístula, estenose, abscesso</text>
+<rect x="420" y="320" width="300" height="34" rx="6" fill="#e1f0f6" stroke="#1b5e7a"/><text x="570" y="342">só mucosa: sangue, megacólon tóxico</text>
+</g>
+</svg>

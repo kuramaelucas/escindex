@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Massa anexial no ultrassom: o que tranquiliza e o que preocupa</text>
+<g font-size="13" fill="#333">
+<rect x="30" y="50" width="330" height="200" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="195" y="76" text-anchor="middle" font-weight="bold" fill="#4d7a1b">Sinais de benignidade</text>
+<text x="50" y="106">• cisto unilocular, parede fina</text><text x="50" y="132">• conteúdo homogêneo, sem vegetação</text><text x="50" y="158">• sombra acústica (teratoma)</text><text x="50" y="184">• sem fluxo ao Doppler</text><text x="50" y="210">• menacme, CA-125 normal</text>
+<rect x="400" y="50" width="330" height="200" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="565" y="76" text-anchor="middle" font-weight="bold" fill="#b03a2e">Sinais de malignidade</text>
+<text x="420" y="106">• componente sólido irregular</text><text x="420" y="132">• septo grosso, vegetações</text><text x="420" y="158">• fluxo intenso ao Doppler</text><text x="420" y="184">• bilateral, ascite, implantes</text><text x="420" y="210">• pós-menopausa, CA-125 alto</text>
+<text x="380" y="285" text-anchor="middle">Massa suspeita não se punciona: vai inteira para a cirurgia, com congelação.</text>
+<text x="380" y="308" text-anchor="middle" font-size="12" fill="#555">Na menina e na jovem, massa sólida pede também AFP, beta-hCG e LDH (tumor germinativo).</text>
+</g>
+</svg>

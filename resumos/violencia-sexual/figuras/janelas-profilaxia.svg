@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Violência sexual: até quando cada proteção funciona</text>
+<line x1="150" y1="290" x2="730" y2="290" stroke="#555" stroke-width="2"/>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="150" y="308">0 h</text><text x="290" y="308">72 h</text><text x="383" y="308">5 dias</text><text x="730" y="308">14 dias</text></g>
+<g font-size="13" fill="#333">
+<text x="20" y="72">Profilaxia do HIV</text><rect x="150" y="56" width="140" height="24" rx="4" fill="#fbecec" stroke="#b03a2e"/><text x="220" y="73" text-anchor="middle" font-size="12">até 72 h, por 28 dias</text>
+<text x="20" y="117">Contracepção</text><text x="20" y="133">de emergência</text><rect x="150" y="104" width="233" height="24" rx="4" fill="#f6efe1" stroke="#8a6a1b"/><text x="266" y="121" text-anchor="middle" font-size="12">levonorgestrel ou DIU: 5 dias</text>
+<text x="20" y="172">Imunoglobulina</text><text x="20" y="188">da hepatite B</text><rect x="150" y="158" width="580" height="24" rx="4" fill="#e1f0f6" stroke="#1b5e7a"/><text x="440" y="175" text-anchor="middle" font-size="12">até 14 dias, se não vacinada ou sem resposta conhecida (com a vacina)</text>
+<text x="20" y="227">ISTs bacterianas</text><rect x="150" y="212" width="580" height="24" rx="4" fill="#eef5e6" stroke="#4d7a1b"/><text x="440" y="229" text-anchor="middle" font-size="12">sífilis, gonorreia, clamídia, tricomoníase: tratar no atendimento</text>
+<text x="20" y="268" font-size="12" fill="#555">sempre</text><text x="150" y="268" font-size="12" fill="#555">acolher, notificar em 24 h, oferecer coleta de vestígios; sem exigir boletim de ocorrência</text>
+</g>
+</svg>

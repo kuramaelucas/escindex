@@ -314,3 +314,35 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de anafilaxia (ass-alergia-anafilaxia) |
 | 23/11/2026 | Resumo de ventilação mecânica (ass-vm) |
 | 23/11/2026 | Resumo de litíase urinária (ass-uro-litiase) |
+| 23/11/2026 | Resumo de hanseníase (ass-hanseniase): PCDT 2022 lido; espectro, sinais cardinais, PQT-U, reações, contatos |
+| 23/11/2026 | Resumo de síndromes genéticas e teratógenos (ass-genetica-sindromes) |
+| 23/11/2026 | Resumo de doença venosa: TVP e varizes (ass-cirvasc-venosa) |
+| 23/11/2026 | Resumo de neoplasia pulmonar cirúrgica (ass-cirtorax-neoplasia) |
+| 23/11/2026 | Resumo de próstata: hiperplasia e câncer (ass-uro-prostata) |
+| 23/11/2026 | Regra do conjunto de 20 (`lib-conjuntos.mjs`): questão idêntica (mesmo enunciado e mesma resposta) entra uma vez só; parecidas ficam; cobertura dos fragmentos continua antes da dificuldade |
+| 23/11/2026 | Resumo de doença falciforme e hemoglobinopatias (ass-hemato-hemoglobinopatias) |
+| 23/11/2026 | Resumo de dislipidemia e risco cardiovascular (ass-dislipidemia) |
+| 23/11/2026 | Resumo de dermatoses inflamatórias e autoimunes (ass-derm-autoimunes) |
+| 23/11/2026 | Resumo de tromboembolismo pulmonar (ass-tep) |
+| 23/11/2026 | Resumo de doença inflamatória intestinal (ass-dii) |
+| 23/11/2026 | Conjunto de 20: "idêntica" passa a ignorar pontuação e espaços (TP reaplicado com uma vírgula a mais) |
+| 24/11/2026 | Resumo de doenças orificiais (ass-coloprocto-orificiais) |
+| 24/11/2026 | Resumo de cirurgia bariátrica e complicações (ass-cirbariatrica) |
+| 24/11/2026 | Resumo de transtornos por uso de substâncias (ass-psiq-substancias) |
+| 24/11/2026 | Resumo de fraturas e luxações (ass-orto-fraturas) |
+| 24/11/2026 | Resumo de câncer de ovário e massas anexiais (ass-caovario) |
+| 24/11/2026 | Resumo de genitália masculina e disfunção sexual (ass-uro-escroto) |
+| 24/11/2026 | Resumo de emergências ambientais: peçonhentos, afogamento e hipotermia (ass-emerg-ambientais); passa a ser o dono de "animais peçonhentos" (o capítulo de `intoxicacoes` remete a ele) |
+| 24/11/2026 | Resumo de ortopedia pediátrica (ass-orto-pediatrica) |
+| 24/11/2026 | Resumo de ginecologia da infância e adolescência (ass-ginecoinfantil) |
+| 24/11/2026 | Resumo de febre maculosa, Lyme, hantavírus e Ebola (ass-febremaculosa) |
+| 24/11/2026 | Resumo de tumores cutâneos: carcinomas e melanoma (ass-derm-tumores) |
+| 24/11/2026 | Resumo de transtornos de ansiedade e TOC (ass-psiq-ansiedade) |
+| 24/11/2026 | Resumo de osteoporose e doenças osteometabólicas (ass-orto-osteometabolicas) |
+| 24/11/2026 | Resumo de doença celíaca, má absorção e intolerância à lactose (ass-gastro-malabsorcao) |
+| 24/11/2026 | Resumo de diagnóstico pré-natal e rastreamento de aneuploidias (ass-diagnosticoprenatal) |
+| 24/11/2026 | Resumo de polifarmácia e iatrogenia no idoso (ass-geriatria-polifarmacia) |
+| 24/11/2026 | Resumo de constipação e intestino irritável (ass-gastro-constipacao) |
+| 24/11/2026 | Resumo de deficiências nutricionais e vitamínicas (ass-deficvitaminica) |
+| 24/11/2026 | Resumo de complicações anestésicas (ass-anestesio-complicacoes) |
+| 24/11/2026 | Resumo de violência sexual e aborto legal (ass-violenciasexual) |

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="sans-serif"><rect width="760" height="340" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Escroto agudo: três causas, três condutas</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="20" y="50" width="230" height="240" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="135" y="74" font-weight="bold" fill="#b03a2e">Torção testicular</text>
+<text x="135" y="100">adolescente, dor súbita</text><text x="135" y="118">náusea e vômito</text><text x="135" y="142">testículo alto, horizontal</text><text x="135" y="160">cremastérico ausente</text><text x="135" y="178">Prehn negativo</text>
+<text x="135" y="212" font-weight="bold">explorar já</text><text x="135" y="230">(até 6 h salva a maioria)</text><text x="135" y="254">fixar os dois lados</text>
+<rect x="265" y="50" width="230" height="240" rx="8" fill="#f6efe1" stroke="#8a6a1b"/>
+<text x="380" y="74" font-weight="bold" fill="#8a6a1b">Epididimite</text>
+<text x="380" y="100">adulto jovem, dor gradual</text><text x="380" y="118">disúria, às vezes febre</text><text x="380" y="142">epidídimo endurecido</text><text x="380" y="160">cremastérico presente</text><text x="380" y="178">Prehn positivo</text>
+<text x="380" y="212" font-weight="bold">ceftriaxona +</text><text x="380" y="230">doxiciclina</text><text x="380" y="254">(clamídia, gonococo)</text>
+<rect x="510" y="50" width="230" height="240" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="625" y="74" font-weight="bold" fill="#4d7a1b">Torção do apêndice</text>
+<text x="625" y="100">criança, dor moderada</text><text x="625" y="118">sem vômito</text><text x="625" y="142">testículo no lugar</text><text x="625" y="160">ponto azul no polo superior</text><text x="625" y="178">cremastérico presente</text>
+<text x="625" y="212" font-weight="bold">analgesia e repouso</text><text x="625" y="230">(autolimitada)</text>
+<text x="380" y="320">Na dúvida com torção, não se espera o Doppler: explora-se.</text>
+</g>
+</svg>

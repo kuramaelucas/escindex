@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 320" font-family="sans-serif"><rect width="760" height="320" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">O corpo que envelhece e o que acontece com o remédio</text>
+<g font-size="13" fill="#333">
+<rect x="20" y="50" width="350" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="195" y="74" text-anchor="middle" font-weight="bold" fill="#1b5e7a">Mais gordura, menos água</text>
+<text x="40" y="100">remédio lipossolúvel (diazepam) acumula:</text><text x="40" y="120">meia-vida longa, sedação, queda</text>
+<text x="40" y="146">→ preferir meia-vida curta, ou retirar</text>
+<rect x="390" y="50" width="350" height="120" rx="8" fill="#f6efe1" stroke="#8a6a1b"/>
+<text x="565" y="74" text-anchor="middle" font-weight="bold" fill="#8a6a1b">Rim filtra menos</text>
+<text x="410" y="100">creatinina "normal" com pouca massa</text><text x="410" y="120">muscular esconde TFG baixa:</text>
+<text x="410" y="146">digoxina e outros acumulam</text>
+<rect x="20" y="185" width="350" height="110" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="195" y="209" text-anchor="middle" font-weight="bold" fill="#b03a2e">Menos reserva colinérgica</text>
+<text x="40" y="235">anticolinérgicos (tricíclico, hidroxizina,</text><text x="40" y="255">oxibutinina): delirium, retenção,</text><text x="40" y="275">constipação, boca seca</text>
+<rect x="390" y="185" width="350" height="110" rx="8" fill="#eef5e6" stroke="#4d7a1b"/>
+<text x="565" y="209" text-anchor="middle" font-weight="bold" fill="#4d7a1b">Barorreflexo lento</text>
+<text x="410" y="235">anti-hipertensivo e diurético dão</text><text x="410" y="255">hipotensão postural; sulfonilureia,</text><text x="410" y="275">hipoglicemia → quedas</text>
+</g>
+</svg>

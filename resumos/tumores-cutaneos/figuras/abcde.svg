@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="sans-serif"><rect width="760" height="300" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Lesão pigmentada: o que torna suspeita de melanoma</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<g fill="#5a3b2a">
+<ellipse cx="85" cy="100" rx="38" ry="30"/><path d="M85,70 C120,60 140,110 110,130 C95,140 80,125 85,70" fill="#2e1d14"/>
+<path d="M210,72 L245,85 L238,102 L258,118 L230,132 L205,125 L190,108 L198,90 Z"/>
+<ellipse cx="370" cy="100" rx="34" ry="30" fill="#8a6a4a"/><circle cx="360" cy="92" r="12" fill="#2e1d14"/><circle cx="382" cy="110" r="9" fill="#c7a07a"/>
+<circle cx="520" cy="100" r="40"/><line x1="470" y1="150" x2="570" y2="150" stroke="#555" stroke-width="2"/><text x="520" y="168" font-size="12" fill="#555">mais de 6 mm</text>
+<circle cx="650" cy="100" r="16" fill="#8a6a4a"/><text x="680" y="88" font-size="20" fill="#b03a2e">→</text><circle cx="715" cy="100" r="28"/>
+</g>
+<text x="85" y="200" font-weight="bold" fill="#b03a2e">A</text><text x="85" y="220">assimetria</text>
+<text x="225" y="200" font-weight="bold" fill="#b03a2e">B</text><text x="225" y="220">bordas</text><text x="225" y="238">irregulares</text>
+<text x="370" y="200" font-weight="bold" fill="#b03a2e">C</text><text x="370" y="220">várias cores</text>
+<text x="520" y="200" font-weight="bold" fill="#b03a2e">D</text><text x="520" y="220">diâmetro</text><text x="520" y="238">&gt; 6 mm</text>
+<text x="690" y="200" font-weight="bold" fill="#b03a2e">E</text><text x="690" y="220">evolução</text><text x="690" y="238">(cresce, muda)</text>
+<text x="380" y="280" fill="#333">Suspeita: biópsia excisional com margem estreita (1–3 mm); a ampliação vem depois do Breslow.</text>
+</g>
+</svg>

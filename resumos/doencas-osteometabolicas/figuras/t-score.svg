@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" font-family="sans-serif"><rect width="760" height="300" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Osteoporose: T-score ou fratura por fragilidade</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="40" y="60" width="220" height="60" fill="#eef5e6" stroke="#4d7a1b"/><text x="150" y="86" font-weight="bold" fill="#4d7a1b">Normal</text><text x="150" y="106">T ≥ −1,0</text>
+<rect x="260" y="60" width="220" height="60" fill="#f6efe1" stroke="#8a6a1b"/><text x="370" y="86" font-weight="bold" fill="#8a6a1b">Osteopenia</text><text x="370" y="106">−1,0 a −2,5</text>
+<rect x="480" y="60" width="240" height="60" fill="#fbecec" stroke="#b03a2e"/><text x="600" y="86" font-weight="bold" fill="#b03a2e">Osteoporose</text><text x="600" y="106">T ≤ −2,5 em coluna, colo ou fêmur total</text>
+<text x="380" y="150">Cada desvio-padrão abaixo do adulto jovem multiplica o risco relativo de fratura.</text>
+<rect x="120" y="175" width="520" height="80" rx="8" fill="#f4f4f4" stroke="#777"/>
+<text x="380" y="200" font-weight="bold">Fratura por fragilidade (queda da própria altura)</text>
+<text x="380" y="222">de quadril, vértebra, punho ou úmero = osteoporose clínica,</text>
+<text x="380" y="242">qualquer que seja o T-score → tratar com antirreabsortivo</text>
+</g>
+</svg>

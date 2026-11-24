@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 340" font-family="sans-serif"><rect width="760" height="340" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">O que a curva de CO2 expirado está dizendo</text>
+<g font-size="13" fill="#333" text-anchor="middle">
+<rect x="20" y="46" width="350" height="130" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="195" y="68" font-weight="bold" fill="#4d7a1b">Normal</text>
+<path d="M40,150 L70,150 L80,100 L150,92 L160,150 L190,150 L200,100 L270,92 L280,150 L350,150" fill="none" stroke="#333" stroke-width="2"/>
+<text x="195" y="170" font-size="12">platô retangular</text>
+<rect x="390" y="46" width="350" height="130" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="565" y="68" font-weight="bold" fill="#b03a2e">Broncoespasmo</text>
+<path d="M410,150 L430,150 C450,140 470,110 500,94 L510,150 L530,150 C550,140 570,110 600,94 L610,150 L720,150" fill="none" stroke="#333" stroke-width="2"/>
+<text x="565" y="170" font-size="12">subida lenta, "barbatana de tubarão"</text>
+<rect x="20" y="190" width="350" height="130" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="195" y="212" font-weight="bold" fill="#8a6a1b">Queda progressiva, forma normal</text>
+<path d="M40,290 L60,290 L66,240 L110,236 L116,290 L140,290 L146,250 L190,246 L196,290 L220,290 L226,262 L270,258 L276,290 L350,290" fill="none" stroke="#333" stroke-width="2"/>
+<text x="195" y="310" font-size="12">menos sangue chega ao pulmão: hipotensão</text>
+<rect x="390" y="190" width="350" height="130" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="565" y="212" font-weight="bold" fill="#1b5e7a">Subida progressiva</text>
+<path d="M410,290 L430,290 L436,262 L480,258 L486,290 L510,290 L516,248 L560,244 L566,290 L590,290 L596,232 L640,228 L646,290 L720,290" fill="none" stroke="#333" stroke-width="2"/>
+<text x="565" y="310" font-size="12">mais CO2 produzido: hipertermia maligna</text>
+</g>
+</svg>
