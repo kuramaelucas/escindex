@@ -809,4 +809,5 @@ Changelogs de 19/09 a 21/09 que abriam o primeiro arquivo do código. Guardados 
 
 - Erratas corrigidas: hidratação oral e incubação (arboviroses), sítio de descompressão (ATLS), pip-tazo na peritonite grave (apendicite), C. difficile (antibioticoterapia), gestante com nódulo (mama), vasoconstritor 2–5 dias (cirrose), semaglutida no perioperatório (orientação multissociedade 2024), bicarbonato (KDIGO 2012 × 2024, DRC), Lyon 2.0 (DRGE), frase invertida da CPRE (pancreatite); alternativa duplicada em q-gdarboviroses-015.
 - 30 resumos tinham tabela sem a linha `|---|` e não apareciam como tabela; corrigidos. `npm run resumo` agora falha com tabela malformada ou `[[ ]]` desbalanceado.
-- A conferir: momento da TARV com CD4 < 200 na TB/HIV contra o PCDT vigente.
+- Segunda parte (os ~40 resumos restantes, de polifarmácia a zoonoses): queimadura elétrica com 4 mL/kg/% (ATLS 10), PAS ≤ 100 no qSOFA (sepse) e redação ambígua sobre o exame a fresco na doença de Chagas (protozooses).
+- A conferir: momento da TARV na TB/HIV contra o PCDT vigente (anotado em `PENDENCIAS.md`).

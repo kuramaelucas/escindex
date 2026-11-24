@@ -64,7 +64,7 @@ Veja também: **Pneumonia no adulto**, **Infecção urinária** e **Infecções 
 - A SSC 2021 mostra **ausência de superioridade do qSOFA sobre o NEWS**. {q-gdsepse-012}
 - SIRS: taquipneia acima de 20 e leucograma abaixo de 4.000. {q-gdsepse-024}
 - Hipotermia, taquicardia, taquipneia e leuco alterados, com 2 ou mais: **SIRS**. {q-gdsepse-028}
-- qSOFA: **FR ≥ 22, PAS < 100 e Glasgow < 15**. {q-gdsepse-035,q-gdsepse-044}
+- qSOFA: **FR ≥ 22, PAS ≤ 100 e Glasgow < 15**. {q-gdsepse-035,q-gdsepse-044}
 - qSOFA ≥ 2: **maior gravidade e risco de óbito**. {q-gdsepse-041}
 - Pielonefrite com PA 80x60 e lactato de 4,2: **não rastrear pelo qSOFA; volume 30 mL/kg e antibiótico em 1 h**. {q-gdsepse-047}
 - Limiares errados do qSOFA (Glasgow < 13, PAS < 100, FR < 22): o item **incorreto**. {q-gdsepse-067}
