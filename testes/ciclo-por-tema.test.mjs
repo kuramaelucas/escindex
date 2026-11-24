@@ -112,6 +112,45 @@ test("ciclo: reparar e manter (Formado) vai direto às questões, tema ≥ 75% e
   } finally { await contexto.close(); }
 });
 
+test("prática extra: acima das 20, fora do conjunto e nunca respondidas, origem pela proporção do perfil; o conjunto não muda", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual(); db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const conj = window.EscResumos.conjuntos;
+      // o tema com resumo que tem mais questões fora do conjunto, dos dois lados (consolidação e residência)
+      const ativas = questoesParaEstudo(u.id);
+      const chave = Object.keys(conj).filter(k => !conj[k].semResumo).map(k => {
+        const fora = ativas.filter(q => conj[k].assuntos.includes(q.assuntoId) && !conj[k].ids.includes(q.id) && !ehDissertativa(q));
+        return { k, cons: fora.filter(ehConsolidacao).length, res: fora.filter(q => !ehConsolidacao(q)).length };
+      }).filter(x => x.cons >= 10 && x.res >= 10).sort((a, b) => (b.cons + b.res) - (a.cons + a.res))[0].k;
+      const idsAntes = JSON.stringify(conj[chave].ids);
+      const uma = conj[chave].ids[0]; db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: uma, correta: true, data: hojeISO() });
+      const fora = conj[chave].ids.filter(id => id !== uma)[0];
+      const naoFeita = ativas.find(q => conj[chave].assuntos.includes(q.assuntoId) && !conj[chave].ids.includes(q.id) && !ehDissertativa(q));
+      db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: naoFeita.id, assuntoId: naoFeita.assuntoId, correta: false, data: hojeISO() });
+      const fracoes = {};
+      for(const ano of ["3º ano", "Formado(a)"]){
+        u.anoFaculdade = ano;
+        const m = montarPraticaExtra(u, chave, 10);
+        fracoes[ano] = { n: m.itens.length, cons: m.itens.filter(it => ehConsolidacao(getQuestao(it.questaoId))).length, esperado: Math.round(10 * fracaoConsolidacao(u)),
+          foraDoConjunto: m.itens.every(it => !conj[chave].ids.includes(it.questaoId)), nuncaRespondida: m.itens.every(it => it.questaoId !== naoFeita.id),
+          doTema: m.itens.every(it => conj[chave].assuntos.includes(getQuestao(it.questaoId).assuntoId)), motivo: m.itens[0].motivo };
+      }
+      return { fracoes, intocado: JSON.stringify(conj[chave].ids) === idsAntes, fora };
+    });
+    for(const ano of ["3º ano", "Formado(a)"]){
+      const f = r.fracoes[ano];
+      assert.equal(f.n, 10); assert.equal(f.cons, f.esperado, ano + ": proporção de consolidação do perfil");
+      assert.ok(f.foraDoConjunto && f.nuncaRespondida && f.doTema, ano);
+      assert.match(f.motivo, /Prática extra de .*além das \d+ do conjunto/);
+    }
+    assert.notEqual(r.fracoes["3º ano"].cons, r.fracoes["Formado(a)"].cons, "a origem muda com o perfil");
+    assert.ok(r.intocado, "o conjunto de 20 não muda");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
 test("no ar hoje: só a pós-leitura — sem pergunta de início nem cartão no Início; marcou lido, o conjunto aparece no fim do resumo", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{

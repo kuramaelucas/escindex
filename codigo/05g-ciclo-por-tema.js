@@ -192,11 +192,41 @@ function iniciarQuestoesDoTema(chave){
 }
 function lerResumoDoTema(chave){ lerResumoDoAssunto(chave); }
 
+/* ---------------------------- prática extra (acima das 20) ----------------------------
+   O conjunto de 20 é igual para todos os perfis e não muda (é a régua). O que
+   passa dele é PRÁTICA EXTRA: questões do tema fora do conjunto e nunca
+   respondidas, na proporção da origem pelo perfil — consolidação (Teste de
+   Progresso, autorais) × provas de residência, a mesma de fracaoConsolidacao
+   (05a), que a pessoa já vê explicada nas sessões. Dentro de cada lado,
+   primeiro os assuntos do tema em que ela mais erra, depois as provas mais
+   recentes. */
+const PRATICA_EXTRA_TAMANHO = 10;
+function montarPraticaExtra(u, chave, n){
+  const c = conjuntosPorTema(), t = c && c[chave];
+  if(!t) return { itens: [], disponiveis: 0 };
+  n = n || PRATICA_EXTRA_TAMANHO;
+  const primeiras = _primeirasRespostas(u.id), doConjunto = new Set(t.ids), assuntos = new Set(t.assuntos);
+  const pool = questoesParaEstudo(u.id).filter(q => assuntos.has(q.assuntoId) && !doConjunto.has(q.id) && !primeiras.has(q.id) && !ehDissertativa(q) && !aguardaImagem(q));
+  const erro = {};
+  primeiras.forEach(r => { if(r.assuntoId && assuntos.has(r.assuntoId)){ const e = erro[r.assuntoId] = erro[r.assuntoId] || [0, 0]; e[0]++; if(!r.correta) e[1]++; } });
+  const taxa = a => erro[a] ? erro[a][1] / erro[a][0] : 0;
+  const ordenar = (p, k) => p.slice().sort((a, b) => taxa(b.assuntoId) - taxa(a.assuntoId) || (Number(b.ano) || 0) - (Number(a.ano) || 0) || String(a.id).localeCompare(String(b.id))).slice(0, k);
+  const escolhidas = selecionarComProgressao(pool, Math.min(n, pool.length), u, ordenar);
+  const origem = textoProgressao(u);
+  return { disponiveis: pool.length, itens: escolhidas.map(q => ({ questaoId: q.id,
+    motivo: "Prática extra de " + tituloDoTema(chave) + ": além das " + t.ids.length + " do conjunto · " + (ehConsolidacao(q) ? "consolidação" : "prova de residência") + " (no seu perfil: " + origem + ")" })) };
+}
+function iniciarPraticaExtra(chave){
+  const u = usuarioAtual(), r = u && montarPraticaExtra(u, chave);
+  if(!r || !r.itens.length){ toast("Não sobrou questão nova deste tema fora do conjunto: você já respondeu todas."); return; }
+  iniciarSessaoComLista(r.itens, "pratica");
+}
+
 /* ---------------------------- o cartão do Início ---------------------------- */
 function _htmlResultadoDoTema(e){
   if(!e) return "";
   const pctTxt = Math.round(e.taxa * 100) + "%";
-  if(!e.abaixoDoCorte) return `<p class="text-sm mt-1">${iconeSvg("check")} Último tema fechado: <strong>${escapeHtml(e.titulo)}</strong>, ${pctTxt} de acerto (${e.acertos} de ${e.feitas}).</p>`;
+  if(!e.abaixoDoCorte) return `<p class="text-sm mt-1">${iconeSvg("check")} Último tema fechado: <strong>${escapeHtml(e.titulo)}</strong>, ${pctTxt} de acerto (${e.acertos} de ${e.feitas}). <button class="link-btn" onclick="iniciarPraticaExtra('${escapeHtml(e.chave)}')">Prática extra deste tema</button></p>`;
   /* releu depois de fechar? então a sugestão já foi atendida. Estrito (>): a marca de lido guarda só
      o dia, e quem leu ANTES das questões no mesmo dia em que fechou o tema ainda deve ver a sugestão. */
   if(e.lidoEm && e.lidoEm > e.ultimaData) return "";
@@ -256,6 +286,9 @@ function htmlPosLeituraDoResumo(u, resumoId){
   else if(!e.concluido) { linha = `Questões pós-leitura: <strong>${e.feitas} de ${e.ids.length}</strong> · ${pctTxt} de acerto até aqui. Você continua das que ainda não fez.`; botao = "Continuar as questões"; }
   else linha = `Questões pós-leitura feitas: <strong>${pctTxt}</strong> de acerto (${e.acertos} de ${e.feitas}).` + (e.abaixoDoCorte
     ? ` Abaixo de ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}%: vale reler os trechos marcados acima — opcional.` : "");
+  // fechado o conjunto, a prática extra (acima das 20) — só se ainda há questão nova do tema
+  const extra = e.concluido && montarPraticaExtra(u, resumoId).disponiveis > 0;
   return `<div class="resumo-pos-leitura card-flat mt-1 flex justify-between items-center gap-1 quebra"><span class="text-sm">${linha}</span>${botao
-    ? `<button class="btn btn-primary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(resumoId)}')">${botao}</button>` : ""}</div>`;
+    ? `<button class="btn btn-primary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(resumoId)}')">${botao}</button>`
+    : extra ? `<button class="btn btn-secondary btn-sm" title="Questões do tema fora do conjunto, na proporção de origem do seu perfil" onclick="iniciarPraticaExtra('${escapeHtml(resumoId)}')">Prática extra</button>` : ""}</div>`;
 }
