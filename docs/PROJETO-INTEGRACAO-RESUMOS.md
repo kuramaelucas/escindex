@@ -104,6 +104,15 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 - Graduando antes do 6º ano: **leitura obrigatória** na 1ª passagem pelo tema; nas seguintes, opcional e continuando o conjunto (seção 2-B).
 - Recomendações da seção 4–6 aprovadas.
 
+### Revisão das decisões (24/11/2026) — substitui o que conflitar acima
+
+- **Leitura nunca obrigatória** (vale também para o graduando; derruba a trava da seção 2-B): "Ler o resumo (recomendado)" é o botão principal, com a opção de pular direto para as questões do tema.
+- **Formado:** fica o "construir do zero", **único caminho alinhado aos resumos**. Novo conceito **"Não esquecer"** (manutenção): questões do jeito atual, metas diárias pequenas, prioridade às questões dos conjuntos pós-resumo ainda não feitas. A falar: se o "reparar por tema" continua para Formado.
+- **Meta que não cabe:** 20 por tema é o padrão; se a meta não comporta, a tela mostra e explica o corte para 8 nos temas que menos caem (seção 5).
+- **Revisão:** não é sorteio com peso igual. **Para cada questão errada, surge uma questão nova do mesmo assunto** (par erro → nova), além da própria errada no espaçamento da repetição espaçada.
+- **Conjunto de 20 intocado** para todos os perfis. A proporção da origem (Teste de Progresso × residência, pelo perfil) só muda na **prática extra, acima das 20** do tema.
+- **Escolha livre e direcionada:** o aluno escolhe qualquer tema ou área; a trilha sugere o próximo. O ensino médico é espiral (o mesmo tema volta em níveis), então pré-requisito **não ordena nem bloqueia**: só os vínculos fortes de `ferramentas/prerequisitos-formados.json` (hoje poucos, a maioria dos assuntos sem nenhum) geram um aviso "este tema usa conceitos de X, que você ainda não leu".
+
 ## 8. Andamento
 
 | Data | Feito |
