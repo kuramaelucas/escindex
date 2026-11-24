@@ -39,6 +39,9 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
 
     const r = await pagina.evaluate(() => {
       const primeiro = document.querySelector(".resumo-capitulo h2").textContent;
+      // quantifica: erro no assunto inteiro e "erradas/feitas" ao lado da cor
+      const painel = (document.querySelector(".resumo-desempenho") || {}).textContent || "";
+      const contagens = document.querySelectorAll(".resumo-contagem").length;
       const koplik = [...document.querySelectorAll(".resumo-chave li.revisar")].some(li => li.textContent.includes("Koplik"));
       const frase = document.querySelector(".resumo-frase.revisar");
       alternarFraseDoResumo(frase);
@@ -60,8 +63,10 @@ test("resumo: marca pelo erro, destaque azul, cartão do trecho e feedback com o
       document.getElementById("fbTexto").value = "Faltou figura do Koplik";
       enviarFeedbackGeral("exantematicas");
       const fb = db.feedbacks[db.feedbacks.length - 1];
-      return { primeiro, koplik, acesa, marcou, frasesFicaram, verso, assunto, resumoId: fb.resumoId };
+      return { painel, contagens, primeiro, koplik, acesa, marcou, frasesFicaram, verso, assunto, resumoId: fb.resumoId };
     });
+    assert.match(r.painel, /Seu desempenho no assunto: erro em \d+% de \d+/, "o topo quantifica o erro no assunto");
+    assert.ok(r.contagens > 0, "seções com questões feitas mostram erradas/feitas");
     assert.equal(r.primeiro, "Sarampo", "o capítulo com mais erro vem primeiro");
     // o capítulo verde (exantema súbito, só acerto) vai para o fim, depois dos ainda sem resposta
     const ordem = await pagina.evaluate(() => [...document.querySelectorAll(".resumo-capitulo h2")].map(h => h.textContent));

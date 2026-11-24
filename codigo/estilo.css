@@ -1026,3 +1026,6 @@ html[data-theme="dark"]{
 .resumo-tabela th,.resumo-tabela td{border:1px solid var(--border);padding:.35rem .5rem;text-align:left;vertical-align:top}
 .resumo-tabela th{background:var(--bg)}
 .resumo-tabela td:first-child{white-space:nowrap}
+.resumo-contagem{font:.72rem/1 system-ui,sans-serif;color:var(--ink-2);margin-left:.35rem;white-space:nowrap}
+.resumo-desempenho{display:grid;gap:.35rem}
+.resumo-erros-fora{margin:.3rem 0 0 1.1rem;padding:0}
