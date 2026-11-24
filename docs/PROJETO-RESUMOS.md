@@ -341,3 +341,8 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 24/11/2026 | Resumo de osteoporose e doenças osteometabólicas (ass-orto-osteometabolicas) |
 | 24/11/2026 | Resumo de doença celíaca, má absorção e intolerância à lactose (ass-gastro-malabsorcao) |
 | 24/11/2026 | Resumo de diagnóstico pré-natal e rastreamento de aneuploidias (ass-diagnosticoprenatal) |
+| 24/11/2026 | Resumo de polifarmácia e iatrogenia no idoso (ass-geriatria-polifarmacia) |
+| 24/11/2026 | Resumo de constipação e intestino irritável (ass-gastro-constipacao) |
+| 24/11/2026 | Resumo de deficiências nutricionais e vitamínicas (ass-deficvitaminica) |
+| 24/11/2026 | Resumo de complicações anestésicas (ass-anestesio-complicacoes) |
+| 24/11/2026 | Resumo de violência sexual e aborto legal (ass-violenciasexual) |

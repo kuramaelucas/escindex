@@ -153,4 +153,9 @@
   { id: "doencas-osteometabolicas", titulo: "Osteoporose e doenças osteometabólicas", area: "Cirurgia · Ortopedia e Traumatologia", assunto: "ass-orto-osteometabolicas" },
   { id: "ma-absorcao", titulo: "Doença celíaca, má absorção e intolerância à lactose", area: "Clínica Médica · Gastroenterologia", assunto: "ass-gastro-malabsorcao" },
   { id: "diagnostico-pre-natal", titulo: "Diagnóstico pré-natal e rastreamento de aneuploidias", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-diagnosticoprenatal" },
+  { id: "polifarmacia", titulo: "Polifarmácia e iatrogenia no idoso", area: "Clínica Médica · Geriatria", assunto: "ass-geriatria-polifarmacia" },
+  { id: "constipacao-e-intestino-irritavel", titulo: "Constipação e intestino irritável", area: "Clínica Médica · Gastroenterologia", assunto: "ass-gastro-constipacao" },
+  { id: "deficiencias-nutricionais", titulo: "Deficiências nutricionais e vitamínicas", area: "Clínica Médica · Gastroenterologia", assunto: "ass-deficvitaminica" },
+  { id: "complicacoes-anestesicas", titulo: "Complicações anestésicas", area: "Cirurgia · Anestesiologia", assunto: "ass-anestesio-complicacoes" },
+  { id: "violencia-sexual", titulo: "Violência sexual e aborto legal", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-violenciasexual" },
 ];

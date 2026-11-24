@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">O que falta e o que aparece</text>
+<g font-size="13" fill="#333">
+<g text-anchor="middle">
+<rect x="20" y="48" width="230" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="135" y="72" font-weight="bold" fill="#1b5e7a">B1 (tiamina)</text><text x="135" y="96">etilista, vômitos, bariátrica</text><text x="135" y="116">confusão, ataxia, nistagmo</text><text x="135" y="136">(Wernicke); amnésia</text><text x="135" y="154">com confabulação (Korsakoff)</text>
+<rect x="265" y="48" width="230" height="120" rx="8" fill="#f6efe1" stroke="#8a6a1b"/><text x="380" y="72" font-weight="bold" fill="#8a6a1b">B3 (niacina)</text><text x="380" y="96">etilista, desnutrido</text><text x="380" y="116">dermatite fotossensível,</text><text x="380" y="136">diarreia e demência</text><text x="380" y="154">(pelagra)</text>
+<rect x="510" y="48" width="230" height="120" rx="8" fill="#fbecec" stroke="#b03a2e"/><text x="625" y="72" font-weight="bold" fill="#b03a2e">B12 (cobalamina)</text><text x="625" y="96">bypass, íleo ressecado,</text><text x="625" y="116">gastrite atrófica</text><text x="625" y="136">anemia megaloblástica +</text><text x="625" y="154">medula e cognição</text>
+<rect x="20" y="186" width="230" height="120" rx="8" fill="#eef5e6" stroke="#4d7a1b"/><text x="135" y="210" font-weight="bold" fill="#4d7a1b">C (ascórbico)</text><text x="135" y="234">idoso sem fruta e verdura</text><text x="135" y="254">gengiva sangra, dente cai,</text><text x="135" y="274">petéquia perifolicular</text><text x="135" y="292">(escorbuto: falta colágeno)</text>
+<rect x="265" y="186" width="230" height="120" rx="8" fill="#f4f4f4" stroke="#777"/><text x="380" y="210" font-weight="bold">D</text><text x="380" y="234">pouco sol, anticonvulsivante</text><text x="380" y="254">raquitismo (criança),</text><text x="380" y="274">osteomalácia (adulto);</text><text x="380" y="292">excesso: hipercalcemia</text>
+<rect x="510" y="186" width="230" height="120" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/><text x="625" y="210" font-weight="bold" fill="#1b5e7a">A</text><text x="625" y="234">má absorção de gordura</text><text x="625" y="254">(pancreatite, bypass)</text><text x="625" y="274">cegueira noturna,</text><text x="625" y="292">olho seco, infecções</text>
+</g>
+</g>
+</svg>
