@@ -154,9 +154,25 @@ Comece lendo **só** esta seção e a seção 7 (as decisões de 24/11 valem sob
 | 7 | Ligar `modoDeInicio` e `cicloNoInicio`; devolver ao guia (13) "Como começar" e "Seu tema" (histórico do git, commit da fase 2) | 01, 13 | `npm test` inteiro | — |
 | 8 | Fase 5: comparação leu × pulou — barra no Painel da Turma que expande (filtros turma/faculdade/período, gráficos SVG à mão) | 11d (ou `11f-...` se passar do limite) | teste com nuvem de mentira (modelo `atualizacoes-e-feedback.test.mjs`) | grupos pequenos: não mostrar recorte com < 5 alunos (privacidade e ruído) |
 
+### Decisão sobre uso offline (24/11/2026)
+
+O estudo **nunca bloqueia** por falta de rede (PWA offline e contas sem nuvem continuam valendo). No lugar:
+
+- **Aviso ao aluno** (só quem tem conta na nuvem): passadas **12 h** desde o último envio bem-sucedido, faixa no topo "Seus dados não sobem desde DD/MM HH:MM — conecte para salvar na nuvem". Some sozinha no próximo envio. Derivar a hora do último envio do que a sincronização (03b) já registra; se não houver, é o único campo novo aceito (local, não sincroniza).
+- **Painel da Turma:** mostra "N alunos sem enviar há mais de 12 h" ao lado dos números, para o administrador saber o quanto estão completos (carimbo `atualizado_em` das linhas, que já existe).
+- Entra como **etapa 0** (independente, pode ir primeiro): 03b/03d + 11d; teste com nuvem de mentira simulando envio antigo (relógio do Playwright).
+
+### Por que cada limitação pesa (explicação para quem retomar)
+
+- **Sem servidor:** o Supabase só guarda; quem soma os dados da turma é o navegador do administrador no Painel. Comparação depende de nuvem ligada e do que já subiu.
+- **Calcular em vez de guardar:** campo novo = migração local + coluna na nuvem + `esquema.sql` rodado de novo + risco de divergência. Derivar evita os quatro.
+- **Modos já gravados:** valores antigos (`reparar-tema`, `reparar`) existem nos aparelhos **e** voltam da nuvem; traduzir nos dois caminhos.
+- **1.400 linhas:** regra da casa conferida em teste; lógica nova em arquivo novo.
+- **Chaves desligadas:** mudar com tudo desligado, ligar no fim — o aluno nunca vê pela metade.
+
 ### Para minimizar erro
 
 - Antes de cada etapa: `npm run mapa -- <palavra>` e ler só o trecho; nunca `dados/prova-*.js`.
 - Rodar `ESC_SOB_DEMANDA=1` no teste das etapas que listam questões (3, 4, 6).
 - Cada etapa termina com `npm run publicar` + `npm run testar-mudanca`, uma linha na seção 8 e no `docs/HISTORICO.md`.
-- Ordem importa: 1→2 antes de 7 (ligar); 6 depende de 2; 8 pode correr em paralelo depois de 1.
+- Ordem importa: 0 é independente; 1→2 antes de 7 (ligar); 6 depende de 2; 8 pode correr em paralelo depois de 1.
