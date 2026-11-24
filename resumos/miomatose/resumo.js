@@ -107,6 +107,7 @@ Veja também: **Sangramento uterino anormal**, **Endometriose**, **Infertilidade
           prosa: `[[A conduta nasce do cruzamento entre sintoma, tipo e desejo reprodutivo.|q-adap22-028,q-adap23-041,q-einstein2027-058,q-adap22-029,q-einstein2023-051]]
 
 | | Assintomático | Submucoso (0–2) | Intramural/subseroso sintomático | Prole completa, falha clínica |
+|---|---|---|---|---|
 | Quer gestar | observar | histeroscopia | miomectomia laparoscópica | — |
 | Não quer gestar | observar | histeroscopia ou DIU-LNG se cavidade permite | clínico; embolização se quer manter útero | histerectomia |
 | Primeiro passo | nenhum | histerossonografia/histeroscopia | AINE, DIU-LNG, hormônio | — |`,

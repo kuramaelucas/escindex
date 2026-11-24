@@ -89,6 +89,7 @@ Veja também: **Glomerulopatias**, **Vasculites**, **Artrites**, **Síndrome ant
           prosa: `[[Cada anticorpo aponta uma doença ou um risco.|q-tp20202-033,q-tp20251-018,q-usp2024-058,q-uspsp1-069,q-tp20231-021]]
 
 | Anticorpo | Doença | O que indica |
+|---|---|---|
 | anti-Sm | LES | o mais específico |
 | anti-DNA | LES | atividade, nefrite |
 | anti-Ro | LES, Sjögren | bloqueio cardíaco fetal, lúpus subagudo |

@@ -46,7 +46,7 @@ Veja também: **Infecções e infestações da pele** (micoses superficiais e es
 - Imunopatogenia: **inalação, imunidade inata e celular**. {q-gdmicoses-028}
 - Sul e Sudeste, **homens**, atividade rural. {q-gdmicoses-036}
 - Falso: transmissão **inter-humana**. {q-gdmicoses-070}
-- Doença em país não endêmico: **reinfecção endógena**. {q-gdmicoses-072}` },
+- Doença em país não endêmico: **reativação do foco latente** (a prova chamou de "reinfecção endógena"). {q-gdmicoses-072}` },
         { id: "pcm-tratamento", titulo: "Tratamento", conferir: true, diretrizes: ["consenso-pcm"],
           questoes: ["q-gdmicoses-003","q-gdmicoses-017","q-gdmicoses-039","q-gdmicoses-053","q-gdmicoses-068","q-gdmicoses-051"],
           prosa: `[[O itraconazol é a primeira escolha nas formas leves e moderadas (cerca de 6 a 12 meses); o sulfametoxazol-trimetoprima é a alternativa barata e a opção quando o itraconazol não pode ser usado, por mais tempo. A anfotericina B fica para as formas graves, disseminadas, do sistema nervoso ou no imunodeprimido grave, até a melhora.|q-gdmicoses-068,q-gdmicoses-039,q-gdmicoses-053,q-gdmicoses-003,q-gdmicoses-051,q-gdmicoses-017]]`,
@@ -74,7 +74,7 @@ Veja também: **Infecções e infestações da pele** (micoses superficiais e es
           questoes: ["q-gdmicoses-012","q-gdmicoses-016","q-gdmicoses-018","q-gdmicoses-042","q-gdmicoses-071"],
           prosa: `[[A meningite criptocócica é subaguda, com cefaleia e pressão do líquor alta; a tinta nanquim mostra a levedura com halo (cápsula) e o antígeno criptocócico confirma. O tratamento tem indução com anfotericina B e flucitosina (o fluconazol isolado não basta na indução), seguida de consolidação e manutenção com fluconazol, e punções de alívio da pressão.|q-gdmicoses-071,q-gdmicoses-042,q-gdmicoses-016]] [[No paciente com AIDS, adenomegalia, infiltrado intersticial e meningite juntos apontam para criptococose disseminada, a infecção fúngica invasiva grave mais comum na AIDS.|q-gdmicoses-018,q-gdmicoses-012]]`,
           texto: `- Infecção fúngica invasiva mais comum na AIDS: **criptococose disseminada**. {q-gdmicoses-012}
-- *C. gattii* × *C. neoformans*: **afirmativas 2, 3 e 4**. {q-gdmicoses-016}
+- *C. neoformans*: **pombo, AIDS, meningite**; *C. gattii*: **árvores (eucalipto), imunocompetente, pulmão e SNC (criptococomas)**; ambos: tinta da China, cultura e antígeno; meningite de qualquer espécie começa com **anfotericina + flucitosina**. {q-gdmicoses-016}
 - AIDS com adenomegalia, pulmão e meningite: ***Cryptococcus neoformans***. {q-gdmicoses-018}
 - Falso: fluconazol **isolado** na indução da meningite. {q-gdmicoses-042}
 - Disseminada: **anfotericina B com flucitosina**. {q-gdmicoses-071}` },
@@ -168,6 +168,7 @@ Veja também: **Infecções e infestações da pele** (micoses superficiais e es
           prosa: `[[Cada fungo tem seu terreno, sua imagem no microscópio e sua droga.|q-gdmicoses-014,q-gdmicoses-012,q-gdmicoses-059,q-gdmicoses-030,q-gdmicoses-068,q-gdmicoses-020]]
 
 | Fungo | Terreno | Quadro | No microscópio | Droga |
+|---|---|---|---|---|
 | *Paracoccidioides* | lavrador, solo rural | pulmão e úlcera oral; juvenil linfática | levedura em roda de leme | itraconazol; sulfametoxazol-trimetoprima |
 | *Histoplasma* | caverna, morcego, ave; AIDS | pneumonia aguda; disseminada com fígado e baço | levedura pequena dentro do macrófago | itraconazol; anfotericina na grave |
 | *Cryptococcus* | pombo; AIDS | meningite subaguda | levedura com cápsula (nanquim) | anfotericina + flucitosina, depois fluconazol |

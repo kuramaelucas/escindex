@@ -99,6 +99,7 @@ Veja também: **Câncer colorretal**, **Hemorragia digestiva**, **Abdome agudo**
           prosa: `[[A tomografia escolhe a conduta.|q-iamspe2025-031,q-adap25-011,q-unifesp2025-011,q-uspsp3-102,q-fmabc2022-029]]
 
 | Tomografia | Hinchey / WSES | Conduta |
+|---|---|---|
 | Espessamento e gordura densificada | 0 / 0 | sintomáticos; antibiótico se risco |
 | Abscesso < 4–5 cm | I / 1B | antibiótico |
 | Abscesso ≥ 4–5 cm | I–II / 2A | drenagem percutânea + antibiótico |

@@ -30,7 +30,7 @@
 
 [[O mecanismo é a sequência de movimentos com que o feto se adapta à bacia: insinuação, descida, rotação interna (o occipício gira para baixo da sínfise), desprendimento por deflexão, rotação externa e desprendimento dos ombros.|q-sessp2022-079,q-unesp2022-028,q-usprp2021-052,q-sirio2023-075]] A rotação é de 45° nas anteriores, 90° nas transversas e 135° nas posteriores (ou 180° para OS, que só roda ao púbis invertendo o sentido).
 
-Veja também: **Pré-natal** (idade gestacional e vitalidade), **Sangramentos na gestação** (descolamento e rotura uterina no sangramento), **Sangramentos na gestação** (hemorragia pós-parto e atonia), **Puerpério**, **Parto pré-termo e rotura de membranas** (dono da tocólise e da rotura), **Reanimação neonatal**.`,
+Veja também: **Pré-natal** (idade gestacional e vitalidade), **Sangramentos na gestação** (descolamento, rotura uterina, hemorragia pós-parto e atonia), **Puerpério**, **Parto pré-termo e rotura de membranas** (dono da tocólise e da rotura), **Reanimação neonatal**.`,
       fragmentos: [
         { id: "mec-estatica", titulo: "Situação, apresentação, variedade e deflexões",
           figuras: [{ arquivo: "figuras/deflexoes.svg", legenda: "Esquema autoral: graus de deflexão da cabeça, ponto de referência e diâmetro que se apresenta." }],

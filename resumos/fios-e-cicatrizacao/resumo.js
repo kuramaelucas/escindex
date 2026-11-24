@@ -136,6 +136,7 @@ Veja também: **Complicações cirúrgicas** (deiscência e infecção de sítio
           prosa: `[[Absorção, estrutura e reatividade definem o uso.|q-toce-06,q-toce-10,q-fmabc2025-037,q-iamspe2023-019,q-famerp2024-026]]
 
 | Fio | Absorção | Estrutura | Uso típico |
+|---|---|---|---|
 | Categute | absorvível, animal (proteólise, reativo) | torcido | pouco usado hoje |
 | Poliglactina 910 (Vicryl) | absorvível, sintético, 3 a 4 semanas | trançado | subcutâneo, útero, cúpula vaginal |
 | Poliglecaprone (Monocryl) | absorvível, sintético, cerca de 3 semanas | monofilamentar | intradérmica, planos profundos da face |

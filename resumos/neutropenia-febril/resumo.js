@@ -155,6 +155,7 @@ Veja também: **Antibioticoterapia e resistência bacteriana** (espectro dos ant
           prosa: `[[A conduta segue o risco e a estabilidade.|q-gdneutropenia-017,q-gdneutropenia-007,q-gdneutropenia-030,q-gdneutropenia-001,q-gdneutropenia-053]]
 
 | | Baixo risco | Alto risco estável | Alto risco instável ou com foco de Gram-positivo |
+|---|---|---|---|
 | Quem | tumor sólido, neutropenia curta, bem, MASCC ≥ 21, mora perto | leucemia aguda, linfoma em tratamento intenso, neutropenia longa, comorbidade | hipotensão, cateter infectado, pele, pneumonia, MRSA |
 | Onde | casa, com retorno | internação | internação ou UTI |
 | Antibiótico | amoxicilina-clavulanato + ciprofloxacino oral | cefepima (ou piperacilina-tazobactam, carbapenêmico) | betalactâmico antipseudomonas + vancomicina |

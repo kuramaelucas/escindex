@@ -77,6 +77,7 @@ Veja também: **Infecção urinária**, **Lesão renal aguda**, **Hiperparatireo
           prosa: `[[A composição diz a causa.|q-adap26-091,q-einstein2024-016,q-didepm-017,q-adap24-025]]
 
 | Cálculo | Radiografia | Causa | Prevenção |
+|---|---|---|---|
 | Oxalato de cálcio | opaco | hipercalciúria, pouca água, sódio | água, tiazídico, pouco sódio, cálcio normal |
 | Fosfato de cálcio | opaco | acidose tubular distal, hiperparatireoidismo | citrato, tratar a causa |
 | Estruvita | opaco, coraliforme | urease (Proteus) | remover todo o cálculo, tratar infecção |

@@ -150,7 +150,7 @@ Veja também: **Doenças exantemáticas na infância** (varicela, escarlatina), 
       fragmentos: [
         { id: "par-escabiose", titulo: "Tratar a escabiose", conferir: true, diretrizes: ["ms-escabiose"],
           questoes: ["q-adap22-078","q-amrigs2020-064","q-iamspe2025-068","q-tp20212-028","q-fmabc2021-085","q-unicampdis2022-034"],
-          prosa: `[[Permetrina a 5% do pescoço para baixo, repetida em 7 dias, e todos os contactantes tratados ao mesmo tempo, com roupas lavadas; ivermectina oral é alternativa a partir de 15 kg. Abaixo de 2 meses (e em gestantes) usa-se enxofre precipitado em vaselina.|q-adap22-078,q-tp20212-028,q-iamspe2025-068,q-fmabc2021-085]] [[O prurido pode durar semanas depois da cura, por reação aos restos do ácaro: não é falha.|q-amrigs2020-064]]`,
+          prosa: `[[Permetrina a 5% do pescoço para baixo, repetida em 7 dias, e todos os contactantes tratados ao mesmo tempo, com roupas lavadas; ivermectina oral é alternativa a partir de 15 kg. Abaixo de 2 meses usa-se enxofre precipitado em vaselina; na gestante, a permetrina é segura (o enxofre também serve).|q-adap22-078,q-tp20212-028,q-iamspe2025-068,q-fmabc2021-085]] [[O prurido pode durar semanas depois da cura, por reação aos restos do ácaro: não é falha.|q-amrigs2020-064]]`,
           texto: `- Família toda com prurido noturno: **permetrina 5%**, repetir em 7 dias, tratar contactantes. {q-adap22-078}
 - Alternativa oral: **ivermectina**. {q-tp20212-028}
 - Lactente pequeno: **enxofre precipitado**. {q-iamspe2025-068,q-fmabc2021-085}

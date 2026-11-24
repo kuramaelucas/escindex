@@ -98,6 +98,7 @@ Veja também: **Hipertensão secundária**, **Hiponatremia e hipercalemia**, **H
           prosa: `[[O potássio e o rastreio separam as doenças.|q-scmsp2025-003,q-sessp2026-022,q-usprp2021-107,q-tp20251-013,q-uspsp2-014]]
 
 | | Addison | Secundária / corticoide | Cushing | Hiperaldosteronismo | Feocromocitoma |
+|---|---|---|---|---|---|
 | Potássio | alto | normal | baixo | baixo | normal |
 | Pele / sinal | escura | normal | estrias violáceas | — | crises adrenérgicas |
 | Rastreio | cortisol matinal, ACTH alto | cortisol baixo, ACTH baixo | dexametasona 1 mg | aldosterona/renina | metanefrinas |

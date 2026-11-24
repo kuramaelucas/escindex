@@ -78,6 +78,7 @@ Veja também: **Asma**, **Choque**, **Alergia alimentar** e **Acidentes por anim
           prosa: `[[O que define a conduta é haver outro sistema atingido.|q-tp20222-050,q-einstein2027-006,q-amrigs2024-018,q-adap26-097]]
 
 | | Urticária | Angioedema histaminérgico | Angioedema hereditário | Anafilaxia |
+|---|---|---|---|---|
 | Mediador | histamina | histamina | bradicinina | histamina e outros |
 | Pele | urticas < 24 h | edema profundo | edema sem urtica | urtica, angioedema |
 | Outros sistemas | não | não | laringe, intestino | respiratório, circulatório, GI |

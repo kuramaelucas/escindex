@@ -94,7 +94,7 @@ Veja também: **Climatério** (síndrome geniturinária e estrogênio vaginal), 
       id: "prolapso", titulo: "Prolapso genital",
       introducao: `[[O prolapso é a descida da parede vaginal anterior (bexiga), do ápice (útero ou cúpula) ou da parede posterior (reto) quando o levantador e as fáscias cedem; parto vaginal, multiparidade, obesidade, constipação e tosse crônica (DPOC) aumentam a pressão ou lesam o suporte.|q-iamspe2021-049,q-fmabc2025-061,q-sirio2023-065]]
 
-[[O POP-Q mede pontos em relação ao hímen (zero): Aa e Ba na parede anterior, C no colo ou cúpula, D no fundo de saco posterior, Ap e Bp na posterior. O estádio é dado pelo ponto mais baixo: I até 1 cm acima do hímen; II entre 1 cm acima e 1 cm abaixo; III mais de 1 cm abaixo, sem eversão total; IV eversão completa.|q-unesp2026-036,q-uspsp2-027,q-fmabc2024-067,q-sirio2022-078,q-usprp2023-037]]
+[[O POP-Q mede pontos em relação ao hímen (zero): Aa e Ba na parede anterior, C no colo ou cúpula, D no fundo de saco posterior, Ap e Bp na posterior. O estádio é dado pelo ponto mais baixo: I quando ele fica **mais de 1 cm acima** do hímen (abaixo de −1); II entre 1 cm acima e 1 cm abaixo (−1 a +1); III mais de 1 cm abaixo, sem eversão total; IV eversão completa.|q-unesp2026-036,q-uspsp2-027,q-fmabc2024-067,q-sirio2022-078,q-usprp2023-037]]
 
 [[Só se trata o prolapso que incomoda: pessário para quem não quer ou não pode operar; cirurgia que corrige o compartimento que caiu (colporrafia anterior ou posterior, histerectomia vaginal, fixação do ápice ao sacro ou ao sacroespinhal); colpocleise para a idosa sem vida sexual e com alto risco.|q-sirio2024-064,q-adap22-026,q-einstein2022-054,q-sessp2023-049,q-amrigs2024-051]]`,
       fragmentos: [

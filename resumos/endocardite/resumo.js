@@ -184,6 +184,7 @@ Veja também: **Antibioticoterapia e resistência bacteriana** (MRSA, enterococo
           prosa: `[[O tempo de doença e o terreno apontam o agente.|q-gdendocardite-013,q-gdendocardite-035,q-gdendocardite-042,q-gdendocardite-039,q-gdendocardite-046,q-gdendocardite-059]]
 
 | Forma | Terreno | Agente | Curso | Valva |
+|---|---|---|---|---|
 | Aguda | qualquer valva, pele, cateter | *S. aureus* | dias, toxemia, destruição | mitral ou aórtica |
 | Subaguda | valva lesada, dente | estreptococo viridans | semanas, febre baixa, emagrecimento | mitral ou aórtica |
 | Usuário de drogas | agulha | *S. aureus* | aguda, êmbolos pulmonares | tricúspide |

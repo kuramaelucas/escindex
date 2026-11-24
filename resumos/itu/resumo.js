@@ -156,6 +156,7 @@ Veja também: **Sepse** (versão completa da sepse urinária), **Antibioticotera
           prosa: `[[Sintoma, febre e terreno decidem a conduta.|q-inf-08,q-inf-07,q-adap24-007,q-adap21-054,q-sirio2026-049]]
 
 | | Bacteriúria assintomática | Cistite não complicada | Pielonefrite | Gestante | Criança febril |
+|---|---|---|---|---|---|
 | Quadro | urocultura positiva sem sintomas | disúria, polaciúria, sem febre | febre, dor lombar, Giordano | qualquer bacteriúria | febre sem foco |
 | Exames | não rastrear (exceto gestante) | nenhum | urina 1, urocultura; imagem se grave | urocultura de rotina e de controle | urina por sonda e urocultura; US |
 | Tratamento | não tratar | nitrofurantoína ou fosfomicina | quinolona ou cefalosporina, oral se estável | betalactâmico, fosfomicina; sem quinolona | cefalosporina oral; venosa no lactente jovem ou toxêmico |`,

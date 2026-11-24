@@ -58,7 +58,7 @@ Veja também: **Prevenção** (rastreamento na atenção primária), **Obstruç�
 - Colonoscopia **diagnostica e trata**. {q-einstein2025-028}
 - Pai com câncer aos 65: **sangue oculto imunológico anual** é válido. {q-einstein2026-004}
 - Dois adenomas pediculados de 1,2 e 1,5 cm: **colonoscopia em 3 anos**. {q-sessp2023-002}
-- Três adenomas tubulares de baixo grau: **3 anos** (a prova). {q-usprp2027-091}
+- Três adenomas tubulares pequenos de baixo grau: **3 a 5 anos** (uma prova marcou 3). {q-usprp2027-091}
 - pT1 favorável ressecado: **vigilância colonoscópica**. {q-011}` },
       ],
     },
@@ -160,6 +160,7 @@ Veja também: **Prevenção** (rastreamento na atenção primária), **Obstruç�
           prosa: `[[O lado decide o sintoma, o estadiamento e a cirurgia.|q-unifesp2024-012,q-sessp2026-030,q-scmsp2021-024,q-einstein2024-028,q-adap26-017]]
 
 | | Cólon direito | Cólon esquerdo e sigmoide | Reto |
+|---|---|---|---|
 | Quadro | anemia ferropriva, massa, perda de peso | mudança do hábito, fezes afiladas, sangue, obstrução | sangue vivo, tenesmo |
 | Estadiamento | colonoscopia, TC, CEA | colonoscopia, TC, CEA | + RM de pelve |
 | Cirurgia | colectomia direita | retossigmoidectomia ou colectomia esquerda | excisão total do mesorreto |

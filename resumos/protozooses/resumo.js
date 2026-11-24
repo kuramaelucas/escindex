@@ -59,7 +59,7 @@ Veja também: **Arboviroses** (outras febres agudas de área endêmica), **Paras
 - *Falciparum* não grave: **combinação com artemisinina**. {q-gdmalaria-024}` },
         { id: "mal-grave", titulo: "Malária grave", conferir: true, diretrizes: ["ms-malaria"],
           questoes: ["q-gdmalaria-003","q-gdmalaria-006","q-gdmalaria-008","q-gdmalaria-009","q-gdmalaria-021","q-gdmalaria-023","q-gdmalaria-026"],
-          prosa: `[[São sinais de gravidade: rebaixamento da consciência ou convulsão (malária cerebral), insuficiência renal, icterícia, anemia grave, hipoglicemia, choque, edema pulmonar ou SDRA, sangramento e parasitemia alta. Eles existem também no *vivax*, que então é tratado como grave.|q-gdmalaria-008,q-gdmalaria-006,q-gdmalaria-003]] [[A malária grave interna e recebe artesunato venoso, que derruba a parasitemia mais rápido que o quinino e reduz a mortalidade; a clindamicina é a associada.|q-gdmalaria-021,q-gdmalaria-003,q-gdmalaria-026]] [[O quinino estimula a secreção de insulina, e o parasita consome glicose: o paciente que piora em coma durante o quinino tem de ter a glicemia medida.|q-gdmalaria-023]] [[Heparina, corticoide e manitol não ajudam; o choque recebe volume com cuidado (o pulmão encharca fácil) e a SDRA, ventilação com PEEP.|q-gdmalaria-026]]`,
+          prosa: `[[São sinais de gravidade: rebaixamento da consciência ou convulsão (malária cerebral), insuficiência renal, icterícia, anemia grave, hipoglicemia, choque, edema pulmonar ou SDRA, sangramento e parasitemia alta. Eles existem também no *vivax*, que então é tratado como grave.|q-gdmalaria-008,q-gdmalaria-006,q-gdmalaria-003]] [[A malária grave interna e recebe artesunato venoso, que derruba a parasitemia mais rápido que o quinino e reduz a mortalidade; depois da melhora completa-se com uma combinação oral com artemisinina. A clindamicina acompanha o quinino ou o artesunato em situações específicas (como a gestante no primeiro trimestre).|q-gdmalaria-021,q-gdmalaria-003,q-gdmalaria-026]] [[O quinino estimula a secreção de insulina, e o parasita consome glicose: o paciente que piora em coma durante o quinino tem de ter a glicemia medida.|q-gdmalaria-023]] [[Heparina, corticoide e manitol não ajudam; o choque recebe volume com cuidado (o pulmão encharca fácil) e a SDRA, ventilação com PEEP.|q-gdmalaria-026]]`,
           texto: `- *Vivax* com icterícia, hipotensão e creatinina 2,1: **internar, artesunato e clindamicina**. {q-gdmalaria-003}
 - Não é disfunção da malária grave: **infecção bacteriana secundária** (entre as opções). {q-gdmalaria-006}
 - Critério de gravidade: **insuficiência renal**. {q-gdmalaria-008}
@@ -204,6 +204,7 @@ Veja também: **Arboviroses** (outras febres agudas de área endêmica), **Paras
           prosa: `[[A pergunta é sempre: de onde vem, há quanto tempo tem febre e o que mostra o sangue.|q-gdhepatoesplenomegalias-017,q-gdhepatoesplenomegalias-027,q-gdhepatoesplenomegalias-037,q-tp20231-120]]
 
 | | Malária | Leishmaniose visceral | Chagas aguda |
+|---|---|---|---|
 | Vetor ou via | *Anopheles* (fêmea) | *Lutzomyia* (cão reservatório) | triatomíneo; oral (açaí), transfusão |
 | Onde | Amazônia | cidades e Nordeste, em expansão | surtos na Amazônia (oral) |
 | Febre | em crises (48 ou 72 horas), dias | irregular, semanas a meses | contínua, semanas |

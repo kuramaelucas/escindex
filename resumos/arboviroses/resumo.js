@@ -59,17 +59,17 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
 - Hemoconcentração (**hematócrito alto**) é a marca laboratorial do extravasamento. {q-gdarboviroses-071}
 - Extravasamento: **hematócrito, albumina e ultrassonografia**. {q-gdarboviroses-011}
 - Plaquetas de 15.000, estável e sem sangramento: **sem transfusão** (só com sangramento importante). {q-gdarboviroses-094}
-- Febre hemorrágica: plaquetas abaixo de 100.000 e alargamento do tempo de protrombina; leucopenia antecede. {q-amrigs2025-015}
-- Dengue grave se define pelo **aumento de 20 % do hematócrito**. {q-famema2023-027}
+- Febre hemorrágica (classificação antiga): plaquetas abaixo de 100.000 e alargamento do tempo de protrombina; leucopenia antecede. {q-amrigs2025-015}
+- Hematócrito que sobe **20 % ou mais** sobre o basal indica **extravasamento** (critério da antiga febre hemorrágica). {q-famema2023-027}
 - Insuficiência hepática aguda: **coagulopatia que a vitamina K não corrige e RNI acima de 2**, sem encefalopatia. {q-fmabc2022-053}
 - Criança com 5 dias de febre, exantema que já resolveu, dor abdominal depois da defervescência: **plaquetas de 70.000 com hematócrito de 48 %**. {q-usp2025-067}
 - A prova do laço positiva é **frequente na dengue grave**, não específica, e serve de **alerta**. {q-fmabc2023-008}
 - Prova do laço: **20 ou mais petéquias em 2,5 cm** no adulto; faz-se sem sangramento espontâneo. {q-gdarboviroses-006,q-gdarboviroses-072,q-amrigs2022-094}
 - Fazer em todo suspeito sem sangramento; mais de 20 petéquias em adultos e mais de 10 em crianças. {q-gdarboviroses-007,q-gdarboviroses-091}
 - Errado: o manguito vai até a **pressão média** (não a sistólica), por 5 min no adulto e 3 na criança. {q-gdarboviroses-080}
-- Sequência **F, V, V, F**: IgM só do 6º dia; DENV-5 existe mas não circula aqui; imunidade ao sorotipo duradoura; exantema em cerca de metade. {q-gdarboviroses-098}
-- Sequência **F, F, V, F, V**: sintomas respiratórios raros, IgM só em graves, grupo C com leito de UTI, choque é a causa da maioria dos óbitos. {q-gdarboviroses-102}
-- Criança de 8 anos com 9 dias de febre, plaquetas de 68.000, hematócrito de 46 % e albumina de 2,9: **extravasamento** (V, F, V, V, F, F). {q-gdarboviroses-054}
+- IgM só **a partir do 6º dia** (não em 24 h); DENV-5 foi descrito na Malásia, mas **não circula** no Brasil; imunidade ao sorotipo **duradoura**. {q-gdarboviroses-098}
+- Sintomas respiratórios são **pouco frequentes**; em epidemia, IgM **só em graves, óbitos e grupos de risco**; grupo C interna; quem mais mata é o **choque**, não o sangramento; derrame **em regressão** permite alta. {q-gdarboviroses-102}
+- Criança de 8 anos com 9 dias de febre, plaquetas de 68.000, hematócrito de 46 % e albumina de 2,9: **extravasamento**. {q-gdarboviroses-054}
 - Criança com icterícia e TGP de 280, NS1 negativo: o item "descartar dengue" é **errado**. {q-gdarboviroses-097}` },
         { id: "dengue-lab", titulo: "Diagnóstico laboratorial: NS1, RT-PCR e sorologia", conferir: true, diretrizes: ["dengue-manejo-ms"],
           questoes: ["q-simepm89-076","q-amrigs2024-002","q-einstein2027-014","q-tp20232-025","q-tp20261-003","q-tp20241-019","q-tp20222-029","q-gdarboviroses-025","q-gdarboviroses-028","q-gdarboviroses-075","q-gdarboviroses-105","q-gdarboviroses-108","q-gdarboviroses-109","q-gdarboviroses-089"],
@@ -92,7 +92,7 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
           prosa: `[[Os **sinais de alarme** mostram **extravasamento de plasma ou sangramento**: **dor abdominal intensa e contínua** (do hipocôndrio direito, pela hepatomegalia), **vômitos persistentes, sangramento de mucosa, letargia ou irritabilidade, hipotensão postural, hepatomegalia dolorosa de 2 cm ou mais, derrame cavitário, redução da diurese e aumento do hematócrito com queda das plaquetas**; **queda** do hematócrito não é alarme.|q-inf-22,q-amrigs2023-011,q-gdarboviroses-045,q-gdarboviroses-069,q-gdarboviroses-038,q-gdarboviroses-041,q-gdarboviroses-001,q-gdarboviroses-005,q-gdarboviroses-010,q-fmabc2025-056]] [[Pela classificação de risco, o **grupo A** não tem sangramento nem sinais de alarme nem condição especial; o **grupo B** tem **sangramento de pele espontâneo (petéquias) ou induzido (prova do laço positiva), condição especial ou comorbidade** (por exemplo, menor de 2 anos, gestante, idoso, diabetes), sem sinais de alarme; o **grupo C** tem sinais de alarme e o **D**, choque; a prova do laço sozinha **não** define o grupo C.|q-famema2025-009,q-famema2025-033,q-gdarboviroses-008,q-usprp2024-071]]`,
           texto: `- Sinais de alarme: dor abdominal intensa e contínua, vômitos persistentes, sangramento de mucosa, letargia, hepatomegalia dolorosa, **hematócrito subindo com plaquetas caindo**. {q-inf-22}
 - Exceto: **queda do hematócrito** e dor abdominal em cólica não são alarme (o alarme é o aumento). {q-amrigs2023-011}
-- Grupo B: **2 e sangramentos espontâneos sem comprometimento hemodinâmico**. {q-famema2025-009}
+- Grupo B: **sangramento de pele espontâneo ou induzido, sem alarme nem choque**. {q-famema2025-009}
 - Criança com sangramento espontâneo de pele, sem alarme: **grupo B**, hemograma obrigatório. {q-famema2025-033}
 - Grupo B inclui **petéquias**; prova do laço negativa não. {q-gdarboviroses-008}
 - Adulto sem comorbidade com **derrame pleural**: internar e hidratar por via venosa. {q-gdarboviroses-038}
@@ -131,7 +131,7 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
 - Criança com febre, exantema pruriginoso, dor abdominal e vômitos: **internação, notificação, NS1 e hidratação venosa**. {q-fmabc2024-060}
 - Febre 6 dias, cefaleia, petéquias e prova do laço positiva: **grupo C, internação e hidratação venosa**. {q-fmabc2023-044}
 - Jovem de 25 anos com tontura postural: **grupo C, reposição na UBS e transferência**. {q-einstein2025-061}
-- Criança de 2 anos com petéquias, epistaxe e sonolência: afirmativas I e II (alarme e hidratação). {q-amrigs2024-071}
+- Criança de 2 anos com petéquias, epistaxe e sonolência: **sinal de alarme; hidratação venosa**. {q-amrigs2024-071}
 - Criança de 5 anos com prova do laço positiva, dor abdominal e fígado palpável: **leito de internação**. {q-amrigs2023-076}
 - Diabética com dor abdominal forte: **notificar, internar por 48 h, hidratação venosa e exames**. {q-gdarboviroses-018}
 - Mulher de 17 anos, caso semelhante no pai: **dengue com alerta; internar e hidratar**. {q-gdarboviroses-020}
@@ -164,7 +164,7 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
 - Poliartralgia migratória há 10 dias após viagem: **ceftriaxona** (a prova). {q-unifesp2025-039}
 - Letalidade **baixa**; óbitos em idosos, comórbidos e recém-nascidos. {q-usp2025-119}
 - Caso suspeito: **febre súbita acima de 38,5 °C e artralgia ou artrite intensa**, em área de transmissão. {q-tp20251-108,q-tp20261-020}
-- Todas as afirmativas: alphavírus, dor articular forte, pode cronificar. {q-gdarboviroses-003}
+- Chikungunya: **alphavírus**, dor articular forte, **pode cronificar**. {q-gdarboviroses-003}
 - Adolescente com exantema e dor intensa em mãos e pés: **chikungunya**. {q-gdarboviroses-012}
 - Transmitida por *Aedes aegypti* e *albopictus*; circulação no Brasil desde 2014. {q-gdarboviroses-017}
 - Acampamento, edema de mãos e pés: **chikungunya e evolução para cronicidade**. {q-gdarboviroses-031}
@@ -203,7 +203,7 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
 - Gestante de 20 semanas com febre alta, artralgia intensa e olhos vermelhos: **chikungunya**. {q-gdarboviroses-062}
 - Febre baixa, exantema craniocaudal pruriginoso, artralgia com edema: **Zika vírus**. {q-gdarboviroses-070}
 - Não transmite: **beijo**. {q-gdarboviroses-077}
-- Apenas a afirmativa III: associação com **Guillain-Barré**; Aedes não é o único vetor e não há vacina. {q-gdarboviroses-081}
+- Zika: associação com **Guillain-Barré**; *Aedes* não é a única via (sexual, vertical) e **não há vacina**. {q-gdarboviroses-081}
 - A infecção materna **não contraindica o aleitamento**. {q-gdarboviroses-082}
 - Gestante com febre baixa de 37,5 °C, exantema pruriginoso e conjuntivite não purulenta: **Zika**. {q-gdarboviroses-087}
 - Exantema, febre, hiperemia, poliartralgia e edema: **notificar** (compulsória). {q-gdarboviroses-088}
@@ -218,7 +218,7 @@ Veja também: **Exantemáticas** (diagnóstico diferencial), **Vigilância em sa
         { id: "arbo-diferencial", titulo: "Diferencial entre dengue, chikungunya e Zika", conferir: true, diretrizes: ["dengue-manejo-ms","chik-manejo-ms","zika-ms"],
           questoes: ["q-gdarboviroses-015","q-gdarboviroses-021","q-gdarboviroses-030","q-gdarboviroses-032","q-gdarboviroses-066","q-simepm89-083"],
           prosa: `[[O **exantema** é frequente nas três; a **febre** da dengue é mais alta que a da Zika, e o exantema da dengue é **mais tardio** (a partir do 4º dia), enquanto o da Zika é precoce e pruriginoso; a **plaquetopenia e a hemoconcentração** são mais frequentes e intensas na **dengue**; **mialgia** predomina na dengue e **artralgia** na chikungunya; e **conjuntivite com exantema pruriginoso** é o que caracteriza a Zika.|q-gdarboviroses-021,q-gdarboviroses-032,q-gdarboviroses-030,q-gdarboviroses-066,q-simepm89-083,q-gdarboviroses-015]]`,
-          texto: `- Síndromes: exantemática febril, choque, hemorrágica febril e artrite têm causas distintas (1-3-2-4). {q-gdarboviroses-015}
+          texto: `- Síndromes exantemática febril, de choque, hemorrágica febril e de artrite têm **agentes distintos**. {q-gdarboviroses-015}
 - O **exantema** é de alta prevalência nas arboviroses. {q-gdarboviroses-021}
 - **Plaquetopenia** é mais frequente na dengue. {q-gdarboviroses-030}
 - Febre mais alta e exantema mais tardio na **dengue** que na Zika. {q-gdarboviroses-032}

@@ -125,6 +125,7 @@ Veja também: **Demência e delirium** (pseudodemência no idoso), **Transtornos
           prosa: `[[O polo de cima decide o diagnóstico e o remédio.|q-tp20241-013,q-uspsp2-023,q-amrigs2020-100,q-adap21-018,q-amrigs2020-017]]
 
 | | Depressão recorrente | Bipolar I | Bipolar II | Ciclotimia |
+|---|---|---|---|---|
 | Polo de cima | nenhum | mania (≥ 1 semana ou internação) | hipomania | hipomanias leves |
 | Polo de baixo | episódios depressivos | comum, não obrigatório | depressões maiores | depressivos leves, ≥ 2 anos |
 | Tratamento | ISRS | estabilizador ± antipsicótico; sem antidepressivo isolado | estabilizador, quetiapina | estabilizador, psicoterapia |`,

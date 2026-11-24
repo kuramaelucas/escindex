@@ -40,17 +40,17 @@ Veja também: **Infecções e infestações da pele** (escabiose, tinea), **Glom
 - Piodermites primárias: **S. pyogenes e S. aureus**. {q-gdparasitoses-174,q-gdpiodermites-073}
 - **Prurido noturno por 30 dias** e lesões bolhosas: **escabiose com impetigo bolhoso**. {q-gdparasitoses-175,q-gdpiodermites-074}
 - A toxina esfoliativa atua sobre a **desmogleína 1**. {q-gdparasitoses-182,q-gdpiodermites-081}
-- A principal infecção de pele de lactentes e crianças pequenas: **impetigo bolhoso**. {q-gdparasitoses-191,q-gdpiodermites-089}` },
+- A principal infecção de pele de lactentes e crianças pequenas: **impetigo** (a prova marcou o bolhoso, que predomina no lactente pequeno; no todo, o não bolhoso é mais comum). {q-gdparasitoses-191,q-gdpiodermites-089}` },
         { id: "impetigo-clinica-2", titulo: "Impetigo bolhoso e não bolhoso, ectima: quadro e agentes: parte 2", conferir: true, diretrizes: ["sbp-dermato"],
           questoes: ["q-gdparasitoses-146","q-gdpiodermites-059","q-gdparasitoses-192","q-gdpiodermites-090","q-gdparasitoses-193","q-gdpiodermites-091","q-gdparasitoses-195","q-gdpiodermites-092","q-gdparasitoses-198","q-gdpiodermites-095","q-gdparasitoses-147","q-gdpiodermites-060","q-gdparasitoses-175","q-gdpiodermites-074","q-sirio2022-060","q-gdpiodermites-004","q-gdpiodermites-005","q-gdpiodermites-006","q-gdpiodermites-009","q-gdpiodermites-010","q-gdpiodermites-011","q-gdpiodermites-021","q-gdpiodermites-023","q-gdpiodermites-098","q-gdparasitoses-189","q-gdpiodermites-087"],
           prosa: `[[O **ectima** começa como vesícula ou pústula com base eritematosa que **erode e forma úlcera rasa com crosta e margem endurecida**, causada pelo **estreptococo beta-hemolítico do grupo A**; o impetigo pode aparecer em **atópico** (*S. aureus*), em **recém-nascidos** (bolhas e colarete) e junto de **escabiose** (impetigo bolhoso secundário ao prurido); e a **criança que se arranha** após o contato com outra desenvolve lesões não dolorosas perioral e perinasais.|q-gdparasitoses-147,q-gdpiodermites-060,q-gdpiodermites-010,q-gdparasitoses-175,q-gdpiodermites-074,q-gdparasitoses-146,q-gdpiodermites-059,q-gdpiodermites-004,q-gdpiodermites-005,q-gdpiodermites-006]]`,
-          texto: `- Crostoso: crostas melicéricas; bolhoso: bolhas; ectima: úlcera (V, F, V, F). {q-gdparasitoses-192,q-gdpiodermites-090}
-- Erisipela, foliculite, impetigo, ectima, sífilis primária (5-2-1-4-3). {q-gdparasitoses-193,q-gdpiodermites-091}
+          texto: `- Profundidade: impetigo (crostoso ou bolhoso) é **superficial**; ectima atinge a **derme**; celulite é **profunda**. {q-gdparasitoses-192,q-gdpiodermites-090}
+- Cancro duro **não é piodermite**; foliculite é quase sempre **estafilocócica**; erisipela dá **febre alta e sintomas gerais**; ectima tem **úlcera** como lesão elementar; impetigo estreptocócico pode dar **glomerulonefrite**. {q-gdparasitoses-193,q-gdpiodermites-091}
 - Crostas melicéricas perioral e perianal com linfonodomegalia cervical: **impetigo**. {q-gdparasitoses-195,q-gdpiodermites-092}
 - Criança de 4 anos com vesicopústulas e erosões crostosas perinasais, no mento e na fronte: **impetigo**. {q-gdpiodermites-098}
 - Menino com bolhas purulentas e crostas melicéricas por toda a face: **impetigo bolhoso estafilocócico**. {q-gdparasitoses-198,q-gdpiodermites-095,q-gdpiodermites-023}
 - Vesículas e bolhas de líquido amarelo, pústulas, lesão úmida e que não dói: **impetigo bolhoso**. {q-sirio2022-060}
-- Ectima, impetigo e erisipela pela descrição (3-1-2). {q-gdparasitoses-189,q-gdpiodermites-087}
+- Úlcera rasa com crosta e margem violácea elevada: **ectima**; vesículas e pústulas que viram crosta melicérica: **impetigo**; placa endurada, brilhante, de bordas nítidas: **erisipela**. {q-gdparasitoses-189,q-gdpiodermites-087}
 - Recém-nascido com lesões em nádegas de centro úmido e colarete e bolha flácida: **impetigo bolhoso**. {q-gdpiodermites-006}
 - Impetigo é infecção bacteriana superficial; lesão primária é a pústula que forma crosta melicérica. {q-gdpiodermites-009}
 - Úlcera com bordas elevadas e crosta que aprofundou: **ectima**. {q-gdpiodermites-010}
@@ -92,10 +92,10 @@ Veja também: **Infecções e infestações da pele** (escabiose, tinea), **Glom
 - A erisipela é muito comum e causada pelo **estreptococo beta-hemolítico do grupo A**. {q-gdparasitoses-185,q-gdpiodermites-083,q-gdpiodermites-013}` },
         { id: "erisipela-diagnostico-2", titulo: "Reconhecer erisipela e celulite: parte 2", conferir: true, diretrizes: ["idsa-pele"],
           questoes: ["q-uspsp1-007","q-tp20202-026","q-gdpiodermites-083","q-gdparasitoses-190","q-gdpiodermites-088","q-gdparasitoses-197","q-gdpiodermites-094","q-gdparasitoses-134","q-gdpiodermites-053","q-gdparasitoses-166","q-gdpiodermites-066","q-gdpiodermites-024","q-gdpiodermites-026","q-gdpiodermites-053","q-gdpiodermites-055","q-gdpiodermites-083","q-gdpiodermites-088","q-gdpiodermites-094","q-gdpiodermites-031","q-gdpiodermites-065","q-gdsepse-085"],
-          prosa: `[[A **imagem** mostra a erisipela como placa de perna, e a celulite, a **dermatite herpética e o impetigo** têm aspectos próprios (3-4-2 na prova); o **sinal de gravidade em criança com perna edemaciada, bolhas e más condições de higiene** inclui suspeitar de **maus-tratos** e acionar o Conselho Tutelar.|q-gdparasitoses-134,q-gdpiodermites-053,q-gdpiodermites-053,q-gdparasitoses-166,q-gdpiodermites-066,q-uspsp1-007,q-tp20202-026,q-gdpiodermites-088,q-gdpiodermites-094,q-gdpiodermites-083]]`,
+          prosa: `[[A **imagem** mostra a erisipela como placa de perna, e a celulite, a **dermatite herpética e o impetigo** têm aspectos próprios (eritema difuso, vesículas agrupadas, crostas melicéricas); o **sinal de gravidade em criança com perna edemaciada, bolhas e más condições de higiene** inclui suspeitar de **maus-tratos** e acionar o Conselho Tutelar.|q-gdparasitoses-134,q-gdpiodermites-053,q-gdpiodermites-053,q-gdparasitoses-166,q-gdpiodermites-066,q-uspsp1-007,q-tp20202-026,q-gdpiodermites-088,q-gdpiodermites-094,q-gdpiodermites-083]]`,
           texto: `- Obesa diabética com dor, calor e eritema na perna: **erisipela**. {q-gdparasitoses-190,q-gdpiodermites-088}
 - Paciente com **tinea pedis** tem fator de risco para a dermatose bacteriana (afirmar que não tem é o erro). {q-gdparasitoses-197,q-gdpiodermites-094}
-- Imagens: celulite, herpes simples e impetigo (3-4-2). {q-gdparasitoses-134,q-gdpiodermites-053}
+- Nas imagens: eritema difuso sem borda = **celulite**; vesículas agrupadas = **herpes simples**; crostas melicéricas = **impetigo**. {q-gdparasitoses-134,q-gdpiodermites-053}
 - Criança com perna edemaciada, bolhas e más condições de higiene: **erisipela; suspeita de maus-tratos, internação e Conselho Tutelar**. {q-gdparasitoses-166,q-gdpiodermites-066}
 - Área eritematosa, edemaciada, rugosa, quente, dolorosa e delimitada: **erisipela**. {q-gdpiodermites-024}
 - O diagnóstico da celulite é **eminentemente clínico**. {q-gdpiodermites-026}
@@ -126,7 +126,7 @@ Veja também: **Infecções e infestações da pele** (escabiose, tinea), **Glom
 - Eritema em casca de laranja, febre alta, dor: **oxacilina**. {q-gdparasitoses-178,q-gdpiodermites-077}
 - Celulite leve ou moderada por **CA-MRSA** em imunocompetente: **sulfametoxazol-trimetoprim**. {q-gdparasitoses-184,q-gdpiodermites-082}
 - Homem de 65 anos com eritema delimitado e linfadenopatia: **erisipela; cefalexina e acompanhamento**. {q-gdpiodermites-003}
-- Diabético com placa dolorosa de bordas nítidas: assertivas III e IV corretas. {q-gdpiodermites-007}
+- Erisipela: o edema pode **piorar nas primeiras 24–48 h** de tratamento sem ser falha, e a pele **descama em 5 a 10 dias**. {q-gdpiodermites-007}
 - Trauma contuso com eritema extenso sem delimitação: **celulite; *S. aureus***. {q-gdpiodermites-008}
 - Mulher de 57 anos obesa com placa bem delimitada: **estreptococo; tratamento ambulatorial com cefalosporina de 1ª geração ou penicilina**. {q-gdpiodermites-015}
 - Jovem sem comorbidade: **clindamicina ou macrolídeo em alérgico à penicilina**. {q-gdpiodermites-016}

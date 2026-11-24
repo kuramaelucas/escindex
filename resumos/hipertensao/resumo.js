@@ -116,7 +116,7 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
         { id: "res-resistente", titulo: "Hipertensão resistente", conferir: false, diretrizes: ["sbc-has"],
           figuras: [{ arquivo: "figuras/resistente.svg", legenda: "Esquema autoral: os passos diante da pressão que não controla com três drogas." }],
           questoes: ["q-unifesp2023-012","q-uspsp3-086","q-usp2024-057","q-famema2022-038","q-famerp2024-068","q-famerp2022-059","q-usprp2024-007","q-sirio2025-014","q-unesp2022-053","q-fmabc2025-003","q-einstein2025-007"],
-          prosa: `A dose inicial de espironolactona é 25 mg; um gabarito usa 50 mg. Se a espironolactona não basta (hipertensão refratária), entram betabloqueador, clonidina ou vasodilatador, e investigam-se causas secundárias.`,
+          prosa: `A dose inicial de espironolactona é 25 mg (a divergência com os 50 mg de uma prova está nas armadilhas). Se a espironolactona não basta (hipertensão refratária), entram betabloqueador, clonidina ou vasodilatador, e investigam-se causas secundárias.`,
           texto: `- Três classes em dose plena sem controle: **associar espironolactona 25 mg**. {q-unifesp2023-012,q-uspsp3-086,q-usp2024-057,q-famema2022-038,q-famerp2022-059,q-usprp2024-007,q-sirio2025-014}
 - Piora após anos de controle, com quatro drogas: **resistente, investigar secundária**. {q-unesp2022-053,q-fmabc2025-003}
 - Refratária com cinco drogas: investigar secundária e **associar clonidina**. {q-einstein2025-007}` },

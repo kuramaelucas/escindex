@@ -95,6 +95,7 @@ Veja também: **Bioética**, **Dor e analgesia**, **Demência**, **Oncologia** e
           prosa: `[[Cada sintoma tem um tratamento de primeira linha.|q-adap22-055,q-unesp2024-049,q-adap26-094,q-einstein2024-030,q-usprp2027-040]]
 
 | Sintoma | Primeira linha | Lembrete |
+|---|---|---|
 | Dor nociceptiva intensa | morfina titulada + resgate | laxante desde o início |
 | Dor neuropática | tricíclico, gabapentinoide | ± opioide |
 | Dispneia refratária | morfina em baixa dose | ventilador no rosto, posição |

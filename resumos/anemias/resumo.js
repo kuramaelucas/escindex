@@ -108,7 +108,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
       id: "hemoliticas", titulo: "Anemias hemolíticas",
       introducao: `[[Hemólise é anemia com reticulócitos altos, bilirrubina indireta e DHL elevados e haptoglobina consumida; o VCM sobe um pouco pelos reticulócitos.|q-amrigs2024-086,q-scmsp2025-006,q-usprp2024-049]] [[O Coombs direto separa a autoimune (anticorpo IgG na hemácia, reação tipo II, esferócitos) das outras; drogas como a metildopa podem causá-la.|q-usprp2024-049,q-unesp2023-049,q-tp20231-033,q-unicampdis2022-009]]
 
-[[Na deficiência de G6PD, ligada ao X, a hemácia não resiste a oxidantes (infecções, fava, primaquina, sulfas): corpúsculos de Heinz e células mordidas, Coombs negativo; por isso a malária, cujo tratamento usa primaquina, é exposição a evitar.|q-adap24-053,q-sessp2023-023,q-scmsp2026-049]] [[A talassemia faz hemácias pequenas com ferro normal e número de hemácias alto; a eletroforese mostra HbA2 elevada no traço beta.|q-adap21-025,q-unifesp2024-089,q-unifesp2026-087,q-usprp2024-002]]`,
+[[Na deficiência de G6PD, ligada ao X, a hemácia não resiste a oxidantes (infecções, fava, primaquina, sulfas): corpúsculos de Heinz e células mordidas, Coombs negativo; por isso se pesquisa a G6PD antes de dar **primaquina** (que cura a malária vivax) ou dapsona, e se evitam oxidantes.|q-adap24-053,q-sessp2023-023,q-scmsp2026-049]] [[A talassemia faz hemácias pequenas com ferro normal e número de hemácias alto; a eletroforese mostra HbA2 elevada no traço beta.|q-adap21-025,q-unifesp2024-089,q-unifesp2026-087,q-usprp2024-002]]`,
       fragmentos: [
         { id: "hem-tipos", titulo: "Autoimune, G6PD, talassemia e microangiopática", conferir: true,
           questoes: ["q-amrigs2024-086","q-scmsp2025-006","q-usprp2024-049","q-unesp2023-049","q-tp20231-033","q-unicampdis2022-009","q-adap24-053","q-sessp2023-023","q-scmsp2026-049","q-adap21-025","q-unifesp2024-089","q-unifesp2026-087","q-usprp2024-002","q-usprp2021-025"],
@@ -119,7 +119,7 @@ Veja também: **Puericultura** e **Prematuridade** (onde a profilaxia de ferro a
 - Autoimune: **anticorpos antieritrócitos (tipo II)**. {q-tp20231-033}
 - Coombs + após troca de anti-hipertensivo: **hemólise por droga** (metildopa). {q-unicampdis2022-009}
 - Heinz, células mordidas, tio afetado: **G6PD**. {q-adap24-053,q-sessp2023-023}
-- G6PD: evitar **malária** (primaquina). {q-scmsp2026-049}
+- G6PD: cuidado com oxidantes, sobretudo a **primaquina** do tratamento da malária. {q-scmsp2026-049}
 - Microcitose sem ferropenia: **eletroforese**, HbA2 alta, suspender ferro. {q-adap21-025,q-unifesp2026-087}
 - Sem resposta ao ferro com ferritina normal: **talassemia minor**. {q-unifesp2024-089,q-usprp2024-002}
 - Diarreia com sangue e esquizócitos: **microangiopática** (SHU). {q-usprp2021-025}` },

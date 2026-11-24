@@ -35,7 +35,7 @@ Veja também: **Pré-natal** (AAS e rastreio de risco), **Puerpério** (hiperten
           texto: `- Pressão alta com proteinúria após 20 semanas: **pré-eclâmpsia**; pedir exames de gravidade. {q-019}
 - Proteinúria por **relação proteína/creatinina ≥ 0,3**. {q-iamspe2023-064,q-sessp2026-070}
 - Sem proteinúria, com lesão de órgão: **pré-eclâmpsia**. {q-fmabc2023-064,q-unesp2022-026}
-- Gravidade: proteinúria **> 300 mg**, **creatinina > 1,1**, transaminases **2×**. {q-amrigs2023-052,q-einstein2021-039}
+- Gravidade: **creatinina > 1,1**, transaminases **2×**, plaquetas **< 100 mil**. A proteinúria (> 300 mg) **diagnostica** a pré-eclâmpsia, mas não mede gravidade, nem quando é muito alta. {q-amrigs2023-052,q-einstein2021-039}
 - Plaquetas 90 mil e transaminases altas: **pré-eclâmpsia grave**. {q-tp20202-094}
 - PA 150 × 110 em normotensa: **procurar gravidade**. {q-famema2023-055}
 - Hipertensão antes de 20 semanas: **crônica**. {q-sirio2023-066,q-sirio2026-069}

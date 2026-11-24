@@ -78,7 +78,7 @@ Veja também: **Pneumonia, bronquiolite e coqueluche na criança** (Löffler que
 - Vermes eliminados pelo vômito, sem sinais de obstrução: **albendazol 400 mg em dose única** (ou mebendazol por 3 dias). {q-gdparasitoses-077}
 - Dor abdominal, lordose e protrusão, depois broncoespasmo: **ascaridíase; parasitológico negativo se só houver vermes machos**. {q-gdparasitoses-145}
 - Ascaris-tosse e consolidação; Enterobius-vulvovaginite; Giardia-esteatorreia; Trichuris-prolapso. {q-gdparasitoses-105}
-- Esteatorreia–giardíase; prolapso–tricuríase; anemia–ancilostomíase; hiperinfecção–estrongiloidíase; obstrução–ascaridíase (5/3/2/4/1). {q-gdparasitoses-042}
+- Esteatorreia–giardíase; prolapso–tricuríase; anemia–ancilostomíase; hiperinfecção–estrongiloidíase; obstrução–ascaridíase. {q-gdparasitoses-042}
 - Prolapso e enterorragia–*Trichuris*; prurido anal–*Enterobius*; anemia–ancilostomíase; bacteremia por Gram-negativos–*Strongyloides*. {q-gdparasitoses-138}
 - **Tricuríase não** causa prurido anal noturno (é da enterobíase). {q-gdparasitoses-046}
 - Ascaris-suboclusão e cada parasita com a complicação típica. {q-unicamp2022-035}` },
@@ -89,7 +89,7 @@ Veja também: **Pneumonia, bronquiolite e coqueluche na criança** (Löffler que
 - Criança descalça com diarreia mucossanguinolenta há 8 meses, tenesmo e piora do ganho: **tricuríase**. {q-adap24-014}
 - Lesões no cólon até o reto, enterorragia e **prolapso retal**, em lactentes desnutridos: ***Trichocephalus trichiurus***. {q-simepm89-096}
 - Menino de 5 anos em ocupação sem saneamento, disenteria recorrente: **tricuríase**. {q-fmabc2022-043}
-- Só a afirmativa II (tricuríase maciça: diarreia sanguinolenta e prolapso) é correta. {q-gdparasitoses-003}
+- Tricuríase maciça: **diarreia sanguinolenta e prolapso retal**. {q-gdparasitoses-003}
 - Palestra sobre ancilostomíase: **anemia e desnutrição**. {q-gdparasitoses-025}
 - Tosse, dor abdominal recorrente e anemia em pré-escolar: **ancilostomíase**. {q-gdparasitoses-028}
 - Ancilostomíase causa **anemia e hipoproteinemia**. {q-gdparasitoses-029}

@@ -130,6 +130,7 @@ Veja também: **Pneumonia adquirida na comunidade** (derrame parapneumônico), *
           prosa: `[[Light primeiro, depois as pistas de cada causa.|q-scmsp2023-030,q-tp20231-073,q-famema2023-026,q-adap23-077,q-sessp2026-038]]
 
 | Causa | Tipo | Pista | Conduta |
+|---|---|---|---|
 | Insuficiência cardíaca, cirrose | transudato | bilateral, gradiente de albumina > 1,2 | tratar a doença |
 | Parapneumônico complicado / empiema | exsudato | pH < 7,2, glicose < 60, DHL alto, pus, Gram | drenar |
 | Tuberculose | exsudato linfocítico | ADA > 40 | esquema RIPE |
