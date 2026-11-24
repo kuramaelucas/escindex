@@ -231,7 +231,7 @@ function _htmlResultadoDoTema(e){
      o dia, e quem leu ANTES das questões no mesmo dia em que fechou o tema ainda deve ver a sugestão. */
   if(e.lidoEm && e.lidoEm > e.ultimaData) return "";
   return `<div class="card-flat mt-1"><p class="text-sm"><strong>${escapeHtml(e.titulo)}</strong>: ${pctTxt} de acerto (${e.acertos} de ${e.feitas}), abaixo de ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}%.
-    ${e.semResumo ? "Este assunto ainda não tem resumo: vale revisar os erros e os cartões dele." : "Recomendamos reler o resumo — ele abre marcado nos trechos em que você errou. É opcional: o próximo tema já está liberado."}</p>
+    ${e.semResumo ? "Este assunto ainda não tem resumo: vale revisar os erros dele." : "Recomendamos reler o resumo — ele abre marcado nos trechos em que você errou. É opcional: o próximo tema já está liberado."}</p>
     <div class="flex gap-1 mt-1 quebra">${e.semResumo
       ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Revisar os erros</button>`
       : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} Reler o resumo</button>`}</div></div>`;

@@ -520,17 +520,18 @@ function dadosDoInicioAluno(u){
   // as sugestões só são desenhadas no modo estatístico: no resumido o cálculo seria jogado fora
   const sugestoes = modoResumido() ? [] : sugestoesDeMelhoria(u.id, 4);
   const calibracao = calibracaoConfianca(u.id);
-  const flashVencidos = resumoFlashcards(u.id).vencidos;
   const emAndamento = sessaoEmAndamentoDe(u);
-  return {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento};
+  return {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, emAndamento};
 }
 function renderInicioAluno(u){
-  const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, flashVencidos, emAndamento} = dadosDoInicioAluno(u);
+  const {bloco, respondidasHoje, meta, seq, totalRespostas, totalAcertos, revisarHoje, sugestoes, calibracao, emAndamento} = dadosDoInicioAluno(u);
   const resumido = modoResumido();
-  // no resumido o botão de destaque segue o dia: meta batida e cartões vencidos → a revisão rápida passa à frente
+  /* Revisar cartões fica SÓ na aba Flashcards (decisão de 24/11/2026,
+     docs/PROJETO-INTEGRACAO-RESUMOS.md, seção 7): o Início tem uma ação
+     principal (questões), e os cartões vencidos competiam com ela. Criar
+     cartão continua em todo lugar (questão, trecho do resumo, lote). */
   const progMeta = progressoDaMeta(u);
   const metaBatida = progMeta.batida;
-  const revisaoEmDestaque = resumido && metaBatida && flashVencidos > 0;
   return `
   <div class="page-header"><h2>Olá, ${escapeHtml(u.nome.split(" ")[0])}.</h2><p>${bloco ? `Bloco atual: ${escapeHtml(bloco.nome)} (${formatDataBR(bloco.dataInicio)} – ${formatDataBR(bloco.dataFim)})` : `Você não segue um calendário de blocos: a sessão recomendada mistura revisão e questões que você ainda não viu. <button class="link-btn" onclick="navigate('meu-grupo')">Entrar num grupo</button> para ter blocos.`}</p>
   ${bloco && subdivisoesDoBloco(bloco).length ? `<details class="detalhes-bloco text-sm muted" ${secaoRecolhivelAberta("inicio-periodo-dividido", false) ? "open" : ""} ontoggle="lembrarSecaoRecolhivel('inicio-periodo-dividido', this.open)"><summary>${subdivisaoAtualDoBloco(bloco) ? "Agora: <strong>"+escapeHtml(subdivisaoAtualDoBloco(bloco).nome)+"</strong> · ver o período dividido" : "Ver o período dividido"}</summary>Neste período, com o tempo dividido igualmente: ${subdivisoesEmLinha(bloco, " · ")}</details>` : ""}</div>
@@ -538,7 +539,7 @@ function renderInicioAluno(u){
     <div class="cresce-240">
         <div class="card-title">Pronto para estudar?</div>
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
-        <div class="text-sm mt-1">${progMeta.semanal ? `<strong>${progMeta.feitas}/${progMeta.alvo}</strong> questões na semana${metaBatida ? " · em dia" : ""}` : `<strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}`}${htmlParaHoje(progMeta.feitas, progMeta.esperado, revisarHoje.length, flashVencidos)}</div>
+        <div class="text-sm mt-1">${progMeta.semanal ? `<strong>${progMeta.feitas}/${progMeta.alvo}</strong> questões na semana${metaBatida ? " · em dia" : ""}` : `<strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}`}${htmlParaHoje(progMeta.feitas, progMeta.esperado, revisarHoje.length)}</div>
     </div>
     <div class="linha-progresso mt-1">
       <div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,pct(progMeta.feitas,progMeta.alvo))}%"></div></div>
@@ -556,11 +557,9 @@ function renderInicioAluno(u){
       <span class="indicador"><span class="stat-value">${seq}</span><span class="stat-label">${flexionar(seq,"dia(s) seguido(s)")} estudando</span></span>
       <span class="indicador"><span class="stat-value">${totalRespostas?pct(totalAcertos,totalRespostas)+"%":"—"}</span><span class="stat-label">acerto geral${resumido ? "" : ` (${totalRespostas} questões)`}</span></span>
       <span class="indicador"><span class="stat-value">${revisarHoje.length}</span><span class="stat-label">${plural(revisarHoje.length,"assunto","assuntos")} para revisar hoje</span></span>
-      ${resumido && flashVencidos ? `<span class="indicador"><span class="stat-value">${flashVencidos}</span><span class="stat-label">${plural(flashVencidos,"cartão","cartões")} ${flexionar(flashVencidos, "vencido(s)")}</span></span>` : ""}
     </div>`}
-    ${resumido ? `<div class="acoes-apoio">
-      ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-      <button class="btn ${revisaoEmDestaque ? "btn-primary" : "btn-secondary"} btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards${flashVencidos ? ` (${flashVencidos})` : ""}</button>
+    ${resumido && revisarHoje.length ? `<div class="acoes-apoio">
+      <button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>
     </div>` : ""}
     ${htmlCardProvaAlvo(u)}
   </div>
@@ -576,7 +575,6 @@ function renderInicioAluno(u){
     <div class="card">
       <div class="card-title">Revisão pendente</div>
       ${revisarHoje.length ? `<p class="text-sm muted mt-1">${revisarHoje.length} ${flexionar(revisarHoje.length,"assunto(s) já estudado(s)")} ${plural(revisarHoje.length,"está","estão")} no momento certo de revisar, segundo seu histórico.</p>` : '<p class="text-sm muted mt-1">Nada vencido para revisar hoje. Continue estudando o bloco atual.</p>'}
-      ${flashVencidos ? `<p class="text-sm mt-1">${flashVencidos} ${plural(flashVencidos,"cartão","cartões")} de flashcards também venceram — dá pra limpar essa fila em poucos minutos.</p>` : ""}
       ${calibracao.alertaExcessoConfianca ? `<div class="aviso-interno mt-2">
         <strong>${iconeSvg("alert")} Atenção ao excesso de confiança:</strong> nas questões em que você marcou "certeza", sua taxa de acerto é de ${calibracao.certeza.taxa}%. Vale desacelerar antes de confirmar a resposta — e revisar justamente o que você acha que já sabe.
         <div class="flex gap-1 mt-1 quebra">
@@ -584,23 +582,20 @@ function renderInicioAluno(u){
           <button class="btn btn-secondary btn-sm" onclick="navigate('desempenho')">Ver onde a confiança engana</button>
         </div>
       </div>` : ""}
-      <div class="flex gap-1 mt-2 quebra">
-        ${revisarHoje.length ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button>` : ""}
-        <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards${flashVencidos ? ` (${flashVencidos})` : ""}</button>
-      </div>
+      ${revisarHoje.length ? `<div class="flex gap-1 mt-2 quebra"><button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ir para revisão</button></div>` : ""}
     </div>
   </div>`}
   ${htmlNotaModoResumido()}`;
 }
-/* "Para hoje" junta numa linha o que falta no dia (meta, assuntos, cartões):
-   o aluno vê de uma vez o tamanho do dia, sem somar os indicadores de cabeça.
-   Só o que falta entra; com só a meta pendente a linha repetiria o "0/30" e some. */
-function htmlParaHoje(feitas, meta, assuntos, cartoes){
+/* "Para hoje" junta numa linha o que falta no dia (meta e assuntos; os
+   cartões vencidos ficam na aba Flashcards): o aluno vê de uma vez o tamanho
+   do dia. Só o que falta entra; com só a meta pendente a linha repetiria o
+   "0/30" e some. */
+function htmlParaHoje(feitas, meta, assuntos){
   const partes = [];
   if(feitas < meta) partes.push(`${meta-feitas} ${plural(meta-feitas,"questão","questões")} para a meta`);
   if(assuntos) partes.push(`${assuntos} ${plural(assuntos,"assunto","assuntos")} para revisar`);
-  if(cartoes) partes.push(`${cartoes} ${plural(cartoes,"cartão","cartões")} ${flexionar(cartoes,"vencido(s)")}`);
-  return (assuntos || cartoes) ? ` · <span class="muted">falta hoje: ${partes.join(", ")}</span>` : "";
+  return assuntos ? ` · <span class="muted">falta hoje: ${partes.join(", ")}</span>` : "";
 }
 /* O Início do modo resumido: no lugar dos dois quadros (sugestões e revisão
    pendente) ficam só os indicadores e os atalhos DENTRO do cartão principal —

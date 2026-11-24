@@ -30,7 +30,7 @@ const responder = (pagina, n) => pagina.evaluate(n => {
 }, n);
 
 for(const modo of ["resumido", "estatistico"]){
-  test(`Início (${modo}): rodapé numa faixa só, indicadores sem caixa e nada que venceu fica sem atalho`, async () => {
+  test(`Início (${modo}): rodapé numa faixa só, indicadores sem caixa e revisar cartões só na aba Flashcards`, async () => {
     const { pagina, contexto, erros } = await abrir();
     try {
       await responder(pagina, 6);
@@ -45,7 +45,8 @@ for(const modo of ["resumido", "estatistico"]){
       assert.equal(r.cinzas, 0, "sem os dois cartões cinza de antes");
       assert.ok(r.indicadores >= 3 && r.caixinhas === 0);
       for(const t of [/Livro de Ouro/, /Quero contribuir/, /Enviar feedback/, /dias? seguidos? estudando/, /acerto geral/, /assuntos? para revisar hoje/]) assert.match(r.texto, t);
-      assert.ok(r.revisaoRapida, "o atalho da Revisão rápida continua no Início");
+      assert.equal(r.revisaoRapida, false, "revisar cartões fica só na aba Flashcards (24/11/2026)");
+      assert.doesNotMatch(r.texto, /cartões? vencidos?/, "nem o número de cartões vencidos no Início");
       assert.deepEqual(erros, []);
     } finally { await contexto.close(); }
   });

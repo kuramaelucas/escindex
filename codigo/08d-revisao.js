@@ -25,10 +25,9 @@ function renderRevisao(){
   <div class="page-header"><h2>Revisão</h2><p>Assuntos e questões que, pelo seu histórico, estão no momento certo de voltar.</p></div>
   <div class="empty-state">
     <h3>Sua revisão começa depois das primeiras questões</h3>
-    <p class="mt-2">Cada questão que você responder ganha um prazo para voltar: erros e chutes em 1 semana, acertos seguros em 1 mês. Os flashcards já podem ser revisados.</p>
+    <p class="mt-2">Cada questão que você responder ganha um prazo para voltar: erros e chutes em 1 semana, acertos seguros em 1 mês. Os flashcards se revisam na aba Flashcards.</p>
     <div class="flex gap-1 mt-3 quebra" style="justify-content:center">
       <button class="btn btn-primary" onclick="iniciarSessaoRecomendada()">Começar agora</button>
-      <button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Flashcards</button>
     </div>
   </div>`;
   return `
@@ -76,15 +75,6 @@ function renderRevisao(){
   </div>
   ${htmlCardTrilhaSugerida(u)}
   ${htmlCardRevisaoSugerida(u)}
-  <div class="card mt-2">
-    <div class="card-title">Flashcards (${resumoFlashcards(u.id).vencidos} ${flexionar(resumoFlashcards(u.id).vencidos, "vencido(s)")})</div>
-    <p class="text-sm muted">Cartão de conceito em vez de questão: sem alternativa para eliminar, você tenta lembrar do zero e diz se sabia. Leva segundos por cartão e é o formato certo para os assuntos de falsa segurança — aqueles em que você marca "certeza" e erra.</p>
-    <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-primary" onclick="iniciarSessaoFlashcards({})">${iconeSvg("cards")} Revisar cartões</button>
-      ${falsaSeguranca.length ? `<button class="btn btn-secondary" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">Só onde minha confiança engana</button>` : ""}
-      <button class="btn btn-ghost" onclick="navigate('flashcards')">Ver baralho e filtros</button>
-    </div>
-  </div>
   ${renderCartaoQuestoesErradas(u)}
   <div class="card mt-2">
     <div class="card-title">Só erros e chutes pendentes (${erros.length})</div>

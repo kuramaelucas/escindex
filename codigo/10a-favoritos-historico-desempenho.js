@@ -1021,7 +1021,6 @@ function renderDesempenho(){
       </div>`).join("")}` : ""}
     <div class="flex gap-1 mt-2 quebra">
       <button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Ver as filas por tipo de erro</button>
-      <button class="btn btn-secondary btn-sm" onclick="iniciarSessaoFlashcards({somenteFalsaSeguranca:true})">${iconeSvg("cards")} Revisão rápida desses assuntos</button>
     </div>
   </div>` : ""}
   `, calibracao.alertaExcessoConfianca || falsaSeguranca.length)}
