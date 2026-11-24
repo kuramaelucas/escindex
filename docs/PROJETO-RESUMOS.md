@@ -336,3 +336,8 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 24/11/2026 | Resumo de ortopedia pediátrica (ass-orto-pediatrica) |
 | 24/11/2026 | Resumo de ginecologia da infância e adolescência (ass-ginecoinfantil) |
 | 24/11/2026 | Resumo de febre maculosa, Lyme, hantavírus e Ebola (ass-febremaculosa) |
+| 24/11/2026 | Resumo de tumores cutâneos: carcinomas e melanoma (ass-derm-tumores) |
+| 24/11/2026 | Resumo de transtornos de ansiedade e TOC (ass-psiq-ansiedade) |
+| 24/11/2026 | Resumo de osteoporose e doenças osteometabólicas (ass-orto-osteometabolicas) |
+| 24/11/2026 | Resumo de doença celíaca, má absorção e intolerância à lactose (ass-gastro-malabsorcao) |
+| 24/11/2026 | Resumo de diagnóstico pré-natal e rastreamento de aneuploidias (ass-diagnosticoprenatal) |

@@ -148,4 +148,9 @@
   { id: "ortopedia-pediatrica", titulo: "Ortopedia pediátrica", area: "Pediatria · Ortopedia Pediátrica", assunto: "ass-orto-pediatrica" },
   { id: "ginecologia-infantojuvenil", titulo: "Ginecologia da infância e adolescência", area: "Ginecologia e Obstetrícia · Ginecologia", assunto: "ass-ginecoinfantil" },
   { id: "zoonoses-e-febres-hemorragicas", titulo: "Febre maculosa, Lyme, hantavírus e Ebola", area: "Clínica Médica · Infectologia", assunto: "ass-febremaculosa" },
+  { id: "tumores-cutaneos", titulo: "Tumores cutâneos: carcinomas e melanoma", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-tumores" },
+  { id: "transtornos-ansiosos", titulo: "Transtornos de ansiedade e TOC", area: "Clínica Médica · Psiquiatria", assunto: "ass-psiq-ansiedade" },
+  { id: "doencas-osteometabolicas", titulo: "Osteoporose e doenças osteometabólicas", area: "Cirurgia · Ortopedia e Traumatologia", assunto: "ass-orto-osteometabolicas" },
+  { id: "ma-absorcao", titulo: "Doença celíaca, má absorção e intolerância à lactose", area: "Clínica Médica · Gastroenterologia", assunto: "ass-gastro-malabsorcao" },
+  { id: "diagnostico-pre-natal", titulo: "Diagnóstico pré-natal e rastreamento de aneuploidias", area: "Ginecologia e Obstetrícia · Obstetrícia", assunto: "ass-diagnosticoprenatal" },
 ];
