@@ -181,7 +181,7 @@ Veja também: **Pneumonia no adulto**, **Infecção urinária** e **Infecções 
 - Criança de 7 anos com refluxo vesicoureteral e sonda: **volume e antibiótico de espectro estendido**. {q-usp2026-053}
 - Artrite de joelho e choque quente (PA 70/20): **norepinefrina**. {q-usprp2025-011}
 - Sepse pediátrica: **bacteriana mais comum e glicemia < 180**; hidrocortisona só no choque refratário a catecolamina. {q-amrigs2022-073}
-- V-F-V-V: hemocultura antes do antibiótico sem atraso; lactato não é imprescindível; monitorar SpO2 e diurese; resposta por citocinas. {q-amrigs2023-072}
+- Hemocultura antes do antibiótico, sem atrasá-lo; o lactato ajuda, mas não é imprescindível para iniciar; monitorar SpO2 e diurese; resposta por citocinas. {q-amrigs2023-072}
 - Lactente de 18 meses com febre e alternância de irritabilidade e letargia: **acesso venoso e expansão com salina**. {q-tp20202-057,q-tp20212-052}
 - Lactente de 10 meses com pneumonia e choque: **adrenalina**. {q-tp20261-031}
 - Meta de diurese no choque pediátrico: **acima de 1 mL/kg/h**. {q-uspsp5-117}
