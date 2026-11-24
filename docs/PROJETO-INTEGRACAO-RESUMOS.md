@@ -112,6 +112,10 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 - **Revisão:** não é sorteio com peso igual. **Para cada questão errada, surge uma questão nova do mesmo assunto** (par erro → nova), além da própria errada no espaçamento da repetição espaçada.
 - **Conjunto de 20 intocado** para todos os perfis. A proporção da origem (Teste de Progresso × residência, pelo perfil) só muda na **prática extra, acima das 20** do tema.
 - **Escolha livre e direcionada:** o aluno escolhe qualquer tema ou área; a trilha sugere o próximo. O ensino médico é espiral (o mesmo tema volta em níveis), então pré-requisito **não ordena nem bloqueia**: só os vínculos fortes de `ferramentas/prerequisitos-formados.json` (hoje poucos, a maioria dos assuntos sem nenhum) geram um aviso "este tema usa conceitos de X, que você ainda não leu".
+- **Meta não cumprida:** o que faltou fica registrado como **atrasado**, num espaço próprio ("Pôr em dia"). O cronograma **não anda para trás nem empurra datas**: os temas seguintes chegam na data prevista, e o atrasado é feito à parte, quando o aluno quiser.
+- **Flashcards:** criar cartão continua em todo lugar (trecho do resumo, questão, lote). **Revisar cartões e o conjunto sugerido de cartões ficam só na aba Flashcards** (saem do Início, da sessão recomendada e da sugestão < 75% de tema sem resumo).
+- **Medida (fase 5):** comparar quem leu o resumo antes das 20 com quem pulou (acerto nas 20, temas fechados por semana). No Painel da Turma, uma barra pequena que expande para uma tela com filtros (turma, faculdade, período) e gráficos diferentes por recorte.
+- **Proposta em aberto:** juntar "reparar por tema" e "Não esquecer" num modo só, em dois estágios: 1º passa pelos temas com as 20 questões (diagnóstico; < 75% recomenda o resumo), 2º o tema ≥ 75% entra na manutenção do "Não esquecer".
 
 ## 8. Andamento
 
