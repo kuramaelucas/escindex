@@ -10,7 +10,7 @@ Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
 > **Resumos a conferir (revisão de 24/11/2026):** em `resumos/tuberculose`, o momento da TARV na TB com HIV (texto atual: até 2 semanas se CD4 < 50, cerca de 8 semanas nos demais) precisa ser conferido contra o PCDT de HIV vigente, que pode ter passado a recomendar até 2 semanas para todos, exceto na forma meníngea.
 
-> **Relatório externo de revisão conceitual dos resumos (24/11/2026, gerado por outra IA, 70 itens).** Conferido item a item contra o texto dos resumos; 44 trechos corrigidos (com a nuance da diretriz e sem mudar gabarito). **Ficaram pendentes** (não alterados, conferir a fonte primária antes):
+> **Relatório externo de revisão conceitual dos resumos (24/11/2026, gerado por outra IA, 70 itens).** Conferido item a item contra o texto dos resumos; 55 apontamentos atendidos no texto, alguns em parte (com a nuance da diretriz e sem mudar gabarito). **Ficaram pendentes** (não alterados, conferir a fonte primária antes):
 > - `infeccoes-congenitas`: o relatório diz que a **queda do título** não faz parte da definição de tratamento materno adequado (só esquema, estágio e início ≥ 30 dias). O resumo diz que faz, e o PCDT-TV foi marcado como lido em 19/11. Reler a definição no PCDT-TV vigente.
 > - `ist` (`q-uspsp5-005`): o CDC dispensa o **líquor** na sífilis ocular isolada sem achado neurológico; o resumo segue a questão ("punção lombar"). Conferir o que diz o PCDT-IST.
 > - `imunizacao` (`q-tp20251-029`, `q-tp20261-043`): **VPP23 na idosa acamada "sem reforço"**. O CRIE previa uma revacinação 5 anos depois. Conferir o Calendário/Manual dos CRIE 2026.
