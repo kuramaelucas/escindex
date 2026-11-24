@@ -118,7 +118,7 @@ Veja também: **Climatério** (terapia hormonal e risco), **Câncer de endométr
 - BI-RADS 4 aos 32: **biópsia**. {q-fmabc2026-077}
 - Nódulo duro com retração: **carcinoma ductal invasivo**. {q-tp20261-063}
 - Eczema do mamilo: **biópsia** e mamografia com ultrassom. {q-adap25-068}
-- Gestante com nódulo: **mamografia**. {q-usp2026-101}` },
+- Gestante de 39 anos com nódulo suspeito: **prosseguir com mamografia** (proteção abdominal), sem adiar. {q-usp2026-101}` },
       ],
     },
     {

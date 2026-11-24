@@ -107,6 +107,7 @@ Veja também: **Intoxicações**, **Demência e delirium**, **Cirrose** e **Saú
           prosa: `[[Pupila e sinais vitais separam os quadros.|q-amrigs2021-095,q-adap26-064,q-unifesp2026-064,q-amrigs2025-020]]
 
 | Quadro | Pupila | Sinais | Tratamento |
+|---|---|---|---|
 | Intoxicação por estimulante | midríase | taquicardia, hipertensão, agitação | benzodiazepínico |
 | Intoxicação por opioide | miose puntiforme | bradipneia, rebaixamento | naloxona |
 | Abstinência alcoólica / delirium tremens | midríase | tremor, taquicardia, hipertensão, confusão | benzodiazepínico + tiamina |

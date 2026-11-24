@@ -108,6 +108,7 @@ Veja também: **Tromboembolismo pulmonar**, **Isquemia arterial**, **Cuidados pe
           prosa: `[[Local, dor e pulso separam as três.|q-tp20232-116,q-tp20212-065,q-adap22-019]]
 
 | Úlcera | Onde | Como é | Pulsos | Tratamento |
+|---|---|---|---|---|
 | Venosa | maléolo medial | rasa, bordas irregulares, pele pigmentada e endurecida | presentes | compressão, tratar o refluxo |
 | Arterial | dedos, calcanhar, pontos de pressão | dolorosa, bordas regulares, pele fria e sem pelos | ausentes | revascularizar; sem compressão |
 | Neuropática | planta, sob calosidade | indolor, profunda, com calo em volta | presentes | aliviar a pressão |`,

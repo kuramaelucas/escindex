@@ -131,6 +131,7 @@ Veja também: **Doença inflamatória intestinal**, **Câncer colorretal**, **IS
           prosa: `[[O exame da borda anal separa as causas de dor.|q-uspsp2-089,q-sessp2023-001,q-usp2023-004,q-sessp2026-032]]
 
 | Causa | Dor | Achado | Conduta |
+|---|---|---|---|
 | Trombose externa | súbita, constante | nódulo violáceo na borda | excisão até 72 h; depois clínico |
 | Fissura | ao evacuar, dura horas | rasgo na linha média, plicoma | diltiazem; esfincterotomia |
 | Abscesso perianal | progressiva, com febre | abaulamento doloroso | drenagem |

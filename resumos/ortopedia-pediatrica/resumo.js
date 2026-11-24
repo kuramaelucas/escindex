@@ -127,6 +127,7 @@ Veja também: **Fraturas e luxações**, **Artrites**, **Puericultura** e **Cres
           prosa: `[[A idade é a primeira pista.|q-einstein2025-041,q-tp20212-042,q-unicampdis2024-094,q-tp20241-042]]
 
 | Doença | Idade | Quadro | Exame | Conduta |
+|---|---|---|---|---|
 | Displasia do quadril | recém-nascido e lactente | assimetria, abdução limitada | ultrassom (até 4–6 meses) | Pavlik |
 | Sinovite transitória | 3–8 anos | manca após virose, sem febre | ultrassom com derrame | sintomáticos |
 | Perthes | 4–8 anos, menino | claudicação de meses | radiografia: cabeça achatada | ortopedia |

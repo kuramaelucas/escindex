@@ -124,7 +124,7 @@ Veja também: **Sepse** (antibiótico na primeira hora), **Infecções relaciona
 - **Vancomicina não cobre Gram-negativos**; aztreonam substitui aminoglicosídeo. {q-gdantibioticos-118}
 - Tigeciclina: amplo espectro **sem *Pseudomonas***; linezolida: **Gram-positivos e VRE**; ampicilina-sulbactam: ***Acinetobacter***; daptomicina: **bacteremia e endocardite por MRSA, não pneumonia**; polimixina: **Gram-negativo multirresistente**. {q-gdantibioticos-107}
 - Glicilciclina = **tigeciclina**; oxazolidinona = **linezolida**; endocardite por estafilococo resistente: **vancomicina ou daptomicina**; ESBL: **carbapenêmico**; candidemia grave: **equinocandina**. {q-gdantibioticos-119}
-- Daptomicina na endocardite por MRSA, amoxicilina-clavulanato no pé diabético, meropenem na pneumonia da ventilação, metronidazol no *C. difficile*, azitromicina no atípico. {q-gdantibioticos-120}
+- Daptomicina na endocardite por MRSA, amoxicilina-clavulanato no pé diabético, meropenem na pneumonia da ventilação, metronidazol no *C. difficile* (a prova; hoje, vancomicina oral ou fidaxomicina), azitromicina no atípico. {q-gdantibioticos-120}
 - Oxazolidinona **não é primeira escolha na colite por *C. difficile***. {q-gdantibioticos-004}` },
       ],
     },

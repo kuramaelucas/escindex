@@ -122,6 +122,7 @@ Veja também: **Doença coronariana**, **Diabetes**, **Hipertensão** e **Preven
           prosa: `[[A categoria de risco decide a meta.|q-tp20251-001,q-usprp2024-015,q-scmsp2025-097,q-unicampdis2024-002]]
 
 | Categoria | Exemplos | LDL-alvo (mg/dL) | Conduta |
+|---|---|---|---|
 | Muito alto | infarto, AVC isquêmico, doença arterial periférica | < 50 | estatina de alta potência; ezetimiba se preciso |
 | Alto | diabetes com idade ou estratificador, DRC | < 70 | estatina |
 | Intermediário | diabetes recente sem estratificador, escore intermediário | < 100 | estatina conforme o caso |

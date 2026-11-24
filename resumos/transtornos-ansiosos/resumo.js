@@ -117,6 +117,7 @@ Veja também: **Humor** (depressão), **Uso de substâncias**, **Psiquiatria inf
           prosa: `[[O objeto do medo separa os transtornos.|q-usp2022-007,q-tp20232-014,q-unesp2022-060,q-tp20251-025]]
 
 | Transtorno | O que provoca | Como é | Tratamento |
+|---|---|---|---|
 | Pânico | nada (inesperado) | crises de minutos, medo de nova crise | ISRS + TCC; benzodiazepínico só na crise |
 | Ansiedade generalizada | tudo, todo dia | preocupação constante por 6 meses | ISRS + psicoterapia |
 | Ansiedade social | ser avaliado pelos outros | evita falar e se expor | ISRS + TCC |

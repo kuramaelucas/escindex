@@ -145,6 +145,7 @@ Veja também: **Pleura**, **Tuberculose**, **DPOC** e **Neoplasias hematológica
           prosa: `[[O tipo histológico decide o tratamento.|q-adap26-006,q-unifesp2026-006,q-sirio2025-032,q-scmsp2026-029]]
 
 | Tipo | Onde | Comportamento | Tratamento do inicial |
+|---|---|---|---|
 | Adenocarcinoma | periferia | o mais comum, também em não fumante | lobectomia + linfadenectomia |
 | Escamoso (espinocelular) | central, perto do brônquio | ligado ao fumo, pode escavar | estadiar mediastino; cirurgia se N0–N1 |
 | Pequenas células | central | rápido, paraneoplásico, já disseminado | quimioterapia + radioterapia |

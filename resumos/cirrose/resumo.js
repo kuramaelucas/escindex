@@ -120,7 +120,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
       fragmentos: [
         { id: "var-aguda", titulo: "Hemorragia varicosa aguda e profilaxia", conferir: false, diretrizes: ["baveno"],
           questoes: ["q-fmabc2024-001","q-tp20231-069","q-tp20241-024","q-amrigs2020-015","q-unesp2023-046","q-unesp2024-045","q-unesp2025-041","q-unicamp2022-007","q-unicampdis2023-020","q-tp20252-115","q-sirio2024-027","q-sessp2026-035","q-fmabc2023-035","q-einstein2025-023"],
-          prosa: `[[Passado o sangramento, o vasoconstritor fica por 3 a 5 dias e depois a profilaxia secundária é betabloqueador não seletivo (propranolol, carvedilol) com ligadura seriada.|q-unesp2025-041,q-unicamp2022-007,q-unicampdis2023-020]]`,
+          prosa: `[[Passado o sangramento, o vasoconstritor fica por 2 a 5 dias (Baveno VII) e depois a profilaxia secundária é betabloqueador não seletivo (propranolol, carvedilol) com ligadura seriada.|q-unesp2025-041,q-unicamp2022-007,q-unicampdis2023-020]]`,
           texto: `- Maior preditor de progressão das varizes: **etiologia alcoólica**. {q-fmabc2024-001}
 - Melena ou hematêmese no etilista: **endoscopia digestiva alta**. {q-tp20231-069,q-tp20241-024}
 - Primeiro: **via aérea e volume**. {q-amrigs2020-015}

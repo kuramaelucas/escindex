@@ -100,6 +100,7 @@ Veja também: **Litíase urinária**, **Infecção urinária**, **Lesão renal a
           prosa: `[[Doenças diferentes, que podem coexistir no mesmo homem.|q-fmabc2021-013,q-tp20251-116,q-tp20261-038,q-unicampdis2025-063]]
 
 | | Hiperplasia benigna | Câncer |
+|---|---|---|
 | Zona | transição (em volta da uretra) | periférica |
 | Sintomas | jato fraco, noctúria, esvaziamento incompleto | geralmente nenhum quando localizado |
 | Toque retal | aumentada, fibroelástica, lisa | nódulo endurecido |

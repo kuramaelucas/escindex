@@ -116,6 +116,7 @@ Veja também: **Anemias**, **Triagem neonatal**, **Calendário vacinal** e **Col
           prosa: `[[Hb, reticulócitos e baço separam as crises.|q-tp20212-024,q-sessp2023-079,q-usprp2023-011,q-scmsp2023-048]]
 
 | Crise | Hb | Reticulócitos | Baço | Conduta |
+|---|---|---|---|---|
 | Dor (vaso-oclusiva) | perto da basal | altos | habitual | morfina, hidratação de manutenção |
 | Síndrome torácica aguda | basal ou caindo | altos | habitual | ceftriaxona + macrolídeo, O2, transfundir se cair ou hipoxemia |
 | Sequestro esplênico | cai ≥ 2 g/dL | altos | cresce de repente | transfusão urgente |

@@ -84,6 +84,20 @@ for(const d of r.doencas) for(const f of d.fragmentos){
   if(d.id !== "armadilhas" && topicos.some(l => /gabarito|questão aceita|as provas variam/i.test(l))) avisos.push(`${onde}: tópico que ensina o gabarito — leve para o capítulo "armadilhas"`);
   if(tema !== "calendario-vacinal" && /para decorar|mnem[oô]nic/i.test(`${f.prosa || ""}${f.texto || ""}`)) avisos.push(`${onde}: mnemônico (só o calendário vacinal usa)`);
 }
+// Erros de forma (reprovam sempre): a tela (09e, _ehTabelaDoResumo) só desenha tabela com a
+// linha separadora |---| logo abaixo do cabeçalho; sem ela, o aluno vê barras soltas (30 tabelas
+// saíram assim até 24/11/2026). E um [[ sem ]] engole o resto do parágrafo.
+for(const d of r.doencas) for(const f of [{ id: "introducao", prosa: d.introducao }, ...d.fragmentos]){
+  const onde = `${d.id}/${f.id}`, prosa = f.prosa || "";
+  for(const p of prosa.split(/\n\s*\n/)){
+    const ls = p.trim().split("\n");
+    if(!ls.some(l => l.trim().startsWith("|"))) continue;
+    if(!(ls.length > 2 && ls.every(l => l.trim().startsWith("|")) && /^\|[\s:|-]+\|$/.test(ls[1].trim())))
+      erros.push(`${onde}: tabela que a tela não desenha (falta a linha |---| sob o cabeçalho, ou linha de texto colada na tabela)`);
+    else if(ls.some(l => l.split("|").length !== ls[0].split("|").length)) erros.push(`${onde}: tabela com linhas de número de colunas diferente`);
+  }
+  if((prosa.match(/\[\[/g) || []).length !== (prosa.match(/\]\]/g) || []).length) erros.push(`${onde}: [[ e ]] desbalanceados`);
+}
 if(!/Veja também/.test(r.doencas[0]?.introducao || "")) avisos.push("primeiro capítulo sem \"Veja também\" (resumos vizinhos)");
 if(avisos.length){ console.log(`\nAVISOS DE DIDÁTICA (${avisos.length}):`); avisos.forEach(a => console.log("  " + a)); }
 if(process.argv.includes("--exigir")) erros.push(...avisos);

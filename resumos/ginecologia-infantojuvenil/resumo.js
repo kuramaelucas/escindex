@@ -123,6 +123,7 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
           prosa: `[[Mamas, pelos e útero apontam a causa.|q-usp2025-022,q-adap21-071,q-scmsp2026-078,q-uspsp3-066]]
 
 | Causa | Mamas | Pelos | Útero | Cariótipo | FSH |
+|---|---|---|---|---|---|
 | Turner | ausentes | presentes, escassos | presente (pequeno) | 45,X | alto |
 | Rokitansky | presentes | normais | ausente | 46,XX | normal |
 | Insensibilidade androgênica | presentes | ausentes | ausente | 46,XY | normal |

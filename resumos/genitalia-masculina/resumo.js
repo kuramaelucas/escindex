@@ -115,6 +115,7 @@ Veja também: **Hérnias**, **IST**, **Litíase urinária** e **Próstata**.`,
           prosa: `[[O início da dor e o reflexo cremastérico separam as três.|q-sirio2022-056,q-usprp2023-097,q-einstein2027-037,q-tp20222-073]]
 
 | Causa | Idade | Início | Cremastérico | Prehn | Conduta |
+|---|---|---|---|---|---|
 | Torção testicular | puberdade | súbito, com vômito | ausente | negativo | explorar já, fixar os dois |
 | Epididimite | adulto jovem | gradual, com disúria | presente | positivo | ceftriaxona + doxiciclina |
 | Torção do apêndice | criança | súbito, dor moderada | presente | — | analgesia |`,
