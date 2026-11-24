@@ -49,7 +49,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 - Prematuro extremo ou muito baixo peso: **nova coleta com 1 mês** (TSH pode subir tarde). {q-unesp2023-011}
 - Tireoide tópica normal, sem etiologia definida: **manter a reposição**; o PCDT de 2021 só testa a suspensão **depois dos 3 anos**. {q-unifesp2025-091}` },
         { id: "doe-pku-fc", titulo: "Fenilcetonúria e fibrose cística", conferir: true, diretrizes: ["ms-triagem"],
-          questoes: ["q-usprp2026-057","q-adap24-091","q-tp20232-055","q-unifesp2024-088","q-adap25-091","q-uspsp2-066","q-unicampdis2022-030","q-famema2022-083","q-unifesp2026-083"],
+          questoes: ["q-usprp2026-057","q-adap24-091","q-tp20232-055","q-unifesp2024-088","q-adap25-091","q-uspsp2-066","q-unicampdis2022-030","q-famema2022-083","q-unifesp2026-083","q-tp20202-001","q-tp20231-057"],
           prosa: `Na fenilcetonúria falta a enzima que transforma fenilalanina em tirosina; a fenilalanina se acumula e é tóxica ao cérebro em formação, e o tratamento é limitar sua ingestão. Na fibrose cística, o pâncreas obstruído deixa vazar tripsinogênio imunorreativo (IRT) para o sangue; o IRT alto duas vezes leva ao teste do suor, que confirma.`,
           texto: `- Fenilalanina muito alta: **fórmula isenta de fenilalanina**. {q-usprp2026-057}
 - Fenilcetonúria clássica no lactente: **aleitamento parcial** com fórmula sem fenilalanina e dosagens frequentes. {q-adap24-091}
@@ -57,15 +57,23 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
 - Alterado na coleta com 24 h e normal depois: **hiperfenilalaninemia materna**. {q-unifesp2024-088}
 - **IRT alto duas vezes** (3º dia e 3ª semana): **teste do suor** (cloreto). {q-adap25-091,q-uspsp2-066,q-unicampdis2022-030}
 - Fibrose cística no pezinho: **IRT elevado**. {q-famema2022-083}
-- IRT alto na 1ª amostra e normal na 2ª: **rotina**. {q-unifesp2026-083}` },
+- IRT alto na 1ª amostra e normal na 2ª: **rotina**. {q-unifesp2026-083}
+- PKU sem tratamento: atraso, convulsões, eczema, **pele e cabelos claros**; enzima: **fenilalanina hidroxilase**. {q-tp20202-001}
+- Mãe fenilcetonúrica sem dieta na gestação: **fenilcetonúria materna** (microcefalia, malformação) em filho heterozigoto. {q-tp20231-057}` },
         { id: "doe-hac-galacto", titulo: "Hiperplasia adrenal, galactosemia e G6PD", conferir: true, diretrizes: ["ms-triagem"],
-          questoes: ["q-usp2026-061","q-einstein2024-042","q-sirio2025-050","q-unicampdis2024-087","q-scmsp2021-053","q-adap24-093","q-usprp2021-026","q-unifesp2024-092","q-unifesp2025-090","q-uspsp5-105"],
+          questoes: ["q-usp2026-061","q-einstein2024-042","q-sirio2025-050","q-unicampdis2024-087","q-scmsp2021-053","q-adap24-093","q-usprp2021-026","q-unifesp2024-092","q-unifesp2025-090","q-uspsp5-105","q-unicamp2022-041"],
           prosa: `Na hiperplasia adrenal congênita (deficiência de 21-hidroxilase) falta cortisol e aldosterona: a perda de sal aparece na 2ª semana com sódio baixo, potássio alto e choque, e a menina nasce com genitália ambígua pelo excesso de andrógenos. Na galactosemia o bebê não metaboliza a galactose do leite, que lesa fígado, rim e cristalino e predispõe à sepse por *E. coli*.`,
           texto: `- RN com vômitos, desidratação, **sódio baixo e potássio alto**: **hiperplasia adrenal** (deficiência de **21-hidroxilase**, **17-OH-progesterona** alta). {q-usp2026-061,q-einstein2024-042,q-sirio2025-050,q-unicampdis2024-087}
 - Na crise: hidrocortisona, soro e glicose; **não** repor bicarbonato. {q-scmsp2021-053}
 - Icterícia, colestase, sepse por **E. coli** e galactose alta: **galactosemia**; **suspender o leite** e dar fórmula sem lactose. {q-usprp2021-026,q-adap24-093}
 - Galactose pouco alta em bebê bem: a prova deu **repetir a dosagem**; se a suspeita é de galactosemia clássica (galactose muito alta ou GALT baixa), **suspende-se a lactose já**, sem esperar sintoma, enquanto se confirma. {q-unifesp2024-092}
-- G6PD alterada: **nova coleta** e afastar desencadeantes de hemólise. {q-unifesp2025-090,q-uspsp5-105}` },
+- G6PD alterada: **nova coleta** e afastar desencadeantes de hemólise. {q-unifesp2025-090,q-uspsp5-105}
+- Galactosemia confirmada: **suspender o leite materno**, fórmula de **soja** (sem lactose). {q-unicamp2022-041}` },
+        { id: "doe-outros-erros", titulo: "Erros inatos que o pezinho não pega: depósito e glicogênio", conferir: true,
+          questoes: ["q-tp20241-055","q-tp20251-056","q-tp20261-110","q-tp20222-001"],
+          prosa: `[[Nas **doenças de depósito lisossomal**, falta uma enzima que degrada uma molécula grande, que se acumula dentro das células. Nas **mucopolissacaridoses** o acúmulo é de **glicosaminoglicanos**: a criança nasce normal e, a partir do 1º ano, ganha **fácies grosseira, opacificação de córnea, hepatoesplenomegalia, hérnias, mãos em garra**, otites e atraso que regride. Herança quase sempre autossômica recessiva (pais consanguíneos), exceto Hunter (ligada ao X).|q-tp20241-055,q-tp20251-056,q-tp20261-110]] [[Na **glicogenose tipo I (von Gierke)** falta a **glicose-6-fosfatase**: o fígado quebra glicogênio, mas não consegue liberar glicose. Resultado: **hipoglicemia de jejum**, hepatomegalia, acidose láctica, e acúmulo dos intermediários (glicose-6-fosfato e glicose-1-fosfato).|q-tp20222-001]]`,
+          texto: `- Fácies grosseira, córnea opaca, visceromegalia: **glicosaminoglicanos** (mucopolissacaridose). {q-tp20241-055,q-tp20251-056,q-tp20261-110}
+- Sem glicose-6-fosfatase: **hipoglicemia de jejum**, glicose-1-fosfato aumentada. {q-tp20222-001}` },
       ],
     },
     {

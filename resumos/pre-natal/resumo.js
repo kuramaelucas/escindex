@@ -254,6 +254,30 @@ Veja também: **Trabalho de parto e parto**, **Diabetes gestacional**, **Hiperte
       ],
     },
     {
+      id: "aloimunizacao", titulo: "Aloimunização Rh e doença hemolítica perinatal",
+      introducao: `[[A mãe **RhD negativo** que recebe hemácias D positivas (do feto, no parto, no aborto, no sangramento ou num trauma) produz **anticorpo anti-D**. A primeira resposta é IgM e chega tarde; na **gestação seguinte**, a IgG atravessa a placenta e **destrói as hemácias do feto D positivo**: anemia, eritropoese extramedular, hepatoesplenomegalia e, no extremo, **hidropisia** (ascite, derrames, edema) por insuficiência cardíaca de alto débito e hipoalbuminemia. Por isso a primigesta raramente adoece e a doença piora a cada gestação.|q-usp2025-014,q-simepm89-023,q-famerp2026-028]]
+
+[[O **Coombs indireto** procura o anticorpo no soro da mãe. **Positivo** pede **identificação e título** do anticorpo: só alguns (anti-D, anti-Kell, anti-c) causam doença grave, e o título diz o risco.|q-einstein2025-053]]`,
+      fragmentos: [
+        { id: "rh-profilaxia", titulo: "Prevenção: quem recebe imunoglobulina anti-D", conferir: true,
+          questoes: ["q-adap25-074","q-usprp2022-042","q-famerp2025-021","q-famema2023-057","q-famerp2022-045","q-usprp2024-092","q-didepm-063","q-uspsp3-055","q-fmabc2022-074","q-unicampdis2025-089"],
+          prosa: `[[A gestante Rh negativo **não sensibilizada** (Coombs indireto negativo) com parceiro Rh positivo ou desconhecido recebe **imunoglobulina anti-D com 28 semanas** e **nova dose em até 72 horas após o parto** se o recém-nascido for Rh positivo, **qualquer que seja o Coombs** no parto (a dose de 28 semanas pode deixá-lo positivo). Também recebe depois de **sangramento, aborto, ectópica, procedimento invasivo ou trauma**, em qualquer idade gestacional.|q-adap25-074,q-usprp2022-042,q-famerp2025-021,q-famema2023-057,q-famerp2022-045]] [[**Parceiro comprovadamente Rh negativo** (pai certo): o feto será Rh negativo, **dispensa a imunoglobulina**. Sem profilaxia na 28ª semana, o Coombs indireto se repete **mensalmente** a partir do 2º trimestre.|q-didepm-063,q-uspsp3-055]] [[Coombs indireto positivo depois da imunoglobulina costuma ser **anticorpo passivo** (título baixo, dura semanas): pergunte quando ela recebeu a dose antes de chamar de aloimunização. E um anticorpo **diferente do anti-D** (anti-Jk, anti-Kell) não protege contra a sensibilização ao D: a gestante **continua recebendo anti-D**.|q-fmabc2022-074,q-unicampdis2025-089,q-usprp2024-092]]`,
+          texto: `- Rh neg, Coombs neg: **anti-D com 28 semanas** e **até 72 h após o parto** se RN Rh+. {q-adap25-074,q-usprp2022-042,q-famerp2025-021}
+- Sangramento, aborto, procedimento: **anti-D** se Coombs negativo. {q-famema2023-057,q-famerp2022-045}
+- Pai comprovadamente Rh neg: **dispensa**. {q-didepm-063}
+- Sem profilaxia: **Coombs indireto mensal**. {q-uspsp3-055}
+- Coombs positivo após a imunoglobulina: **anticorpo passivo**. {q-fmabc2022-074,q-unicampdis2025-089}
+- Anticorpo anti-Jk: ainda **recebe anti-D**. {q-usprp2024-092}` },
+        { id: "rh-sensibilizada", titulo: "Gestante sensibilizada: Doppler da cerebral média e cordocentese", conferir: true,
+          questoes: ["q-einstein2025-053","q-famerp2024-034","q-unifesp2025-074","q-uspsp3-057","q-famerp2026-028","q-amrigs2022-043","q-fmabc2025-070","q-usp2025-014","q-uspsp3-054","q-simepm89-023","q-iamspe2026-053"],
+          prosa: `[[Título de anti-D **acima do crítico (1:16)**, ou antecedente de feto afetado, manda investigar anemia fetal **sem invadir**: **Doppler do pico de velocidade sistólica da artéria cerebral média**, semanal, a partir de cerca de **18 semanas**. O sangue anêmico é **menos viscoso** e o débito aumenta: o fluxo cerebral acelera.|q-famerp2024-034,q-unifesp2025-074,q-uspsp3-057,q-famerp2026-028,q-amrigs2022-043,q-fmabc2025-070]] [[Pico **acima de 1,5 MoM** ou **hidropisia** = anemia fetal moderada a grave: **cordocentese**, que mede a hemoglobina e já permite a **transfusão intrauterina**. A cordocentese direta com título alto é a conduta antiga que algumas provas ainda cobram.|q-usp2025-014,q-simepm89-023,q-iamspe2026-053,q-uspsp3-054]]`,
+          texto: `- Coombs positivo: **identificar e titular** o anticorpo. {q-einstein2025-053}
+- Título > 1:16: **Doppler da ACM** (semanal, desde ~18 semanas). {q-famerp2024-034,q-unifesp2025-074,q-uspsp3-057,q-famerp2026-028,q-fmabc2025-070}
+- Fluxo acelera por **menor viscosidade**. {q-amrigs2022-043}
+- ACM > 1,5 MoM ou hidropisia: **cordocentese** e transfusão intrauterina. {q-usp2025-014,q-simepm89-023,q-iamspe2026-053,q-uspsp3-054}` },
+      ],
+    },
+    {
       id: "vitalidade", titulo: "Vitalidade e crescimento fetal",
       introducao: `[[A cardiotocografia anteparto reativa (acelerações com os movimentos) mostra um feto bem oxigenado; a não reativa pede mais tempo, estímulo ou perfil biofísico, e o padrão sinusoidal sugere anemia fetal grave.|q-usprp2023-026,q-usp2023-037,q-iamspe2025-058,q-usprp2021-057]] [[Restrição de crescimento por insuficiência placentária aumenta a resistência na artéria umbilical; o feto pequeno com Doppler normal é apenas pequeno para a idade gestacional e nasce perto do termo.|q-iamspe2021-062,q-unesp2023-030,q-amrigs2022-042,q-usp2025-018]]`,
       fragmentos: [

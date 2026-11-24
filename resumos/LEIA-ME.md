@@ -89,6 +89,8 @@ Marcações dentro do texto:
 22. **Esquema autoral conferido renderizado** (Playwright, captura de tela): nenhum texto encosta ou sai da caixa, e cada afirmação do esquema existe no texto da seção.
 23. **Fonte lida antes de publicar.** Leia o texto oficial (`npm run texto-oficial`) das diretrizes das seções de conduta e preencha `lidoEm`; só então tire o `conferir: true` daquelas seções. Sem a leitura, a seção continua "a conferir".
 
+24. **Assunto vizinho pequeno vai para dentro de um resumo existente** quando o resumo já trata do tema (capítulo ou seção nova, ligando as questões dele). Ligue **pelo menos metade** das questões do assunto (é o que faz a ferramenta considerá-lo coberto), acrescente o id em `assuntos: [...]` no `catalogo.js` e rode `npm run conjuntos-por-tema -- --gravar`: as questões dele entram além das 20 do tema e vêm primeiro (`docs/PROJETO-INTEGRACAO-RESUMOS.md`, seção 4).
+
 Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 16 a 21 viram erro) e `node --test testes/resumos.test.mjs`.
 
 ## Ainda por fazer

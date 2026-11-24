@@ -105,26 +105,61 @@ export function montarConjuntoPorTexto(questoes, tamanho = TAMANHO_DO_CONJUNTO){
 }
 
 /* Assunto "tem resumo" se é o assunto do resumo ou se ao menos metade das suas questões que servem
-   está nos fragmentos de algum resumo (resumo que agrupa assunto vizinho pequeno). */
+   está nos fragmentos de algum resumo (resumo que agrupa assunto vizinho pequeno). Devolve também,
+   para cada assunto INCORPORADO (não é o assunto principal de nenhum resumo), o resumo que guarda a
+   maior parte das suas questões. */
 function assuntosCobertosPorResumo(questoes, resumos){
-  const nosFragmentos = new Set(resumos.flatMap(r => r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes))));
-  const cobertos = new Set(resumos.map(r => r.assunto)), tot = {}, dentro = {};
-  for(const q of questoes) if(questaoServe(q)){ tot[q.assuntoId] = (tot[q.assuntoId] || 0) + 1; if(nosFragmentos.has(q.id)) dentro[q.assuntoId] = (dentro[q.assuntoId] || 0) + 1; }
-  for(const a in tot) if((dentro[a] || 0) * 2 >= tot[a]) cobertos.add(a);
-  return cobertos;
+  const principais = new Set(resumos.map(r => r.assunto));
+  const cobertos = new Set(principais), tot = {}, dentro = {}, porResumo = {};
+  const resumosDa = new Map();
+  for(const r of resumos) for(const d of r.doencas) for(const f of d.fragmentos) for(const id of f.questoes){
+    if(!resumosDa.has(id)) resumosDa.set(id, new Set()); resumosDa.get(id).add(r.id);
+  }
+  for(const q of questoes) if(questaoServe(q)){
+    tot[q.assuntoId] = (tot[q.assuntoId] || 0) + 1;
+    if(!resumosDa.has(q.id)) continue;
+    dentro[q.assuntoId] = (dentro[q.assuntoId] || 0) + 1;
+    for(const rid of resumosDa.get(q.id)){ const k = q.assuntoId + "\u0000" + rid; porResumo[k] = (porResumo[k] || 0) + 1; }
+  }
+  const incorporadoEm = {};
+  for(const a in tot) if((dentro[a] || 0) * 2 >= tot[a]){
+    cobertos.add(a);
+    if(principais.has(a)) continue;
+    let melhor = null, n = 0;
+    for(const r of resumos){ const c = porResumo[a + "\u0000" + r.id] || 0; if(c > n){ n = c; melhor = r.id; } }
+    if(melhor) incorporadoEm[a] = melhor;
+  }
+  return { cobertos, incorporadoEm };
 }
+
+/* ASSUNTO INCORPORADO a um resumo (ex.: gota dentro de "artrites"): suas questões entram ALÉM das 20
+   do tema, até QUOTA_DO_INCORPORADO por assunto (escolhidas pela mesma cobertura de fragmentos), e
+   vêm NA FRENTE da lista. Motivo (pedido da equipe, 24/11/2026): quem já fez as 20 e volta ao tema
+   recebe primeiro o que é novo; as 20 originais do assunto principal não mudam (ficam fora da
+   disputa com as incorporadas), então o progresso de quem já começou continua valendo. */
+export const QUOTA_DO_INCORPORADO = 10;
 
 /* { chave: {...} }: um por tema com resumo (chave = pasta do resumo) e um por assunto sem resumo
    (chave = id do assunto, semResumo: true). `assuntos` = assuntos que o conjunto atende: é por eles
-   que o cronograma acha o conjunto de um assunto. */
+   que o cronograma acha o conjunto de um assunto. `incorporadas` = ids que vieram de assunto
+   incorporado (estão no começo de `ids`). */
 export function montarTodos(questoes){
   const porId = new Map(questoes.map(q => [q.id, q]));
   const saida = {}, resumos = temasDeResumo().map(t => [t, carregarResumo(t)]);
-  const cobertos = assuntosCobertosPorResumo(questoes, resumos.map(([, r]) => r));
+  for(const [t, r] of resumos) if(!r.id) r.id = t;
+  const { cobertos, incorporadoEm } = assuntosCobertosPorResumo(questoes, resumos.map(([, r]) => r));
   for(const [tema, r] of resumos){
-    const c = montarConjunto(r, porId);
-    const assuntos = [...new Set([r.assunto, ...c.ids.map(id => porId.get(id).assuntoId)])].filter(a => a === r.assunto || cobertos.has(a));
-    saida[tema] = { titulo: r.titulo, assunto: r.assunto, assuntos, ...c };
+    const meus = Object.keys(incorporadoEm).filter(a => incorporadoEm[a] === r.id).sort();
+    const deIncorporado = new Set(meus);
+    const incorporadas = [];
+    for(const a of meus){
+      const soDele = new Map([...porId].filter(([, q]) => q.assuntoId === a));
+      incorporadas.push(...montarConjunto(r, soDele, QUOTA_DO_INCORPORADO).ids);
+    }
+    const base = montarConjunto(r, new Map([...porId].filter(([, q]) => !deIncorporado.has(q.assuntoId))));
+    const ids = [...incorporadas, ...base.ids];
+    const assuntos = [...new Set([r.assunto, ...meus, ...ids.map(id => porId.get(id).assuntoId)])].filter(a => a === r.assunto || cobertos.has(a));
+    saida[tema] = { titulo: r.titulo, assunto: r.assunto, assuntos, ...base, ids, incorporadas };
   }
   const porAssunto = {};
   for(const q of questoes) if(questaoServe(q) && q.real && q.assuntoId && !cobertos.has(q.assuntoId)) (porAssunto[q.assuntoId] ||= []).push(q);
@@ -137,13 +172,14 @@ export function montarTodos(questoes){
 
 export function textoDoArquivo(todos){
   const linhas = Object.entries(todos).map(([tema, c]) =>
-    `  ${JSON.stringify(tema)}: { ${c.semResumo ? "semResumo: true, " : ""}assunto: ${JSON.stringify(c.assunto)}, assuntos: ${JSON.stringify(c.assuntos)}, ids: ${JSON.stringify(c.ids)} },`);
+    `  ${JSON.stringify(tema)}: { ${c.semResumo ? "semResumo: true, " : ""}assunto: ${JSON.stringify(c.assunto)}, assuntos: ${JSON.stringify(c.assuntos)}, ids: ${JSON.stringify(c.ids)}${c.incorporadas && c.incorporadas.length ? `, incorporadas: ${JSON.stringify(c.incorporadas)}` : ""} },`);
   return `/* resumos/conjuntos-por-tema.js — o conjunto planejado de questões de cada tema (com e sem resumo)
    Gerado por \`npm run conjuntos-por-tema -- --gravar\` (não editar à mão; regra em
    ferramentas/lib-conjuntos.mjs e docs/PROJETO-INTEGRACAO-RESUMOS.md, seção 4).
    \`ids\` está em ordem: as primeiras cobrem os fragmentos de maior peso, então quem tem meta curta
    faz as N primeiras. Chave = pasta do resumo; \`semResumo: true\` = assunto ainda sem resumo
-   (chave = id do assunto, diversidade pelo texto, provisório até o resumo sair). É a pós-leitura da construção do zero e a trilha por tema de reparar falhas. */
+   (chave = id do assunto, diversidade pelo texto, provisório até o resumo sair). \`incorporadas\` = questões de assunto
+   incorporado ao resumo: vêm primeiro e somam-se às 20. É a pós-leitura da construção do zero e a trilha por tema de reparar falhas. */
 (window.EscResumos = window.EscResumos || { lista: [], registrar(r){ this.lista.push(r); } }).conjuntos = {
 ${linhas.join("\n")}
 };

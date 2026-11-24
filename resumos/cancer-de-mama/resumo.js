@@ -95,7 +95,7 @@ Veja também: **Climatério** (terapia hormonal e risco), **Câncer de endométr
 - Calcificação em pipoca: **rotina**. {q-sessp2026-080}
 - BI-RADS 5: **≥ 95%** de malignidade. {q-famerp2024-043}` },
         { id: "inv-biopsia", titulo: "Calcificações e biópsia", conferir: true, diretrizes: ["acr-birads"],
-          questoes: ["q-adap23-046","q-unifesp2022-027","q-amrigs2024-043","q-uspsp2-030","q-uspsp3-068","q-einstein2026-046","q-fmabc2025-068","q-tp20241-093","q-uspsp1-080","q-famema2023-048","q-tp20251-096","q-tp20252-117"],
+          questoes: ["q-adap23-046","q-unifesp2022-027","q-amrigs2024-043","q-uspsp2-030","q-uspsp3-068","q-einstein2026-046","q-fmabc2025-068","q-tp20241-093","q-uspsp1-080","q-famema2023-048","q-tp20251-096","q-tp20252-117","q-usprp2024-088"],
           casos: ["q-uspsp3-068","q-einstein2026-046"],
           texto: `- Calcificações pleomórficas: **mamotomia guiada por mamografia**. {q-unifesp2022-027,q-uspsp2-030,q-uspsp3-068}
 - BI-RADS 4C segmentar: **vácuo por estereotaxia** e marcação. {q-adap23-046}
@@ -103,7 +103,8 @@ Veja também: **Climatério** (terapia hormonal e risco), **Câncer de endométr
 - Calcificações novas: **centro de referência para biópsia**. {q-amrigs2024-043,q-fmabc2025-068,q-tp20241-093}
 - Nódulo BI-RADS 4: **core biopsy**. {q-uspsp1-080}
 - BI-RADS 5 ou nódulo espiculado: **biópsia percutânea**. {q-tp20251-096,q-tp20252-117}
-- Melhor amostra de tecido: **incisional** (banca). {q-famema2023-048}` },
+- Melhor amostra de tecido: **incisional** (banca). {q-famema2023-048}
+- **Hiperplasia ductal atípica** na biópsia a vácuo: **excisão cirúrgica** da área, mesmo com as calcificações retiradas (subestima carcinoma em 10 a 30%). {q-usprp2024-088}` },
         { id: "inv-nodulo", titulo: "Nódulo palpável, Paget e gestante", conferir: true, diretrizes: ["inca-mama"],
           questoes: ["q-scmsp2023-065","q-unesp2023-036","q-tp20222-081","q-tp20231-081","q-tp20232-081","q-tp20241-081","q-einstein2022-057","q-unicamp2023-061","q-usprp2026-029","q-fmabc2026-077","q-tp20261-063","q-adap25-068","q-usp2026-101"],
           prosa: `[[O exame de imagem do nódulo palpável depende da idade: abaixo de 30–35 anos, ultrassom primeiro (mama densa); acima, mamografia; o nódulo suspeito vai à biópsia mesmo com imagem tranquila.|q-tp20232-081,q-tp20241-081,q-tp20222-081,q-tp20231-081,q-einstein2022-057,q-unicamp2023-061,q-fmabc2026-077]] [[Fibroadenoma típico na adolescente (oval, regular, homogêneo) se acompanha.|q-tp20241-081]] [[Nódulo duro, irregular, com retração de pele é carcinoma ductal invasivo até prova em contrário.|q-tp20261-063,q-usprp2026-029]] [[Eczema do mamilo que não cede é doença de Paget: biópsia e imagem das mamas, porque costuma esconder um carcinoma.|q-adap25-068]] [[Na gestante, o ultrassom é o primeiro exame do nódulo (a mama da gravidez é densa), mas a mamografia com proteção abdominal é segura e a investigação nunca se adia: o câncer na gestação é achado tarde porque o nódulo é atribuído às mudanças da mama.|q-usp2026-101]]`,
@@ -153,6 +154,37 @@ Veja também: **Climatério** (terapia hormonal e risco), **Câncer de endométr
 - Mastectomia com 34 semanas: quimio **no pós-parto**, antecipando o parto. {q-scmsp2025-074}
 - Fogachos com inibidor de aromatase: **gabapentina**. {q-usp2025-007}
 - Derrame pleural anos depois: **metástase**. {q-unicampdis2024-047}` },
+      ],
+    },
+    {
+      id: "benignas", titulo: "Doenças benignas: dor, nódulo, secreção e mastite",
+      introducao: `[[A maior parte das queixas mamárias da mulher jovem é benigna, e o trabalho do médico é **separar o que precisa de investigação sem medicalizar o resto**. A mama responde aos hormônios do ciclo: na fase lútea o estroma retém água e os ductos proliferam, por isso a dor e o "nódulo" que pioram antes da menstruação e somem depois.|q-usp2023-021,q-unesp2021-032]] Antes dos 30–35 anos, o exame de imagem do nódulo é a **ultrassonografia** (a mama densa esconde lesões na mamografia); a mamografia de rastreamento segue a idade, não a queixa benigna.`,
+      fragmentos: [
+        { id: "ben-mastalgia", titulo: "Mastalgia", conferir: true,
+          questoes: ["q-usp2023-021","q-unesp2021-032","q-usprp2023-033","q-usp2025-024"],
+          prosa: `[[A **mastalgia cíclica** (bilateral, difusa, pior na fase lútea) com exame normal pede **orientação, tranquilização e sutiã adequado**; câncer quase nunca se apresenta como dor. Se incomoda, **anti-inflamatório tópico ou oral**. Mesmo a dor localizada com história familiar, exame normal e padrão cíclico se conduz assim.|q-usp2023-021,q-unesp2021-032,q-usprp2023-033]] [[Só a mastalgia **grave e refratária** recebe droga hormonal: **tamoxifeno em dose baixa** é a de maior eficácia (danazol e bromocriptina têm mais efeitos adversos).|q-usp2025-024]]`,
+          texto: `- Mastalgia cíclica, exame normal: **tranquilizar**, sutiã, AINE tópico. {q-unesp2021-032,q-usprp2023-033}
+- Nodularidade pré-menstrual: **seguimento clínico**. {q-usp2023-021}
+- Grave e refratária: **tamoxifeno em dose baixa**. {q-usp2025-024}` },
+        { id: "ben-nodulo", titulo: "Fibroadenoma, cisto e galactocele", conferir: true,
+          questoes: ["q-amrigs2025-041","q-tp20252-071","q-tp20261-099","q-uspsp1-078","q-sirio2021-062","q-fmabc2023-078","q-unicampdis2023-046","q-sirio2026-074"],
+          prosa: `[[O **fibroadenoma** é o nódulo da jovem: **móvel, fibroelástico, indolor, de limites regulares**; no ultrassom, **oval, paralelo à pele, circunscrito, com até 3 lobulações** e ecotextura homogênea (BI-RADS 3). Abaixo dos 35 anos, com clínica e imagem concordantes, **seguimento clínico e ultrassonográfico** (semestral no primeiro ano); biópsia se crescer, se a imagem for discordante ou se a mulher quiser retirar.|q-amrigs2025-041,q-tp20261-099,q-uspsp1-078,q-sirio2021-062]] [[A jovem com nódulo e uma tia com câncer de mama: **ultrassonografia e acompanhamento na atenção básica**; caso isolado de segundo grau aos 52 anos não a torna de alto risco.|q-tp20252-071]] [[O **cisto simples** é **anecoico, de parede fina e com reforço acústico posterior** (BI-RADS 2): não precisa de punção, salvo se doer. Na puérpera, nódulo **amolecido, indolor, cístico**, sem sinais inflamatórios, é **galactocele**: **controle clínico**.|q-fmabc2023-078,q-unicampdis2023-046,q-sirio2026-074]]`,
+          texto: `- Fibroadenoma: móvel, fibroelástico, oval, **até 3 lobulações** → **seguimento**. {q-amrigs2025-041,q-tp20261-099,q-uspsp1-078,q-sirio2021-062}
+- Jovem com nódulo: **ultrassom** e seguimento na UBS. {q-tp20252-071}
+- Anecoico, parede fina, reforço posterior: **cisto simples**. {q-fmabc2023-078,q-unicampdis2023-046}
+- Puérpera com nódulo cístico indolor: **galactocele**, controle clínico. {q-sirio2026-074}` },
+        { id: "ben-descarga", titulo: "Descarga papilar", conferir: true,
+          questoes: ["q-unesp2026-038","q-unicampdis2025-033","q-usprp2022-059"],
+          prosa: `[[A descarga que preocupa é **espontânea, unilateral, de um ducto, serosa ou sanguinolenta**: a causa mais comum é o **papiloma intraductal**, que se vê no ultrassom como lesão dentro de ducto dilatado e se trata com **exérese do ducto** (o carcinoma é a exceção que a exérese afasta).|q-unesp2026-038,q-unicampdis2025-033]] [[Secreção **bilateral, multiductal, escura ou esverdeada** na mulher na peri ou pós-menopausa é **ectasia ductal**: ductos dilatados com secreção espessa, benigna.|q-usprp2022-059]]`,
+          texto: `- Unilateral, uniductal, sanguinolenta: **papiloma intraductal**. {q-unesp2026-038,q-unicampdis2025-033}
+- Bilateral, multiductal, escura: **ectasia ductal**. {q-usprp2022-059}` },
+        { id: "ben-mastite", titulo: "Mastites: periductal e da lactação", conferir: true,
+          questoes: ["q-usprp2025-053","q-tp20222-095","q-famerp2023-047","q-usprp2027-015","q-unicampdis2025-086","q-tp20231-096","q-tp20241-041"],
+          prosa: `[[Fora da lactação, inflamação **periareolar** com abscesso ou drenagem na **tabagista** é **mastite periductal**: o fumo lesa os ductos subareolares (metaplasia escamosa, obstrução, infecção por **anaeróbios e estafilococo**). Trata-se com **amoxicilina-clavulanato** por 7 a 14 dias e drenagem do abscesso; a **recidiva com fístula (doença de Zuska)** só se resolve com **parar de fumar e ressecar os ductos terminais**.|q-usprp2025-053,q-tp20222-095,q-famerp2023-047,q-usprp2027-015,q-unicampdis2025-086]] [[Na lactação, dor ao amamentar quase sempre é **pega errada**: **corrigir a técnica**. Prurido, ardor e descamação da aréola com dor em pontada é **candidíase**: antifúngico **na mãe e no bebê**.|q-tp20241-041,q-tp20231-096]]`,
+          texto: `- Tabagista, periareolar, drenagem: **mastite periductal**. {q-usprp2025-053,q-tp20222-095}
+- Antibiótico **5 a 7 dias, até 10 a 14** (amoxicilina-clavulanato). {q-famerp2023-047,q-usprp2027-015}
+- Recidiva com fístula: **parar de fumar** e ressecar os ductos. {q-unicampdis2025-086}
+- Dor ao amamentar: **técnica**; prurido e descamação: **candidíase**, tratar mãe e bebê. {q-tp20241-041,q-tp20231-096}` },
       ],
     },
     {

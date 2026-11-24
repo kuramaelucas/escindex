@@ -53,25 +53,30 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
           texto: `- Investigar: **13 sem caracteres, 15 com, ou 5 anos após a telarca**. {q-amrigs2023-042,q-unesp2025-037}
 - Pelos sem mamas: **disgenesia ou hipogonadotrófico**. {q-usprp2021-071}` },
         { id: "ame-hiper", titulo: "FSH alto: o ovário falhou", conferir: true, diretrizes: ["asrm-amenorreia"],
-          questoes: ["q-scmsp2025-069","q-usp2025-022"],
+          questoes: ["q-scmsp2025-069","q-usp2025-022","q-famema2022-052","q-sessp2022-062","q-fmabc2023-079"],
           prosa: `[[Sem mamas e com **FSH alto**, a hipófise está chamando um ovário que não responde: **hipogonadismo hipergonadotrófico**, cuja causa principal é a **síndrome de Turner** (45,X), com **baixa estatura**; o exame é o **cariótipo**.|q-scmsp2025-069,q-usp2025-022]]`,
-          texto: `- FSH alto + baixa estatura: **Turner (45,X)** → cariótipo. {q-scmsp2025-069,q-usp2025-022}` },
+          texto: `- FSH alto + baixa estatura: **Turner (45,X)** → cariótipo. {q-scmsp2025-069,q-usp2025-022}
+- Sem mamas, útero presente, **46,XX** e FSH alto: **disgenesia gonadal pura**; com baixa estatura e 45,X: **Turner**. {q-sessp2022-062,q-fmabc2023-079,q-famema2022-052}` },
         { id: "ame-hipo", titulo: "FSH baixo: falta o comando", conferir: true, diretrizes: ["asrm-amenorreia"],
           questoes: ["q-usp2026-107","q-usprp2021-071"],
           prosa: `[[**LH e FSH baixos** com estradiol indetectável: o problema é **hipotálamo ou hipófise** (atraso constitucional, desnutrição, exercício, Kallmann, tumor, **hiperprolactinemia**, que inibe o GnRH).|q-usp2026-107,q-usprp2021-071]]`,
           texto: `- LH/FSH baixos: **hipotálamo/hipófise** (prolactina, atraso, Kallmann). {q-usp2026-107,q-usprp2021-071}` },
         { id: "ame-anatomica", titulo: "Mamas presentes: útero e caminho", conferir: true, diretrizes: ["asrm-amenorreia"],
           casos: ["q-uspsp3-066"],
-          questoes: ["q-adap21-071","q-einstein2026-047","q-uspsp3-066","q-usprp2024-085"],
+          questoes: ["q-adap21-071","q-einstein2026-047","q-uspsp3-066","q-usprp2024-085","q-unesp2022-029","q-unicamp2022-058","q-sirio2024-061","q-sirio2022-071","q-sessp2023-047"],
           prosa: `[[Com mamas e hormônios normais, o próximo exame é a **ultrassonografia pélvica**: procura o útero e a vagina.|q-einstein2026-047]] [[**Dor pélvica cíclica** sem menstruar, com membrana abaulada azulada no introito: **hímen imperfurado** com hematocolpo → **secção (himenotomia)**.|q-uspsp3-066]] [[Vagina curta em fundo cego, **sem útero**, com mamas e **pelos normais** e ovários funcionantes: **síndrome de Mayer-Rokitansky-Küster-Hauser** (46,XX); trata-se com dilatação vaginal, sem hormônio. Vagina curta pede **cariótipo** para separar da insensibilidade.|q-adap21-071,q-usprp2024-085]]`,
           texto: `- Mamas e hormônios normais: **ultrassom pélvico**. {q-einstein2026-047}
 - Dor cíclica + membrana abaulada: **hímen imperfurado → secção**. {q-uspsp3-066}
-- Sem útero, pelos normais: **Rokitansky**; vagina curta → **cariótipo**. {q-adap21-071,q-usprp2024-085}` },
+- Sem útero, pelos normais: **Rokitansky**; vagina curta → **cariótipo**. {q-adap21-071,q-usprp2024-085}
+- Mamas e pelos normais (Tanner 5), 46,XX, sem útero: **agenesia mülleriana (Rokitansky)**; o teste da progesterona não sangra porque não há endométrio. {q-unesp2022-029,q-unicamp2022-058,q-sirio2024-061}
+- Rokitansky é malformação **não obstrutiva** (não há endométrio retido para doer). {q-sirio2022-071}
+- Vagina curta sem útero: **cariótipo** separa Rokitansky (46,XX) de Morris (46,XY). {q-sessp2023-047}` },
         { id: "ame-insensibilidade", titulo: "Insensibilidade androgênica", conferir: true,
-          questoes: ["q-scmsp2026-078","q-amrigs2022-052","q-uspsp4-036"],
+          questoes: ["q-scmsp2026-078","q-amrigs2022-052","q-uspsp4-036","q-famema2022-051","q-famerp2024-042"],
           prosa: `[[Cariótipo **46,XY** com testículos e receptor de andrógeno que não funciona: a testosterona vira estradiol e forma **mamas**, mas **não há pelos pubianos e axilares**. O testículo faz **hormônio antimülleriano** (células de Sertoli), então **não há útero** e a vagina é curta.|q-scmsp2026-078,q-amrigs2022-052,q-uspsp4-036]] [[Os testículos têm risco de tumor: **gonadectomia** (em geral depois da puberdade) e reposição de estrogênio.|q-uspsp4-036]]`,
           texto: `- Mamas **sem pelos**, sem útero: **insensibilidade androgênica (46,XY)**; AMH presente. {q-scmsp2026-078,q-amrigs2022-052,q-uspsp4-036}
-- **Gonadectomia** pelo risco de tumor. {q-uspsp4-036}` },
+- **Gonadectomia** pelo risco de tumor. {q-uspsp4-036}
+- Alta, mamas M5, **P0**, sem útero e sem 2/3 superiores da vagina: **Morris**; XY sem receptor androgênico funcionante. {q-famerp2024-042,q-famema2022-051}` },
       ],
     },
     {
@@ -80,10 +85,13 @@ Veja também: **Crescimento e puberdade**, **Síndromes genéticas e teratógeno
       fragmentos: [
         { id: "mal-uterinas", titulo: "Septado, arqueado, bicorno e didelfo", conferir: true, diretrizes: ["asrm-amenorreia"],
           casos: ["q-iamspe2026-041"],
-          questoes: ["q-iamspe2026-041","q-scmsp2025-079"],
+          questoes: ["q-iamspe2026-041","q-scmsp2025-079","q-famema2023-041","q-sessp2025-063","q-uspsp1-074","q-uspsp3-071","q-famema2022-053","q-sirio2021-063"],
           prosa: `[[O contorno **externo** do fundo separa as falhas: liso no **septado** e no arqueado (só o interior está dividido); com reentrância no **bicorno**; dois úteros e dois colos no **didelfo**.|q-iamspe2026-041]] [[A reentrância interna **pequena** do fundo, sem dividir a cavidade, é **útero arqueado**, variante quase sem importância; o septo profundo é **septado**, que se trata por histeroscopia.|q-scmsp2025-079]]`,
           texto: `- Fundo externo liso: **septado/arqueado**; reentrante: **bicorno**; dois colos: **didelfo**. {q-iamspe2026-041}
-- Reentrância interna pequena: **arqueado**. {q-scmsp2025-079}` },
+- Reentrância interna pequena: **arqueado**. {q-scmsp2025-079}
+- Dos **ductos de Müller (paramesonéfricos)**: trompas, útero, colo e **1/3 superior da vagina**; o ovário vem da crista gonadal (os três folhetos), por isso é normal no Rokitansky. {q-famema2023-041,q-sirio2021-063}
+- **Dois corpos e dois colos + septo vaginal longitudinal**: útero didelfo, defeito de **fusão** dos ductos paramesonéfricos; septo vaginal dá dispareunia; procurar **agenesia renal** do mesmo lado (rim e Müller nascem juntos). {q-sessp2025-063,q-uspsp3-071,q-uspsp1-074}
+- Útero **bicorno**: resultado obstétrico próximo ao da população geral. {q-famema2022-053}` },
       ],
     },
     {

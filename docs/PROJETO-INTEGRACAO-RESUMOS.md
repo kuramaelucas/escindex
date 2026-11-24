@@ -52,6 +52,8 @@ O conjunto é **gerado por ferramenta e congelado** em `resumos/conjuntos-por-te
 
 **Depois das 20:** o que passar disso no tema vem do banco geral (aleatório ponderado por erro, como a trilha 05d), e a tela diz que é "prática extra".
 
+**Assunto incorporado a um resumo** (decisão de 24/11/2026): um assunto sem resumo próprio passa a ser coberto quando pelo menos metade das suas questões está nos fragmentos de um resumo vizinho (ex.: gota em `artrites`, melanoma em `tumores-cutaneos`, choque em `sepse`). As questões dele entram **além das 20**, até 10 por assunto incorporado (mesma cobertura de fragmentos), e ficam **no começo** da lista (`incorporadas` em `conjuntos-por-tema.js`). Motivo: quem já fez as 20 e volta ao tema recebe primeiro o que é novo, e a tela diz por quê; as 20 originais do assunto principal não mudam, então o progresso de quem começou continua valendo. O catálogo lista o assunto em `assuntos: [...]`, para "Ler o resumo" partir dele também. Regra em `ferramentas/lib-conjuntos.mjs` (`QUOTA_DO_INCORPORADO`), teste em `testes/ciclo-por-tema.test.mjs`.
+
 ## 4-B. Assunto ainda sem resumo
 
 Hoje 77 temas têm resumo e **160 assuntos com questões não têm** (o projeto prevê ≈ 150 resumos, e parte dos assuntos pequenos nunca terá resumo próprio). O cronograma não espera por eles:

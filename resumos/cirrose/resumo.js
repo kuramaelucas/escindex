@@ -144,6 +144,28 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
       ],
     },
     {
+      id: "nodulos", titulo: "Nódulos hepáticos: hepatocarcinoma e lesões benignas",
+      introducao: `[[Diante de um nódulo no fígado, a primeira pergunta é **se o fígado é doente**. No **cirrótico** (ou portador de hepatite B), nódulo é **carcinoma hepatocelular até prova em contrário**. No fígado normal da mulher jovem, as lesões são quase sempre benignas: **hemangioma** (o mais comum), **hiperplasia nodular focal** e **adenoma**. E a lesão maligna mais comum do fígado como um todo é a **metástase**, que chega pela veia porta (cólon) ou pela artéria.|q-unesp2022-078,q-uspsp5-064]] [[O que separa as lesões é o **comportamento do contraste nas fases** da tomografia ou ressonância; a **ressonância com contraste hepatoespecífico** é o exame de maior acurácia para o diferencial.|q-fmabc2021-010]]`,
+      fragmentos: [
+        { id: "nod-chc", titulo: "Carcinoma hepatocelular: diagnóstico por imagem e tratamento", conferir: true,
+          questoes: ["q-fmabc2025-018","q-uspsp5-064","q-unicampdis2025-012","q-usp2022-078","q-usp2025-045","q-fmabc2024-039","q-unesp2022-078"],
+          prosa: `[[O CHC recebe sangue da **artéria** (o parênquima, da porta): por isso **realça forte na fase arterial e "lava" (washout) na fase portal ou tardia**. No cirrótico, nódulo **acima de 1 cm** com esse padrão **é CHC sem biópsia**; a alfafetoproteína alta reforça, mas normal não exclui.|q-fmabc2025-018,q-uspsp5-064,q-unicampdis2025-012]] [[O tratamento depende do tumor **e do fígado**. **Função preservada (Child A) sem hipertensão portal** importante e nódulo único: **ressecção**. **Hipertensão portal ou Child B** com tumor **dentro dos critérios de Milão** (um nódulo ≤ 5 cm ou até 3 nódulos ≤ 3 cm, sem invasão vascular): **transplante**, que trata o tumor e a cirrose.|q-usp2022-078,q-usp2025-045]] [[Antes de uma hepatectomia maior, se o fígado que vai sobrar é pequeno, a **embolização pré-operatória da veia porta** do lado a ressecar faz o outro lado crescer e torna a cirurgia mais segura.|q-fmabc2024-039]]`,
+          texto: `- Cirrótico, nódulo > 1 cm, **realce arterial + washout**: **CHC**, sem biópsia. {q-fmabc2025-018,q-uspsp5-064,q-unicampdis2025-012}
+- Child A, nódulo único: **ressecção**. {q-usp2022-078}
+- Hipertensão portal/Child B dentro de **Milão**: **transplante**. {q-usp2025-045}
+- Fígado remanescente pequeno: **embolização da veia porta**. {q-fmabc2024-039}
+- Maligna mais comum do fígado: **metástase** (via hematogênica). {q-unesp2022-078}` },
+        { id: "nod-benignos", titulo: "Hemangioma, hiperplasia nodular focal e adenoma", conferir: true,
+          questoes: ["q-uspsp1-037","q-uspsp2-086","q-unicampdis2024-084","q-famema2025-028","q-amrigs2025-023","q-uspsp1-043","q-usp2024-043","q-unicamp2022-019","q-uspsp4-067","q-uspsp2-087","q-udisc20262-070","q-fmabc2021-010"],
+          prosa: `[[**Hemangioma**: vasos ectásicos com fluxo lento — **realce periférico, nodular (globuliforme) e descontínuo, com preenchimento centrípeto** nas fases tardias. Não maligniza e não sangra espontaneamente: **observação**, mesmo grande. Só se opera o **sintomático** (dor persistente, compressão), como o gigante de 12 cm que dói.|q-uspsp1-037,q-uspsp2-086,q-unicampdis2024-084,q-famema2025-028]] [[**Hiperplasia nodular focal**: resposta a uma artéria anômala — hipervascular com **cicatriz central e septos radiados**; na ressonância hepatoespecífica fica **iso ou hipercaptante na fase hepatobiliar** (tem hepatócitos e canalículos que funcionam). Não maligniza nem sangra: **conduta expectante**, sem precisar suspender o anticoncepcional.|q-amrigs2025-023,q-uspsp1-043,q-fmabc2021-010]] [[**Adenoma**: proliferação de hepatócitos induzida por **estrogênio** (anticoncepcional por anos), **hipocaptante na fase hepatobiliar**; pode **sangrar e malignizar**. Primeiro **suspender o anticoncepcional** e repetir a imagem em 6 meses; **ressecar** se **≥ 5 cm** depois da suspensão, se cresce, se sangrou, se é de homem ou da variante β-catenina.|q-usp2024-043,q-unicamp2022-019,q-uspsp4-067,q-uspsp2-087,q-udisc20262-070]]`,
+          texto: `- Enchimento **globuliforme centrípeto**: **hemangioma** → observar; operar só se sintomático. {q-uspsp1-037,q-uspsp2-086,q-unicampdis2024-084,q-famema2025-028}
+- **Cicatriz central**: **HNF** → expectante. {q-amrigs2025-023,q-uspsp1-043}
+- Melhor exame: **RM com contraste hepatoespecífico**. {q-fmabc2021-010}
+- Adenoma: **suspender o anticoncepcional**, imagem em 6 meses. {q-usp2024-043,q-unicamp2022-019,q-uspsp4-067,q-uspsp2-087}
+- Adenoma de 6 cm: **suspender + ressecar**. {q-udisc20262-070}` },
+      ],
+    },
+    {
       id: "comparativo", titulo: "Tabela comparativa",
       introducao: `A tabela resume o líquido ascítico.`,
       fragmentos: [

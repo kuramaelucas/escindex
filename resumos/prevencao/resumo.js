@@ -81,7 +81,7 @@ A **prevenção quinquenária** é a proposta de cuidado com a saúde do **próp
       introducao: `[[**Rastreamento** é aplicar um teste a pessoas **assintomáticas** para encontrar doença em fase pré-clínica. Seu objetivo é **reduzir a morbimortalidade** da doença rastreada, e não simplesmente diagnosticar mais cedo.|q-unesp2026-095,q-adap26-081,q-simepm89-067]] Rastrear é uma intervenção com custos e danos (falso-positivos, sobrediagnóstico, ansiedade, cascata de exames), portanto só se justifica quando o benefício para a população supera esses danos.`,
       fragmentos: [
         { id: "rast-criterios-vieses", titulo: "Critérios para rastrear, desfechos válidos e vieses", conferir: true,
-          questoes: ["q-adap26-081","q-uspsp5-083","q-unesp2026-095","q-amrigs2021-084","q-simepm89-067","q-fmabc2024-086","q-unifesp2025-052","q-adap25-052","q-amrigs2024-098","q-uspsp3-020","q-scmsp2025-090","q-uspsp4-085","q-unifesp2026-081","q-usp2023-073","q-iamspe2023-071","q-scmsp2021-083","q-famema2021-071"],
+          questoes: ["q-adap26-081","q-uspsp5-083","q-unesp2026-095","q-amrigs2021-084","q-simepm89-067","q-fmabc2024-086","q-unifesp2025-052","q-adap25-052","q-amrigs2024-098","q-uspsp3-020","q-scmsp2025-090","q-uspsp4-085","q-unifesp2026-081","q-usp2023-073","q-iamspe2023-071","q-scmsp2021-083","q-famema2021-071","q-sirio2022-094","q-sirio2021-093","q-sirio2022-093","q-sirio2023-093"],
           prosa: `Para valer a pena, a doença precisa ser **importante** e ter **história natural conhecida** com **fase pré-clínica detectável**; um **tratamento** que, iniciado nessa fase, melhore o prognóstico; um **teste** aceitável, seguro e com bom desempenho; e **custo** proporcional. [[Uma doença com prevalência de 1 caso em 10.000 e **sem tratamento aceitável** para quem é descoberto é a falha que invalida o programa, mesmo com o teste disponível. E um teste muito sensível, mas com baixa especificidade, gera mais falso-positivos que benefícios.|q-adap26-081,q-uspsp5-083]]
 
 [[O desfecho que prova o benefício é a **mortalidade** pela doença rastreada (ou geral), medida em **ensaio randomizado**; a **sobrevida em 5 anos** e a **taxa de detecção** enganam: o diagnóstico antecipado em 3 anos faz a sobrevida subir de 40% para 70% **sem** mudar a morte, o que é o **viés de antecipação** (lead time); o rastreamento detecta mais os tumores de crescimento lento (viés de duração) e há viés de seleção quando quem se rastreia é mais saudável.|q-unifesp2025-052,q-adap25-052,q-amrigs2024-098,q-uspsp3-020]] A mamografia anual não faz as mulheres "viverem muito mais" por esse motivo.
@@ -102,9 +102,12 @@ A **prevenção quinquenária** é a proposta de cuidado com a saúde do **próp
 - Metanálise de dias de vida ganhos: só a **sigmoidoscopia flexível** teve IC sem o zero. {q-uspsp4-085}
 - Doença mais prevalente acima dos 40 anos: rastrear nessa faixa com o exame A e complementar com C se positivo. {q-scmsp2025-090}
 - A crítica das campanhas de prevenção de benefício duvidoso faz parte da prevenção; exames em excesso custam à sociedade. {q-scmsp2021-083}
-- **Disease mongering** (promoção de doença): a indústria cria doença para vender exame. {q-famema2021-071}` },
+- **Disease mongering** (promoção de doença): a indústria cria doença para vender exame. {q-famema2021-071}
+- Só se rastreia doença cuja **história natural muda com a intervenção precoce**. {q-sirio2022-094}
+- Benefício do programa = queda da **mortalidade**, não da incidência (o rastreio aumenta a incidência ao achar mais casos). {q-sirio2021-093}
+- **Falsos-positivos** pesam na escolha do teste; num programa organizado para câncer frequente, a prova pediu **alto valor preditivo positivo**. {q-sirio2022-093,q-sirio2023-093}` },
         { id: "rast-recomendacoes", titulo: "Quem rastrear, para quê e com que intervalo", conferir: true, diretrizes: ["uspstf","inca-rastreio","rastreio-colo"],
-          questoes: ["q-adap25-060","q-scmsp2021-096","q-scmsp2023-088","q-tp20231-117","q-sessp2026-082","q-usprp2023-041","q-uspsp3-016","q-sessp2023-087","q-iamspe2022-008","q-einstein2021-043","q-einstein2026-067","q-famerp2026-013","q-amrigs2022-093","q-iamspe2023-069","q-tp20202-108","q-unicampdis2024-057","q-uspsp1-108","q-iamspe2026-088"],
+          questoes: ["q-adap25-060","q-scmsp2021-096","q-scmsp2023-088","q-tp20231-117","q-sessp2026-082","q-usprp2023-041","q-uspsp3-016","q-sessp2023-087","q-iamspe2022-008","q-einstein2021-043","q-einstein2026-067","q-famerp2026-013","q-amrigs2022-093","q-iamspe2023-069","q-tp20202-108","q-unicampdis2024-057","q-uspsp1-108","q-iamspe2026-088","q-tp20222-116","q-unicampdis2022-024","q-fmabc2024-089","q-sessp2025-026"],
           prosa: `A pergunta típica descreve uma pessoa assintomática e pede **o que oferecer**; a resposta vem da **idade, do sexo e do risco**. [[Mulher de 50 a 69 anos (ou até 74 nas atualizações): **mamografia a cada dois anos**; de 25 a 64 anos: **citologia** (ou teste de DNA-HPV na norma recente); de 50 a 75 anos: **pesquisa de sangue oculto nas fezes** a cada dois anos para o câncer colorretal. A mulher de 58 anos recebe mamografia, colpocitologia e sangue oculto; a de 53 anos com histerectomia total por miomatose recebe mama e colorretal mais lipídios, mas **não** colo do útero.|q-iamspe2022-008,q-scmsp2023-088,q-tp20231-117]]
 
 [[O rastreamento do câncer de **pulmão** com **tomografia de baixa dose anual** é para **adultos de 50 a 80 anos com 20 ou mais maços-ano** que fumam ou pararam há menos de 15 anos; o **ultrassom de aorta abdominal em exame único** é para **homens de 65 a 75 anos que já fumaram**. Por isso o ex-tabagista de 30 maços-ano que parou há 10 anos recebe os dois, o de 71 anos que fuma há quarenta anos também, e o que parou há 30 anos (15 maços-ano) recebe só o ultrassom abdominal.|q-adap25-060,q-scmsp2021-096,q-sessp2026-082]]
@@ -129,7 +132,16 @@ Sobre **osteoporose**, a USPSTF recomenda rastrear mulheres com 65 anos ou mais 
 - Homem de 71 anos em boa saúde com exames de rotina em excesso: **prevenção quaternária**. {q-unicampdis2024-057}
 - **Osteoporose** (USPSTF): para homens, a evidência é **insuficiente**. {q-einstein2021-043}
 - Anti-hipertensivos reduzem eventos cardiovasculares; a estatina em prevenção primária exige ponderar. {q-amrigs2022-093}
-- PSA em homem de 52 anos sem sintomas: analisar o **sobrediagnóstico** e o sobretratamento. {q-iamspe2026-088}` },
+- PSA em homem de 52 anos sem sintomas: analisar o **sobrediagnóstico** e o sobretratamento. {q-iamspe2026-088}
+- Próstata (INCA/MS): **não rastrear** homem assintomático. {q-tp20222-116}
+- Parente de 1º grau com câncer colorretal antes dos 60: **colonoscopia aos 40 anos ou 10 anos antes da idade do caso índice, o que vier primeiro** (mãe aos 49 → filhos aos 39). {q-unicampdis2022-024}
+- Pulmão: **TC de baixa dose anual** de 50 a 80 anos, **20 maços-ano**, fumante ou que parou há menos de 15 anos. {q-fmabc2024-089}
+- Mais frequentes no Brasil (sem pele): homem **próstata, colorretal, pulmão**; mulher **mama, colorretal, colo do útero**. {q-sessp2025-026}` },
+        { id: "rast-marcadores", titulo: "Marcadores tumorais: seguimento, não rastreamento", conferir: true,
+          questoes: ["q-famema2023-033","q-fmabc2023-015","q-fmabc2022-011"],
+          prosa: `[[Marcador tumoral sérico é substância que o tumor libera, mas também tecidos normais inflamados ou em regeneração; por isso **não serve para rastrear** a população (baixo valor preditivo positivo) e sim para **acompanhar resposta e recidiva** de um câncer já diagnosticado. Pares cobrados: **CEA – colorretal**, **CA-125 – ovário**, **CA 19-9 – pâncreas e vias biliares**, **PSA – próstata**, **alfafetoproteína – hepatocarcinoma e tumor de células germinativas**, **beta-hCG – coriocarcinoma e testículo**, **BTA stat – bexiga** (na urina).|q-famema2023-033,q-fmabc2023-015]] [[A **alfafetoproteína sobe na hepatite crônica e na cirrose** (o fígado regenera), o que limita seu uso para hepatocarcinoma justamente em quem tem mais risco dele.|q-fmabc2022-011]]`,
+          texto: `- CEA–colorretal, BTA stat–bexiga, AFP–fígado e germinativo. {q-famema2023-033,q-fmabc2023-015}
+- AFP perde especificidade na **hepatite crônica**. {q-fmabc2022-011}` },
       ],
     },
     {

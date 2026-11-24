@@ -257,7 +257,7 @@ A **prevenção combinada** (mandala) reúne intervenções **biomédicas, compo
       introducao: `[[A **carga viral materna** é o principal fator de risco da transmissão vertical, que ocorre na gestação (sobretudo no fim), no **parto** e na **amamentação**; o parto vaginal, **por si só**, não reduz o risco, e o que o reduz é a **supressão viral** pela TARV.|q-gdhiv-145,q-gdhiv-143,q-gdhiv-153]]`,
       fragmentos: [
         { id: "gestante", titulo: "Gestante com HIV: terapia, genotipagem e via de parto", conferir: true, diretrizes: ["pcdt-tv"],
-          questoes: ["q-adap22-060","q-adap26-058","q-tp20202-113","q-tp20212-090","q-unicamp2023-063","q-einstein2026-048","q-gdhiv-008","q-gdhiv-059","q-gdhiv-060","q-gdhiv-061","q-gdhiv-104","q-gdhiv-140","q-gdhiv-142","q-gdhiv-145","q-gdhiv-153","q-gdhiv-136","q-gdhiv-143","q-gdhiv-129"],
+          questoes: ["q-adap22-060","q-adap26-058","q-tp20202-113","q-tp20212-090","q-unicamp2023-063","q-einstein2026-048","q-gdhiv-008","q-gdhiv-059","q-gdhiv-060","q-gdhiv-061","q-gdhiv-104","q-gdhiv-140","q-gdhiv-142","q-gdhiv-145","q-gdhiv-153","q-gdhiv-136","q-gdhiv-143","q-gdhiv-129","q-unicampdis2025-031","q-sirio2027-067","q-usprp2023-029","q-fmabc2021-054","q-fmabc2024-076","q-fmabc2025-042-ia"],
           prosa: `[[A gestante com HIV inicia a **TARV imediatamente** (tenofovir, lamivudina e dolutegravir), **sem esperar** carga viral, CD4 ou genotipagem, mesmo com 32 semanas, e mantém o esquema durante toda a gestação; o teste anti-HIV é oferecido na primeira consulta e **repetido com 30 semanas** se negativo.|q-adap22-060,q-adap26-058,q-gdhiv-142]] [[A **via de parto** depende da carga viral do fim da gestação: com carga viral **abaixo de 1.000 cópias/mL após a 34ª semana**, a via é de **indicação obstétrica**, podendo ser vaginal, com **manutenção da TARV habitual**; a **zidovudina venosa** só é dispensada com carga **indetectável (menor que 50)**, e entre 50 e 1.000 ela é recomendada no parto; com carga viral **acima de 1.000** ou desconhecida, indica-se a **cesárea eletiva a partir da 38ª semana**, com zidovudina venosa; e a gestante sem carga viral do 3º trimestre em trabalho de parto (bolsa rota há menos de 4 horas) tem a cesárea como via mais indicada.|q-unicamp2023-063,q-gdhiv-008,q-gdhiv-060,q-gdhiv-061,q-tp20202-113,q-gdhiv-140]] [[O **parto empelicado** é recomendado quando a cesárea é indicada; a criança fica em **alojamento conjunto**, e **o aleitamento materno é contraindicado**, mesmo com profilaxia correta; a **vacina Hib** não deve ser evitada na mulher com HIV.|q-gdhiv-104,q-gdhiv-136,q-einstein2026-048]]`,
           texto: `- Gestante de 32 semanas com HIV: **iniciar TDF + 3TC + DTG de imediato**, sem esperar exames. {q-adap22-060}
 - Gestante de 10 semanas com CV de 38.000: **tenofovir + lamivudina + dolutegravir** durante toda a gestação. {q-adap26-058}
@@ -272,7 +272,12 @@ A **prevenção combinada** (mandala) reúne intervenções **biomédicas, compo
 - A transmissão ocorre na **gestação, no parto e na amamentação**. {q-gdhiv-143,q-gdhiv-129}
 - **Alojamento conjunto**; aleitamento **contraindicado**. {q-gdhiv-104,q-gdhiv-136}
 - Adolescente de 16 anos com TARV desde o 1º trimestre: o RN de menos de 1.500 g também recebe zidovudina. {q-gdhiv-059}
-- A vacina contra *Haemophilus* **não** deve ser evitada na mulher com HIV (menor de 19 anos). {q-einstein2026-048}` },
+- A vacina contra *Haemophilus* **não** deve ser evitada na mulher com HIV (menor de 19 anos). {q-einstein2026-048}
+- Carga viral detectável (mesmo abaixo de 1.000) perto do parto: **AZT venoso** no trabalho de parto; via obstétrica se < 1.000. {q-usprp2023-029,q-sirio2027-067}
+- Carga viral indetectável depois de 34 semanas: **parto vaginal sem AZT venoso**. {q-fmabc2021-054}
+- No parto: **clampeamento imediato, sem ordenhar o cordão**. {q-fmabc2025-042-ia}
+- Gestante em trabalho de parto sem pré-natal: **teste rápido** e conduta conforme o resultado. {q-unicampdis2025-031}
+- Reduz a transmissão: **TARV na gestante** (a prova: lamivudina + tenofovir + raltegravir). {q-fmabc2024-076}` },
         { id: "rn-profilaxia", titulo: "Recém-nascido exposto: cuidados imediatos e profilaxia", conferir: true, diretrizes: ["pcdt-tv"],
           figuras: [{ arquivo: "figuras/rn-exposto.svg", legenda: "Esquema autoral: recém-nascido exposto ao HIV, da sala de parto ao seguimento." }],
           questoes: ["q-unifesp2022-060","q-gdhiv-018","q-gdhiv-024","q-gdhiv-025","q-gdhiv-026","q-gdhiv-027","q-gdhiv-056","q-gdhiv-089","q-gdhiv-098","q-gdhiv-100","q-gdhiv-107","q-gdhiv-109","q-gdhiv-125","q-gdhiv-139","q-gdhiv-141","q-gdhiv-147","q-gdhiv-149","q-gdhiv-150","q-gdhiv-151","q-gdhiv-166","q-gdhiv-170","q-gdhiv-177","q-gdhiv-181","q-gdhiv-187","q-gdhiv-196","q-gdhiv-199","q-gdhiv-209"],
@@ -298,8 +303,14 @@ A **prevenção combinada** (mandala) reúne intervenções **biomédicas, compo
 - Primeira dose de AZT **após 48 horas** é conduta incorreta. {q-gdhiv-170}
 - Diagnóstico tardio: a prova deu **AZT por 6 semanas** (ver Armadilhas). {q-gdhiv-177,q-gdhiv-196}
 - Prematuro de 34 semanas sem via oral: **AZT venoso 1,5 mg/kg 12/12 h** por 14 dias. {q-gdhiv-199}` },
+        { id: "rn-risco", titulo: "Baixo × alto risco: qual esquema o recém-nascido recebe", conferir: true, diretrizes: ["pcdt-tv"],
+          questoes: ["q-adap26-084","q-einstein2022-042","q-sirio2024-057","q-uspsp1-017","q-scmsp2025-049","q-uspsp4-097"],
+          prosa: `[[O esquema do recém-nascido depende do **risco**, e o risco é o controle da mãe. **Baixo risco**: TARV desde cedo na gestação, boa adesão e **carga viral indetectável a partir da 28ª semana** — só **zidovudina oral por 4 semanas**. **Alto risco**: mãe sem TARV, TARV iniciada só na segunda metade da gestação, carga viral detectável ou desconhecida no 3º trimestre, diagnóstico no parto — **três drogas (zidovudina + lamivudina + raltegravir) por 28 dias**.|q-adap26-084,q-einstein2022-042,q-sirio2024-057,q-uspsp1-017]] [[No alto risco, depois do clampeamento imediato e do banho, colhe-se a **carga viral do recém-nascido antes da primeira dose**, porque ela separa a infecção intraútero da que ainda pode ser prevenida; a profilaxia começa em **até 4 horas**.|q-scmsp2025-049,q-uspsp4-097]]`,
+          texto: `- Baixo risco: **AZT oral por 4 semanas**, nas primeiras horas. {q-adap26-084,q-einstein2022-042}
+- Alto risco: **AZT + 3TC + raltegravir por 28 dias**, em até 4 horas. {q-sirio2024-057,q-uspsp1-017}
+- Alto risco: **carga viral do RN antes** da primeira dose. {q-scmsp2025-049,q-uspsp4-097}` },
         { id: "rn-seguimento", titulo: "Diagnóstico e seguimento da criança exposta ou infectada", conferir: true, diretrizes: ["pcdt-hiv-criancas"],
-          questoes: ["q-gdhiv-002","q-gdhiv-044","q-gdhiv-047","q-gdhiv-058","q-gdhiv-081","q-gdhiv-097","q-gdhiv-105","q-gdhiv-111","q-gdhiv-124","q-gdhiv-144","q-gdhiv-169","q-gdhiv-171","q-gdhiv-173","q-gdhiv-175","q-gdhiv-176","q-gdhiv-201","q-gdhiv-207","q-gdhiv-129"],
+          questoes: ["q-gdhiv-002","q-gdhiv-044","q-gdhiv-047","q-gdhiv-058","q-gdhiv-081","q-gdhiv-097","q-gdhiv-105","q-gdhiv-111","q-gdhiv-124","q-gdhiv-144","q-gdhiv-169","q-gdhiv-171","q-gdhiv-173","q-gdhiv-175","q-gdhiv-176","q-gdhiv-201","q-gdhiv-207","q-gdhiv-129","q-unifesp2026-084","q-usprp2022-100","q-didepm-089","q-scmsp2025-050","q-scmsp2026-059"],
           prosa: `[[**Abaixo de 18 meses o teste rápido não confirma infecção**, porque os anticorpos maternos atravessam a placenta; o diagnóstico é por **carga viral** (RNA ou DNA): **duas cargas virais detectáveis** (a primeira pelo menos duas semanas depois da profilaxia) indicam infecção em mais de 95 % dos casos, e carga viral abaixo de 5.000 cópias/mL deve ser **repetida**; com dois resultados baixos consecutivos, avalia-se o contexto, o DNA pró-viral e o CD4; e três cargas indetectáveis (a última depois dos 4 meses) excluem a infecção.|q-gdhiv-058,q-gdhiv-044,q-gdhiv-176,q-gdhiv-169,q-gdhiv-124,q-gdhiv-173]] [[O **sulfametoxazol-trimetoprim** é **universal** para a criança exposta a partir de **4 a 6 semanas**, até a exclusão da infecção; antes da alta não se colhe exame adicional (a carga viral vem em 4 a 6 semanas); a criança infectada recebe TARV **independentemente de CD4, sintomas e carga viral**, e na faixa de 1 a 5 anos o CD4 abaixo de 500 indica imunodepressão grave.|q-gdhiv-175,q-gdhiv-201,q-gdhiv-047,q-gdhiv-097,q-gdhiv-207]] [[A criança exposta **não infectada** tem mais infecções bacterianas e quadros mais graves; a maioria é infectada por transmissão materno-infantil; a pneumonia intersticial linfocítica dá tosse crônica, hipoxemia e baqueteamento; e o tratamento visa preservar ou reconstituir a imunidade.|q-gdhiv-002,q-gdhiv-105,q-gdhiv-081,q-gdhiv-111]]`,
           texto: `- RN de 15 dias com teste rápido positivo: **exposição vertical**, manter AZT e depois **carga viral**; o anticorpo materno explica o teste. {q-gdhiv-058}
 - Duas cargas virais acima de 5.000 cópias/mL (a primeira 2 semanas depois do AZT): **confirmam a infecção**. {q-gdhiv-044}
@@ -316,7 +327,12 @@ A **prevenção combinada** (mandala) reúne intervenções **biomédicas, compo
 - Exposta e não infectada: **mais infecções bacterianas**. {q-gdhiv-002,q-gdhiv-105}
 - Tosse crônica, hipoxemia e baqueteamento na criança: **pneumonia intersticial linfocítica**. {q-gdhiv-081}
 - A maioria das crianças se infecta por **transmissão materno-infantil**. {q-gdhiv-129}
-- Com carga viral materna abaixo de 1.000 no fim da gestação, a via de parto é **obstétrica**. {q-gdhiv-171}` },
+- Com carga viral materna abaixo de 1.000 no fim da gestação, a via de parto é **obstétrica**. {q-gdhiv-171}
+- Carga viral baixa (80 cópias) aos 14 dias: **confirmar** com nova carga ou DNA pró-viral. {q-unifesp2026-084}
+- Duas cargas detectáveis: **TARV imediata**, sem esperar CD4 ou sintomas. {q-didepm-089}
+- **SMX-TMP a partir de 4 semanas** contra *Pneumocystis* até afastar a infecção. {q-scmsp2025-050}
+- Exposto não infectado e assintomático: **calendário de rotina, com BCG**. {q-scmsp2026-059}
+- Depois dos 18 meses, o anticorpo é da criança: **sorologia** confirma ou afasta (a prova: Western Blot). {q-usprp2022-100}` },
       ],
     },
     {

@@ -119,3 +119,32 @@ test("no ar hoje: só a pós-leitura — sem pergunta de início nem cartão no 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("assunto incorporado ao resumo: quem já fez as 20 do tema recebe as novas primeiro, com o motivo", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual(); db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const c = window.EscResumos.conjuntos, chave = Object.keys(c).find(k => (c[k].incorporadas || []).length);
+      const t = c[chave], inc = new Set(t.incorporadas), base = t.ids.filter(id => !inc.has(id));
+      const ordemOk = t.ids.slice(0, inc.size).every(id => inc.has(id));
+      // fez as originais antes de o assunto vizinho entrar no resumo
+      base.forEach(id => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: id, correta: true, data: "2026-01-10" }));
+      const e = estadoDoTema(u, chave);
+      u.resumosLidos = u.resumosLidos || {}; u.resumosLidos[chave] = "2026-01-09";
+      const pos = htmlPosLeituraDoResumo(u, chave);
+      iniciarQuestoesDoTema(chave);
+      const itens = state.sessaoAtual ? state.sessaoAtual.itens : [];
+      return { ordemOk, concluido: e.concluido, novas: e.novasIncorporadas, proximasSaoNovas: e.proximas.every(id => inc.has(id)), nInc: e.ids.filter(id => inc.has(id)).length,
+        primeiraNova: itens.length > 0 && inc.has(itens[0].questaoId), motivo: itens[0] ? itens[0].motivo : "", avisa: /vêm primeiro|vem primeiro/.test(pos),
+        doAssunto: resumoDoAssunto(t.assuntos.find(a => a !== t.assunto)) && resumoDoAssunto(t.assuntos.find(a => a !== t.assunto)).id === chave };
+    });
+    assert.ok(r.ordemOk, "as incorporadas abrem a lista");
+    assert.equal(r.concluido, false, "o tema volta a ter o que fazer");
+    assert.equal(r.novas, r.nInc); assert.ok(r.proximasSaoNovas);
+    assert.ok(r.primeiraNova); assert.match(r.motivo, /incorporado/);
+    assert.ok(r.avisa, "a pós-leitura diz que as novas vêm primeiro");
+    assert.ok(r.doAssunto, "o assunto incorporado leva ao resumo que o cobre");
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
