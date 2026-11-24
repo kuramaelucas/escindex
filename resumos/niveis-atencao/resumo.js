@@ -130,6 +130,7 @@ Veja também: **Princípios do SUS** (Lei 8.080, regionalização, controle soci
           prosa: `[[A prova descreve a cena e pede o atributo.|q-tp20251-110,q-adap26-077,q-amrigs2021-081,q-uspsp1-112]]
 
 | Atributo | O que é | Cena típica |
+|---|---|---|
 | Acesso de primeiro contato | porta de entrada preferencial | o paciente procura a UBS antes de tudo |
 | Longitudinalidade | vínculo da mesma equipe ao longo do tempo | atendida desde bebê, agora no pré-natal |
 | Integralidade | resolver ou providenciar todas as necessidades | promoção, prevenção, cura e reabilitação |

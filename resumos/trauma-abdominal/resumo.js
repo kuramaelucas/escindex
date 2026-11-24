@@ -45,7 +45,7 @@ Veja também: **ATLS** (choque, transfusão e pelve), **Trauma de tórax** (tran
 - FAST positivo com alteração de mesentério em paciente estável: **laparotomia**. {q-usp2026-027}
 - Atropelamento e dor abdominal com pressão normal: pesquisar lesão de **vias urinárias** (**laparoscopia** na prova). {q-uspsp3-114}
 - **Pneumoperitônio** na tomografia: perfuração de víscera oca. {q-unicampdis2022-020}
-- Queda de altura com tomografia: a prova pede a ilustração D da figura. {q-usp2023-120}
+- Queda de altura com hemoperitônio de 1,8 L, lactato alto e pH 7,31 na laparotomia: **controle de danos** (compressas e fechamento temporário). {q-usp2023-120}
 - Garota de 19 anos com pelve estável e dolorosa e sangramento arterial pélvico: **embolização arterial pélvica**. {q-sirio2022-033}` },
       ],
     },
@@ -86,7 +86,7 @@ Veja também: **ATLS** (choque, transfusão e pelve), **Trauma de tórax** (tran
 
 [[A **lesão grau IV** pela AAST sem alteração vascular e estável pode ser tratada de modo **não operatório**, com a **angioembolização profilática**; o que define a conduta é a condição hemodinâmica, não o grau nem a idade; a lesão **grau I a II** (hematoma peri-esplênico, laceração pequena) com estabilidade fica em **observação** com abdome e hemograma seriados.|q-famerp2025-079,q-sirio2021-039,q-fmabc2022-027,q-adap22-008,q-sirio2021-028]] [[A **arteriografia com embolização** de ramos esplênicos preserva o baço e sustenta o TNO no jovem que melhora; a presença de blush na tomografia indica embolização, e a queda de pontos do hematócrito se acompanha com exames seriados.|q-tp20251-077,q-famerp2026-074,q-famerp2024-031]]
 
-O **sinal de Kehr** (dor no ombro esquerdo à palpação do hipocôndrio esquerdo) indica **hemoperitônio por lesão esplênica**, por irritação do diafragma. [[A queda do hematócrito, a peritonite e o choque em briga com trauma fechado sugerem **ruptura do baço**.|q-amrigs2022-036,q-sirio2025-030]] Quem foi **esplenectomizado** deve receber as vacinas antipneumocócica, antimeningocócica e anti-Hib e o risco de infecção fulminante se explica pela perda da filtração de bactérias encapsuladas.|q-amrigs2024-031]]`,
+O **sinal de Kehr** (dor no ombro esquerdo à palpação do hipocôndrio esquerdo) indica **hemoperitônio por lesão esplênica**, por irritação do diafragma. [[A queda do hematócrito, a peritonite e o choque em briga com trauma fechado sugerem **ruptura do baço**.|q-amrigs2022-036,q-sirio2025-030]] [[Quem foi **esplenectomizado** deve receber as vacinas antipneumocócica, antimeningocócica e anti-Hib e o risco de infecção fulminante se explica pela perda da filtração de bactérias encapsuladas.|q-amrigs2024-031]]`,
           texto: `- Instável com avulsão do hilo esplênico (grau V): **esplenectomia total**. {q-adap24-011}
 - Estabilizado após volume: **observação em UTI** (grau II a III) ou **angioembolização** se blush. {q-unifesp2024-015,q-scmsp2021-037}
 - Baço grau I a II com estabilidade: **tratamento não operatório** com exames seriados. {q-adap22-008,q-fmabc2022-027,q-sirio2021-028}
@@ -96,7 +96,7 @@ O **sinal de Kehr** (dor no ombro esquerdo à palpação do hipocôndrio esquerd
 - Presença de **blush** indica embolização; a laparotomia não é obrigatória. {q-famerp2024-031,q-usprp2023-090}
 - **Sinal de Kehr**: dor no ombro esquerdo = hemoperitônio por lesão esplênica. {q-amrigs2022-036}
 - Queda do hematócrito, distensão e peritonite: **ruptura do baço**. {q-sirio2025-030}
-- Guidão ou queda de bicicleta e dor no ombro: a tomografia mostra a lesão esplênica (imagem D). {q-uspsp3-119}
+- Guidão no abdome superior com taquicardia e queda da PA: pensar em **lesão esplênica** (ou pancreática). {q-uspsp3-119}
 - Pós-esplenectomia: vacinas contra **pneumococo, meningococo e Hib**. {q-amrigs2024-031}
 - Estável com lesão hepática grau V e blush: **embolização**. {q-usprp2023-090,q-uspsp4-055}
 - Estável e dor abdominal com hemodinâmica normal: arteriografia e embolização hepática antes da laparotomia. {q-famerp2023-063}` },

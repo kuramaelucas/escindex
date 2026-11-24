@@ -27,7 +27,7 @@ Veja também: **Infecções sexualmente transmissíveis** (sífilis da gestante,
         { id: "sif-mae", figuras: [{ arquivo: "figuras/sifilis-fluxo.svg", legenda: "Esquema autoral: a conduta no recém-nascido conforme o tratamento materno." }], titulo: "Mãe adequadamente tratada e criança exposta", conferir: true, diretrizes: ["pcdt-ist"],
           questoes: ["q-famema2023-095","q-amrigs2022-063","q-fmabc2025-048","q-adap24-088","q-famerp2026-036","q-unicampdis2024-034","q-einstein2023-034","q-einstein2024-043","q-famerp2025-050","q-usprp2021-028"],
           texto: `- Mãe adequadamente tratada: **benzatina completa**, iniciada **≥ 30 dias antes do parto**, com **queda do título**. {q-famema2023-095,q-amrigs2022-063,q-fmabc2025-048}
-- Mãe adequada, RN assintomático, VDRL **não reagente ou não maior que 4× o materno**: **criança exposta**, sem tratamento, **VDRL seriado**. {q-adap24-088,q-famerp2026-036,q-unicampdis2024-034}
+- Mãe adequada, RN assintomático, VDRL **não reagente ou menor que 4× o materno**: **criança exposta**, sem tratamento, **VDRL seriado**. {q-adap24-088,q-famerp2026-036,q-unicampdis2024-034}
 - Seguimento da exposta: **VDRL com 1, 3, 6, 12 e 18 meses**. {q-einstein2023-034}
 - Teste rápido positivo no parto: colher **VDRL periférico do binômio**. {q-einstein2024-043}
 - Mãe diz que "tomou injeções doloridas": confirmar no **cartão** e colher VDRL de mãe e RN. {q-famerp2025-050}
@@ -84,7 +84,7 @@ Veja também: **Infecções sexualmente transmissíveis** (sífilis da gestante,
           texto: `- **Catarata, surdez e canal arterial**: **rubéola congênita**. {q-adap21-028}
 - RN de 1 a 3 semanas com **vesículas agrupadas**, febre e apneia: **herpes neonatal**; perguntar por **lesões genitais**. {q-usprp2026-058}
 - Encefalite herpética neonatal: **aciclovir IV 20 mg/kg de 8/8 h por 21 dias**. {q-didepm-074}
-- Varicela materna **dias depois do parto**, RN de termo bem: **cuidados de rotina**, amamentação mantida. {q-amrigs2020-072}` },
+- Varicela materna que começa **de 5 dias antes a 2 dias depois do parto**: o bebê nasce sem os anticorpos da mãe e recebe **imunoglobulina**; começou **mais tarde** (ex.: 10º dia), RN de termo bem: **cuidados de rotina**, amamentação mantida. {q-amrigs2020-072}` },
       ],
     },
     {

@@ -100,10 +100,10 @@ Veja também: **Comunicação clínica** (más notícias, decisão compartilhada
         { id: "cem-conduta", titulo: "Responsabilidade, publicidade, relação entre colegas e telemedicina", conferir: true, diretrizes: ["cem","telemedicina","cfm-publicidade"],
           questoes: ["q-amrigs2022-084","q-amrigs2023-099","q-unesp2024-090","q-amrigs2020-084","q-amrigs2021-088","q-iamspe2022-075","q-iamspe2023-068","q-unicampdis2025-044","q-unicampdis2025-100","q-uspsp5-077","q-einstein2026-075"],
           prosa: `[[Atender o paciente de outro médico numa intercorrência, registrar e comunicar o colega é correto. O médico pode recusar transcrever pedido de exames de outro profissional sem indicação (não é obrigado a prescrever o que não julga necessário). Omitir cuidados no transporte de um paciente grave é negligência. Na publicidade, a regra de 2023 permite mostrar o dia a dia do trabalho, mas proíbe conteúdo sensacionalista, autopromocional ou pejorativo.|q-amrigs2021-088,q-iamspe2023-068,q-unicampdis2025-100,q-unicampdis2025-044,q-amrigs2023-099]] [[Na telemedicina vale o mesmo código: consentimento, registro e guarda dos dados; no acompanhamento de doenças crônicas, recomenda-se consulta presencial periódica. O médico local e o especialista que orienta a distância respondem juntos pela conduta.|q-uspsp5-077,q-einstein2026-075]]`,
-          texto: `- Vedado: **I, II, III e IV**. {q-amrigs2022-084}
-- Publicidade vedada: **I, II, III e IV**. {q-amrigs2023-099}
+          texto: `- Vedado pelo código: **atos desnecessários**, condutas contra movimentos legítimos da categoria **para obter vantagem**, divulgação **sensacionalista** e divulgação leiga de tratamento **sem reconhecimento científico**. {q-amrigs2022-084}
+- Publicidade vedada: aparição na mídia que **não seja só educativa**, conteúdo **sensacionalista**, divulgação leiga de tratamento **sem reconhecimento científico** e **anúncio de empresas comerciais**. {q-amrigs2023-099}
 - Vedado: **não assumir procedimento que indicou ou de que participou**. {q-unesp2024-090}
-- Deontologia: **V, V, V**. {q-amrigs2020-084}
+- Deontologia: o médico **comunica ao CRM**, com discrição, infrações de que saiba; o código se **revisa periodicamente** e trata do **sumário de alta** e das comissões de ética. {q-amrigs2020-084}
 - Atendeu o paciente do colega e comunicou: **adequado**. {q-amrigs2021-088}
 - Argumento que não ajuda a defesa do "kit": **respeito aos colegas**. {q-iamspe2022-075}
 - Pedido de exames do nutricionista: **pode não acatar**. {q-iamspe2023-068}
@@ -148,6 +148,7 @@ Veja também: **Comunicação clínica** (más notícias, decisão compartilhada
           prosa: `[[O que separa é o risco de dano.|q-scmsp2023-041,q-amrigs2025-061,q-tp20212-045,q-iamspe2022-079]]
 
 | Mantém o sigilo | Quebra o sigilo |
+|---|---|
 | iniciação sexual | risco de vida (ideação suicida, autoagressão) |
 | contracepção | uso escalonado de álcool e drogas |
 | IST tratável | transtorno alimentar grave |

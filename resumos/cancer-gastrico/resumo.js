@@ -97,6 +97,7 @@ Veja também: **Doença péptica**, **DRGE e esôfago**, **Hemorragia digestiva*
           prosa: `[[A origem do tumor muda o tratamento.|q-fmabc2023-031,q-uspsp5-065,q-famema2023-073,q-didepm-022]]
 
 | | Adenocarcinoma | GIST | Linfoma |
+|---|---|---|---|
 | Origem | epitélio | células de Cajal | tecido linfoide |
 | Endoscopia | úlcera ou massa mucosa | submucoso, umbilicado | infiltrativo, úlceras |
 | Marcador | Lauren, HER2 | CD117 (c-KIT) | CD20; H. pylori no MALT |

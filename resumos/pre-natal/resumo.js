@@ -34,7 +34,7 @@ Veja também: **Trabalho de parto e parto**, **Diabetes gestacional**, **Hiperte
           texto: `- Função principal do hCG: **sustentar o corpo lúteo**. {q-scmsp2023-071}
 - Atraso, mamas doloridas e náusea: **teste imunológico de urina** para β-hCG. {q-scmsp2026-071}
 - Teste negativo com atraso de 1 semana: **repetir em 15 dias**. {q-usprp2024-096}
-- Cerca de 10 semanas: **sinal de Hegar**. {q-iamspe2021-057}
+- **Sinal de Hegar** (istmo amolecido): surge por volta de **6 a 8 semanas** e com 10 semanas já está presente. {q-iamspe2021-057}
 - Atraso de 3 dias: espera-se só **sensibilidade mamária**. {q-sirio2021-069}
 - Sequência no ultrassom: **decídua, saco, vesícula, embrião, batimentos**. {q-sessp2026-069}
 - Falso-positivo: **hipotireoidismo, anticonvulsivantes**. {q-sirio2023-062}

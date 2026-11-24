@@ -58,7 +58,7 @@ Veja também: **Hipertensão arterial**, **Síndromes glomerulares** (nefropatia
 - Glicemia isolada de 120: **TOTG** para definir. {q-famema2021-029}
 - Jejum alterado com HbA1c normal após internação (hemácias jovens): **TOTG**. {q-usp2025-079}
 - Insulina sérica **não** diagnostica diabetes. {q-fmabc2025-098}
-- Rastreio populacional: **todos a partir de 45 anos** (ou antes com sobrepeso e fator de risco). {q-tp20241-118,q-scmsp2022-082-ia}
+- Rastreio populacional: **todos a partir de 35 anos** pela ADA e SBD atuais (provas mais antigas usam 45), ou antes com sobrepeso e fator de risco. {q-tp20241-118,q-scmsp2022-082-ia}
 - Jovem assintomático com pai diabético: **glicemia de jejum** e hábitos saudáveis. {q-famema2025-069}
 - Descompensação com urina alterada no idoso: procurar **infecção** como gatilho. {q-amrigs2020-094}
 - Pré-diabetes no homem de 63 anos: maior risco é **cardiovascular** (e neuropatia). {q-sessp2026-088}` },

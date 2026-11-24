@@ -126,6 +126,7 @@ Veja também: **Doença trofoblástica gestacional**, **Pré-natal** (imunoglobu
           prosa: `[[O colo e a cavidade bastam para separar as formas.|q-fmabc2024-080,q-fmabc2025-075,q-amrigs2023-051,q-famema2025-061,q-adap26-049]]
 
 | | Ameaça | Inevitável / incompleto | Completo | Retido / anembrionado | Infectado |
+|---|---|---|---|---|---|
 | Colo | fechado | pérvio | fechado | fechado | pérvio, pus |
 | Útero | compatível | compatível ou menor | menor, involuindo | compatível ou menor | doloroso |
 | USG | embrião vivo | restos, saco descendo | endométrio fino | CCN ≥ 7 mm sem BCF; saco ≥ 25 mm vazio | restos |

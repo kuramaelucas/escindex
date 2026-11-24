@@ -29,7 +29,7 @@ Veja também: **Ciclo menstrual** (dismenorreia primária e sangramento uterino 
 - Líquido peritoneal com **interleucinas, TNF e VEGF**. {q-fmabc2024-065}
 - Dor: **sangramento focal** dos implantes. {q-sirio2023-076}
 - Relação com infertilidade: **aderências, inflamação, menos ovulação**. {q-amrigs2022-056}
-- Virgem com dismenorreia e ultrassom normal: **endometriose primária**. {q-uspsp2-032}
+- Dor cíclica intensa desde a menarca, sangramento irregular e **ultrassom normal**: ainda é **endometriose** (o ultrassom não vê a doença superficial); a prova a chamou de "endometriose primária". {q-uspsp2-032}
 - Massa anexial dolorosa de 5 cm: **endometrioma**. {q-famema2022-057}
 - Implantes azulados prévios na gestante com dor: **endometriose**. {q-uspsp2-040}
 - Dor de parede que irradia à coxa: **miofascial**. {q-usprp2022-053}` },

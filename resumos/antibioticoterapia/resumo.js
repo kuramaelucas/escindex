@@ -122,8 +122,8 @@ Veja também: **Sepse** (antibiótico na primeira hora), **Infecções relaciona
 - Coqueluche: **amoxicilina não** é opção. {q-gdantibioticos-076}
 - Tópico menos indicado contra Gram-positivos: **gentamicina**. {q-gdantibioticos-080}
 - **Vancomicina não cobre Gram-negativos**; aztreonam substitui aminoglicosídeo. {q-gdantibioticos-118}
-- Tigeciclina, linezolida, ampicilina-sulbactam, daptomicina e polimixina: **espectro de cada uma**. {q-gdantibioticos-107}
-- Glicilciclina, oxazolidinona, endocardite por estafilococo resistente, ESBL e candidemia grave: **cada droga no seu lugar**. {q-gdantibioticos-119}
+- Tigeciclina: amplo espectro **sem *Pseudomonas***; linezolida: **Gram-positivos e VRE**; ampicilina-sulbactam: ***Acinetobacter***; daptomicina: **bacteremia e endocardite por MRSA, não pneumonia**; polimixina: **Gram-negativo multirresistente**. {q-gdantibioticos-107}
+- Glicilciclina = **tigeciclina**; oxazolidinona = **linezolida**; endocardite por estafilococo resistente: **vancomicina ou daptomicina**; ESBL: **carbapenêmico**; candidemia grave: **equinocandina**. {q-gdantibioticos-119}
 - Daptomicina na endocardite por MRSA, amoxicilina-clavulanato no pé diabético, meropenem na pneumonia da ventilação, metronidazol no *C. difficile*, azitromicina no atípico. {q-gdantibioticos-120}
 - Oxazolidinona **não é primeira escolha na colite por *C. difficile***. {q-gdantibioticos-004}` },
       ],
@@ -256,6 +256,7 @@ Veja também: **Sepse** (antibiótico na primeira hora), **Infecções relaciona
           prosa: `[[A pergunta que separa as drogas é sempre a mesma: cobre MRSA? *Pseudomonas*? anaeróbio? enterococo? ESBL?|q-gdantibioticos-107,q-gdantibioticos-119,q-gdantibioticos-015]]
 
 | Droga | MRSA | *Pseudomonas* | Anaeróbios | Enterococo | ESBL |
+|---|---|---|---|---|---|
 | Ceftriaxona | não | não | não | não | não |
 | Ceftazidima / cefepima | não | sim | não | não | não (ESBL invasiva) |
 | Ceftarolina | sim | não | não | não | não |

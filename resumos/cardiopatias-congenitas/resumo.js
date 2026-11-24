@@ -26,8 +26,8 @@ Veja também: **Insuficiência cardíaca**, **Valvopatias**, **Neonatologia** e 
         { id: "fis-cianose", titulo: "Cianose e triagem no recém-nascido", conferir: true, diretrizes: ["sbp-coracaozinho"],
           figuras: [{ arquivo: "figuras/shunts.svg", legenda: "Esquema autoral: shunt esquerda-direita (hiperfluxo), Fallot (hipofluxo e cianose) e Eisenmenger (inversão)." }],
           questoes: ["q-amrigs2024-064","q-unesp2025-010","q-iamspe2022-039","q-iamspe2025-074","q-udisc20262-047","q-fmabc2022-051","q-usprp2026-041","q-iamspe2021-041","q-iamspe2022-040","q-unicampdis2025-079"],
-          prosa: `[[**Teste do coraçãozinho** entre 24 e 48 horas: oximetria no membro superior direito e num inferior. Normal: ambos ≥ 95% e diferença ≤ 3%. **Alterado** (< 95% ou diferença > 3%): repetir em 1 hora; persistindo, **ecocardiograma**. Saturação ≤ 89% já é alterado: ecocardiograma imediato.|q-amrigs2024-064,q-unesp2025-010]] [[Cianose central que **piora ao choro e não melhora com oxigênio** é cardíaca: no **teste da hiperóxia**, PaO2 que não sobe acima de 150 com O2 a 100% aponta cardiopatia cianótica (estenose pulmonar grave, Fallot); na doença pulmonar ela sobe. Cianose com pulsos cheios e taquipneia é central.|q-iamspe2022-039,q-iamspe2025-074,q-udisc20262-047,q-fmabc2022-051,q-usprp2026-041]] [[Hiperfluxo pulmonar: **B2 hiperfonética** (pressão pulmonar alta) e trama vascular aumentada na radiografia.|q-iamspe2021-041,q-iamspe2022-040,q-unicampdis2025-079]]`,
-          texto: `- Coraçãozinho: **< 95% ou diferença > 3%** → repetir em 1 h → eco. {q-amrigs2024-064,q-unesp2025-010}
+          prosa: `[[**Teste do coraçãozinho** entre 24 e 48 horas: oximetria no membro superior direito e num inferior. Normal: ambos ≥ 95% e diferença **menor que 3%**. **Alterado** (< 95% ou diferença ≥ 3%): repetir em 1 hora; persistindo, **ecocardiograma**. Saturação ≤ 89% já é alterado: ecocardiograma imediato.|q-amrigs2024-064,q-unesp2025-010]] [[Cianose central que **piora ao choro e não melhora com oxigênio** é cardíaca: no **teste da hiperóxia**, PaO2 que não sobe acima de 150 com O2 a 100% aponta cardiopatia cianótica (estenose pulmonar grave, Fallot); na doença pulmonar ela sobe. Cianose com pulsos cheios e taquipneia é central.|q-iamspe2022-039,q-iamspe2025-074,q-udisc20262-047,q-fmabc2022-051,q-usprp2026-041]] [[Hiperfluxo pulmonar: **B2 hiperfonética** (pressão pulmonar alta) e trama vascular aumentada na radiografia.|q-iamspe2021-041,q-iamspe2022-040,q-unicampdis2025-079]]`,
+          texto: `- Coraçãozinho: **< 95% ou diferença ≥ 3%** → repetir em 1 h → eco. {q-amrigs2024-064,q-unesp2025-010}
 - Cianose que **não melhora com O2**: cardíaca (hiperóxia). {q-iamspe2022-039,q-iamspe2025-074,q-udisc20262-047,q-fmabc2022-051,q-usprp2026-041}
 - Hiperfluxo: **B2 alta**, trama aumentada. {q-iamspe2021-041,q-iamspe2022-040,q-unicampdis2025-079}` },
         { id: "fis-ic", titulo: "Insuficiência cardíaca no lactente e sopro inocente", conferir: true, diretrizes: ["aha-chd"],
@@ -87,6 +87,7 @@ Veja também: **Insuficiência cardíaca**, **Valvopatias**, **Neonatologia** e 
           prosa: `[[O sopro e o fluxo pulmonar identificam a cardiopatia.|q-tp20222-056,q-usprp2021-034,q-unicampdis2023-026,q-tp20252-120]]
 
 | | CIV | CIA | Coarctação | Fallot |
+|---|---|---|---|---|
 | Cianose | não (até Eisenmenger) | não | não | sim |
 | Sopro | holossistólico, BEE baixa | sistólico suave, BEE alta | sistólico no dorso | ejetivo pulmonar (some na crise) |
 | Sinal | frêmito, B2 alta | desdobramento fixo de B2 | PA braço > perna | coração em bota |

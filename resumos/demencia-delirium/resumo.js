@@ -96,7 +96,7 @@ Veja também: **Intoxicações** (anticolinérgicos), **Sepse**, **Cuidados peri
           texto: `- Desinibição, doces e higiene, memória boa: **frontotemporal comportamental**. {q-adap21-111}
 - Rituais e hipersexualidade: **lobos frontal e temporal; ISRS**. {q-tp20231-012}
 - Marcha, urgência e esquecimento: **hidrocefalia de pressão normal**. {q-uspsp2-022,q-tp20251-028}
-- Idoso que cai, demência e fraqueza à direita: **imagem do hematoma subdural** (1). {q-tp20202-039}` },
+- Idoso que cai, demência e fraqueza à direita: **tomografia: hematoma subdural crônico**. {q-tp20202-039}` },
       ],
     },
     {
@@ -120,6 +120,7 @@ Veja também: **Intoxicações** (anticolinérgicos), **Sepse**, **Cuidados peri
           prosa: `[[Início, primeiro sintoma e curso separam os quadros.|q-unifesp2022-095,q-adap22-095,q-adap26-032,q-adap21-111,q-usprp2023-044]]
 
 | | Delirium | Alzheimer | Corpos de Lewy | Frontotemporal | Depressão |
+|---|---|---|---|---|---|
 | Início | horas a dias | insidioso | insidioso | insidioso, 50–65 anos | semanas a meses |
 | Primeiro sintoma | desatenção, flutuação | memória recente | flutuação, alucinações visuais | comportamento | humor, queixa de memória |
 | Achados | causa orgânica | — | parkinsonismo, sono REM | desinibição, compulsões | GDS alta, MEEM preservado |

@@ -105,6 +105,7 @@ Veja também: **Lúpus e colagenoses**, **Vasculites**, **Febre reumática**, **
           prosa: `[[O padrão articular aponta a doença.|q-unesp2024-052,q-sessp2026-005,q-usprp2023-079,q-adap23-075,q-adap21-113]]
 
 | | AR | Espondilite | Psoriásica | Gota | Séptica |
+|---|---|---|---|---|---|
 | Padrão | poli simétrica, mãos | coluna, sacroilíacas, enteses | IFD, dactilite, assimétrica | mono, hálux | mono, joelho |
 | Marcador | anti-CCP, FR | HLA-B27 | psoríase, unhas | urato, cristais | Gram, cultura |
 | Tratamento | metotrexato | AINE, anti-TNF | metotrexato, biológico | colchicina; alopurinol | drenagem + antibiótico |`,

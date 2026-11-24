@@ -10,7 +10,7 @@
   criadoEm: "2026-11-23",
   fontes: [
     { id: "asrm-avaliacao", texto: "ASRM Practice Committee — Fertility evaluation of infertile women (2021) e Definition of infertility (2023); NICE CG156 (Fertility problems, atualizado)", lidoEm: null },
-    { id: "oms-semen", texto: "OMS — Laboratory manual for the examination and processing of human semen (6.ª ed., 2021; valores de referência da 5.ª ed., 2010)", lidoEm: null },
+    { id: "oms-semen", texto: "OMS — Laboratory manual for the examination and processing of human semen (6.ª ed., 2021)", lidoEm: null },
     { id: "eshre-sop", texto: "International evidence-based guideline for the assessment and management of polycystic ovary syndrome (Monash/ESHRE/ASRM, 2023)", lidoEm: null },
   ],
   foraDoEscopo: [],
@@ -58,8 +58,8 @@ Veja também: **Endometriose**, **Síndrome dos ovários policísticos**, **Doen
 - Sinéquias/pólipo: **histeroscopia**. {q-adap24-031,q-famema2021-043,q-fmabc2026-072,q-famerp2022-035}` },
         { id: "fat-masculino", titulo: "Fator masculino", conferir: true, diretrizes: ["oms-semen"],
           questoes: ["q-scmsp2022-049","q-tp20202-005","q-famerp2022-039","q-fmabc2024-066","q-didepm-043","q-famerp2023-049","q-usprp2025-058"],
-          prosa: `[[Limites inferiores da OMS (2010): volume **1,5 mL**, concentração **15 milhões/mL**, motilidade progressiva **32%**, morfologia estrita de Kruger **4%**. Abaixo da concentração = oligozoospermia; da motilidade = astenozoospermia; da morfologia = teratozoospermia (Kruger de 6% é normal).|q-scmsp2022-049,q-tp20202-005,q-famerp2022-039,q-fmabc2024-066]] [[Espermograma alterado se repete em 2–3 meses (o ciclo do espermatozoide dura ~74 dias), com urologista, FSH e testosterona; abaixo de 5 milhões, **cariótipo e microdeleção do Y**.|q-didepm-043]] [[Alteração grave e persistente vai para **ICSI** (injeção do espermatozoide no oócito), que contorna concentração e motilidade baixas.|q-famerp2023-049,q-usprp2025-058]]`,
-          texto: `- OMS: **1,5 mL; 15 mi/mL; 32% progressiva; Kruger 4%**. {q-scmsp2022-049,q-tp20202-005,q-famerp2022-039,q-fmabc2024-066}
+          prosa: `[[Limites inferiores da OMS (6.ª edição, 2021): volume **1,4 mL**, concentração **16 milhões/mL**, motilidade progressiva **30%**, morfologia estrita de Kruger **4%** (a edição de 2010, usada em muitas provas, trazia 1,5 mL, 15 milhões e 32%). Abaixo da concentração = oligozoospermia; da motilidade = astenozoospermia; da morfologia = teratozoospermia (Kruger de 6% é normal).|q-scmsp2022-049,q-tp20202-005,q-famerp2022-039,q-fmabc2024-066]] [[Espermograma alterado se repete em 2–3 meses (o ciclo do espermatozoide dura ~74 dias), com urologista, FSH e testosterona; abaixo de 5 milhões, **cariótipo e microdeleção do Y**.|q-didepm-043]] [[Alteração grave e persistente vai para **ICSI** (injeção do espermatozoide no oócito), que contorna concentração e motilidade baixas.|q-famerp2023-049,q-usprp2025-058]]`,
+          texto: `- OMS 2021: **1,4 mL; 16 mi/mL; 30% progressiva; Kruger 4%** (2010: 1,5 mL; 15 mi; 32%). {q-scmsp2022-049,q-tp20202-005,q-famerp2022-039,q-fmabc2024-066}
 - Repetir em 2–3 meses; < 5 mi: genética. {q-didepm-043}
 - Grave: **ICSI**. {q-famerp2023-049,q-usprp2025-058}` },
       ],
@@ -82,7 +82,7 @@ Veja também: **Endometriose**, **Síndrome dos ovários policísticos**, **Doen
       fragmentos: [
         { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true, diretrizes: ["oms-semen","eshre-sop"],
           questoes: ["q-tp20202-005","q-famerp2022-039","q-usp2024-103","q-famerp2026-017","q-amrigs2023-044"],
-          prosa: `[[**Limites do espermograma**: pela OMS 2010 a concentração mínima é 15 milhões/mL e a morfologia estrita, 4%; a tp20202-005 usou **> 40 milhões e morfologia > 70%** (critérios antigos) e chamou de oligoastenospermia. A famerp2022-039, com 1,5 mL, 14 milhões e 24% progressiva, nomeou "normospermia, normozoospermia, astenozoospermia".|q-tp20202-005,q-famerp2022-039]] [[**Indutor na anovulação**: hoje o letrozol é a primeira escolha; a usp2024-103 respondeu **clomifeno**.|q-usp2024-103]] [[**AMH no 3.º dia**: o AMH pode ser dosado em qualquer dia; a famerp2026-017 pediu FSH e **AMH no 3.º dia**.|q-famerp2026-017]] [[**Esperar um ano**: aos menos de 35 anos isso está certo, mas a amrigs2023-044 considerou a conduta **parcialmente correta** por faltar orientação de hábitos (peso, maconha, café).|q-amrigs2023-044]]`,
+          prosa: `[[**Limites do espermograma**: pela OMS (2021) a concentração mínima é 16 milhões/mL (15 na edição de 2010) e a morfologia estrita, 4%; a tp20202-005 usou **> 40 milhões e morfologia > 70%** (critérios antigos) e chamou de oligoastenospermia. A famerp2022-039, com 1,5 mL, 14 milhões e 24% progressiva, nomeou "normospermia, normozoospermia, astenozoospermia".|q-tp20202-005,q-famerp2022-039]] [[**Indutor na anovulação**: hoje o letrozol é a primeira escolha; a usp2024-103 respondeu **clomifeno**.|q-usp2024-103]] [[**AMH no 3.º dia**: o AMH pode ser dosado em qualquer dia; a famerp2026-017 pediu FSH e **AMH no 3.º dia**.|q-famerp2026-017]] [[**Esperar um ano**: aos menos de 35 anos isso está certo, mas a amrigs2023-044 considerou a conduta **parcialmente correta** por faltar orientação de hábitos (peso, maconha, café).|q-amrigs2023-044]]`,
           texto: `- Espermograma: a prova usou **critérios antigos**. {q-tp20202-005,q-famerp2022-039}
 - Indução: a prova deu **clomifeno**. {q-usp2024-103}
 - AMH: a prova pediu **no D3**. {q-famerp2026-017}
@@ -98,6 +98,7 @@ Veja também: **Endometriose**, **Síndrome dos ovários policísticos**, **Doen
           prosa: `[[Cada fator tem um exame e um tratamento.|q-adap26-051,q-adap21-070,q-adap24-031,q-didepm-043,q-usprp2021-070]]
 
 | Fator | Exame | Causa típica | Tratamento |
+|---|---|---|---|
 | Ovulatório | progesterona de fase lútea, TSH, prolactina | SOP | peso, letrozol, gonadotrofinas |
 | Tubário | histerossalpingografia | DIP, hidrossalpinge | FIV (salpingectomia antes) |
 | Uterino | USG, histeroscopia | sinéquia, pólipo, submucoso | histeroscopia |

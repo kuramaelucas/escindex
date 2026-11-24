@@ -80,7 +80,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
           casos: ["q-usp2025-070"],
           prosa: `As cardiopatias críticas dependem do canal arterial, que fecha nos primeiros dias; a oximetria procura a diferença entre o sangue que sai antes do canal (mão direita) e depois dele (pé), ou a saturação baixa em ambos, antes que o bebê vá para casa.`,
           texto: `- Mão direita é **pré-ductal**; pé é **pós-ductal**. {q-usp2025-069}
-- Abaixo de 95% em alguma medida, ou diferença maior que 3 pontos: **repetir após 1 hora**; mantido, **ecocardiograma antes da alta**. {q-adap21-026,q-amrigs2020-069,q-iamspe2023-037,q-famerp2024-055,q-unicamp2022-038,q-sirio2023-046}
+- Abaixo de 95% em alguma medida, ou diferença de **3 pontos ou mais**: **repetir após 1 hora**; mantido, **ecocardiograma antes da alta**. {q-adap21-026,q-amrigs2020-069,q-iamspe2023-037,q-famerp2024-055,q-unicamp2022-038,q-sirio2023-046}
 - 99% e 95% (diferença de 4): **impede a alta** até repetir. {q-iamspe2022-035}
 - SBP: **90 a 94%** é duvidoso, repete-se **até 2 vezes**; persistindo, positivo. {q-famerp2025-063,q-uspsp4-104}
 - Teste positivo: **ecocardiograma transtorácico**. {q-usp2025-070}` },

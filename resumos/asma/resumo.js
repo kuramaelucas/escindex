@@ -61,7 +61,7 @@ Veja também: **Emergências pediátricas** (parada e insuficiência respiratór
         { id: "man-degraus", titulo: "Degraus no adulto e na criança", conferir: false, diretrizes: ["gina"],
           figuras: [{ arquivo: "figuras/degraus.svg", legenda: "Esquema autoral: o caminho preferido da GINA (track 1) no adolescente e no adulto." }],
           questoes: ["q-iamspe2023-043-ia","q-adap25-087","q-adap26-095","q-simepm89-058","q-unesp2024-051-ia","q-unesp2022-056","q-unesp2023-047","q-einstein2026-001","q-tp20241-046","q-adap22-086","q-usprp2025-032","q-amrigs2023-015","q-unicamp2023-013","q-uspsp2-024"],
-          prosa: `**Atenção aos gabaritos antigos:** antes da GINA 2019, a asma leve tratava com salbutamol isolado e o segundo degrau era aumentar a dose do corticoide inalatório; algumas bancas ainda seguem essa lógica.`,
+          prosa: `**Atenção às provas antigas:** antes da GINA 2019, a asma leve tratava com salbutamol isolado e o segundo degrau era aumentar a dose do corticoide inalatório; algumas bancas ainda seguem essa lógica.`,
           texto: `- Adulto e adolescente: **nunca SABA isolado**. {q-iamspe2023-043-ia,q-unesp2024-051-ia}
 - Asma leve: **budesonida-formoterol se necessário** (track 1). {q-adap25-087,q-adap26-095,q-simepm89-058,q-unesp2022-056,q-unesp2023-047,q-tp20241-046,q-einstein2026-001}
 - Descontrole com CI: **budesonida-formoterol de manutenção e resgate** (ou CI + LABA). {q-adap22-086,q-usprp2025-032,q-amrigs2023-015,q-unicamp2023-013,q-uspsp2-024}` },

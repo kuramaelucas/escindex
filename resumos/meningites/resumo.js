@@ -56,7 +56,7 @@ Veja também: **Convulsão febril** (quando a crise com febre exige punção), *
 - Glicorraquia baixa, proteinorraquia aumentada, leucócitos aumentados com **polimorfonucleares**. {q-gdmeningites-164}
 - Lactente com febre, fontanela abaulada e prostração: o que **não** se espera é **proteína diminuída**. {q-gdmeningites-170}
 - 400 células, glicose de 60 e proteína de 51: **herpes simples** (viral). {q-gdmeningites-156}
-- Meningocócica: pressão normal, mais de 1.000 células com neutrófilos, **glicose abaixo de 40 e proteína acima de 100**. {q-fmabc2023-001}` },
+- Meningocócica: mais de 1.000 células com neutrófilos, **glicose abaixo de 40 e proteína acima de 100**. {q-fmabc2023-001}` },
         { id: "conduta-inicial", titulo: "Primeira conduta: antibiótico, tomografia e punção", conferir: true, diretrizes: ["idsa-meningite-bacteriana"],
           figuras: [{ arquivo: "figuras/conduta-inicial.svg", legenda: "Esquema autoral: quando o antibiótico vai antes da tomografia e da punção." }],
           questoes: ["q-famema2022-093","q-fmabc2025-020","q-gdmeningites-006","q-gdmeningites-007","q-gdmeningites-039","q-gdmeningites-051","q-gdmeningites-052","q-gdmeningites-054","q-gdmeningites-074"],
@@ -154,7 +154,7 @@ Veja também: **Convulsão febril** (quando a crise com febre exige punção), *
           questoes: ["q-gdmeningites-031","q-gdmeningites-032","q-gdmeningites-134","q-gdmeningites-063","q-gdmeningites-040","q-gdmeningites-042","q-gdmeningites-075","q-gdmeningites-076","q-gdmeningites-126","q-gdmeningites-122","q-gdmeningites-116","q-gdmeningites-147","q-gdmeningites-119","q-gdmeningites-155","q-gdmeningites-123","q-amrigs2022-068","q-gdmeningites-087"],
           prosa: `[[A **meningococcemia** é a forma mais grave: febre alta com **petéquias e equimoses extensas, choque e coagulopatia**, em horas, às vezes depois de uma faringite; a **síndrome de Waterhouse-Friderichsen** é a **septicemia meningocócica, com ou sem meningite, que cursa com choque, coagulação intravascular disseminada e falência aguda das suprarrenais** (hemorragia da adrenal).|q-gdmeningites-075,q-gdmeningites-122,q-gdmeningites-116,q-gdmeningites-031,q-gdmeningites-087,q-gdmeningites-032,q-gdmeningites-134]] [[O risco aumenta com **asplenia (anatômica ou funcional) e deficiências do complemento** (properdina, C3, C5 a C9), e a doença é mais frequente no **outono e no inverno**; o tratamento do doente com alguns antibióticos (como a penicilina) **não elimina o meningococo da nasofaringe**, e por isso o próprio paciente recebe quimioprofilaxia antes da alta, a menos que tenha usado ceftriaxona.|q-gdmeningites-040,q-gdmeningites-063,q-gdmeningites-123,q-gdmeningites-042]] [[O diagnóstico se confirma por **cultura** (padrão de referência), **aglutinação pelo látex** e **PCR**; o **Doppler transcraniano não é exame diagnóstico**; o tratamento é **ceftriaxona (ou penicilina cristalina)** e a **dexametasona** não se mantém quando o agente é o meningococo; e a **vacinação incompleta** (bactéria capsulada e imunoprevenível) é fator importante.|q-gdmeningites-119,q-gdmeningites-147,q-gdmeningites-155,q-gdmeningites-076,q-gdmeningites-126,q-amrigs2022-068]]`,
           texto: `- Febre, rigidez, petéquias difusas, PA 85x50 e diplococos: ***Neisseria meningitidis*, ceftriaxona 2 g de 12/12 horas**. {q-gdmeningites-031}
-- Waterhouse-Friderichsen é **septicemia meningocócica**, sem meningite, com choque e CIVD. {q-gdmeningites-032}
+- Waterhouse-Friderichsen é **septicemia meningocócica**, com ou sem meningite, com choque, CIVD e hemorragia das suprarrenais. {q-gdmeningites-032}
 - Falência aguda das suprarrenais (Waterhouse-Friderichsen): **meningococcemia**. {q-gdmeningites-134}
 - **Asplenia anatômica ou funcional** e deficiências do complemento aumentam o risco (não só a asplenia anatômica). {q-gdmeningites-040,q-gdmeningites-063}
 - A afirmativa de que o antibiótico elimina a bactéria da nasofaringe em 72 horas é a que **não** se aceita: o doente também recebe profilaxia antes da alta, salvo se usou ceftriaxona. {q-gdmeningites-042}
@@ -248,7 +248,7 @@ Veja também: **Convulsão febril** (quando a crise com febre exige punção), *
 - Conduta correta: **o agente bacteriano não pode ser descartado** de imediato. {q-gdmeningites-059}
 - Afirmação incorreta: **baixos níveis de glicose** são comuns na encefalite herpética. {q-gdmeningites-060}
 - Confirmação: **PCR**. {q-gdmeningites-061}
-- Sequência F, V, V, F (quadro agudo com crises, confusão e líquor viral). {q-gdmeningites-068}
+- Cefaleia, crises e confusão com hipersinal temporal: **encefalite herpética** (não esclerose mesial nem abscesso); **PCR do HSV no líquor** é o padrão de referência; a **dengue** neuroinvasiva entra no diferencial. {q-gdmeningites-068}
 - Criança de 8 anos com crise, alucinação e perda de memória: **encefalite herpética**. {q-gdmeningites-070}
 - Febre, confusão, hemiparesia e lesão temporal: **PCR e aciclovir**. {q-gdmeningites-073}
 - Duração do aciclovir: **14 a 21 dias**. {q-gdmeningites-101}

@@ -101,6 +101,7 @@ Veja também: **Cirrose e hipertensão portal**, **Colangite e via biliar**, **I
           prosa: `[[Combinar os marcadores conta a história.|q-iamspe2021-010,q-famema2022-027,q-tp20251-015,q-sirio2025-016,q-einstein2027-015]]
 
 | HBsAg | anti-HBc | anti-HBs | Significado |
+|---|---|---|---|
 | − | − | + | vacinado |
 | − | IgG + | + | infecção passada, curada |
 | + | IgM + | − | aguda |

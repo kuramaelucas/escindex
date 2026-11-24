@@ -21,7 +21,7 @@
   doencas: [
     {
       id: "prevencao", titulo: "Risco e prevenção",
-      introducao: `[[O parto prematuro espontâneo é o fim comum de inflamação ou infecção, distensão uterina, sangramento decidual e insuficiência do colo; o maior fator de risco é um parto prematuro anterior.|q-amrigs2021-050,q-famema2022-046]] [[O colo que encurta no segundo trimestre (abaixo de 25 mm no ultrassom transvaginal) mostra o processo antes das contrações; a progesterona vaginal mantém o colo e reduz o parto prematuro em quem tem colo curto ou prematuro anterior.|q-tp20241-085,q-fmabc2025-071,q-fmabc2024-073,q-uspsp3-059,q-unesp2022-025]] [[A cerclagem fecha mecanicamente o colo: indicada pela história (perdas indolores no segundo trimestre), pelo ultrassom (colo < 25 mm com prematuro anterior antes de 34 semanas) ou pelo exame (colo já dilatando sem contração).|q-tp20232-087,q-unicampdis2025-081,q-sessp2026-064,q-tp20222-087,q-unicampdis2022-038]]
+      introducao: `[[O parto prematuro espontâneo é o fim comum de inflamação ou infecção, distensão uterina, sangramento decidual e insuficiência do colo; o maior fator de risco é um parto prematuro anterior.|q-amrigs2021-050,q-famema2022-046]] [[O colo que encurta no segundo trimestre (abaixo de 25 mm no ultrassom transvaginal) mostra o processo antes das contrações; a progesterona vaginal mantém o colo e reduz o parto prematuro em quem tem colo curto ou prematuro anterior.|q-tp20241-085,q-fmabc2025-071,q-fmabc2024-073,q-uspsp3-059,q-unesp2022-025]] [[A cerclagem fecha mecanicamente o colo: indicada pela história (perdas indolores no segundo trimestre), pelo ultrassom (colo < 25 mm **antes de 24 semanas** em quem já teve parto prematuro antes de 34 semanas) ou pelo exame (colo já dilatando sem contração).|q-tp20232-087,q-unicampdis2025-081,q-sessp2026-064,q-tp20222-087,q-unicampdis2022-038]]
 
 Veja também: **Trabalho de parto e parto** (assistência ao parto), **Pré-natal** (colo curto no rastreio), **Prematuridade** e **Desconforto respiratório do RN** (pediatria: o recém-nascido).`,
       fragmentos: [
@@ -36,7 +36,7 @@ Veja também: **Trabalho de parto e parto** (assistência ao parto), **Pré-nata
 - Colo curto que não foi visto no pré-natal: devia ter usado **progesterona**. {q-uspsp3-059}
 - Em progesterona, colo de 35 mm: **manter e seguir com ultrassom**. {q-unesp2022-025}
 - Perdas indolores no 2º trimestre: **cerclagem** pela história. {q-tp20232-087,q-unicampdis2025-081}
-- Colo < 25 mm e prematuro < 34 sem: **cerclagem**. {q-sessp2026-064,q-tp20222-087}
+- Colo < 25 mm antes de 24 semanas e prematuro anterior < 34 sem: **cerclagem**. {q-sessp2026-064,q-tp20222-087}
 - Colo afunilado com membranas no canal: **cerclagem** (ou pessário). {q-unicampdis2022-038}` },
       ],
     },
@@ -70,7 +70,7 @@ Veja também: **Trabalho de parto e parto** (assistência ao parto), **Pré-nata
         { id: "rot-diagnostico", titulo: "Confirmar a rotura",
           questoes: ["q-amrigs2020-042","q-famema2023-056","q-famerp2024-040"],
           texto: `- Confirmação: **exame especular** e inspeção. {q-famerp2024-040,q-famema2023-056}
-- Não ajuda: pH **> 3** (o líquido amniótico tem pH acima de 6,5). {q-amrigs2020-042}` },
+- O pH da vagina é **4 a 4,5** e o do líquido amniótico, **7 a 7,5**: a nitrazina fica azul acima de **6,5**. Um pH "maior que 3" não separa um do outro e **não ajuda**. {q-amrigs2020-042}` },
         { id: "rot-conduta", titulo: "Expectante ou nascer", conferir: false, diretrizes: ["oms-corticoide-2022","acog-rpmo"],
           questoes: ["q-tp20202-097","q-tp20212-092","q-tp20231-088","q-tp20232-088","q-tp20241-086","q-tp20251-088","q-tp20252-060","q-tp20261-104","q-unesp2021-021","q-unesp2024-023","q-famerp2023-040","q-famerp2022-048","q-unicamp2023-052","q-unicampdis2024-103","q-uspsp2-043","q-simepm89-026","q-fmabc2022-075","q-fmabc2023-070","q-einstein2023-057"],
           texto: `- 29–32 sem sem infecção: **internar, corticoide, antibiótico de latência**. {q-simepm89-026,q-tp20212-092,q-tp20251-088,q-famerp2023-040,q-unicamp2023-052}

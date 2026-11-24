@@ -90,6 +90,7 @@ Veja também: **Sistemas de informação em saúde**, **Epidemiologia descritiva
           prosa: `[[Cada situação tem um responsável e um prazo.|q-unicampdis2023-054,q-didepm-055,q-adap25-044,q-adap25-048,q-tp20222-118]]
 
 | Situação | Quem age | Como |
+|---|---|---|
 | Estabelecimento com risco (salão, restaurante) | vigilância sanitária municipal | inspeção, interdição |
 | Lote de medicamento contaminado no país | Anvisa | recolhimento nacional |
 | Suspeita de sarampo, PFA, raiva, botulismo | vigilância epidemiológica | notificação imediata (24 h) |

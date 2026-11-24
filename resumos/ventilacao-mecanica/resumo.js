@@ -89,6 +89,7 @@ Veja também: **DPOC**, **Asma**, **Sepse e choque**, **Pneumonia** e **Distúrb
           prosa: `[[Cada problema tem um botão.|q-unicamp2023-016,q-einstein2021-002,q-udisc20262-003,q-einstein2027-016,q-uspsp4-016]]
 
 | Problema | Ajuste | Cuidado |
+|---|---|---|
 | PaCO2 alta | ↑ frequência ou volume | auto-PEEP na obstrução |
 | PaO2 baixa | ↑ PEEP ou FiO2 | PEEP alta reduz débito |
 | Platô > 30 ou driving ≥ 15 | ↓ volume corrente | tolerar CO2 |

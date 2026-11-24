@@ -147,6 +147,7 @@ Veja também: **Neoplasias hematológicas** (leucemia como diferencial da plaque
           prosa: `[[O que acompanha a plaquetopenia separa as três.|q-tp20202-024,q-tp20241-002,q-adap23-011,q-usprp2021-115]]
 
 | | Trombocitopenia imune | PTT | Trombocitopenia pela heparina |
+|---|---|---|---|
 | Mecanismo | anticorpo contra plaqueta, destruição no baço | falta de ADAMTS13, microtrombos | anticorpo heparina-PF4 ativa plaquetas |
 | Hemácias | normais | hemólise com esquizócitos | normais |
 | Clínica | petéquias, mucosa | confusão, febre, rim | trombose |

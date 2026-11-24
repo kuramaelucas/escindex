@@ -104,6 +104,7 @@ Veja também: **Endocardite**, **Insuficiência cardíaca**, **Febre reumática*
           prosa: `[[Momento do ciclo e irradiação identificam a lesão.|q-card-25,q-sessp2024-017,q-card-27,q-card-26]]
 
 | | Estenose aórtica | Insuficiência aórtica | Estenose mitral | Insuficiência mitral |
+|---|---|---|---|---|
 | Momento | sistólico ejetivo | diastólico precoce | diastólico (ruflar) | holossistólico |
 | Irradiação | carótidas | borda esternal esquerda | ápice, localizado | axila |
 | Sinais | parvus et tardus, B4 | PA divergente, martelo d'água | estalido, B1 alta, FA | B3, ictus desviado |

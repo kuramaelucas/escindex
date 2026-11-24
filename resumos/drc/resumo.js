@@ -100,8 +100,8 @@ Veja também: **Diabetes** (antidiabéticos na DRC), **Hipertensão arterial**, 
 - **Quelante** (sevelamer) + dieta + vitamina D. {q-adap23-064,q-famema2022-026,q-unesp2024-055}` },
         { id: "comp-metabolico", titulo: "Acidose e metabolismo da insulina", conferir: true, diretrizes: ["kdigo-drc-2024"],
           questoes: ["q-scmsp2025-008","q-scmsp2026-015","q-scmsp2026-018","q-unesp2024-055"],
-          prosa: `[[O rim doente não excreta ácidos fixos (sulfato, fosfato, urato): surge **acidose metabólica com ânion gap aumentado**, compensada por hiperventilação, com pCO2 baixa.|q-scmsp2025-008,q-unesp2024-055]] [[A uremia causa **resistência à insulina**, mas o rim também degrada insulina; com a queda da TFG, a insulina dura mais e o diabético passa a ter hipoglicemias e precisar de menos dose. A pista é a **creatinina**.|q-scmsp2026-015,q-scmsp2026-018]]`,
-          texto: `- Acidose com **ânion gap alto**, pCO2 baixa. {q-scmsp2025-008,q-unesp2024-055}
+          prosa: `[[O rim doente não excreta ácidos fixos (sulfato, fosfato, urato): surge acidose metabólica, compensada por hiperventilação, com pCO2 baixa. Nos estágios intermediários ela costuma ser hiperclorêmica (ânion gap normal), porque o primeiro defeito é a menor produção de amônia; com TFG muito baixa (abaixo de 15–20), os ânions retidos fazem o **ânion gap aumentado**.|q-scmsp2025-008,q-unesp2024-055]] [[A uremia causa **resistência à insulina**, mas o rim também degrada insulina; com a queda da TFG, a insulina dura mais e o diabético passa a ter hipoglicemias e precisar de menos dose. A pista é a **creatinina**.|q-scmsp2026-015,q-scmsp2026-018]]`,
+          texto: `- Acidose: hiperclorêmica no início, **ânion gap alto** na DRC avançada; pCO2 baixa. {q-scmsp2025-008,q-unesp2024-055}
 - Resistência à insulina; hipoglicemia por **menor depuração da insulina**. {q-scmsp2026-015,q-scmsp2026-018}` },
       ],
     },
@@ -143,6 +143,7 @@ Veja também: **Diabetes** (antidiabéticos na DRC), **Hipertensão arterial**, 
           prosa: `[[A conduta acumula conforme a TFG cai.|q-006,q-adap22-076,q-adap23-064,q-adap21-118,q-tp20252-107]]
 
 | | G1–G2 | G3a–G3b | G4 | G5 |
+|---|---|---|---|---|
 | TFG | ≥ 60 com lesão | 30–59 | 15–29 | < 15 |
 | Nefroproteção | IECA/BRA se albuminúria; iSGLT2 | + finerenona se albuminúria persiste | iSGLT2 até TFG 20 (mantido depois) | — |
 | Complicações | — | anemia, PTH, acidose: rastrear | quelante, ferro, bicarbonato | uremia |

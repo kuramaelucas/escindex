@@ -91,6 +91,7 @@ Veja também: **Colelitíase e colecistite**, **Pancreatite aguda**, **Câncer d
           prosa: `[[O ultrassom e o quadro definem o nível.|q-usp2026-043,q-tp20212-067,q-einstein2025-026,q-usp2024-027]]
 
 | | Coledocolitíase | Colangite | Klatskin | Periampular |
+|---|---|---|---|---|
 | Dor | cólica | sim + febre | indolor | indolor |
 | USG | colédoco dilatado, cálculo | idem | intra-hepáticas dilatadas, vesícula murcha | tudo dilatado, vesícula distendida |
 | Sinal | icterícia flutuante | Charcot / Reynolds | perda de peso | Courvoisier |

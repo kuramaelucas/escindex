@@ -85,6 +85,7 @@ Veja também: **Princípios e organização do SUS**, **Políticas nacionais**, 
           prosa: `[[Os dois sistemas têm regras e fontes diferentes.|q-fmabc2023-094,q-tp20222-105,q-sirio2027-097,q-usp2023-066]]
 
 | | SUS | Saúde suplementar |
+|---|---|---|
 | Fonte | impostos das três esferas (município 15%, estado 12%) | mensalidades de pessoas e empresas |
 | Regulação | Ministério, conselhos de saúde | ANS (Lei 9.656) |
 | Cobertura | universal e integral | rol da ANS e contrato |

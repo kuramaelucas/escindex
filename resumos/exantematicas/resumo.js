@@ -183,7 +183,7 @@ O mesmo mecanismo explica as formas graves. [[Na **anemia hemolítica crônica**
     },
     {
       id: "varicela", titulo: "Varicela",
-      introducao: `A varicela é a primoinfecção pelo **vírus varicela-zóster (VZV)**. A transmissão ocorre por aerossol e pelo contato com o líquido das vesículas, de **1 a 2 dias antes do exantema até todas as lesões virarem crosta**. A incubação é de 10 a 21 dias. Antes da vacina, praticamente toda criança tinha varicela. Hoje a vacina faz parte do calendário (tetra viral aos 15 meses e varicela aos 4 anos), e os casos caíram muito, mas surtos em creches continuam.
+      introducao: `A varicela é a primoinfecção pelo **vírus varicela-zóster (VZV)**. A transmissão ocorre por aerossol e pelo contato com o líquido das vesículas, de **1 a 2 dias antes do exantema até todas as lesões virarem crosta**. A incubação é de 10 a 21 dias. Antes da vacina, praticamente toda criança tinha varicela. Hoje a vacina faz parte do calendário (varicela monovalente aos 15 meses e aos 4 anos), e os casos caíram muito, mas surtos em creches continuam.
 
 **Fisiopatologia.** O vírus se multiplica na mucosa respiratória e nos linfonodos. Depois chega à pele em **ondas sucessivas de viremia**. [[Cada onda forma uma nova leva de lesões, e é por isso que coexistem mácula, pápula, vesícula e crosta.|q-einstein2027-062]] Na epiderme, o vírus funde as células e forma vesículas intraepidérmicas. Depois da doença, o vírus sobe pelos nervos sensitivos e fica **latente nos gânglios das raízes dorsais**. A reativação décadas depois, quando a imunidade celular cai, é o **herpes-zóster**.
 
