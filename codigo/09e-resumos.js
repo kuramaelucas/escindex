@@ -12,8 +12,8 @@
    última resposta da pessoa a cada questão (acerto no chute = meio erro), a
    tela pinta, com cor fraca: capítulos e seções no sumário, o ponto-chave em
    que ela erra e a frase do texto ([[frase|q-ids]]) que o explica. Clicar na
-   frase acende a cor (de novo, clicar apaga). A tela não mostra números: a
-   legenda diz o que cada cor quer dizer.
+   frase acende a cor (de novo, clicar apaga). A legenda diz o que cada cor quer dizer; ao lado da cor vai a contagem
+   (erradas/feitas) e, no topo, o erro no assunto inteiro.
 
    O que é da pessoa reaproveita o que já existe na plataforma:
    - destaques em azul-claro = os destaques de texto (08b), com alvo
@@ -347,7 +347,9 @@ function renderResumos(){
     return `<div class="empty-state">Abrindo o resumo…</div>`;
   }
   // o texto dos casos ilustrados vem do arquivo da prova (02b): pede antes de desenhar
-  const casos = r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.casos || []));
+  // e o das questões erradas fora do resumo, para localizar a seção provável pelo texto
+  const casos = r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.casos || []))
+    .concat(_errosForaDoResumo(r, _ultimasRespostasDe(usuarioAtual().id)));
   if(arquivosQueFaltamParaAsQuestoes(casos).length){
     garantirCorpos(casos).then(() => { if(state.route === "resumos") render(); });
     return `<div class="empty-state">Abrindo o resumo…</div>`;
@@ -447,16 +449,88 @@ function _ordenarPorErro(lista){
   return lista.sort((a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || a.i - b.i);
 }
 
+/* ---------------------------- desempenho no assunto ----------------------------
+   O resumo não se adapta às questões, mas mede e localiza o erro: a pessoa vê quanto
+   erra no assunto inteiro (todas as questões dele, não só as ligadas a uma seção),
+   quanto erra em cada seção e, para a questão errada que nenhuma seção cita, a seção
+   cujo texto mais se parece com o dela (palavras raras em comum) — com o aviso de que
+   é um palpite. Nada disso é guardado: sai das respostas a cada abertura. */
+function _assuntosDoResumo(r){
+  const c = (catalogoDeResumos() || []).find(x => x.id === r.id) || r;
+  return new Set([c.assunto].concat(c.assuntos || []).filter(Boolean));
+}
+function _idsLigadosAoResumo(r){ return new Set(r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes.concat(f.casos || [])))); }
+// questões do assunto que a pessoa errou (ou acertou no chute) e que nenhuma seção cita
+function _errosForaDoResumo(r, ult){
+  const ass = _assuntosDoResumo(r), ligados = _idsLigadosAoResumo(r);
+  return Object.keys(ult).filter(id => ult[id] > 0 && !ligados.has(id) && ass.has((getQuestao(id) || {}).assuntoId));
+}
+const _RESUMO_PALAVRAS_VAZIAS = new Set("sobre entre quando qual quais assinale alternativa correta incorreta paciente anos idade apresenta seguinte seguintes mais menos pode podem deve devem como para pela pelo com sem dos das nos nas uma umas este esta esse essa isso caso exame exames achado diagnostico conduta tratamento".split(" "));
+function _palavrasDoTexto(t){
+  return new Set(String(t || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\[\[|\]\]|\|[^\]\s]*|\{[^}]*\}|\*/g, " ")
+    .split(/[^a-z0-9]+/).filter(w => w.length >= 5 && !_RESUMO_PALAVRAS_VAZIAS.has(w)));
+}
+// devolve { questaoId: fragmento } para os erros que dá para localizar com alguma confiança
+function _localizarErros(r, ids){
+  const secoes = r.doencas.flatMap(d => d.fragmentos.map(f => ({ f, cap: d, p: _palavrasDoTexto([d.titulo, f.titulo, f.prosa, f.texto].join(" ")) })));
+  const freq = {};
+  secoes.forEach(s => s.p.forEach(w => { freq[w] = (freq[w] || 0) + 1; }));
+  const achados = {};
+  ids.forEach(id => {
+    const q = getQuestao(id);
+    let texto;
+    try { texto = [q.enunciado, (q.alternativas || []).map(a => a.texto || a).join(" "), q.explicacao].join(" "); } catch(e){ return; }
+    const pq = _palavrasDoTexto(texto);
+    let melhor = null, segunda = 0;
+    secoes.forEach(s => {
+      // palavra que aparece em poucas seções pesa mais: é ela que diz "de qual parte" é a questão
+      let nota = 0; pq.forEach(w => { if(s.p.has(w)) nota += 1 / freq[w]; });
+      if(!melhor || nota > melhor.nota){ segunda = melhor ? melhor.nota : 0; melhor = { s, nota }; } else if(nota > segunda) segunda = nota;
+    });
+    if(melhor && melhor.nota >= 2 && melhor.nota >= segunda * 1.3) achados[id] = melhor.s.f;
+  });
+  return achados;
+}
+function _htmlDesempenhoNoAssunto(r, ult, todas){
+  const ass = _assuntosDoResumo(r);
+  const doAssunto = Object.keys(ult).filter(id => ass.has((getQuestao(id) || {}).assuntoId) || todas.includes(id));
+  if(!doAssunto.length) return "";
+  const erro = doAssunto.reduce((s, id) => s + ult[id], 0) / doAssunto.length;
+  const erradas = doAssunto.filter(id => ult[id] > 0);
+  const fora = _errosForaDoResumo(r, ult);
+  const local = _localizarErros(r, fora);
+  const porSecao = {};
+  fora.forEach(id => { const f = local[id]; const k = f ? f.id : ""; (porSecao[k] = porSecao[k] || []).push(id); });
+  const nomeQ = id => { const q = getQuestao(id); return escapeHtml(q ? [q.banca, q.ano].filter(Boolean).join(" ") + (q.numeroNaProva ? " · Q" + q.numeroNaProva : "") : id); };
+  const linhas = Object.keys(porSecao).sort((a, b) => (a === "") - (b === "")).map(k => {
+    const f = k ? r.doencas.flatMap(d => d.fragmentos).find(x => x.id === k) : null;
+    return `<li>${f ? `<button class="link-btn" onclick="irParaNoResumo('resumo-s-${escapeHtml(f.id)}')">${escapeHtml(f.titulo)}</button>` : "Sem seção provável"}: ${porSecao[k].map(nomeQ).join(", ")}</li>`;
+  }).join("");
+  return `<div class="resumo-desempenho">
+    <div><strong>Seu desempenho no assunto:</strong> erro em ${Math.round(erro * 100)}% de ${doAssunto.length} ${plural(doAssunto.length, "questão feita", "questões feitas")} (${erradas.length} ${plural(erradas.length, "errada ou no chute", "erradas ou no chute")}; acerto no chute conta meio erro).</div>
+    ${fora.length ? `<div>${fora.length} ${plural(fora.length, "erro seu não está ligado", "erros seus não estão ligados")} a nenhuma seção. Pelo texto da questão, a parte do resumo que provavelmente ${plural(fora.length, "o explica", "os explica")} (palpite):<ul class="resumo-erros-fora">${linhas}</ul></div>` : ""}
+  </div>`;
+}
+// "2 de 5 erradas" ao lado da cor: a cor diz a faixa, o número diz quanto
+function _contagemDaSecao(ids){
+  if(!_resumoUltimas) return "";
+  const feitas = ids.filter(id => id in _resumoUltimas);
+  if(!feitas.length) return "";
+  const err = feitas.filter(id => _resumoUltimas[id] > 0).length;
+  return `<span class="resumo-contagem" title="Questões ligadas a esta parte: erradas (ou no chute) de feitas">${err}/${feitas.length}</span>`;
+}
+
 function _renderCaderno(r){
   const u = usuarioAtual();
   _resumoUltimas = _ultimasRespostasDe(u.id);
+  const ultTodas = _resumoUltimas;
   _resumoTextos = {}; _resumoFrases = [];
   const todas = [...new Set(r.doencas.flatMap(d => d.fragmentos.flatMap(f => f.questoes)))];
   const feitas = todas.filter(id => id in _resumoUltimas).length;
   // sem nenhuma questão feita, não há o que marcar: o caderno fica na ordem do autor
   if(!feitas) _resumoUltimas = null;
   const medir = ids => _resumoUltimas ? _erroDoResumo(ids) : null;
-  const caps = r.doencas.map((d, i) => ({ d, i, t: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]),
+  const caps = r.doencas.map((d, i) => ({ d, i, ids: [...new Set(d.fragmentos.flatMap(f => f.questoes))], t: medir([...new Set(d.fragmentos.flatMap(f => f.questoes))]),
     secoes: d.fragmentos.map((f, j) => ({ f, i: j, t: medir(f.questoes) })) }));
   if(_resumoUltimas){ _ordenarPorErro(caps); caps.forEach(c => _ordenarPorErro(c.secoes)); }
 
@@ -467,9 +541,9 @@ function _renderCaderno(r){
     const secs = secoes.map((s, k) => _htmlSecaoDoResumo(r, d.id, `${c + 1}.${k + 1}`, s));
     return { d, c, intro, secs };
   });
-  const sumario = caps.map(({ d, t, secoes }, c) => `<li class="resumo-cap-item">
-      <div class="resumo-linha"><span class="resumo-num">${c + 1}</span><button class="resumo-link forte" onclick="irParaNoResumo('resumo-c-${escapeHtml(d.id)}')">${escapeHtml(d.titulo)}</button>${_marcaDoResumo(t)}</div>
-      <ol class="resumo-sub">${secoes.map(({ f, t }, k) => `<li class="resumo-linha"><span class="resumo-num">${c + 1}.${k + 1}</span><button class="resumo-link" onclick="irParaNoResumo('resumo-s-${escapeHtml(f.id)}')">${escapeHtml(f.titulo)}</button>${_marcaDoResumo(t)}</li>`).join("")}</ol>
+  const sumario = caps.map(({ d, t, ids, secoes }, c) => `<li class="resumo-cap-item">
+      <div class="resumo-linha"><span class="resumo-num">${c + 1}</span><button class="resumo-link forte" onclick="irParaNoResumo('resumo-c-${escapeHtml(d.id)}')">${escapeHtml(d.titulo)}</button>${_marcaDoResumo(t)}${_contagemDaSecao(ids)}</div>
+      <ol class="resumo-sub">${secoes.map(({ f, t }, k) => `<li class="resumo-linha"><span class="resumo-num">${c + 1}.${k + 1}</span><button class="resumo-link" onclick="irParaNoResumo('resumo-s-${escapeHtml(f.id)}')">${escapeHtml(f.titulo)}</button>${_marcaDoResumo(t)}${_contagemDaSecao(f.questoes)}</li>`).join("")}</ol>
     </li>`).join("");
 
   return `<div class="flex justify-between items-center gap-1 quebra mb-2">
@@ -496,6 +570,7 @@ function _renderCaderno(r){
           ? `<div>${feitas} de ${todas.length} questões deste tema já feitas. Os capítulos que você mais erra vêm primeiro, depois os que você ainda não respondeu e por último os que já domina; o ponto-chave em que você erra ganha fundo de cor, e a frase do texto que o explica fica sublinhada (clique nela para acender).</div>
              <div class="resumo-legenda"><span><i class="resumo-marca revisar"></i>Revise com prioridade</span><span><i class="resumo-marca atencao"></i>Vale revisar</span><span><i class="resumo-marca dominado"></i>Você já domina</span></div>`
           : `<div>Você ainda não fez questões deste tema: o resumo aparece na ordem do autor. Ao responder as questões, o texto passa a marcar onde você mais erra.</div>`}
+        ${_htmlDesempenhoNoAssunto(r, ultTodas, todas)}
         <div class="text-xs muted">Selecione um trecho para <strong>destacar</strong> em azul ou virar <strong>flashcard</strong>.</div>
       </div>
       ${corpo.map(({ d, c, intro, secs }) => `<section class="resumo-capitulo" id="resumo-c-${escapeHtml(d.id)}">
@@ -543,7 +618,7 @@ function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
     return `<li class="${cls}"${cls ? ` title="${RESUMO_NOMES[cls]}"` : ""}>${_trechoDestacavel("span", bruto, `r:${r.id}:${f.id}:k${k}`, cap)}${ir}</li>`;
   }).join("");
   return `<section class="resumo-secao" id="resumo-s-${escapeHtml(f.id)}">
-    <div class="resumo-sec-cab"><span class="resumo-num">${numero}</span><h3>${escapeHtml(f.titulo)}</h3>${_marcaDoResumo(t)}
+    <div class="resumo-sec-cab"><span class="resumo-num">${numero}</span><h3>${escapeHtml(f.titulo)}</h3>${_marcaDoResumo(t)}${_contagemDaSecao(f.questoes)}
       <button class="resumo-ir" onclick="cartaoDaSecaoDoResumo('${escapeHtml(f.id)}')" title="Criar um flashcard desta seção">${iconeSvg("cards")} cartão</button></div>
     ${prosa}
     ${(f.figuras || []).map(fig => _htmlFiguraDoResumo(r, fig)).join("")}
