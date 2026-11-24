@@ -76,6 +76,12 @@ A **Saúde Única (One Health)** parte da tríade **humanos, animais e ecossiste
 - Entre 1990 e 2020: mais expectativa de vida, menos mortalidade infantil, polio controlada. {q-unesp2021-086}
 - Diarreias, imunopreveníveis e pneumonia em crianças: sem queda de mesma magnitude (alternativa incorreta sobre o sucesso de HIV, hepatites e outras). {q-amrigs2021-093}
 - Suicídio: as taxas aumentam com a idade e são mais altas nos mais idosos, para os dois sexos. {q-udisc20262-016}` },
+        { id: "saude-planetaria", titulo: "Saúde planetária e mudanças climáticas", conferir: true,
+          questoes: ["q-tp20222-110","q-tp20252-098","q-tp20261-112","q-unicampdis2024-114"],
+          prosa: `[[As mudanças climáticas já são uma emergência de saúde: o **calor extremo** nas cidades aumenta as mortes, sobretudo de idosos, crianças e doentes crônicos; enchentes e secas trazem leptospirose, diarreia, desnutrição e deslocamento; o mosquito se espalha (dengue). Nas crianças menores de 5 anos, as doenças mais ligadas ao ambiente são as **infecções respiratórias baixas** e a **diarreia**.|q-tp20222-110,q-unicampdis2024-114]] [[O setor saúde age nas duas pontas: **adaptação** (protocolos de resposta rápida a epidemias e desastres, treinamento das equipes) e **mitigação** — o próprio sistema de saúde emite gases de efeito estufa, e a transição para **serviços sustentáveis** faz parte do cuidado.|q-tp20252-098,q-tp20261-112]]`,
+          texto: `- Principal impacto (OMS): **calor extremo** e mortes por calor. {q-tp20222-110}
+- < 5 anos: **respiratória baixa e diarreia**. {q-unicampdis2024-114}
+- Saúde: **reduzir as próprias emissões** e preparar resposta a desastres. {q-tp20252-098,q-tp20261-112}` },
       ],
     },
     {

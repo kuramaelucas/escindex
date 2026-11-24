@@ -132,6 +132,27 @@ Veja também: **Infecções de pele**, **Anafilaxia, urticária e angioedema**, 
       ],
     },
     {
+      id: "farmacodermias", titulo: "Farmacodermias",
+      introducao: `[[Toda erupção nova em quem começou um remédio nas últimas **semanas** é farmacodermia até prova em contrário. A maioria é **exantema morbiliforme** benigno (hipersensibilidade **tipo IV**, tardia, mediada por linfócitos T), como o da amoxicilina na mononucleose. O que importa é reconhecer as **graves**, porque a conduta comum a todas é **suspender o remédio suspeito**. Os culpados clássicos: **anticonvulsivantes aromáticos** (carbamazepina, fenitoína, lamotrigina), **alopurinol**, sulfas, antibióticos.|q-udisc20262-038,q-unifesp2025-040,q-adap25-040]]`,
+      fragmentos: [
+        { id: "farm-sjs", titulo: "Stevens-Johnson, NET e eritema multiforme", conferir: true,
+          questoes: ["q-unifesp2025-040","q-adap26-039","q-amrigs2024-075","q-adap25-042","q-tp20232-023","q-tp20241-017","q-fmabc2022-049"],
+          prosa: `[[**Stevens-Johnson/necrólise epidérmica tóxica**: 1 a 3 semanas depois do remédio, pródromo de febre e dor de garganta, depois **máculas e alvos atípicos** que viram bolhas, **erosões em duas ou mais mucosas** (boca, olhos, genitais) e Nikolsky positivo. O **descolamento** define o nome: **< 10%** da superfície = **SJS**, 10–30% = sobreposição, **> 30% = NET**. Conduta: **suspender o remédio** e internar em **UTI ou centro de queimados** (pele como queimadura), com cuidado ocular.|q-unifesp2025-040,q-adap26-039,q-amrigs2024-075,q-adap25-042]] [[**Eritema multiforme** é outra doença: **alvos típicos** (três zonas) **acrais**, simétricos, pouca mucosa, e a causa mais comum é **infecção pelo herpes simples** (às vezes *Mycoplasma*), não remédio.|q-tp20232-023,q-tp20241-017,q-fmabc2022-049]]`,
+          texto: `- Carbamazepina/fenitoína/alopurinol + mucosas + bolhas: **SJS**; **< 10%** de descolamento. {q-unifesp2025-040,q-adap26-039,q-amrigs2024-075}
+- Lamotrigina, erosões em mucosas: **suspender, UTI/queimados**. {q-adap25-042}
+- Alvos típicos acrais: **eritema multiforme**, ligado ao **herpes**. {q-tp20232-023,q-tp20241-017,q-fmabc2022-049}` },
+        { id: "farm-dress", titulo: "DRESS, PEGA e outras", conferir: true,
+          questoes: ["q-unifesp2026-039","q-sessp2024-013","q-unesp2024-058","q-usp2025-090","q-unicampdis2024-067","q-adap25-040","q-tp20252-065","q-udisc20262-038","q-unifesp2024-024","q-usp2026-005"],
+          prosa: `[[**DRESS**: começa **mais tarde (2 a 8 semanas)** depois de anticonvulsivante ou alopurinol, com **febre, exantema extenso, edema facial, linfonodos**, **eosinofilia**, linfócitos atípicos e **lesão de órgão** (hepatite, rim). Pedir **hemograma, transaminases e creatinina**. Tratamento: **suspender o remédio e corticoide sistêmico** com retirada lenta (recai).|q-unifesp2026-039,q-sessp2024-013,q-unesp2024-058,q-usp2025-090,q-unicampdis2024-067,q-adap25-040]] [[**Pustulose exantemática generalizada aguda (PEGA)**: **dias** depois do remédio (antibiótico, hidroxicloroquina), centenas de **pústulas pequenas não foliculares** sobre eritema, febre e neutrofilia; some ao suspender. A **dermatite fototóxica** (vesículas e ardor só na área exposta ao sol depois de contato com limão ou remédio) e o **prurido por opioide** (tramadol) também são reações a drogas.|q-tp20252-065,q-unifesp2024-024,q-usp2026-005]] [[O exantema da amoxicilina-clavulanato na mononucleose é **tipo IV** e não proíbe penicilina no futuro.|q-udisc20262-038]]`,
+          texto: `- 2–8 semanas, febre, edema facial, eosinofilia, hepatite: **DRESS** → suspender + **corticoide**. {q-unifesp2026-039,q-unesp2024-058,q-usp2025-090,q-unicampdis2024-067,q-adap25-040}
+- Investigar: **hemograma e transaminases**. {q-sessp2024-013}
+- Pústulas pequenas após hidroxicloroquina: **PEGA**. {q-tp20252-065}
+- Vesículas e ardor na área exposta: **fototóxico**. {q-unifesp2024-024}
+- Prurido sem lesão com tramadol: **trocar o opioide**. {q-usp2026-005}
+- Exantema da amoxicilina na mono: **tipo IV**. {q-udisc20262-038}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

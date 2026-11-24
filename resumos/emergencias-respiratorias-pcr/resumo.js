@@ -133,6 +133,33 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
       ],
     },
     {
+      id: "corpo-estranho", titulo: "Corpo estranho: engasgo, aspiração e ingestão",
+      introducao: `[[Crianças de **1 a 3 anos** levam tudo à boca, não têm molares para triturar e coordenam mal deglutição e fala: amendoim, grãos, peças pequenas. O corpo estranho na **via aérea** se anuncia por **engasgo súbito** seguido de **tosse, sibilo ou estridor** numa criança antes sadia; o do **tubo digestivo**, por **sialorreia**, recusa alimentar e dor ao engolir. Na história, o episódio de engasgo é o dado que mais vale.|q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040,q-unesp2026-013,q-uspsp2-053]]`,
+      fragmentos: [
+        { id: "ce-engasgo", titulo: "Engasgo: obstrução total da via aérea", conferir: true,
+          questoes: ["q-sirio2027-042","q-usprp2027-050","q-einstein2026-044","q-uspsp4-110"],
+          prosa: `[[Se a criança **tosse com força e fala ou chora**, a obstrução é parcial: **não intervir**, estimular a tosse e observar. Se **não consegue falar, tossir ou respirar** e fica cianótica: **acima de 1 ano**, **compressões abdominais (Heimlich)** — na prática brasileira, golpes nas costas seguidos de compressões abdominais, repetindo até desobstruir; **lactente**, **5 golpes nas costas e 5 compressões torácicas**, de cabeça para baixo. Lactente que engasga com leite mas **está consciente e respira**: levantar, remover o leite visível e estimular as costas.|q-sirio2027-042,q-usprp2027-050,q-einstein2026-044]] [[Se perde a consciência, começa a **RCP**: compressões, olhar a boca antes de ventilar e, na parada, **adrenalina 0,01 mg/kg** a cada 3–5 minutos, como em qualquer ritmo não chocável.|q-uspsp4-110]]`,
+          texto: `- Criança consciente sem som: **golpes dorsais + compressões abdominais**. {q-sirio2027-042,q-usprp2027-050}
+- Lactente engasgado com leite, consciente: **levantar, limpar, estimular**. {q-einstein2026-044}
+- Parou: RCP e **adrenalina 0,01 mg/kg**. {q-uspsp4-110}` },
+        { id: "ce-aspiracao", titulo: "Aspiração: broncoscopia", conferir: true,
+          questoes: ["q-usp2024-005","q-unicamp2023-041","q-unesp2024-014","q-iamspe2023-040","q-unicampdis2024-091","q-sessp2022-048"],
+          prosa: `[[O corpo estranho que passa da glote vai mais para o **brônquio direito** (mais vertical e largo): **sibilo localizado, murmúrio diminuído de um lado** e **hiperinsuflação** (efeito válvula) ou atelectasia. A radiografia pode ser normal (amendoim não aparece); a suspeita clínica basta para a **broncoscopia**, que diagnostica e retira.|q-usp2024-005,q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040]] [[O corpo estranho esquecido vira **"pneumonia" que não melhora com antibiótico** ou sibilância recorrente no mesmo lugar. No nariz, **secreção fétida unilateral** numa criança pequena é corpo estranho até prova em contrário.|q-unicampdis2024-091,q-sessp2022-048]]`,
+          texto: `- Engasgo + tosse e sibilo assimétrico: **aspiração** → **broncoscopia**. {q-usp2024-005,q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040}
+- Pneumonia que não melhora: lembrar **corpo estranho**. {q-unicampdis2024-091}
+- Secreção nasal fétida unilateral: **corpo estranho nasal**. {q-sessp2022-048}` },
+        { id: "ce-ingestao", titulo: "Ingestão: bateria, moeda, perfurante e cáustico", conferir: true,
+          questoes: ["q-unesp2026-013","q-usprp2025-006","q-adap21-092","q-famerp2025-055","q-usp2023-082","q-uspsp2-053","q-usprp2023-012","q-usprp2021-092","q-udisc20262-059"],
+          prosa: `[[Ingestão suspeita: **radiografia de pescoço, tórax (frente e perfil) e abdome**. O perfil diferencia a **bateria de botão** (duplo contorno, "halo") da moeda.|q-unesp2026-013,q-usprp2025-006]] [[**Bateria no esôfago** é emergência: a corrente e o hidróxido formado na mucosa queimam em horas e perfuram (fístula, aorta). **Endoscopia em até 2 horas**. **Moeda no esôfago**, sem sintomas, também se retira por endoscopia; no estômago, a maioria passa.|q-adap21-092,q-famerp2025-055,q-usp2023-082]] [[Criança com **sialorreia, rouquidão ou dor** depois de engolir algo, ou **objeto pontiagudo** no esôfago: **endoscopia de urgência**. Perfurante que já passou do estômago e não dá sintoma: **radiografias seriadas** para ver se progride.|q-uspsp2-053,q-usprp2023-012,q-usprp2021-092]] [[**Cáusticos alcalinos** (soda) causam **necrose de liquefação**, que aprofunda e perfura o esôfago; os ácidos, necrose de coagulação, que limita a lesão.|q-udisc20262-059]]`,
+          texto: `- Investigar: Rx **cervical, tórax (2 incidências) e abdome**. {q-unesp2026-013,q-usprp2025-006}
+- **Bateria** no esôfago: endoscopia **em até 2 h**. {q-adap21-092,q-famerp2025-055}
+- Moeda no esôfago: **endoscopia**. {q-usp2023-082}
+- Sialorreia/rouquidão ou pontiagudo: **endoscopia urgente**. {q-uspsp2-053,q-usprp2023-012}
+- Prego já no intestino: **repetir a radiografia**. {q-usprp2021-092}
+- Álcali: **necrose de liquefação**. {q-udisc20262-059}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

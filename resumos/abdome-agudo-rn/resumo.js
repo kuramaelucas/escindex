@@ -69,6 +69,19 @@ Veja também: **Icterícia neonatal** (colestase e atresia biliar, completas lá
           prosa: `As malformações anorretais vêm junto com outros defeitos da mesma fase embrionária (vértebras, coração, traqueia, esôfago, rim e membros), e por isso a criança com uma delas é investigada para as outras.`,
           texto: `- Ânus ausente com anomalia vertebral, de membro ou cardíaca: **VACTERL**; conduta inicial, **sonda nasogástrica** (descompressão). {q-uspsp5-104}
 - Menina com orifício perineal único (cloaca) e massa abdominal: **hidronefrose** associada. {q-usprp2021-087}` },
+        { id: "int-intussuscepcao", titulo: "Intussuscepção do lactente", conferir: true,
+          questoes: ["q-tp20251-064","q-unesp2021-075","q-sirio2021-041","q-unicampdis2024-030","q-famema2022-088","q-sirio2024-037"],
+          prosa: `[[Um segmento de intestino entra no seguinte, quase sempre **íleo dentro do cólon (ileocólica)**, entre **6 meses e 2 anos**. O ponto de partida no lactente é a **placa de Peyer hipertrofiada** depois de virose ou gastroenterite; acima dos 2–3 anos, procure lesão (Meckel, pólipo, linfoma). O mesentério preso entre as alças congestiona a parede, que sangra e necrosa.|q-famema2022-088,q-sirio2024-037]] [[Quadro: **choro intenso em crises, com pernas fletidas, intercaladas com períodos de calma** (ou palidez e letargia), **vômitos** que viram biliosos, e **fezes em "geleia de framboesa"** (muco e sangue); massa em salsicha no flanco. O **ultrassom** mostra o **alvo** (ou pseudorrim). Sem peritonite, choque ou perfuração: **redução por enema** (pneumático ou hidrostático) guiado por imagem; se falha ou há peritonite, **cirurgia**.|q-tp20251-064,q-unesp2021-075,q-sirio2021-041,q-unicampdis2024-030]]`,
+          texto: `- Lactente, cólica em crises + calma, vômitos, **fezes em geleia**: **intussuscepção**. {q-tp20251-064,q-unesp2021-075,q-sirio2021-041}
+- Ultrassom: **alvo**; tratar por **enema**, cirurgia se peritonite. {q-sirio2021-041,q-unicampdis2024-030}
+- Após virose/diarreia: **ileocólica** por placa de Peyer. {q-famema2022-088,q-sirio2024-037}` },
+        { id: "int-meckel", titulo: "Divertículo de Meckel", conferir: true,
+          questoes: ["q-amrigs2020-021","q-famema2022-074","q-famerp2023-055","q-unicamp2022-025","q-usprp2027-068"],
+          prosa: `[[Resto do **ducto onfalomesentérico**, é **divertículo verdadeiro** (todas as camadas) na **borda antimesentérica do íleo**, a cerca de **60 cm da válvula ileocecal** (regra dos 2: 2% da população, 2 pés, 2 polegadas, 2 tipos de mucosa ectópica — gástrica e pancreática). Complica com **sangramento indolor** (a mucosa gástrica ulcera o íleo vizinho), **obstrução** (é ponto de partida de intussuscepção) e **diverticulite** que imita apendicite, às vezes com enterólito.|q-amrigs2020-021,q-famema2022-074,q-famerp2023-055,q-usprp2027-068]] [[Achado ocasional no adulto: **congênito**; ressecção conforme o achado e o risco (não é obrigatória num campo contaminado).|q-unicamp2022-025]]`,
+          texto: `- Borda **antimesentérica do íleo**, ~60 cm da válvula. {q-amrigs2020-021}
+- Dor que imita apendicite, enterólito: **diverticulite de Meckel**. {q-famema2022-074,q-usprp2027-068}
+- Ponto de partida de **intussuscepção**. {q-famerp2023-055}
+- Achado incidental: congênito, ressecar se preciso. {q-unicamp2022-025}` },
       ],
     },
     {

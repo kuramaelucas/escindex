@@ -83,6 +83,27 @@ Veja também: **Endocardite**, **Insuficiência cardíaca**, **Febre reumática*
       ],
     },
     {
+      id: "febre-reumatica", titulo: "Febre reumática: a causa da valvopatia do jovem",
+      introducao: `[[A febre reumática é uma resposta **autoimune** que aparece **2 a 4 semanas depois de uma faringoamigdalite pelo estreptococo beta-hemolítico do grupo A**: anticorpos contra a proteína M reagem com tecidos do hospedeiro (**mimetismo molecular**) — sinóvia, miocárdio e valvas, gânglios da base, pele. Acomete sobretudo **5 a 15 anos** em populações pobres. A lesão típica do coração é o **nódulo de Aschoff** (granuloma). **Tratar a faringite estreptocócica** com penicilina previne o primeiro surto.|q-unesp2024-010,q-unesp2026-019]]`,
+      fragmentos: [
+        { id: "fr-diagnostico", titulo: "Critérios de Jones e a cardite", conferir: true,
+          questoes: ["q-unifesp2022-062","q-unesp2026-019","q-usprp2027-026","q-tp20222-052","q-unifesp2025-092","q-amrigs2021-069","q-unifesp2024-090"],
+          prosa: `[[Critérios de Jones: evidência de estreptococo (ASLO) + **2 maiores** ou **1 maior e 2 menores**. Maiores: **cardite**, **poliartrite migratória** de grandes articulações (cada uma dura poucos dias, responde muito bem ao AAS), **coreia de Sydenham**, eritema marginado, nódulos subcutâneos. Menores: febre, artralgia, VHS/PCR altos, **PR prolongado**. Em população de risco moderado/alto, **mono ou oligoartrite** e poliartralgia valem como maior.|q-unifesp2022-062,q-unesp2026-019,q-usprp2027-026]] [[A **cardite** é a única manifestação que deixa sequela: **pancardite**, com a valvite **mitral** primeiro (**sopro de regurgitação mitral**) e depois a aórtica; os focos de ausculta mais acometidos são o **mitral e o aórtico**. Todo caso suspeito faz **ecocardiograma**, que acha a **cardite subclínica** que o estetoscópio não ouve, e a **penicilina benzatina** já entra para erradicar o estreptococo.|q-tp20222-052,q-unifesp2025-092,q-amrigs2021-069,q-unifesp2022-062]] [[É o **comprometimento cardíaco** que define a gravidade e quanto tempo dura a profilaxia.|q-unifesp2024-090]]`,
+          texto: `- Artrite migratória de grandes articulações após faringite: **febre reumática**; procure **sopro mitral**. {q-unifesp2022-062,q-usprp2027-026}
+- PR longo + Aschoff: **febre reumática aguda**. {q-unesp2026-019}
+- Suspeita: **penicilina benzatina + ecocardiograma** (cardite subclínica). {q-tp20222-052,q-unifesp2025-092}
+- Focos acometidos: **mitral e aórtico**. {q-amrigs2021-069}
+- Gravidade e profilaxia: pelo **coração**. {q-unifesp2024-090}` },
+        { id: "fr-tratamento", titulo: "Tratamento do surto e profilaxia secundária", conferir: true,
+          questoes: ["q-adap22-062","q-unesp2024-010","q-iamspe2023-045","q-adap24-092","q-adap25-092"],
+          prosa: `[[Surto: **penicilina benzatina** (erradicar), **AAS/anti-inflamatório** para a artrite e, na **cardite moderada a grave** (insuficiência cardíaca, cardiomegalia), **prednisona 1–2 mg/kg/dia por 2 a 3 semanas** com redução gradual, além de diurético e IECA. Profilaxia **primária** = tratar a faringite estreptocócica.|q-adap22-062,q-unesp2024-010]] [[Profilaxia **secundária**: **penicilina benzatina a cada 21 dias**. Duração: **sem cardite**, 5 anos após o último surto ou até 21 anos; **cardite sem lesão residual**, 10 anos ou até 21; **lesão valvar residual**, **10 anos após o surto ou até os 40 anos** (vale sempre o prazo mais longo); **lesão grave ou cirurgia valvar**, **por toda a vida**.|q-iamspe2023-045,q-adap24-092,q-adap25-092]]`,
+          texto: `- Cardite grave: **prednisona 1–2 mg/kg** 2–3 semanas + diurético/IECA. {q-adap22-062}
+- Primária: **tratar a faringite**. {q-unesp2024-010}
+- Benzatina **a cada 21 dias**; lesão moderada/grave: **até 40 anos ou toda a vida**. {q-iamspe2023-045,q-adap24-092}
+- Cardite com lesão residual leve: **10 anos após o surto ou até 40 anos**, o mais longo. {q-adap25-092}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

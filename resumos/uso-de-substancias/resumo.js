@@ -86,6 +86,31 @@ Veja também: **Intoxicações**, **Demência e delirium**, **Cirrose** e **Saú
       ],
     },
     {
+      id: "tabagismo", titulo: "Tabagismo: cessação na atenção primária",
+      introducao: `[[A nicotina chega ao cérebro em segundos e libera dopamina; os receptores se multiplicam e, sem ela, vem a **abstinência** (irritabilidade, ansiedade, fissura) que derruba a maioria das tentativas. Parar de fumar é a intervenção preventiva de maior impacto: vale **perguntar sobre o tabaco em toda consulta** e oferecer ajuda, com o mesmo empenho que se dá a tratar uma hipertensão leve. A **fumaça passiva** também adoece: aumenta em até **30% o risco cardiovascular** dos expostos em casa ou no trabalho, além de câncer de pulmão e **dos seios da face**, e asma nas crianças.|q-iamspe2022-069,q-fmabc2024-094,q-sessp2023-066,q-usp2025-109]]`,
+      fragmentos: [
+        { id: "tab-abordagem", titulo: "Avaliar a dependência e a motivação; o aconselhamento", conferir: true,
+          questoes: ["q-usp2025-109","q-einstein2026-066","q-uspsp1-067","q-usp2022-021","q-didepm-045","q-famema2025-075","q-usprp2026-024","q-sirio2024-099"],
+          prosa: `[[A conversa começa pela **pergunta aberta** ("já pensou em parar de fumar?") e situa a **fase motivacional** (pré-contemplação, contemplação, **preparação** — já marcou data —, ação, manutenção). O **teste de Fagerström** mede a dependência: o que mais pesa é **fumar nos primeiros 5–30 minutos após acordar** e o número de cigarros. Adolescente, gestante, pessoa em situação de rua: avaliar dependência e tentativas anteriores, aproveitar a motivação e oferecer grupo.|q-usp2025-109,q-einstein2026-066,q-uspsp1-067,q-usp2022-021]] [[O **aconselhamento cognitivo-comportamental** (PCDT do tabagismo) é a base para todos: **4 sessões estruturadas** iniciais (por que se fuma, os primeiros dias sem fumar, como vencer os obstáculos, benefícios), com **data para parar** e **seguimento por 12 meses**. Dependência baixa (poucos cigarros, primeiro mais de 1 hora depois de acordar, fumo social): **só aconselhamento**. A orientação sobre reposição de nicotina se faz já no **dia da parada**.|q-didepm-045,q-famema2025-075,q-usprp2026-024,q-sirio2024-099]]`,
+          texto: `- Abordagem: **"já pensou em parar?"**; marcou data = **preparação**. {q-usp2025-109,q-uspsp1-067}
+- Adolescente/gestante: avaliar dependência, **grupo**, estratégias. {q-einstein2026-066,q-usp2022-021}
+- Dependência baixa: **só aconselhamento** com data. {q-didepm-045}
+- **4 sessões** estruturadas, seguimento de 12 meses. {q-famema2025-075,q-usprp2026-024,q-sirio2024-099}` },
+        { id: "tab-medicacao", titulo: "Medicação: nicotina, bupropiona, vareniclina e nortriptilina", conferir: true,
+          questoes: ["q-adap24-022","q-unifesp2024-032","q-usprp2022-011","q-amrigs2025-100","q-iamspe2025-087","q-simepm89-074","q-uspsp1-067"],
+          prosa: `[[Dependência moderada a alta: **aconselhamento + medicação**, que juntos dão a maior taxa de abstinência. **Reposição de nicotina**: **adesivo** (21 mg para quem fuma 20 ou mais por dia) mais formas rápidas (goma, pastilha) para a fissura. **Bupropiona**: começa **1 semana antes** da data de parar; **contraindicada com convulsão** (atual ou prévia), bulimia/anorexia e uso de IMAO, pois **reduz o limiar convulsivo**. **Vareniclina** (agonista parcial do receptor nicotínico) é a mais eficaz isolada, boa escolha depois de um infarto; combinada à bupropiona aumenta a abstinência em quem já recaiu.|q-adap24-022,q-unifesp2024-032,q-simepm89-074,q-iamspe2025-087,q-uspsp1-067]] [[**Nortriptilina** e clonidina são de **segunda linha** (mais efeitos adversos); a nortriptilina entra quando a bupropiona é contraindicada (epilepsia) e há depressão.|q-usprp2022-011,q-amrigs2025-100]]`,
+          texto: `- Alta dependência: **adesivo 21 mg**; com convulsão, **sem bupropiona**. {q-adap24-022,q-usprp2022-011}
+- Bupropiona: **1 semana antes** da data. {q-simepm89-074}
+- Recaídas: **vareniclina + bupropiona**; pós-infarto: vareniclina. {q-iamspe2025-087,q-uspsp1-067}
+- Nortriptilina: **2ª linha**, com adesivo. {q-unifesp2024-032,q-amrigs2025-100}` },
+        { id: "tab-eletronico", titulo: "Cigarro eletrônico e redução de danos", conferir: true,
+          questoes: ["q-unesp2023-100","q-unesp2026-057","q-unicamp2023-010","q-sessp2022-089"],
+          prosa: `[[O **cigarro eletrônico** (proibido no Brasil) entrega nicotina com sal de nicotina e aromas: o **mentol anestesia** a garganta e permite tragadas maiores. Quem **nunca fumou** e usa tem cerca de **três vezes mais chance de começar o cigarro comum**; **não existe quantidade segura**.|q-unesp2023-100,q-unesp2026-057,q-unicamp2023-010]] [[**Redução de danos** é diminuir o prejuízo de um comportamento que a pessoa não vai abandonar agora, sem exigir abstinência (seringa limpa, troca de açúcar por adoçante no diabetes).|q-sessp2022-089]]`,
+          texto: `- Eletrônico: **3× mais chance** de começar a fumar; mentol **anestesia**; nenhum uso seguro. {q-unesp2023-100,q-unesp2026-057,q-unicamp2023-010}
+- Redução de danos: diminuir o prejuízo sem exigir abstinência. {q-sessp2022-089}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

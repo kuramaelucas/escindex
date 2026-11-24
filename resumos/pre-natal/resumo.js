@@ -278,6 +278,24 @@ Veja também: **Trabalho de parto e parto**, **Diabetes gestacional**, **Hiperte
       ],
     },
     {
+      id: "gemelar", titulo: "Gestação múltipla",
+      introducao: `[[Gêmeos **dizigóticos** vêm de dois óvulos: são sempre **dicoriônicos e diamnióticos**, e sua frequência sobe com idade materna, raça negra, história familiar e reprodução assistida. **Monozigóticos** vêm de um zigoto que se divide; a **época da divisão** define a placentação: até o 3º dia, **dicoriônica diamniótica**; do 4º ao 8º, **monocoriônica diamniótica** (a mais comum); do 8º ao 12º, **monocoriônica monoamniótica**; depois, gêmeos unidos. Por isso gêmeos idênticos podem ter qualquer das três placentações.|q-amrigs2021-048,q-iamspe2022-062,q-sirio2022-064]] [[A gemelaridade aumenta a **morbimortalidade materna** (pré-eclâmpsia, hemorragia, diabetes, anemia) e **fetal e neonatal** (prematuridade, restrição, paralisia cerebral).|q-amrigs2020-047]]`,
+      fragmentos: [
+        { id: "gem-corionicidade", titulo: "Corionicidade e as complicações da placenta única", conferir: true,
+          questoes: ["q-scmsp2023-078","q-sessp2026-068","q-iamspe2025-051","q-didepm-073","q-einstein2027-052"],
+          prosa: `[[A corionicidade é o dado que mais muda o risco e se determina pela **ultrassonografia do 1º trimestre** (entre 11 e 14 semanas): **sinal do lambda** (o córion entra entre as membranas) = **dicoriônica**; **sinal do T** (membrana fina, sem córion) = **monocoriônica**. Depois, as placentas se fundem e o sinal some.|q-scmsp2023-078,q-sessp2026-068]] [[Na placenta única os fetos dividem vasos (anastomoses). Desequilíbrio do fluxo é a **síndrome de transfusão feto-fetal**, **só das monocoriônicas**: o **doador** fica com oligoâmnio e **bexiga não visível**, o **receptor** com polidrâmnio e sobrecarga. Tratamento: **fotocoagulação a laser** das anastomoses por fetoscopia, em centro de medicina fetal. A divisão desigual da placenta dá **restrição seletiva** de um gêmeo, com morbimortalidade maior pela resistência placentária do menor.|q-iamspe2025-051,q-didepm-073,q-einstein2027-052]]`,
+          texto: `- Corionicidade: **ultrassom do 1º trimestre**; lambda = dicoriônica, T = monocoriônica. {q-scmsp2023-078,q-sessp2026-068}
+- Transfusão feto-fetal: **só monocoriônica**; doador sem bexiga → **laser**. {q-iamspe2025-051,q-didepm-073}
+- Discordância de 30% na monocoriônica: risco por **resistência placentária** do menor. {q-einstein2027-052}` },
+        { id: "gem-conduta", titulo: "Pré-natal, momento e via de parto", conferir: true,
+          questoes: ["q-amrigs2024-054","q-usprp2025-050","q-scmsp2026-074","q-unifesp2025-079","q-adap25-079","q-sirio2023-061","q-usp2023-033"],
+          prosa: `[[Gemelaridade é fator de risco para pré-eclâmpsia: **AAS em dose baixa (e cálcio) de 12 a 16 semanas até 36**; começado depois de 20 semanas, **não se prescreve** (perde o efeito sobre a placentação).|q-amrigs2024-054,q-usprp2025-050]] [[Momento do parto da gestação sem complicações: **dicoriônica, 37–38 semanas**; monocoriônica diamniótica, 36–37; monoamniótica, 32–34 por cesárea. Dicoriônica a termo com diabetes controlado: **induzir**.|q-scmsp2026-074,q-unifesp2025-079]] [[A via depende do **primeiro gemelar**: **cefálico** → **parto vaginal** possível (o segundo, mesmo pélvico, com equipe treinada); **primeiro pélvico** → **cesárea**.|q-adap25-079,q-sirio2023-061,q-usp2023-033]]`,
+          texto: `- AAS de 12 a 16 semanas; iniciado tarde (> 20 sem): **não prescrever**. {q-amrigs2024-054,q-usprp2025-050}
+- Dicoriônica sem complicação: **até 37–38 semanas**; com DMG controlado a termo, **induzir**. {q-scmsp2026-074,q-unifesp2025-079}
+- 1º cefálico: **vaginal**; 1º pélvico: **cesárea**. {q-adap25-079,q-sirio2023-061,q-usp2023-033}` },
+      ],
+    },
+    {
       id: "vitalidade", titulo: "Vitalidade e crescimento fetal",
       introducao: `[[A cardiotocografia anteparto reativa (acelerações com os movimentos) mostra um feto bem oxigenado; a não reativa pede mais tempo, estímulo ou perfil biofísico, e o padrão sinusoidal sugere anemia fetal grave.|q-usprp2023-026,q-usp2023-037,q-iamspe2025-058,q-usprp2021-057]] [[Restrição de crescimento por insuficiência placentária aumenta a resistência na artéria umbilical; o feto pequeno com Doppler normal é apenas pequeno para a idade gestacional e nasce perto do termo.|q-iamspe2021-062,q-unesp2023-030,q-amrigs2022-042,q-usp2025-018]]`,
       fragmentos: [
