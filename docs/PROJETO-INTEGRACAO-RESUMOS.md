@@ -127,3 +127,36 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 | 22/11/2026 | **Fase 1 feita** (`codigo/06e-modo-de-inicio.js`): `u.modoDeInicio` = `zero` · `reparar-tema` · `reparar` (este só Formado); pergunta uma vez no Início logo depois da do modo da plataforma, sem fechar por clique fora; cartão "Como você estuda" no Perfil (antes do 6º ano explica por que não há escolha); escolha fora do ano vale `zero` sem ser apagada; nuvem `perfis.modo_inicio` (rodar `esquema.sql` de novo). Por enquanto só grava e explica: o cronograma passa a obedecer na fase 2. Teste: `testes/modo-de-inicio.test.mjs`. |
 | 23/11/2026 | **Fase 2 feita** (`codigo/05g-ciclo-por-tema.js`, cartão "Seu tema" no Início): nada novo guardado — leitura = `resumosLidos`, progresso = primeira resposta a cada questão do conjunto (revisão não conta; a passagem seguinte continua de onde parou); ordem pelo bloco atual (graduando, 6º ano do zero) ou pela trilha de Formados (Formado do zero, reparar por tema); leitura trava as questões só para quem constrói do zero e só antes de ler; < 75% no tema sugere reler (some quando a marca de lido é posterior ao fechamento); tema sem resumo vai direto às questões. Teste: `testes/ciclo-por-tema.test.mjs`. Ainda falta: a sessão recomendada não puxa sozinha as questões do tema (o aluno usa o botão do cartão) — entra junto com a fase 3, que reparte a meta por tema. |
 | 23/11/2026 | **No ar só a pós-leitura** (pedido do usuário): `CONFIG.integracaoResumos = { posLeitura: true, modoDeInicio: false, cicloNoInicio: false }`. No fim do resumo marcado como lido aparece o conjunto planejado do tema (`htmlPosLeituraDoResumo`, 05g). A pergunta do modo de início (06e) e o cartão "Seu tema" (05g) ficam no código, desligados, e se ligam com a fase 3; os testes os ligam para continuar conferindo. Ao ligar: devolver ao guia (13) os textos "Como começar" e "Seu tema" (estão no histórico do git, commit da fase 2). |
+
+## 9. Plano de ação (24/11/2026) — para começar numa conversa nova
+
+Comece lendo **só** esta seção e a seção 7 (as decisões de 24/11 valem sobre as anteriores). Zona A5 do roteador do `CLAUDE.md`.
+
+### Limitações da plataforma que moldam o plano
+
+- **Sem servidor:** tudo que comparar alunos (leu × pulou, por turma/faculdade) só existe com a nuvem ligada e vem do que **já sincroniza**. `perfis.resumos_lidos` e as respostas já sobem; logo "leu antes" se **deriva** (data da leitura < data da 1ª resposta do conjunto do tema), sem campo novo. Sem nuvem, a comparação mostra só o próprio aluno.
+- **Nada guardado que possa ser calculado:** atrasados também se derivam (meta da semana × questões feitas nas semanas passadas) — campo novo exige migração em `loadState`, `LINHAS_DE_RESPOSTA`/`NUVEM_TABELAS` e `esquema.sql` rodado de novo por quem tem a nuvem.
+- **Carga:** `resumos/conjuntos-por-tema.js` é sob demanda; o Início não pode depender dele antes de `db` existir (`aposBancoPronto`) e lista de questões usa `garantirCorpos`.
+- **Limite de 1.400 linhas** por arquivo (`higiene.test.mjs`): 05a (1.064), 05b (955) e 07 (873) já estão grandes — lógica nova vai para 05g ou arquivo novo (`05h-...`), e o mapa do `CLAUDE.md` ganha a linha.
+- **Chaves desligadas:** `CONFIG.integracaoResumos` (01, linha ~236) — `modoDeInicio` e `cicloNoInicio` estão `false`. Toda mudança entra atrás dessas chaves; ligar é o último passo de cada etapa.
+- **Modos já gravados:** `u.modoDeInicio` aceita `zero` · `reparar-tema` · `reparar` e já sincroniza (`perfis.modo_inicio`). Trocar os valores pede migração, não renomear.
+
+### Etapas (uma por commit, cada uma com teste e `npm run testar-mudanca`)
+
+| # | Entrega | Onde | Teste | Cuidado |
+|---|---|---|---|---|
+| 1 | Leitura nunca obrigatória: "Ler o resumo (recomendado)" + "Pular para as questões" | 05g (`estadoDoTema`, cartão) | `ciclo-por-tema.test.mjs`: tema não trava sem leitura | o graduando também (derruba 2-B) |
+| 2 | Formado com dois caminhos: `zero` e `reparar-manter`; migração `reparar-tema`/`reparar` → `reparar-manter`; 2º estágio: tema ≥ 75% vai à manutenção ("Não esquecer": metas pequenas, conjuntos pós-resumo não feitos primeiro) | 06e, 05g, 02 (migração), 03a (aceitar o valor vindo da nuvem) | `modo-de-inicio.test.mjs` + caso de migração em `regras.test.mjs` | o valor antigo ainda pode chegar da nuvem — mapear na leitura também |
+| 3 | Revisão: cada erro gera uma questão nova do mesmo assunto (par erro → nova), errada segue o espaçamento | 05a/05f (`montarRevisaoSugerida`) | `regras.test.mjs`: 3 erros → 3 novas do mesmo assunto, sem repetir já respondida | assunto sem questão nova → dizer na tela, não completar com outro |
+| 4 | Prática extra (acima das 20): origem por perfil (Teste de Progresso × residência); conjunto de 20 intocado | 05g | caso em `ciclo-por-tema.test.mjs` | `conjuntos-por-tema.js` não muda |
+| 5 | Flashcards: revisão e conjunto sugerido só na aba; criar continua em todo lugar | 07 (linhas ~523–589: botões e "cartões vencidos" do Início), 05c (sessão recomendada), 05g (sugestão < 75%) | ajustar testes que procuram o botão no Início (`grep -l "Flashcards" testes/`) | atualizar o guia (13) |
+| 6 | Fase 3: meta sugerida pela data-alvo, piso 8/teto 20 com explicação, **"Pôr em dia"** (atrasados derivados, cronograma não muda) | 05b, 10b, 05g | `simular-formado -- --exigir` + teste novo | atrasado nunca empurra o tema da semana |
+| 7 | Ligar `modoDeInicio` e `cicloNoInicio`; devolver ao guia (13) "Como começar" e "Seu tema" (histórico do git, commit da fase 2) | 01, 13 | `npm test` inteiro | — |
+| 8 | Fase 5: comparação leu × pulou — barra no Painel da Turma que expande (filtros turma/faculdade/período, gráficos SVG à mão) | 11d (ou `11f-...` se passar do limite) | teste com nuvem de mentira (modelo `atualizacoes-e-feedback.test.mjs`) | grupos pequenos: não mostrar recorte com < 5 alunos (privacidade e ruído) |
+
+### Para minimizar erro
+
+- Antes de cada etapa: `npm run mapa -- <palavra>` e ler só o trecho; nunca `dados/prova-*.js`.
+- Rodar `ESC_SOB_DEMANDA=1` no teste das etapas que listam questões (3, 4, 6).
+- Cada etapa termina com `npm run publicar` + `npm run testar-mudanca`, uma linha na seção 8 e no `docs/HISTORICO.md`.
+- Ordem importa: 1→2 antes de 7 (ligar); 6 depende de 2; 8 pode correr em paralelo depois de 1.
