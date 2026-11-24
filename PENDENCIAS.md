@@ -8,6 +8,8 @@ O painel da seção 0 resume tudo; as seções 1 a 5 trazem o detalhe, do mais u
 A lista de figuras se atualiza sozinha com `npm run conferir`.
 Este arquivo é a foto do dia; ao resolver um item, apague-o daqui.
 
+> **Resumos a conferir (revisão de 24/11/2026):** em `resumos/tuberculose`, o momento da TARV na TB com HIV (texto atual: até 2 semanas se CD4 < 50, cerca de 8 semanas nos demais) precisa ser conferido contra o PCDT de HIV vigente, que pode ter passado a recomendar até 2 semanas para todos, exceto na forma meníngea.
+
 ---
 
 ## 0. Painel geral (12/11/2026) — tudo o que está aberto, numa página

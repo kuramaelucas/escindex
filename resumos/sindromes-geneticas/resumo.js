@@ -165,6 +165,7 @@ Veja também: **Cardiopatias congênitas**, **Crescimento e puberdade**, **Triag
           prosa: `[[Cada cariótipo tem a sua marca.|q-adap21-031,q-tp20222-004,q-tp20251-055,q-scmsp2025-059,q-famerp2023-029]]
 
 | Síndrome | Cariótipo | Sinais que apontam | Procurar |
+|---|---|---|---|
 | Down | 47,+21 (ou translocação) | hipotonia, fendas oblíquas, prega palmar única | canal AV, hipotireoidismo, leucemia |
 | Edwards | 47,+18 | dedos sobrepostos, occipício, pés em mata-borrão | cardiopatia; sobrevida curta |
 | Patau | 47,+13 | holoprosencefalia, fenda, polidactilia | cardiopatia; sobrevida curta |

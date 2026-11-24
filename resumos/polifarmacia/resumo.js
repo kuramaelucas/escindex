@@ -94,6 +94,7 @@ Veja também: **Demência e delirium**, **Hipertensão**, **Diabetes** e **Cuida
           prosa: `[[Cada classe tem o seu dano típico.|q-sirio2027-088,q-unifesp2022-089,q-unifesp2024-065,q-adap21-112]]
 
 | Classe | Dano no idoso | O que fazer |
+|---|---|---|
 | Benzodiazepínico | sedação, queda, confusão, incontinência | retirada gradual, higiene do sono, TCC |
 | Anticolinérgico (tricíclico, hidroxizina, oxibutinina) | delirium, retenção, constipação | suspender, buscar alternativa |
 | Sulfonilureia, insulina intensiva | hipoglicemia | metas folgadas, reduzir |

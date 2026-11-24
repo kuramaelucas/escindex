@@ -121,6 +121,7 @@ Veja também: **Síndromes genéticas e teratógenos**, **Pré-natal**, **Infec�
           prosa: `[[Rastreio indica risco; só o invasivo diagnostica.|q-sirio2021-070,q-iamspe2023-057,q-didepm-093,q-adap26-059]]
 
 | Exame | Quando | O que vê | Diagnóstico? |
+|---|---|---|---|
 | Morfológico do 1º trimestre | 11–14 semanas | TN, osso nasal, ducto venoso, tricúspide | não (rastreio) |
 | NIPT (DNA fetal livre) | a partir de 10 semanas | trissomias no sangue materno | não (rastreio) |
 | Vilo corial | 11–14 semanas | cariótipo/microarray da placenta | sim |

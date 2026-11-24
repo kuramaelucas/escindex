@@ -121,6 +121,7 @@ Veja também: **Câncer de mama**, **Câncer de endométrio**, **Endometriose** 
           prosa: `[[Idade e aspecto da massa apontam o tipo.|q-tp20202-088,q-usprp2022-054,q-tp20241-040,q-unesp2022-037]]
 
 | Tumor | Idade | Aspecto | Marcador | Conduta |
+|---|---|---|---|---|
 | Carcinoma seroso | pós-menopausa | sólido-cístico bilateral, ascite, implantes | CA-125 | citorredução + carboplatina/paclitaxel |
 | Germinativo maligno | criança e jovem | sólido, grande | AFP, hCG, LDH | ooforectomia unilateral + BEP |
 | Teratoma maduro | jovem | cisto com gordura e calcificação | — | cistectomia |

@@ -141,6 +141,7 @@ Veja também: **ATLS**, **Trauma abdominal**, **Isquemia arterial** e **Doença 
           prosa: `[[A irrigação da cabeça decide entre fixar e trocar.|q-adap25-059,q-unifesp2025-059,q-unifesp2026-020,q-uspsp3-113]]
 
 | Fratura | Irrigação da cabeça | Paciente | Conduta |
+|---|---|---|---|
 | Colo desviado | comprometida | jovem | redução anatômica + parafusos, urgente |
 | Colo desviado | comprometida | idoso ativo | artroplastia total |
 | Colo desviado | comprometida | idoso dependente | artroplastia parcial |

@@ -76,9 +76,9 @@ Veja também: **Diabetes** (antidiabéticos na DRC), **Hipertensão arterial**, 
 - Metformina: reduz < 45, **suspende < 30**. {q-uspsp5-015,q-unifesp2026-034}` },
         { id: "nef-dieta", titulo: "Proteína, bicarbonato e volume", conferir: true, diretrizes: ["kdigo-drc-2024"],
           questoes: ["q-einstein2026-014","q-sirio2024-017","q-usp2026-022"],
-          prosa: `[[Na DRC G3–G5 fora de diálise, a ingestão proteica recomendada é cerca de **0,8 g/kg/dia**, de preferência vegetal: excesso de proteína aumenta a hiperfiltração, a carga ácida e o fósforo. Uma dieta de 1,6 g/kg deve ser reduzida à metade.|q-einstein2026-014]] [[Bicarbonato abaixo de 22 mEq/L pede **bicarbonato de sódio**: a acidose acelera a progressão e consome músculo e osso.|q-sirio2024-017]] [[No paciente em diálise, a hipertensão é sobretudo de volume; antes de trocar remédio, **pesar** e comparar com o peso seco.|q-usp2026-022]]`,
+          prosa: `[[Na DRC G3–G5 fora de diálise, a ingestão proteica recomendada é cerca de **0,8 g/kg/dia**, de preferência vegetal: excesso de proteína aumenta a hiperfiltração, a carga ácida e o fósforo. Uma dieta de 1,6 g/kg deve ser reduzida à metade.|q-einstein2026-014]] [[Bicarbonato baixo pede **bicarbonato de sódio** (a KDIGO de 2012 usava o corte de 22 mEq/L; a de 2024 fala em considerar o tratamento abaixo de 18): a acidose acelera a progressão e consome músculo e osso.|q-sirio2024-017]] [[No paciente em diálise, a hipertensão é sobretudo de volume; antes de trocar remédio, **pesar** e comparar com o peso seco.|q-usp2026-022]]`,
           texto: `- Proteína **0,8 g/kg/dia**, vegetal. {q-einstein2026-014}
-- HCO3 < 22: **bicarbonato**. {q-sirio2024-017}
+- HCO3 baixo (< 22 na KDIGO 2012; < 18 na de 2024): **bicarbonato**. {q-sirio2024-017}
 - Hipertensão na diálise: **peso**. {q-usp2026-022}` },
       ],
     },

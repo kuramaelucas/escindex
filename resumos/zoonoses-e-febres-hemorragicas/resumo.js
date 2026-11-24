@@ -102,6 +102,7 @@ Veja também: **Arboviroses**, **Leptospirose**, **Exantemáticas** e **Vigilân
           prosa: `[[O modo de transmissão é a primeira pista.|q-gdsfiha-027,q-gdsfiha-034,q-gdsfiha-006,q-gdsfiha-026]]
 
 | Doença | Agente | Como pega | Quadro marcante | Tratamento |
+|---|---|---|---|---|
 | Febre maculosa | *Rickettsia rickettsii* | carrapato *Amblyomma* | febre, mialgia, exantema palmoplantar | doxiciclina imediata |
 | Lyme | *Borrelia burgdorferi* | carrapato *Ixodes* | eritema migrans; meningite, bloqueio AV | doxiciclina |
 | Hantavirose | hantavírus | aerossol de excreta de roedor | tosse seca, edema pulmonar, hemoconcentração | suporte, inotrópico |

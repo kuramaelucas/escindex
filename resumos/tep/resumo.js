@@ -112,6 +112,7 @@ Veja também: **Doença venosa: TVP e varizes**, **Insuficiência cardíaca**, *
           prosa: `[[A pressão e o VD decidem a conduta.|q-sirio2024-004,q-adap25-036,q-scmsp2023-004,q-einstein2022-013]]
 
 | Risco | Achados | Conduta |
+|---|---|---|
 | Alto | choque ou PAS < 90 | trombólise (alteplase) |
 | Intermediário-alto | estável, VD dilatado e troponina alta | anticoagular, internar monitorado |
 | Intermediário-baixo | estável, sPESI ≥ 1, VD ou troponina alterado (um ou nenhum) | anticoagular, internar |

@@ -112,6 +112,7 @@ Veja também: **Intoxicações** (síntese dos peçonhentos), **Vigilância em s
           prosa: `[[Dor local e coagulação separam os acidentes.|q-amrigs2020-080,q-unesp2024-099,q-einstein2021-023,q-tp20202-059]]
 
 | Acidente | Ações do veneno | Local | Sistêmico | Coagulação |
+|---|---|---|---|---|
 | Botrópico (jararaca) | proteolítica, coagulante, hemorrágica | dor, edema, bolhas, necrose | sangramento, lesão renal | alterada |
 | Crotálico (cascavel) | neurotóxica, miotóxica, coagulante | pouca dor, parestesia | ptose, mialgia, urina escura, lesão renal | pode alterar |
 | Elapídico (coral) | neurotóxica | quase nada | ptose, paralisia, insuficiência respiratória | normal |

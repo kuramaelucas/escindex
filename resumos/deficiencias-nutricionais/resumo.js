@@ -111,6 +111,7 @@ Veja também: **Anemias**, **Uso de substâncias** (Wernicke), **Cirurgia bariá
           prosa: `[[Quem está em risco aponta a vitamina.|q-usprp2021-110,q-udisc20262-037,q-famema2021-096,q-adap26-022]]
 
 | Vitamina | Quem | Quadro | Tratamento |
+|---|---|---|---|
 | B1 (tiamina) | etilista, vômitos, bariátrica | Wernicke, Korsakoff, beribéri | tiamina antes da glicose |
 | B3 (niacina) | etilista, desnutrido | dermatite em área de sol, diarreia, demência | nicotinamida |
 | B12 | bypass, íleo, gastrite atrófica | anemia macrocítica, lesão medular e cognitiva | B12 intramuscular |

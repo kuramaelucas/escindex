@@ -151,6 +151,7 @@ Veja também: **Infecções de pele**, **Tuberculose**, **Doenças neuromuscular
           prosa: `[[A forma é a imunidade vista na pele.|q-unesp2023-060,q-tp20212-027,q-einstein2027-069,q-usp2023-044]]
 
 | Forma | Lesão | Baciloscopia | Mitsuda | Classificação |
+|---|---|---|---|---|
 | Indeterminada | mácula hipocrômica mal delimitada | negativa | variável | paucibacilar |
 | Tuberculoide | placa bem delimitada, anestésica, poucas | negativa | positiva | paucibacilar |
 | Dimorfa | muitas placas, borda externa imprecisa | positiva ou negativa | variável | multibacilar |

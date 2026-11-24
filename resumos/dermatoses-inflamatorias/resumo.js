@@ -152,6 +152,7 @@ Veja também: **Infecções de pele**, **Anafilaxia, urticária e angioedema**, 
           prosa: `[[O local e o mecanismo separam os eczemas.|q-sirio2023-054,q-einstein2022-034,q-usprp2026-084,q-tp20252-062]]
 
 | Eczema | Mecanismo | Onde | Exame | Tratamento |
+|---|---|---|---|---|
 | Atópico | barreira fraca + Th2 | face no lactente, dobras na criança | IgE alta (não necessária) | hidratante, corticoide tópico |
 | Contato irritativo | dano direto | onde tocou, mãos | nenhum | proteção, corticoide tópico |
 | Contato alérgico | hipersensibilidade tardia | onde tocou o alérgeno | teste de contato | afastar, corticoide tópico |

@@ -126,6 +126,7 @@ Veja também: **Diabetes**, **Dislipidemia**, **Obstrução intestinal** e **Doe
           prosa: `[[As duas técnicas mais usadas diferem no refluxo e nas alças.|q-iamspe2026-034,q-uspsp1-047,q-fmabc2025-033,q-uspsp5-068]]
 
 | | Gastrectomia vertical (sleeve) | Bypass em Y de Roux |
+|---|---|---|
 | O que faz | tubo gástrico, retira a grande curvatura | pouch pequeno ligado ao jejuno, desvia estômago e duodeno |
 | Refluxo | pode piorar | melhora |
 | Alças e hérnia interna | não | sim (Petersen) |

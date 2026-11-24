@@ -85,6 +85,7 @@ Veja também: **Maus-tratos** (criança e adolescente), **IST**, **HIV** e **Con
           prosa: `[[Cada profilaxia tem a sua janela.|q-usp2026-109,q-unicamp2022-059,q-sirio2026-056,q-unesp2021-026-ia]]
 
 | Proteção | Até quando | Para quem | Observação |
+|---|---|---|---|
 | Contracepção de emergência | 5 dias | toda pessoa com útero | levonorgestrel ou DIU de cobre |
 | Profilaxia do HIV | 72 horas | exposição de risco, teste rápido negativo | 28 dias |
 | ISTs bacterianas | no atendimento | penetração | sífilis, gonorreia, clamídia, tricomoníase |

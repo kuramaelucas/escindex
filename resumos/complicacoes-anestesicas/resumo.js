@@ -116,6 +116,7 @@ Veja também: **Cuidados perioperatórios**, **Anafilaxia**, **Ventilação mec�
           prosa: `[[O primeiro sinal aponta a emergência.|q-unifesp2022-001,q-adap22-006,q-adap22-001,q-usp2024-066]]
 
 | Emergência | Primeiro sinal | Causa | Conduta |
+|---|---|---|---|
 | Hipertermia maligna | CO2 subindo, rigidez | inalatório, succinilcolina | dantrolene, parar o gatilho, resfriar |
 | Anafilaxia | urticária, broncoespasmo, hipotensão | bloqueador, antibiótico, látex | adrenalina IV titulada |
 | Toxicidade de anestésico local | gosto metálico, convulsão, arritmia | dose alta, injeção no vaso | ventilar; emulsão lipídica |

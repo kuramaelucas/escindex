@@ -114,6 +114,7 @@ Veja também: **Diarreia e desidratação**, **Câncer colorretal**, **Artrites*
           prosa: `[[Profundidade e distribuição explicam tudo o resto.|q-amrigs2024-022,q-famema2022-039,q-usprp2026-019,q-uspsp4-063]]
 
 | | Doença de Crohn | Retocolite ulcerativa |
+|---|---|---|
 | Onde | boca ao ânus, mais íleo terminal, salteado | reto e cólon, contínuo |
 | Profundidade | transmural, granulomas | mucosa e submucosa, abscessos de cripta |
 | Clínica típica | dor, perda de peso, massa, fístula perianal | diarreia com sangue e muco |

@@ -100,6 +100,7 @@ Veja também: **Diarreia e desidratação**, **Anemias**, **Doença inflamatóri
           prosa: `[[O que o corpo não tolera define a doença.|q-tp20202-051,q-unifesp2026-099,q-adap26-099,q-didepm-096]]
 
 | Doença | O que provoca | Mecanismo | Exame | Tratamento |
+|---|---|---|---|---|
 | Doença celíaca | glúten | imune (HLA-DQ2/DQ8), atrofia de vilos | antitransglutaminase, biópsia | sem glúten para sempre |
 | Intolerância à lactose | açúcar do leite | falta de lactase, diarreia osmótica | hidrogênio expirado, prova terapêutica | reduzir lactose |
 | Alergia à proteína do leite | proteína do leite | imune (IgE ou não) | prova de exclusão e provocação | sem leite de vaca |`,

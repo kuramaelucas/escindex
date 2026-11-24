@@ -147,7 +147,7 @@ Veja também: **Arboviroses** (outras febres agudas de área endêmica), **Paras
           texto: `- Surto febril numa vila do Pará com tripomastigota no sangue: **benznidazol**. {q-usprp2027-081}
 - Reativação no **transplante e na imunodeficiência** é desafio emergente. {q-gdhepatoesplenomegalias-005}
 - Incubação: **4–15 dias vetorial, 3–22 oral, 30–40 transfusional**. {q-gdhepatoesplenomegalias-009}
-- Falso: o exame a fresco é **menos** sensível que o esfregaço. {q-gdhepatoesplenomegalias-021}
+- O exame a fresco é **mais** sensível que o esfregaço corado (a alternativa que diz "menos" é a falsa). {q-gdhepatoesplenomegalias-021}
 - Transmissão oral: morbimortalidade **maior**. {q-gdhepatoesplenomegalias-023}
 - Chagoma de inoculação e Romaña: **sinais de porta de entrada**. {q-gdhepatoesplenomegalias-024}
 - Febre da fase aguda **não dura 12 meses**. {q-gdhepatoesplenomegalias-025}

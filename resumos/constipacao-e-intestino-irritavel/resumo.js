@@ -91,6 +91,7 @@ Veja também: **Diarreia e desidratação**, **Doença inflamatória intestinal*
           prosa: `[[A idade muda a causa e o que procurar.|q-unifesp2025-088,q-adap25-088,q-adap22-077,q-adap21-011]]
 
 | Quem | Causa típica | Alarme | Conduta |
+|---|---|---|---|
 | Lactente | introdução alimentar | mecônio tardio, déficit de crescimento | lactulose |
 | Criança | retenção após dor | sangue, vômito bilioso, déficit | desimpactar e PEG por meses |
 | Adulto jovem | pouca fibra e água; dissinergia | perda de peso, sangue | fibra, PEG; biofeedback |

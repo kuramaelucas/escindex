@@ -90,6 +90,7 @@ Veja também: **Dermatoses inflamatórias e autoimunes**, **Infecções de pele*
           prosa: `[[A célula de origem explica o comportamento.|q-unesp2021-051,q-tp20251-007,q-sirio2027-089,q-adap26-004]]
 
 | Tumor | Célula | Aspecto | Comportamento | Tratamento |
+|---|---|---|---|---|
 | Basocelular | célula basal | pápula perolada com telangiectasias | lento, local, quase sem metástase | excisão 4–5 mm; Mohs na face |
 | Espinocelular | queratinócito | placa queratósica que ulcera e sangra | meses, pode dar metástase | ressecção com margem |
 | Melanoma | melanócito | lesão pigmentada assimétrica que muda | metástase precoce; Breslow decide | biópsia excisional, ampliar pela espessura, sentinela |`,

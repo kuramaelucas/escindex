@@ -98,6 +98,7 @@ Veja também: **Climatério**, **Fraturas e luxações**, **Câncer de mama** (i
           prosa: `[[Mecanismo e contraindicação orientam a escolha.|q-adap22-083,q-unesp2026-048,q-uspsp4-008,q-amrigs2024-015]]
 
 | Remédio | Como age | Quando | Cuidado |
+|---|---|---|---|
 | Alendronato oral | inibe osteoclasto | primeira linha | esôfago; clearance < 30–35 |
 | Ácido zoledrônico | inibe osteoclasto, venoso anual | não tolera o oral, estenose de esôfago | rim |
 | Denosumabe | anticorpo anti-RANKL | rim ruim, falha | não parar sem transição |
