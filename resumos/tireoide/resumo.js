@@ -120,7 +120,7 @@ Veja também: **Triagem neonatal** (hipotireoidismo congênito) e **Crescimento 
           texto: `- Suspeitos: **hipoecoico e mais alto que largo**; espongiforme não. {q-sirio2023-006,q-unesp2025-074,q-einstein2025-019,q-sirio2027-007}
 - TI-RADS 5 de 2 cm: **PAAF**. {q-unesp2026-066}
 - Suspeita intermediária ≥ 1 cm: **PAAF**; muito baixa: acompanhar. {q-einstein2027-020}
-- TI-RADS 4: **PAAF**. {q-simepm89-016}
+- TI-RADS 4 de **2 cm** (corte do TR4: 1,5 cm): **PAAF**. {q-simepm89-016}
 - TI-RADS 5 pequeno: **ultrassom anual**. {q-famerp2026-056}` },
         { id: "nod-cancer", titulo: "Câncer: papilífero, medular e pós-operatório", conferir: true, diretrizes: ["ata-dtc"],
           questoes: ["q-adap22-084","q-usp2024-046","q-usprp2026-013","q-adap23-096","q-fmabc2026-032"],

@@ -128,7 +128,7 @@ Veja também: **Insuficiência cardíaca do adulto** e **Cirrose** (hiponatremia
       fragmentos: [
         { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou", conferir: true,
           questoes: ["q-usp2026-021","q-sirio2025-004","q-famerp2023-072"],
-          prosa: `[[A regra é cálcio quando o ECG mostra efeito da hipercalemia; com potássio de 5,8 e congestão sem alteração grave no ECG, a prova quis o diurético como conduta imediata.|q-usp2026-021]] [[Hipercalemia moderada em ambulatório com ECG pouco alterado: a prova preferiu ajustar a medicação e tratar fora da emergência.|q-sirio2025-004]] [[O bolus de salina hipertônica pode vir escrito como NaCl 20% diluído em soro: 10 mL a 20% em 90 mL dá cerca de 100 mL a 2–3%.|q-famerp2023-072]]`,
+          prosa: `[[A regra é cálcio quando o ECG mostra efeito da hipercalemia; com potássio de 5,8 e congestão sem alteração grave no ECG, a prova quis o diurético como conduta imediata.|q-usp2026-021]] [[Hipercalemia moderada em ambulatório com ECG pouco alterado: a prova preferiu ajustar a medicação e tratar fora da emergência.|q-sirio2025-004]] [[O bolus de salina hipertônica pode vir escrito como NaCl 20% diluído em soro: 10 mL a 20% (2 g) em 90 mL de soro fisiológico (mais 0,8 g) dá 100 mL a cerca de 2,8%, perto da salina a 3%.|q-famerp2023-072]]`,
           texto: `- K 5,8 com congestão e ECG pouco alterado: a prova quis **furosemida**, não cálcio. {q-usp2026-021}
 - Hipercalemia moderada ambulatorial: **ajustar drogas**, sem emergência. {q-sirio2025-004}
 - **NaCl 20% 10 mL + SF 90 mL** equivale ao bolus hipertônico. {q-famerp2023-072}` },

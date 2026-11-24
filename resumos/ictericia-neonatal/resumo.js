@@ -93,12 +93,12 @@ Veja também: **Abdome agudo do recém-nascido** e **Cirrose e complicações**,
           questoes: ["q-sessp2024-056","q-unesp2024-001"],
           prosa: `A bilirrubina indireta livre atravessa a barreira hematoencefálica e se deposita nos núcleos da base: começa com hipotonia e sucção débil e evolui para hipertonia e opistótono. É a lesão que a fototerapia e a exsanguineotransfusão existem para evitar.`,
           texto: `- Início: **hipotonia e sucção débil**, depois **hipertonia, opistótono** e febre. {q-sessp2024-056}
-- RN muito ictérico com hipertonia e movimentos de pedalar: **acesso, fenobarbital, hidratação** e transferência para centro terciário (exsanguineotransfusão). {q-unesp2024-001}` },
+- RN muito ictérico com hipertonia e movimentos de pedalar: a prova deu **acesso, fenobarbital, hidratação** e transferência; na regra (AAP 2022) é **encefalopatia bilirrubínica aguda**: fototerapia intensiva já e **exsanguineotransfusão urgente** — o fenobarbital não a trata. {q-unesp2024-001}` },
       ],
     },
     {
       id: "colestase", titulo: "Colestase neonatal e atresia biliar",
-      introducao: `[[Quando a bilirrubina direta sobe, o problema está na saída: a bile não chega ao intestino, as fezes ficam claras (acolia) e a urina escura (colúria); bilirrubina direta acima de 1 mg/dL (ou mais de 20% da total) nunca é fisiológica.|q-tp20232-039,q-simepm89-097,q-udisc20262-048]] [[A atresia biliar oblitera as vias biliares extra-hepáticas e leva à cirrose em semanas; a cirurgia de Kasai funciona melhor antes de 60 dias, e por isso a criança com acolia vai ao especialista com urgência.|q-adap25-094,q-tp20231-044,q-fmabc2026-042]]`,
+      introducao: `[[Quando a bilirrubina direta sobe, o problema está na saída: a bile não chega ao intestino, as fezes ficam claras (acolia) e a urina escura (colúria); bilirrubina direta acima de 1 mg/dL nunca é fisiológica, qualquer que seja a total (o antigo critério de 20% da total caiu).|q-tp20232-039,q-simepm89-097,q-udisc20262-048]] [[A atresia biliar oblitera as vias biliares extra-hepáticas e leva à cirrose em semanas; a cirurgia de Kasai funciona melhor antes de 60 dias, e por isso a criança com acolia vai ao especialista com urgência.|q-adap25-094,q-tp20231-044,q-fmabc2026-042]]`,
       fragmentos: [
         { id: "col-atresia", titulo: "Reconhecer e encaminhar", conferir: true, diretrizes: ["sbp-colestase"],
           questoes: ["q-tp20232-039","q-simepm89-097","q-udisc20262-048","q-adap25-094","q-tp20231-044","q-fmabc2026-042","q-usprp2023-016"],

@@ -140,10 +140,10 @@ A essência do método é **responder às pistas** do paciente, permitir e encor
           questoes: ["q-sirio2024-087","q-sirio2025-088","q-sirio2026-098","q-sirio2027-081"],
           prosa: `[[Quando o paciente chega pedindo **check-up completo** por medo de câncer (um colega adoeceu) ou com uma lista de exames da internet, a atitude é **reconhecer a preocupação, explicar com clareza a ausência de indicação clínica** e discutir os **riscos do rastreamento sem indicação** (falso-positivos, sobrediagnóstico e sobretratamento), restringindo o pedido aos exames recomendados.|q-sirio2026-098,q-sirio2027-081]]
 
-[[A **decisão compartilhada** vale também para o tratamento: na mulher de 55 anos com risco cardiovascular em 10 anos abaixo de 5% e LDL de 70 mg/dL, que questiona a estatina, prioriza-se a intervenção **não farmacológica** (dieta e atividade física), pesando o benefício absoluto mínimo contra o risco de medicalização. E evitar a internação desnecessária da idosa de 83 anos com demência, dor e abdome endurecido há 2 dias é **prevenção quaternária**.|q-sirio2025-088,q-sirio2024-087]]`,
+[[A **decisão compartilhada** vale também para o tratamento: na mulher de 55 anos com risco cardiovascular em 10 anos abaixo de 5% e LDL de 70 mg/dL, que questiona a estatina, prioriza-se a intervenção **não farmacológica** (dieta e atividade física), pesando o benefício absoluto mínimo contra o risco de medicalização. E evitar a internação desnecessária da idosa de 83 anos com demência, dor e abdome endurecido há 2 dias, em quem o exame achou **fecaloma** sem sinal de gravidade (desfeito na UBS), é **prevenção quaternária**; abdome rígido com sinal peritoneal seria urgência.|q-sirio2025-088,q-sirio2024-087]]`,
           texto: `- Check-up pedido por medo: **explicar a ausência de indicação** e os **riscos do rastreamento** sem indicação. {q-sirio2026-098,q-sirio2027-081}
 - Mulher de 55 anos, risco baixo, questiona estatina: **intervenções não farmacológicas** (decisão compartilhada). {q-sirio2025-088}
-- Idosa de 83 anos com demência e abdome endurecido: proteger de internação desnecessária = **prevenção quaternária**. {q-sirio2024-087}` },
+- Idosa de 83 anos com demência e abdome endurecido **por fecaloma**, sem sinal de gravidade: proteger de internação desnecessária = **prevenção quaternária**. {q-sirio2024-087}` },
       ],
     },
     {

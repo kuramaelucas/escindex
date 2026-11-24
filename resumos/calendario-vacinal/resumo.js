@@ -162,7 +162,7 @@ Na gestante, a lógica é proteger o bebê antes de ele poder ser vacinado. [[A 
 - Faixa ampliada em 2024: **1ª dose até 11 meses e 29 dias**; passou disso, não se inicia. {q-adap25-083}
 - **VOP contraindicada** em pessoas com HIV e em **seus comunicantes** (o vírus vacinal é eliminado nas fezes). {q-scmsp2023-047}
 - VIP entrou em **2012 (2 doses)** e passou a **3 doses em 2016**; a VOP saiu do calendário em **2024**. {q-iamspe2023-070,q-fmabc2024-041,q-iamspe2025-080}
-- Criança em uso de corticoide e antibiótico: **não** se dá a vacina de vírus vivo que estava devida (na reposição, **febre amarela**). {q-usp2023-094-ia}` },
+- Lactente de 4 meses em uso de antibiótico e corticoide em dose habitual: isso **não** contraindica vacina; a que não se dá hoje é a **febre amarela**, que só começa aos 9 meses. {q-usp2023-094-ia}` },
       ],
     },
     {

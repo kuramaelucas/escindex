@@ -138,7 +138,7 @@ Veja também: **Pré-natal** (AAS e rastreio de risco), **Puerpério** (hiperten
           casos: ["q-usp2026-104"],
           texto: `- Pré-eclâmpsia sem gravidade com 38 sem: **induzir**. {q-adap24-037}
 - 37 semanas com proteinúria: **indução imediata**. {q-unifesp2024-053}
-- Diástole zero com 26+ semanas: **resolver a gestação**. {q-unesp2024-021}
+- Pré-eclâmpsia com **34 semanas** e diástole zero: **resolver a gestação**. Sem outra indicação, a SMFM vigia a diástole zero com Doppler e programa o parto com 33–34 semanas (diástole reversa: 30–32); não é parto imediato em qualquer idade. {q-unesp2024-021}
 - Edema importante e avaliação fetal alterada: **cesárea**. {q-usp2026-104}` },
       ],
     },

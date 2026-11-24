@@ -98,7 +98,7 @@ O perímetro cefálico mede, na prática, o crescimento do cérebro. [[Ele aumen
 - IMC baixo com estatura alta: **magreza com estatura adequada**. {q-unifesp2023-061}
 - O **IMC para a idade** é o gráfico para avaliar sobrepeso e obesidade. {q-simepm89-073}` },
         { id: "cre-obesidade", casos: ["q-fmabc2021-089"], titulo: "Obesidade infantil", conferir: true,
-          prosa: `A obesidade infantil cresce junto com o consumo de ultraprocessados e o sedentarismo. O excesso de gordura visceral libera ácidos graxos e citocinas que geram **resistência à insulina**. [[A pele mostra isso como **acantose nigricans** (manchas escuras e aveludadas em pescoço e axilas), e o fígado como **esteatose**, a complicação mais comum.|q-tp20232-041]] [[A obesidade que começa **no primeiro ano** de vida é um alerta para causas genéticas ou endócrinas e pede investigação.|q-fmabc2021-089]]`,
+          prosa: `A obesidade infantil cresce junto com o consumo de ultraprocessados e o sedentarismo. O excesso de gordura visceral libera ácidos graxos e citocinas que geram **resistência à insulina**. [[A pele mostra isso como **acantose nigricans** (manchas escuras e aveludadas em pescoço e axilas), e o fígado como **esteatose**, a complicação mais comum.|q-tp20232-041]] [[A obesidade que começa **no primeiro ano** de vida é um alerta para causas genéticas (sobretudo se grave, com fome insaciável, dismorfias ou atraso do desenvolvimento) ou endócrinas (quando a estatura desacelera) e pede investigação.|q-fmabc2021-089]]`,
           questoes: ["q-sessp2023-040","q-tp20232-041","q-tp20222-046","q-fmabc2021-089","q-fmabc2021-088"],
           texto: `- **Circunferência abdominal/estatura ≤ 0,5** é adequada. Acima indica gordura visceral. {q-sessp2023-040}
 - Acantose nigricans = resistência à insulina; complicação hepática = **esteatose**. {q-tp20232-041}
@@ -212,14 +212,14 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
           texto: `- **Não** oferecer leite de vaca integral antes de **12 meses** (SBP): risco de **anemia ferropriva**. {q-adap21-039,q-unesp2023-007}
 - O Guia do MS (2019) admite leite de origem animal de 6 a 11 meses para quem não mama, quando a fórmula não é possível. {q-fmabc2026-052}
 - Fórmula infantil supre as necessidades **até a alimentação complementar** e substitui o leite materno quando ele falta. {q-sessp2024-055}
-- Preparo: **1 medida para 30 mL de água** (5 medidas em 150 mL). {q-usprp2021-039}
+- Preparo: **1 medida para 30 mL de água** (5 medidas em 150 mL), a diluição da maioria das fórmulas; vale sempre a do rótulo do produto. {q-usprp2021-039}
 - Necessidade energética no 1º semestre: cerca de **100 kcal/kg/dia**. {q-usprp2025-020}
 - Regurgitação em quem usa fórmula, com bom ganho: pode-se usar **fórmula antirregurgitação**. {q-unesp2022-008}` },
         { id: "ali-vegana", titulo: "Criança vegana", conferir: true,
           prosa: `[[A vitamina **B12** só existe em alimentos de origem animal: na dieta vegana ela **sempre** precisa ser suplementada, porque a deficiência causa anemia e dano neurológico irreversível no cérebro em formação.|q-einstein2021-029,q-tp20252-002,q-einstein2027-034]]`,
           questoes: ["q-einstein2021-029","q-tp20252-002","q-einstein2027-034"],
           texto: `- Base: **leguminosas, cereais integrais, castanhas, verde-escuros e frutas**. {q-tp20252-002}
-- Suplementar sempre **B12** e **ferro**. Avaliar cálcio, zinco, iodo e DHA. {q-einstein2021-029,q-tp20252-002,q-einstein2027-034}` },
+- Suplementar sempre **B12**; **ferro** pela profilaxia da idade e conforme a dieta e os exames. Avaliar cálcio, zinco, iodo e DHA. {q-einstein2021-029,q-tp20252-002,q-einstein2027-034}` },
       ],
     },
     {

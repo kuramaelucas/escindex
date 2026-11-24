@@ -243,7 +243,7 @@ A **síndrome inflamatória multissistêmica pediátrica (SIM-P)** surgiu na pan
         { id: "kaw-crit", diretrizes: ["aha-kawasaki"], figuras: [{ arquivo: "figuras/kawasaki-criterios.svg", legenda: "Esquema autoral: o critério obrigatório e os cinco critérios clínicos." }], titulo: "Critérios de Kawasaki",
           prosa: `[[Como não existe exame que confirme Kawasaki, o diagnóstico é clínico e se apoia num conjunto de critérios.|q-scmsp2025-057,q-sirio2025-045,q-sirio2024-050]] Os sinais refletem inflamação vascular difusa: a hiperemia conjuntival sem secreção, o edema endurado das extremidades e a descamação periungueal tardia (2ª a 3ª semana). Na fase subaguda, a **plaquetose** é típica. VHS e PCR elevadas, piúria estéril e elevação de transaminases reforçam a suspeita.`, conferir: true,
           questoes: ["q-scmsp2025-057","q-sirio2025-045","q-sirio2024-050","q-scmsp2022-039","q-famema2025-042"],
-          texto: `- Critério obrigatório: **febre por 5 dias ou mais**. Some **4 dos 5 critérios**: {q-scmsp2025-057,q-sirio2025-045}
+          texto: `- Critério obrigatório: **febre por 5 dias ou mais** (a AHA aceita **4 dias** com 4 ou mais critérios, sobretudo com alteração de mãos e pés; e a incompleta não espera completar). Some **4 dos 5 critérios**: {q-scmsp2025-057,q-sirio2025-045}
 - **Conjuntivite bilateral NÃO exsudativa**, que poupa o limbo. {q-famema2025-042,q-sirio2025-045,q-scmsp2025-057}
 - **Alterações de lábios e boca**: lábios secos e fissurados, língua em framboesa, hiperemia. {q-scmsp2025-057}
 - **Exantema polimorfo**, que **não é vesicular nem bolhoso**. {q-famema2025-042}

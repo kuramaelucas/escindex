@@ -62,7 +62,7 @@ Veja também: **Antibioticoterapia e resistência bacteriana** (espectro dos ant
         { id: "nf-fungos", titulo: "Febre que persiste: fungos", conferir: true, diretrizes: ["idsa-neutropenia"],
           questoes: ["q-gdneutropenia-016","q-gdneutropenia-019","q-gdneutropenia-022","q-gdneutropenia-048"],
           prosa: `[[Se a febre persiste depois de 4 a 7 dias de antibiótico adequado numa neutropenia longa, o fungo filamentoso entra na conta. O *Aspergillus* invade os vasos do pulmão e faz nódulos com halo de vidro fosco (sangramento ao redor do infarto); o galactomanana no sangue reforça o diagnóstico. Ele escapa do fluconazol da profilaxia, e o tratamento é o voriconazol.|q-gdneutropenia-016,q-gdneutropenia-019,q-gdneutropenia-022,q-gdneutropenia-048]]`,
-          texto: `- Febre após 5 dias de cefepima: **vancomicina e voriconazol**. {q-gdneutropenia-016}
+          texto: `- Febre após 5 dias de cefepima e decisão de cobrir MRSA e *Aspergillus*: **vancomicina e voriconazol** (a febre isolada no paciente estável não pede vancomicina). {q-gdneutropenia-016}
 - Nódulos com halo e galactomanana positiva: ***Aspergillus***. {q-gdneutropenia-019}
 - Infecção fúngica mais encontrada no neutropênico (a prova): **aspergilose**. {q-gdneutropenia-022}
 - Tosse e dor pleurítica com fluconazol profilático: **aspergilose invasiva**. {q-gdneutropenia-048}` },

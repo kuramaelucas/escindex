@@ -31,7 +31,7 @@ Veja também: **Diabetes mellitus**, **Síndromes glomerulares** e **Insuficiên
         { id: "dia-medida", titulo: "Técnica da medida e rastreio", conferir: false, diretrizes: ["sbc-has"],
           questoes: ["q-usp2026-017","q-amrigs2025-004","q-unesp2022-011","q-famema2023-011","q-amrigs2024-001","q-einstein2024-069"],
           texto: `- PA alta na triagem do obeso: primeiro **checar o tamanho do manguito**. {q-usp2026-017}
-- Manguito pequeno **superestima**; nas artérias distais, a sistólica sobe e a diastólica cai. {q-amrigs2025-004}
+- Manguito pequeno **superestima** a pressão. Fenômeno à parte, sem relação com o manguito: nas artérias distais (amplificação da onda de pulso), a sistólica sobe e a diastólica cai. {q-amrigs2025-004}
 - **Estetoscópio sob o manguito** altera a medida. {q-unesp2022-011}
 - Todo adulto sem registro recente: **medir a PA** em qualquer ida à UBS. {q-famema2023-011}
 - PA normal: medir **anualmente**; pré-eclâmpsia prévia é **fator de risco** de hipertensão. {q-amrigs2024-001}

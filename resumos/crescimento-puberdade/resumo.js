@@ -128,7 +128,7 @@ Veja também: **Puericultura** (curvas e consulta) e **Tireoidopatias**.`,
           texto: `- Mama e pelos antes dos 8 anos, **LH basal puberal** (acima de 0,3 UI/L), idade óssea avançada: **puberdade precoce central**. {q-adap21-046,q-unicampdis2024-090}
 - Exame que confirma: **LH** (basal ou após estímulo com GnRH). {q-unicampdis2024-090}
 - Menino com **testículos de 8 mL**, estirão e idade óssea avançada: **central**. {q-tp20202-042}
-- Sempre **ressonância de encéfalo**; manchas café com leite e hemianopsia sugerem lesão (glioma óptico na neurofibromatose). {q-tp20251-048,q-usp2026-108}
+- **Ressonância de encéfalo**: sempre no menino e na menina com menos de 6 anos ou com sinal neurológico (na menina de 6 a 8 anos sem sintoma, é discutida); manchas café com leite e hemianopsia sugerem lesão (glioma óptico na neurofibromatose). {q-tp20251-048,q-usp2026-108}
 - Tratamento: **análogo de GnRH**. {q-adap21-046}` },
         { id: "pre-periferica", titulo: "Periférica e exógena", conferir: true,
           questoes: ["q-sirio2022-072","q-usprp2024-080","q-simepm89-089","q-scmsp2026-043","q-udisc20262-055"],

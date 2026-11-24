@@ -115,7 +115,7 @@ Veja também: **Comunicação clínica** (más notícias, decisão compartilhada
     },
     {
       id: "pesquisa", titulo: "Ética em pesquisa e doação de órgãos",
-      introducao: `[[Pesquisa com seres humanos passa por comitê de ética e exige consentimento livre e esclarecido; o adolescente assina o assentimento e o responsável, o consentimento. O controle com placebo só é ético quando não existe tratamento eficaz: privar o grupo de metformina num diabético é inaceitável.|q-adap23-032,q-sirio2026-059,q-didepm-085]]`,
+      introducao: `[[Pesquisa com seres humanos passa por comitê de ética e exige consentimento livre e esclarecido; o adolescente assina o assentimento e o responsável, o consentimento. O controle com placebo, em regra, só é ético quando não existe tratamento eficaz (Helsinque 2024 admite exceção por razão metodológica forte, sem risco de dano grave ou irreversível): privar o grupo de metformina num diabético é inaceitável.|q-adap23-032,q-sirio2026-059,q-didepm-085]]`,
       fragmentos: [
         { id: "pes-regras", titulo: "Pesquisa e doação", conferir: true, diretrizes: ["cns-466"],
           questoes: ["q-adap23-032","q-sirio2026-059","q-didepm-085","q-einstein2021-019"],

@@ -17,7 +17,7 @@
   doencas: [
     {
       id: "primaria", titulo: "Avaliação primária: ABCDE, prioridades e adjuntos",
-      introducao: `[[O atendimento ao politraumatizado segue uma **ordem que mata menos**: o que mata primeiro se trata primeiro. **A** (via aérea com proteção da coluna cervical), **B** (respiração e ventilação), **C** (circulação com controle de hemorragia), **D** (avaliação neurológica) e **E** (exposição e controle do ambiente, prevenindo hipotermia).|q-fmabc2021-002,q-sessp2022-030]] A cada achado que ameaça a vida, trata-se **antes de seguir**, e depois se reavalia.
+      introducao: `[[O atendimento ao politraumatizado segue uma **ordem que mata menos**: o que mata primeiro se trata primeiro. **X** (na 11ª edição do ATLS, 2025: hemorragia externa exsanguinante, contida antes de tudo com compressão ou torniquete), **A** (via aérea com proteção da coluna cervical), **B** (respiração e ventilação), **C** (circulação com controle de hemorragia), **D** (avaliação neurológica) e **E** (exposição e controle do ambiente, prevenindo hipotermia).|q-fmabc2021-002,q-sessp2022-030]] A cada achado que ameaça a vida, trata-se **antes de seguir**, e depois se reavalia.
 
 [[A lógica da ordem é a do tempo até a morte: a obstrução de via aérea mata em minutos, o pneumotórax hipertensivo em minutos, a hemorragia em minutos a horas e a lesão cerebral em horas; por isso nenhum exame de imagem vem antes de resolver o A, o B e o C.|q-usp2022-069,q-usp2024-034]]
 
@@ -126,9 +126,9 @@ O **índice de choque** é **FC ÷ PAS**: 140/80 = 1,75, e acima de 1 já indica
           questoes: ["q-famerp2023-066","q-famerp2024-027","q-famerp2022-067","q-unicampdis2024-075","q-sirio2024-029","q-sirio2024-038","q-sirio2027-021","q-usp2025-038","q-fmabc2025-024","q-fmabc2026-021","q-usprp2023-085","q-einstein2023-021"],
           prosa: `A **tríade letal** é a espiral que vem da hemorragia: **acidose, hipotermia e coagulopatia**. [[A hipoperfusão produz **lactato e acidose metabólica**; o frio e a acidose inibem a coagulação; a coagulopatia aumenta o sangramento, que aprofunda a hipoperfusão. Quebra-se o ciclo **controlando a hemorragia**, aquecendo, e repondo com **hemoderivados**, não com cristaloide.|q-fmabc2025-024,q-fmabc2026-021,q-sirio2027-021]]
 
-[[O **protocolo de transfusão maciça** repõe hemácias, plasma e plaquetas em **proporções altas** (balanceadas, como 1:1:1), **sem aguardar exames laboratoriais**. Na transfusão maciça, o **fibrinogênio (fator I)** é o fator mais depletado e a **hipocalcemia** (o citrato do sangue quela o cálcio) é o distúrbio eletrolítico esperado; as metas são **hemoglobina de 8 a 12 g/dL, INR < 1,8 e plaquetas > 50.000/mm³**.|q-usprp2023-085,q-sirio2024-029,q-usp2025-038,q-sirio2024-038]]
+[[O **protocolo de transfusão maciça** repõe hemácias, plasma e plaquetas em **proporções altas** (balanceadas, como 1:1:1), **sem aguardar exames laboratoriais**. Na transfusão maciça, o **fibrinogênio (fator I)** é o fator mais depletado e a **hipocalcemia** (o citrato do sangue quela o cálcio) é o distúrbio eletrolítico esperado; as metas são **hemoglobina de 8 a 12 g/dL, INR < 1,8 e plaquetas > 50.000/mm³** (a diretriz europeia de 2023 mira hemoglobina de 7 a 9 g/dL, e no sangramento ativo a hemoglobina isolada não guia a reposição).|q-usprp2023-085,q-sirio2024-029,q-usp2025-038,q-sirio2024-038]]
 
-[[O **ácido tranexâmico** (antifibrinolítico) reduz a mortalidade no trauma com hemorragia **quando dado até 3 horas** do evento: 1 g em 10 minutos e depois 1 g em 8 horas; se o sangramento persiste (retroperitônio, zona II), repete-se a dose.|q-unicampdis2024-075,q-famerp2023-066,q-famerp2022-067,q-famerp2024-027]] [[Na queda de 5 m com FC 133 e PA 80/60, o conjunto é **ácido tranexâmico, transfusão maciça e hipotensão permissiva**.|q-einstein2023-021]]`,
+[[O **ácido tranexâmico** (antifibrinolítico) reduz a mortalidade no trauma com hemorragia **quando dado até 3 horas** do evento: 1 g em 10 minutos e depois 1 g em 8 horas; repete-se só quando a tromboelastometria mostra fibrinólise (retroperitônio, zona II) — o sangramento que persiste sem fibrinólise pede controle da fonte e reposição hemostática, não novo bólus.|q-unicampdis2024-075,q-famerp2023-066,q-famerp2022-067,q-famerp2024-027]] [[Na queda de 5 m com FC 133 e PA 80/60, o conjunto é **ácido tranexâmico, transfusão maciça e hipotensão permissiva**.|q-einstein2023-021]]`,
           texto: `- **Tríade letal**: **acidose, hipotermia e coagulopatia**. {q-fmabc2025-024,q-fmabc2026-021}
 - Lactato e acidose resultam da **hipoperfusão**; o ciclo se interrompe controlando a hemorragia. {q-sirio2027-021}
 - **Transfusão maciça**: hemácias, plasma e plaquetas em proporções altas, sem aguardar exames. {q-usprp2023-085}
@@ -136,7 +136,7 @@ O **índice de choque** é **FC ÷ PAS**: 140/80 = 1,75, e acima de 1 já indica
 - Distúrbio da transfusão maciça: **hipocalcemia**. {q-usp2025-038}
 - Metas: **Hb 8 a 12 g/dL, INR < 1,8, plaquetas > 50.000**. {q-sirio2024-038}
 - **Ácido tranexâmico**: primeira dose em até **3 horas**. {q-unicampdis2024-075}
-- Sangramento retroperitoneal ativo em zona II: **repetir o ácido tranexâmico (1 g)**. {q-famerp2023-066}
+- Sangramento em zona II com **fibrinólise na tromboelastometria**: **repetir o ácido tranexâmico (1 g)**. {q-famerp2023-066}
 - Choque e Glasgow 7 em ventilação mecânica: entre plasma, plaqueta, crioprecipitado e ácido tranexâmico, a prova deu o **ácido tranexâmico**. {q-famerp2022-067}
 - Instável com cinta pélvica e fratura aberta: ácido tranexâmico (1 g), **transfusão maciça** e cinta. {q-famerp2024-027}
 - Queda de 5 m com FC 133 e PA 80/60: **ácido tranexâmico, transfusão maciça e hipotensão permissiva**. {q-einstein2023-021}` },

@@ -194,7 +194,7 @@ Veja também: **Hipertensão arterial**, **Síndromes glomerulares** (nefropatia
       fragmentos: [
         { id: "com-micro", titulo: "Retina, rim, nervos e pé diabético", conferir: true, diretrizes: ["sbd","ada"],
           questoes: ["q-usprp2022-064","q-fmabc2021-040","q-adap21-047","q-uspsp4-024","q-didepm-031","q-unesp2024-057","q-sessp2026-028","q-einstein2026-015","q-iamspe2026-029"],
-          texto: `- Rastreio anual: **fundo de olho, albuminúria, ECG**. {q-usprp2022-064,q-fmabc2021-040}
+          texto: `- Rastreio anual: **fundo de olho, albuminúria** e pés; o **ECG** de repouso aparece nas provas, mas não rastreia doença coronariana no assintomático (a ADA não indica esse rastreio). {q-usprp2022-064,q-fmabc2021-040}
 - Edema macular central: **anti-VEGF intravítreo**. {q-adap21-047}
 - Albuminúria no DM1 hipertenso: **BRA** (valsartana) ou IECA. {q-uspsp4-024}
 - Monofilamento não sentido: **perda da sensibilidade protetora**, cuidado dos pés. {q-didepm-031}
