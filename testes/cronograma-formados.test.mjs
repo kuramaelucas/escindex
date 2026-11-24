@@ -537,17 +537,36 @@ test("Revisão sugerida: assuntos esfriados, mais erro primeiro e depois mais te
       const ordem = cand.assuntos.map(a => a.assuntoId);
       const m8 = montarRevisaoSugerida(u.id, 8), m3 = montarRevisaoSugerida(u.id, 3);
       const assuntosDe = m => m.itens.map(it => getQuestao(it.questaoId).assuntoId);
-      const primeiraB = getQuestao(m8.itens[0].questaoId);
+      const respondidas = new Set(db.respostas.filter(x => x.usuarioId === u.id).map(x => x.questaoId));
+      const novaDe = m => m.itens.map(it => !respondidas.has(it.questaoId));
+      // par erro → nova: 3 erros de C (o 7º em diante errados) com C sozinho no pedido
+      const soC = { ...cand, assuntos: cand.assuntos.filter(a => a.assuntoId === C) };
+      const mc = montarRevisaoSugerida(u.id, 50, soC);
+      const errosC = mc.itens.filter(it => respondidas.has(it.questaoId) && /errou ou chutou/.test(it.motivo)).length;
+      const novasC = mc.itens.filter(it => !respondidas.has(it.questaoId));
+      // sem questão nova sobrando: não completa com outro assunto e diz na prévia
+      const semNovas = { ...soC, novas: {} };
+      const ms = montarRevisaoSugerida(u.id, 50, semNovas);
       abrirRevisaoSugerida(8);
       const tela = document.querySelector(".modal").innerText;
-      return { A, B, C, D, E, F, G, H, ordem, a8: assuntosDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u) };
+      return { A, B, C, D, E, F, G, H, ordem, a8: assuntosDe(m8), n8: novaDe(m8), a3: assuntosDe(m3), motivo: m8.itens[0].motivo, origem: m8.itens[0].origem, tela, card: htmlCardRevisaoSugerida(u),
+        errosC, novasC: novasC.length, novasDoMesmo: novasC.every(it => getQuestao(it.questaoId).assuntoId === C), semRepetir: new Set(mc.itens.map(it => it.questaoId)).size === mc.itens.length,
+        parLogoDepois: mc.itens.every((it, i) => respondidas.has(it.questaoId) || /errou ou chutou/.test(mc.itens[i - 1].motivo)),
+        semPar: ms.semPar, soDeC: ms.itens.every(it => getQuestao(it.questaoId).assuntoId === C) };
     });
     assert.deepEqual(r.ordem, [r.B, r.A, r.C, r.G], "taxa de erro primeiro; empate, mais tempo parado; recente, pequeno que ainda não esfriou, pouca resposta e menos de 10 questões ficam fora");
-    assert.deepEqual(r.a8, [...Array(5).fill(r.B), ...Array(3).fill(r.A)], "5 por rodada, na ordem dos assuntos, até completar o pedido");
+    // B: 8 de 10 errados → cada erro traz uma nova do mesmo assunto, logo depois (par erro → nova)
+    assert.deepEqual(r.a8, Array(8).fill(r.B), "o par fica no mesmo assunto");
+    assert.deepEqual(r.n8, [false, true, false, true, false, true, false, true], "errada, nova, errada, nova…");
     assert.deepEqual(r.a3, Array(3).fill(r.B));
+    assert.equal(r.novasC, r.errosC, "uma nova por erro"); assert.ok(r.errosC >= 3);
+    assert.ok(r.novasDoMesmo && r.semRepetir && r.parLogoDepois, "nova do mesmo assunto, nunca respondida, logo depois do erro");
+    assert.deepEqual(r.semPar, [{ assuntoId: r.C, n: r.errosC }], "erros sem questão nova são contados");
+    assert.ok(r.soDeC, "não completa com outro assunto");
     assert.match(r.motivo, /Revisão sugerida — .*erro de 80% e faz 50 dias/);
     assert.equal(r.origem, "revisao_sugerida");
     assert.match(r.tela, /8 questões, nesta ordem de assuntos/);
+    assert.match(r.tela, /\(4 novas\)/);
     assert.match(r.card, /Montar revisão sugerida/);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }

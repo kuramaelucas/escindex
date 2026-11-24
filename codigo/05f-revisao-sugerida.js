@@ -16,6 +16,13 @@
    o conjunto). Dentro do assunto vêm primeiro as que errou ou acertou no
    chute e depois as acertadas, da mais antiga para a mais nova. Questão feita há
    menos que o intervalo mínimo de revisão não entra (voltar rápido é reler).
+   PAR ERRO → NOVA (24/11/2026, docs/PROJETO-INTEGRACAO-RESUMOS.md, seção 7):
+   logo depois de cada questão que a pessoa errou ou chutou vem uma questão
+   NUNCA respondida do mesmo assunto — rever a mesma questão mede memória do
+   gabarito; a nova mede se o conceito ficou. A errada continua também no
+   espaçamento da repetição espaçada (05a), que não muda. Assunto sem questão
+   nova sobrando não é completado com outro assunto: a prévia diz quantos
+   erros ficaram sem par e de onde.
    Não cria grupo nem assunto na plataforma: é só um jeito de montar a sessão. */
 const REVISAO_SUGERIDA_TAMANHOS = [10, 20, 30, 50];
 let _revisaoSugerida = { n: 20 };
@@ -45,38 +52,58 @@ function candidatosDaRevisaoSugerida(usuarioId){
     (questoes[q.assuntoId] = questoes[q.assuntoId] || []).push({ q, errada: !u.correta || u.confianca === "chute", quando: String(u.respondidaEm || u.data) });
   });
   Object.values(questoes).forEach(l => l.sort((a, b) => (b.errada - a.errada) || a.quando.localeCompare(b.quando)));
+  // as nunca respondidas, por assunto: o par de cada erro (mais recentes primeiro — refletem a prova de hoje)
+  const novas = {};
+  questoesParaEstudo(usuarioId).forEach(q => {
+    if(ultimaPorQuestao[q.id] || ehDissertativa(q) || !q.assuntoId || aguardaImagem(q)) return;
+    (novas[q.assuntoId] = novas[q.assuntoId] || []).push(q);
+  });
+  Object.values(novas).forEach(l => l.sort((a, b) => (Number(b.ano) || 0) - (Number(a.ano) || 0) || String(a.id).localeCompare(String(b.id))));
   const assuntos = Object.values(porAssunto)
     .map(a => ({ ...a, taxaErro: a.erros / a.total, dias: a.ultima ? diasEntre(a.ultima, hoje) : 0, limiteDias: diasParaEsfriarAssunto(naPlataforma[a.assuntoId] || 0), cap: (questoes[a.assuntoId] || []).length }))
     .filter(a => a.total >= k.minimoRespostas && a.ultima && a.limiteDias !== null && a.dias >= a.limiteDias && a.cap && getAssunto(a.assuntoId))
     .sort((a, b) => b.taxaErro - a.taxaErro || b.dias - a.dias || b.erros - a.erros);
-  return { assuntos, questoes };
+  return { assuntos, questoes, novas };
 }
 
 /* Preenche `n` vagas na ordem dos assuntos, `porRodada` questões de cada vez. */
 function montarRevisaoSugerida(usuarioId, n, cand){
   n = Math.max(1, Math.min(TRILHA_TAMANHO_MAXIMO, Math.round(Number(n) || 20)));
   cand = cand || candidatosDaRevisaoSugerida(usuarioId);
-  const dadas = {}, itens = [];
+  const dadas = {}, novasUsadas = {}, semPar = {}, itens = [];
+  const novas = cand.novas || {};
   for(let rodada = 0; itens.length < n; rodada++){
     let andou = false;
     for(const a of cand.assuntos){
       const ja = dadas[a.assuntoId] || 0, pega = Math.min(CONFIG.revisaoSugerida.porRodada, a.cap - ja, n - itens.length);
       if(pega <= 0) continue;
-      cand.questoes[a.assuntoId].slice(ja, ja + pega).forEach(c => itens.push({ questaoId: c.q.id, origem: "revisao_sugerida", assuntoId: a.assuntoId,
-        motivo: "Revisão sugerida — " + nomeAssunto(a.assuntoId) + ": erro de " + Math.round(a.taxaErro * 100) + "% e faz " + a.dias + " dias que você não vê · questão " + (c.errada ? "que você errou ou chutou" : "que você acertou") }));
-      dadas[a.assuntoId] = ja + pega; andou = true;
+      const nome = nomeAssunto(a.assuntoId);
+      for(const c of cand.questoes[a.assuntoId].slice(ja, ja + pega)){
+        if(itens.length >= n) break;
+        itens.push({ questaoId: c.q.id, origem: "revisao_sugerida", assuntoId: a.assuntoId,
+          motivo: "Revisão sugerida — " + nome + ": erro de " + Math.round(a.taxaErro * 100) + "% e faz " + a.dias + " dias que você não vê · questão " + (c.errada ? "que você errou ou chutou" : "que você acertou") });
+        dadas[a.assuntoId] = (dadas[a.assuntoId] || 0) + 1;
+        if(!c.errada || itens.length >= n) continue;
+        const k = novasUsadas[a.assuntoId] || 0, nova = (novas[a.assuntoId] || [])[k];
+        if(!nova){ semPar[a.assuntoId] = (semPar[a.assuntoId] || 0) + 1; continue; }
+        novasUsadas[a.assuntoId] = k + 1;
+        itens.push({ questaoId: nova.id, origem: "revisao_sugerida", assuntoId: a.assuntoId,
+          motivo: "Revisão sugerida — " + nome + ": questão nova do mesmo assunto, par da que você errou ou chutou logo antes (testa se o conceito ficou, não a memória da resposta)" });
+      }
+      andou = true;
       if(itens.length >= n) break;
     }
     if(!andou) break;
   }
-  const resumo = cand.assuntos.filter(a => dadas[a.assuntoId]).map(a => ({ ...a, alocadas: dadas[a.assuntoId] }));
-  return { itens, resumo, faltaram: n - itens.length, disponiveis: cand.assuntos.reduce((s, a) => s + a.cap, 0) };
+  const resumo = cand.assuntos.filter(a => dadas[a.assuntoId]).map(a => ({ ...a, alocadas: dadas[a.assuntoId] + (novasUsadas[a.assuntoId] || 0), novas: novasUsadas[a.assuntoId] || 0, semPar: semPar[a.assuntoId] || 0 }));
+  return { itens, resumo, faltaram: n - itens.length, disponiveis: cand.assuntos.reduce((s, a) => s + a.cap, 0),
+    semPar: Object.keys(semPar).map(id => ({ assuntoId: id, n: semPar[id] })) };
 }
 
 function abrirRevisaoSugerida(n){
   if(n) _revisaoSugerida.n = n;
   abrirModalTitulado("Revisão sugerida", `
-    <p class="text-sm muted">Assuntos em que você já respondeu questões e que não vê há <strong>${CONFIG.revisaoSugerida.diasSemVer} dias ou mais</strong> (${CONFIG.revisaoSugerida.diasAssuntoPequeno} para assuntos com menos de ${CONFIG.revisaoSugerida.limitePequeno} questões na plataforma; os com menos de ${CONFIG.revisaoSugerida.limiteSemRevisaoPorTempo} não entram por tempo). Entram primeiro os de <strong>maior taxa de erro</strong> e, empatando, os <strong>há mais tempo sem ver</strong>; dentro de cada assunto, as questões que você errou ou chutou vêm antes das acertadas.</p>
+    <p class="text-sm muted">Assuntos em que você já respondeu questões e que não vê há <strong>${CONFIG.revisaoSugerida.diasSemVer} dias ou mais</strong> (${CONFIG.revisaoSugerida.diasAssuntoPequeno} para assuntos com menos de ${CONFIG.revisaoSugerida.limitePequeno} questões na plataforma; os com menos de ${CONFIG.revisaoSugerida.limiteSemRevisaoPorTempo} não entram por tempo). Entram primeiro os de <strong>maior taxa de erro</strong> e, empatando, os <strong>há mais tempo sem ver</strong>; dentro de cada assunto, as questões que você errou ou chutou vêm antes das acertadas, e <strong>cada uma delas traz junto uma questão nova do mesmo assunto</strong> — para ver se o conceito ficou, não só a resposta.</p>
     <div class="mt-2 text-sm peso-600">Quantas questões?</div>
     <div class="tempo-atalhos mt-1" id="atalhosRevisaoSugerida">
       ${REVISAO_SUGERIDA_TAMANHOS.map(t => `<button class="chip-tempo" data-n="${t}" onclick="definirTamanhoDaRevisaoSugerida(${t})">${t}</button>`).join("")}
@@ -104,7 +131,8 @@ function atualizarRevisaoSugerida(deDigitacao){
   if(!r.itens.length){ previa.textContent = "Nenhum assunto esfriou ainda: nenhum assunto com respostas suas está parado há " + CONFIG.revisaoSugerida.diasSemVer + " dias ou mais (" + CONFIG.revisaoSugerida.diasAssuntoPequeno + " nos assuntos pequenos)."; return; }
   previa.innerHTML = `<div class="peso-600 mb-1">${r.itens.length} questões, nesta ordem de assuntos</div>` + r.resumo.map((a, i) =>
     `<div class="flex justify-between gap-2 quebra" style="padding:.15rem 0"><span>${i + 1}. ${escapeHtml(nomeAssunto(a.assuntoId))}</span>
-      <span class="muted">erro de <strong>${Math.round(a.taxaErro * 100)}%</strong> · ${a.total} respostas · há ${a.dias} dias · <strong>${a.alocadas}</strong> ${plural(a.alocadas,"questão","questões")}</span></div>`).join("") +
+      <span class="muted">erro de <strong>${Math.round(a.taxaErro * 100)}%</strong> · ${a.total} respostas · há ${a.dias} dias · <strong>${a.alocadas}</strong> ${plural(a.alocadas,"questão","questões")}${a.novas ? ` (${a.novas} ${plural(a.novas,"nova","novas")})` : ""}</span></div>`).join("") +
+    (r.semPar.length ? `<p class="text-xs muted mt-1">${r.semPar.map(x => `${x.n} ${plural(x.n,"erro","erros")} de ${escapeHtml(nomeAssunto(x.assuntoId))}`).join(" · ")} ficaram sem questão nova: você já respondeu todas as desse assunto. Não completamos com outro assunto.</p>` : "") +
     (r.faltaram > 0 ? `<p class="text-xs muted mt-1">Você pediu ${_revisaoSugerida.n}, mas só há ${r.itens.length} questões de revisão disponíveis agora.</p>` : "");
   botao.disabled = false; botao.textContent = "Iniciar revisão com " + r.itens.length + " questões";
 }
