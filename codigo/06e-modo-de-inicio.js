@@ -24,8 +24,8 @@
    o cronograma sugere daqui para a frente. */
 const MODOS_DE_INICIO = {
   zero: { nome: "Construir do zero", curto: "do zero",
-    descricao: { formado: "Tema por tema: primeiro você lê o resumo, depois faz um conjunto de 20 questões escolhidas para cobrir cada parte do tema. Para quem quer rever a matéria inteira com calma.",
-                 sexto: "Segue o calendário do 6º ano, estágio por estágio, com o resumo de cada tema antes das questões." } },
+    descricao: { formado: "Tema por tema: o resumo (recomendado, dá para pular), depois um conjunto de 20 questões escolhidas para cobrir cada parte do tema. Para quem quer rever a matéria inteira com calma.",
+                 sexto: "Segue o calendário do 6º ano, estágio por estágio, com o resumo de cada tema recomendado antes das questões (dá para pular)." } },
   "reparar-tema": { nome: "Reparar falhas por tema", curto: "reparar falhas por tema",
     descricao: { formado: "Direto às questões: 20 por tema, escolhidas para cobrir cada parte dele. Ficou abaixo de 75% no tema? A plataforma sugere o resumo, com um botão que leva até ele.",
                  sexto: "Direto às questões: 20 por tema, escolhidas para cobrir cada parte dele. Ficou abaixo de 75% no tema? A plataforma sugere o resumo, com um botão que leva até ele." } },
@@ -105,7 +105,7 @@ function renderCardModoDeInicio(u){
   const grupo = grupoDoModoDeInicio(u);
   if(!grupo) return `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Como você estuda</div>
-    <p class="text-sm muted">Antes do 6º ano você constrói o conhecimento do zero, pelo calendário da sua turma, lendo o resumo de cada tema antes das questões. A escolha entre construir do zero e reparar falhas abre no 6º ano.</p>
+    <p class="text-sm muted">Antes do 6º ano você constrói o conhecimento do zero, pelo calendário da sua turma, com o resumo de cada tema recomendado antes das questões — se já domina o tema, pode pular direto para elas. A escolha entre construir do zero e reparar falhas abre no 6º ano.</p>
   </div>`;
   const atual = modoDeInicio(u);
   return `<div class="card mt-2" style="max-width:460px">

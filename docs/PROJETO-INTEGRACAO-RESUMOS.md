@@ -22,7 +22,9 @@ Unidade = **tema com resumo** (hoje 78 prontos; previsão ≈ 150). Cada tema é
 
 Ordem dos temas: a mesma fila da trilha de Formados (`dados/trilha-formados.js`, demanda × pré-requisitos), agrupando os assuntos pelo resumo que os cobre. Assunto sem resumo entra só com o conjunto provisório de questões (seção 4-B) — o projeto funciona desde já e melhora a cada resumo novo.
 
-## 2-B. Graduando antes do 6º ano: leitura obrigatória, mais de uma passagem
+## 2-B. Graduando antes do 6º ano: mais de uma passagem
+
+> **Revisto em 24/11/2026 (seção 7):** a leitura nunca é obrigatória, nem na 1ª passagem — vira "Ler o resumo (recomendado)" com "Pular para as questões". O resto da seção vale.
 
 O calendário da turma passa por um tema (pediatria, por exemplo) **mais de uma vez** ao longo da graduação. Regra:
 
@@ -128,6 +130,7 @@ Fases 0 e 1 são independentes e podem andar juntas; a 2 depende das duas.
 | 23/11/2026 | **Fase 2 feita** (`codigo/05g-ciclo-por-tema.js`, cartão "Seu tema" no Início): nada novo guardado — leitura = `resumosLidos`, progresso = primeira resposta a cada questão do conjunto (revisão não conta; a passagem seguinte continua de onde parou); ordem pelo bloco atual (graduando, 6º ano do zero) ou pela trilha de Formados (Formado do zero, reparar por tema); leitura trava as questões só para quem constrói do zero e só antes de ler; < 75% no tema sugere reler (some quando a marca de lido é posterior ao fechamento); tema sem resumo vai direto às questões. Teste: `testes/ciclo-por-tema.test.mjs`. Ainda falta: a sessão recomendada não puxa sozinha as questões do tema (o aluno usa o botão do cartão) — entra junto com a fase 3, que reparte a meta por tema. |
 | 23/11/2026 | **No ar só a pós-leitura** (pedido do usuário): `CONFIG.integracaoResumos = { posLeitura: true, modoDeInicio: false, cicloNoInicio: false }`. No fim do resumo marcado como lido aparece o conjunto planejado do tema (`htmlPosLeituraDoResumo`, 05g). A pergunta do modo de início (06e) e o cartão "Seu tema" (05g) ficam no código, desligados, e se ligam com a fase 3; os testes os ligam para continuar conferindo. Ao ligar: devolver ao guia (13) os textos "Como começar" e "Seu tema" (estão no histórico do git, commit da fase 2). |
 | 24/11/2026 | **Etapa 0 feita** (uso offline, seção 9): faixa no topo "Seus dados não sobem desde DD/MM HH:MM" para quem tem conta na nuvem e não sincroniza há mais de 12 h (`htmlFaixaSemEnvio`, 03d; hora de `db.nuvem.ultimaSyncEm`, nenhum campo novo; some no envio seguinte). A contagem no Painel da Turma foi feita e **retirada** a pedido: o banco não sabe quando o aparelho sincronizou, então misturava "estudou offline" com "não estudou". Teste: `nuvem.test.mjs` (relógio do Playwright). Próximo: etapa 1. |
+| 24/11/2026 | **Etapa 1 feita**: leitura nunca obrigatória (`leituraObrigatoria` → `leituraRecomendada`, 05g). No cartão "Seu tema", quem constrói do zero (graduando incluído) vê "Ler o resumo (recomendado)" e "Pular para as questões"; `iniciarQuestoesDoTema` não trava mais. Textos do modo de início (06e) ajustados. Teste: `ciclo-por-tema.test.mjs`. Próximo: etapa 2. |
 
 ## 9. Plano de ação (24/11/2026) — para começar numa conversa nova
 

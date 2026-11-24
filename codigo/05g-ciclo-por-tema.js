@@ -91,8 +91,11 @@ function caminhoDoCiclo(u){
   const modo = modoDeInicio(u);
   return modo === "reparar" ? null : modo;
 }
-// a leitura trava as questões? Só para quem constrói do zero e só enquanto não leu.
-function leituraObrigatoria(u, e){
+/* A leitura é recomendada (botão "Ler o resumo (recomendado)") para quem
+   constrói do zero, enquanto não leu. Nunca trava as questões, nem para o
+   graduando (decisão de 24/11/2026, seção 7 do PROJETO-INTEGRACAO-RESUMOS):
+   travar afastava quem já sabe o tema e só queria praticar. */
+function leituraRecomendada(u, e){
   const cam = caminhoDoCiclo(u);
   return !!e && !e.semResumo && !e.lidoEm && (cam === "graduando" || cam === "zero");
 }
@@ -130,7 +133,6 @@ function cicloDoAluno(u){
 function iniciarQuestoesDoTema(chave){
   const u = usuarioAtual(), e = u && estadoDoTema(u, chave);
   if(!e) return;
-  if(leituraObrigatoria(u, e)){ toast("Leia o resumo de " + e.titulo + " primeiro: as questões do tema abrem depois.", "err"); return; }
   if(!e.proximas.length){ toast("Você já fez todas as questões do conjunto deste tema."); return; }
   const total = e.ids.length;
   iniciarSessaoComLista(e.proximas.map(id => ({ questaoId: id,
@@ -157,21 +159,23 @@ function htmlCartaoDoCicloPorTema(u){
   const ciclo = cicloDoAluno(u);
   if(!ciclo) return "";
   const e = ciclo.atual, cam = ciclo.caminho;
-  const porque = cam === "graduando" ? "Você constrói o conhecimento do zero pelo calendário: em cada tema do bloco, primeiro o resumo, depois as questões."
-    : cam === "zero" ? "Você escolheu construir do zero: primeiro o resumo do tema, depois as questões."
+  const porque = cam === "graduando" ? "Você constrói o conhecimento do zero pelo calendário: em cada tema do bloco, recomendamos ler o resumo antes das questões — se já domina o tema, pode pular direto para elas."
+    : cam === "zero" ? "Você escolheu construir do zero: recomendamos ler o resumo do tema antes das questões, mas pode pular direto para elas."
     : "Você escolheu reparar falhas por tema: direto às questões; abaixo de 75% no tema, o resumo é sugerido.";
   let corpo;
   if(!e) corpo = `<p class="text-sm mt-1">Todos os temas ${ciclo.peloCalendario ? "deste bloco" : "da sua trilha"} com conjunto planejado estão fechados. A sessão recomendada segue com revisão e questões novas.</p>`;
   else {
-    const obrigatoria = leituraObrigatoria(u, e);
+    const recomendada = leituraRecomendada(u, e);
     const passo1 = e.semResumo ? `<li class="text-sm muted">Este assunto ainda não tem resumo: o tema vai direto às questões.</li>`
-      : `<li class="text-sm">${e.lidoEm ? `${iconeSvg("check")} Resumo lido em ${formatDataBR(e.lidoEm)}` : obrigatoria ? "<strong>Ler o resumo</strong> (as questões abrem depois)" : "Resumo (opcional neste caminho)"}</li>`;
+      : `<li class="text-sm">${e.lidoEm ? `${iconeSvg("check")} Resumo lido em ${formatDataBR(e.lidoEm)}` : recomendada ? "<strong>Ler o resumo</strong> (recomendado antes das questões)" : "Resumo (opcional neste caminho)"}</li>`;
     const passo2 = `<li class="text-sm">${e.feitas ? `Questões: <strong>${e.feitas} de ${e.ids.length}</strong>${e.feitas ? ` · ${Math.round(e.taxa * 100)}% de acerto até aqui` : ""}` : `<strong>${e.ids.length} questões</strong> escolhidas para cobrir cada parte do tema`}</li>`;
     corpo = `<div class="text-sm mt-1">Tema agora: <strong>${escapeHtml(e.titulo)}</strong></div>
       <ol class="mt-1">${passo1}${passo2}</ol>
       <div class="flex gap-1 mt-1 quebra">
-        ${e.semResumo ? "" : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} ${e.lidoEm ? "Reler o resumo" : "Ler o resumo"}</button>`}
-        <button class="btn btn-secondary btn-sm" ${obrigatoria ? "disabled title=\"Leia o resumo primeiro\"" : ""} onclick="iniciarQuestoesDoTema('${escapeHtml(e.chave)}')">${e.feitas ? "Continuar as questões" : "Fazer as questões"}</button>
+        ${e.semResumo ? "" : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} ${e.lidoEm ? "Reler o resumo" : recomendada ? "Ler o resumo (recomendado)" : "Ler o resumo"}</button>`}
+        ${recomendada
+          ? `<button class="link-btn text-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(e.chave)}')">Pular para as questões</button>`
+          : `<button class="btn btn-secondary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(e.chave)}')">${e.feitas ? "Continuar as questões" : "Fazer as questões"}</button>`}
       </div>`;
   }
   // botões secundários: o Início tem uma só ação principal ("Começar agora"), regra do visual
