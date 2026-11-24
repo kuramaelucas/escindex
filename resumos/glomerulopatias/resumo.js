@@ -102,7 +102,7 @@ Veja também: **Hipertensão arterial** e **Diabetes mellitus** (proteinúria e 
           questoes: ["q-adap21-117","q-unifesp2022-093","q-usprp2024-070","q-simepm89-057","q-fmabc2023-016"],
           texto: `- Hematúria com complemento normal após IVAS: **IgA** (depósitos mesangiais). {q-adap21-117,q-unifesp2022-093}
 - Episódios recorrentes de hematúria: **proteinúria** reforça. {q-usprp2024-070}
-- Proteinúria persistente pesa no prognóstico: a KDIGO 2021 dá **IECA/BRA na dose máxima tolerada acima de 0,5 g/dia** e considera alto risco acima de **0,75–1 g/dia** (as provas citam 300 mg). {q-simepm89-057}
+- Proteinúria persistente pesa no prognóstico: a KDIGO 2025 (nefropatia por IgA) dá **IECA/BRA na dose máxima tolerada**, considera em risco de progressão quem mantém **≥ 0,5 g/dia** apesar do suporte e fixa como alvo **< 0,5 g/dia** (de preferência < 0,3); a KDIGO 2021 punha o alto risco acima de 0,75–1 g/dia, e as provas citam 300 mg. {q-simepm89-057}
 - **IECA/BRA** na IgA com proteinúria. {q-fmabc2023-016}` },
       ],
     },

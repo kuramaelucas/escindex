@@ -23,7 +23,7 @@
       id: "diagnostico", titulo: "Cirrose: o que é, causas e gravidade",
       introducao: `[[A cirrose é o fim comum da agressão crônica ao fígado: a inflamação ativa as células estreladas, que depositam colágeno em septos (fibrose) ao redor de nódulos de regeneração, e a arquitetura se perde.|q-tp20252-093,q-sirio2021-008]] [[Daí vêm os dois grupos de sinais: insuficiência hepatocelular (icterícia, albumina baixa, TP alargado, aranhas vasculares, ginecomastia e atrofia testicular pelo estrogênio não metabolizado, flapping) e hipertensão portal (esplenomegalia com plaquetopenia, ascite, varizes).|q-sirio2021-008,q-tp20232-027]]
 
-[[A gravidade se mede pela função que sobra: Child-Pugh soma bilirrubina, albumina, tempo de protrombina, ascite e encefalopatia; o MELD usa bilirrubina, INR e creatinina (e sódio) e ordena a fila do transplante.|q-amrigs2022-029,q-iamspe2023-012,q-fmabc2026-030,q-unicamp2023-024]] [[O tempo de protrombina é a medida direta da síntese hepática, porque os fatores de coagulação têm meia-vida de horas.|q-iamspe2025-016]]
+[[A gravidade se mede pela função que sobra: Child-Pugh soma bilirrubina, albumina, tempo de protrombina, ascite e encefalopatia; o MELD usa bilirrubina, INR e creatinina (o MELD-Na acrescenta o sódio; o MELD 3.0, também albumina e sexo) e ordena a fila do transplante.|q-amrigs2022-029,q-iamspe2023-012,q-fmabc2026-030,q-unicamp2023-024]] [[O tempo de protrombina é a medida direta da síntese hepática, porque os fatores de coagulação têm meia-vida de horas.|q-iamspe2025-016]]
 
 Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Insuficiência cardíaca** (ascite cardíaca).`,
       fragmentos: [
@@ -34,7 +34,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
 - Etilista com ginecomastia, atrofia testicular, esplenomegalia, flapping e plaquetopenia: **todos** achados da cirrose. {q-sirio2021-008}
 - Edema e ascite com melena: **hemograma e endoscopia** (função e varizes). {q-tp20232-027,q-tp20261-113}
 - Child-Pugh: **encefalopatia, ascite, bilirrubina, albumina (normal > 3,5) e TP**. {q-amrigs2022-029,q-iamspe2023-012,q-fmabc2026-030}
-- MELD: **bilirrubina, INR e creatinina**. {q-unicamp2023-024}
+- MELD clássico: **bilirrubina, INR e creatinina**; MELD-Na soma o sódio, e o MELD 3.0, albumina e sexo. {q-unicamp2023-024}
 - Síntese hepática: **TP/INR**. {q-iamspe2025-016}
 - **TIPS** é ponte para o transplante quando o sangramento não controla. {q-fmabc2023-036}` },
         { id: "dia-causas", titulo: "Etiologias: álcool, esteatose, metabólicas, colestáticas e vasculares", conferir: true, diretrizes: ["acg-alcool"],
@@ -90,7 +90,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
 - Criança com atresia e ascite febril: **antibiótico sem esperar** o líquido. {q-uspsp4-108}` },
         { id: "asc-rim", titulo: "Lesão renal e síndrome hepatorrenal", conferir: true, diretrizes: ["aasld-ascite","easl-cirrose"],
           questoes: ["q-sessp2026-009","q-sirio2024-013","q-einstein2027-003","q-sessp2025-003","q-fmabc2021-021"],
-          prosa: `[[Diante de lesão renal no cirrótico, suspendem-se diuréticos e nefrotóxicos e expande-se com albumina 1 g/kg por 2 dias; se a creatinina não cai e não há choque, nefrotóxico nem lesão estrutural (urina e ultrassom normais), é síndrome hepatorrenal, tratada com terlipressina e albumina.|q-sessp2026-009,q-sirio2024-013,q-einstein2027-003,q-fmabc2021-021]]`,
+          prosa: `[[Diante de lesão renal no cirrótico, suspendem-se diuréticos e nefrotóxicos e expande-se com albumina 1 g/kg por 2 dias (critério clássico; o consenso ADQI–ICA de 2024 dispensa as 48 h fixas e pede só a falta de resposta à expansão volêmica adequada, reavaliada em cerca de 24 h); se a creatinina não cai e não há choque, nefrotóxico nem lesão estrutural (urina e ultrassom normais), é síndrome hepatorrenal, tratada com terlipressina e albumina.|q-sessp2026-009,q-sirio2024-013,q-einstein2027-003,q-fmabc2021-021]]`,
           texto: `- Creatinina subindo com diurético: **albumina**. {q-sessp2026-009}
 - Dose: **1 g/kg por 2 dias**. {q-sirio2024-013}
 - Lesão renal sem outra causa: **expansão com albumina 24–48 h**. {q-einstein2027-003}
@@ -138,7 +138,7 @@ Veja também: **Icterícia neonatal** (atresia biliar no recém-nascido) e **Ins
       fragmentos: [
         { id: "chc-rastreio", titulo: "Rastreio do CHC e atresia biliar", conferir: true, diretrizes: ["baveno"],
           questoes: ["q-uspsp2-002","q-usp2025-035","q-usp2023-088"],
-          texto: `- Rastreio semestral: **ultrassom + alfafetoproteína**. {q-uspsp2-002}
+          texto: `- Rastreio semestral: **ultrassom**, com ou sem **alfafetoproteína** (a AASLD associa a AFP). {q-uspsp2-002}
 - Lactente de 4 meses com fibrose portal e trombos biliares: **atresia, transplante**. {q-usp2025-035}
 - Atresia com melena e ascite: **vasoconstritor esplâncnico**. {q-usp2023-088}` },
       ],

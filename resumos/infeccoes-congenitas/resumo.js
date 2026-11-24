@@ -76,7 +76,7 @@ Veja também: **Infecções sexualmente transmissíveis** (sífilis da gestante,
           texto: `- Principal causa infecciosa de **surdez congênita**. {q-unesp2022-019}
 - Microcefalia, icterícia e **calcificações periventriculares**: **CMV**. {q-einstein2023-035,q-unifesp2025-100}
 - Diagnóstico: **PCR na urina (ou saliva) nas primeiras 2 a 3 semanas**. {q-scmsp2021-047,q-unifesp2025-100}
-- Sintomático com SNC ou surdez: **ganciclovir IV / valganciclovir oral por 6 meses**, controlando neutrófilos. {q-adap25-100,q-usprp2023-019}
+- Sintomático com SNC ou surdez: **ganciclovir IV / valganciclovir oral por 6 meses**, controlando neutrófilos; na surdez isolada a evidência é menor e a indicação, discutida. {q-adap25-100,q-usprp2023-019}
 - Feto com RCF, ventriculomegalia e placenta calcificada: pensar em **CMV** e pedir sorologias maternas. {q-famema2025-057}` },
         { id: "vir-outros", titulo: "Rubéola, herpes e varicela", conferir: true,
           questoes: ["q-adap21-028","q-usprp2026-058","q-didepm-074","q-amrigs2020-072"],

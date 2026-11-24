@@ -91,7 +91,7 @@ Veja também: **Infecções de vias aéreas superiores** (crupe e o guincho da c
           questoes: ["q-usprp2023-013","q-iamspe2026-069","q-famema2023-099","q-famema2025-043","q-fmabc2023-053","q-fmabc2025-041","q-sirio2026-044","q-usprp2021-027"],
           casos: ["q-usprp2021-027"],
           texto: `- Sem sinal de gravidade: **amoxicilina oral 50 mg/kg/dia** (de 8/8 h ou 12/12 h). {q-iamspe2026-069,q-usprp2021-027,q-sirio2026-044}
-- Duração cobrada: **7 dias** nas provas recentes; questões antigas trazem **10 dias**. {q-fmabc2025-041,q-usprp2021-027}
+- Duração cobrada: **7 dias** nas provas recentes; questões antigas trazem **10 dias**. Na pneumonia não complicada que responde bem, cursos curtos (3 a 5 dias, ensaios CAP-IT e SCOUT-CAP) não foram inferiores. {q-fmabc2025-041,q-usprp2021-027}
 - **Reavaliar em 48 horas** (algumas provas pedem 24 h); sem melhora, pensar em complicação. {q-usprp2023-013,q-famema2025-043,q-famema2023-099,q-fmabc2023-053}` },
         { id: "pac-grave", titulo: "Quando internar e como tratar a grave", conferir: false, diretrizes: ["ms-aidpi","sbp-pac"],
           questoes: ["q-adap21-027","q-famema2021-084","q-unesp2024-016","q-fmabc2026-045","q-usp2025-072"],

@@ -52,7 +52,7 @@ Veja também: **Medidas epidemiológicas** (incidência, letalidade, curva de ó
 
 A **Saúde Única (One Health)** parte da tríade **humanos, animais e ecossistemas**. [[A resistência antimicrobiana e as zoonoses emergentes são problemas integrados: o crescimento das populações humanas e animais, a modificação dos ecossistemas e as mudanças climáticas facilitam o "salto" de patógenos entre espécies; a falta de estudos que integrem a tríade é uma lacuna.|q-iamspe2026-082,q-iamspe2026-086,q-iamspe2026-083]] Os termos de zoonose cobram a lógica do ciclo: **anfixenose** (o agente circula igualmente em homens e animais, como o estafilococo na pele e no gado) e **metazoonose** (precisa de um vetor invertebrado, como na leishmaniose visceral).
 
-[[O aquecimento global e as queimadas ligam clima e saúde: reduzir as queimadas da Amazônia, reserva de carbono, é a medida de maior efeito para as emissões do Brasil.|q-usprp2022-004,q-usprp2025-037]]`,
+[[O aquecimento global e as queimadas ligam clima e saúde: reduzir o desmatamento e as queimadas da Amazônia, reserva de carbono (mudança de uso da terra, o setor que mais emite no Brasil), é a medida de maior efeito.|q-usprp2022-004,q-usprp2025-037]]`,
           texto: `- **Enchente**: a vigilância em saúde avisa os serviços de assistência sobre leptospirose e outros agravos prováveis. {q-unifesp2022-049}
 - **Passivo ambiental** industrial: identificar a população exposta e montar protocolo de atenção com a atenção básica. {q-unifesp2023-037}
 - Vigilância da **água**: coletar amostras e analisar cloro residual, turbidez e coliformes. {q-adap22-049}
@@ -62,7 +62,7 @@ A **Saúde Única (One Health)** parte da tríade **humanos, animais e ecossiste
 - **Metazoonose**: ciclo com vetor invertebrado (leishmaniose visceral). {q-iamspe2026-084}
 - **Saúde Única**: integra humanos, animais e ecossistemas; lacuna é a falta de estudos integrados. {q-iamspe2026-082,q-iamspe2026-083}
 - Fatores de emergência de zoonoses: crescimento populacional, mudança dos ecossistemas e clima. {q-iamspe2026-086}
-- A maior fatia das emissões brasileiras vem das **queimadas da Amazônia**; reduzi-las é a medida de maior efeito. {q-usprp2022-004,q-usprp2025-037}` },
+- A maior fatia das emissões brasileiras vem da **mudança de uso da terra** (desmatamento, com as queimadas da Amazônia); reduzi-las é a medida de maior efeito. {q-usprp2022-004,q-usprp2025-037}` },
         { id: "vig-dcnt-perfil", titulo: "Vigilância de DCNT, alimentação e o perfil epidemiológico brasileiro", conferir: true,
           questoes: ["q-unifesp2022-050","q-adap22-050","q-famema2022-008","q-sirio2023-092","q-iamspe2023-080","q-udisc20262-016","q-simepm89-070","q-unesp2021-086","q-amrigs2021-093"],
           prosa: `[[O **VIGITEL** é o inquérito telefônico, implantado em 2006, que monitora a frequência e a distribuição de fatores de risco e proteção para doenças crônicas; o **SISVAN** usa o formulário de **marcador de consumo alimentar** do dia anterior e as medidas de peso e estatura. Ambos são vigilância de **fatores de risco**, não de casos.|q-famema2022-008,q-unifesp2022-050]] Na prática clínica, o Guia Alimentar orienta preferir alimentos **in natura ou minimamente processados** e evitar os ultraprocessados.
@@ -129,7 +129,7 @@ A **Saúde Única (One Health)** parte da tríade **humanos, animais e ecossiste
 
 [[O **período provável de exposição** se obtém voltando do início dos sintomas: do primeiro caso subtrai-se o **maior** período de incubação, do último caso, o **menor**. Na doença de Chagas aguda oral (incubação de 3 a 22 dias), com casos de 15 a 25 de janeiro, a exposição foi de 24 de dezembro a 22 de janeiro.|q-uspsp2-097]]
 
-[[Na contenção, o **isolamento** separa o doente durante a transmissibilidade (no sarampo, de 4 dias antes a 4 dias depois do exantema) e a **quarentena** restringe o exposto pelo período máximo de incubação (7 a 18 dias). Em surto de sarampo a prioridade é **ampliar a vacinação**, inclusive a dose zero de 6 a 12 meses; na varicela, vacinar os suscetíveis maiores de 9 meses em até 120 horas, dar imunoglobulina a quem não pode ser vacinado (gestante, imunodeprimido, menor de 9 meses) e afastar os doentes até a fase de crosta.|q-usprp2023-054,q-sessp2025-092,q-tp20231-104]] O esquema abaixo resume os passos.`,
+[[Na contenção, o **isolamento** separa o doente durante a transmissibilidade (no sarampo, de 4 dias antes a 4 dias depois do exantema) e a **quarentena** restringe o exposto pelo período máximo de incubação (7 a 21 dias; a USP-RP 2023 usou 7 a 18). Em surto de sarampo a prioridade é **ampliar a vacinação**, inclusive a dose zero de 6 a 12 meses; na varicela, vacinar os suscetíveis maiores de 9 meses em até 120 horas, dar imunoglobulina a quem não pode ser vacinado (gestante, imunodeprimido, menor de 9 meses) e afastar os doentes até a fase de crosta.|q-usprp2023-054,q-sessp2025-092,q-tp20231-104]] O esquema abaixo resume os passos.`,
           texto: `- Primeiro passo diante do aumento de casos: **comparar com a série histórica** e confirmar diagnóstico. {q-adap22-044,q-usp2022-034,q-sessp2026-083,q-usp2023-111}
 - **Agregado de casos com vínculo epidemiológico** caracteriza surto mesmo com poucos casos. {q-usp2023-112}
 - Aumento de dengue numa área: primeiro **investigar** a extensão do problema. {q-sessp2025-082}
@@ -138,7 +138,7 @@ A **Saúde Única (One Health)** parte da tríade **humanos, animais e ecossiste
 - Coletar amostras de casos, não casos e alimentos: **identificar agente, fonte e veículo**. {q-uspsp2-110}
 - **Fonte comum pontual**: início explosivo, após evento comum (maionese de batatas). {q-tp20212-110}
 - Período de exposição: do 1º caso subtrai-se a incubação **máxima**; do último, a **mínima** (Chagas oral, 3 a 22 dias). {q-uspsp2-097}
-- Sarampo: **isolamento** do doente (4 dias após o exantema) e **quarentena** do exposto (até 18 dias). {q-usprp2023-054}
+- Sarampo: **isolamento** do doente (4 dias após o exantema) e **quarentena** do exposto (até 21 dias; a prova usou 18). {q-usprp2023-054}
 - Surto de sarampo: **vacinação ampliada** (6 a 12 meses, dose zero). {q-sessp2025-092}
 - Varicela: vacina para suscetíveis > 9 meses, imunoglobulina para gestante e < 9 meses, afastar até a crosta. {q-tp20231-104}` },
         { id: "epidemia-conceitos", titulo: "Endemia, epidemia, pandemia, caso autóctone, eliminação e propriedades do agente", conferir: true,

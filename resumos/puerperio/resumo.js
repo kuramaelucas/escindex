@@ -52,7 +52,7 @@ Veja também: **Sangramentos na gestação** (dono da hemorragia pós-parto), **
     },
     {
       id: "mama", titulo: "Amamentação e mama puerperal",
-      introducao: `[[Quase toda dor e fissura no mamilo vem de pega errada: o bebê abocanha só o mamilo, que é esmagado contra o palato. Corrigir a pega e a posição resolve e previne ingurgitamento e mastite.|q-amrigs2025-054,q-unesp2026-030,q-usprp2021-059,q-sirio2027-052]] [[Leite parado vira mastite: mama vermelha, dolorosa, febre; o agente é o *Staphylococcus aureus* que entra pela fissura. O tratamento é esvaziar a mama (sem parar de amamentar), analgésico e, se não melhorar em 24 horas ou houver febre, antibiótico; abscesso se drena.|q-sessp2024-075,q-unicamp2022-055,q-udisc20262-097,q-scmsp2022-056]]`,
+      introducao: `[[Quase toda dor e fissura no mamilo vem de pega errada: o bebê abocanha só o mamilo, que é esmagado contra o palato. Corrigir a pega e a posição resolve e previne ingurgitamento e mastite.|q-amrigs2025-054,q-unesp2026-030,q-usprp2021-059,q-sirio2027-052]] [[Leite parado vira mastite: mama vermelha, dolorosa, febre; o agente é o *Staphylococcus aureus* que entra pela fissura. O tratamento é manter a mamada em livre demanda (sem parar, e sem ordenha excessiva nem massagem vigorosa, que pioram o edema), analgésico e, se não melhorar em 24 horas ou houver febre, antibiótico; abscesso se drena.|q-sessp2024-075,q-unicamp2022-055,q-udisc20262-097,q-scmsp2022-056]]`,
       fragmentos: [
         { id: "mam-problemas", titulo: "Pega, fissura, mastite e abscesso", conferir: true, diretrizes: ["ms-aleitamento"],
           questoes: ["q-usprp2021-059","q-amrigs2025-054","q-sessp2023-059","q-sessp2024-075","q-unesp2026-030","q-unicamp2022-055","q-udisc20262-097","q-sirio2025-080","q-sirio2027-052","q-sirio2022-055","q-scmsp2022-056"],
@@ -61,11 +61,11 @@ Veja também: **Sangramentos na gestação** (dono da hemorragia pós-parto), **
           texto: `- Dor e fissura: corrigir **pega e posição**. {q-amrigs2025-054,q-unesp2026-030}
 - Hiperemia e lesões no mamilo: **analgésico e ordenha**. {q-usprp2021-059}
 - Começar pela **mama não afetada** e corrigir a pega. {q-sirio2027-052}
-- Mastite: **esvaziar a mama, hidratar**, posicionar, analgésico. {q-sessp2024-075}
+- Mastite: a prova deu **esvaziar a mama, hidratar**, posicionar, analgésico; hoje (ABM 2022) se mantém a mamada em livre demanda, sem ordenha excessiva. {q-sessp2024-075}
 - Mastite sem abscesso: **antibiótico oral** e manter a amamentação. {q-unicamp2022-055}
 - Agente: ***Staphylococcus aureus***. {q-udisc20262-097}
 - Febre com coleção na mama: **abscesso**, drenagem. {q-scmsp2022-056}
-- Mamilo brilhante e friável: **nistatina** mãe e bebê. {q-sirio2022-055}
+- Mamilo brilhante e friável **com placas na boca do bebê**: **nistatina** mãe e bebê; sem sinal no bebê, rever pega, trauma e vasoespasmo antes de tratar fungo. {q-sirio2022-055}
 - Prematuro com sucção fraca: **translactação**. {q-sirio2025-080}
 - HIV: **inibir a lactação** com fármaco. {q-sessp2023-059}` },
       ],

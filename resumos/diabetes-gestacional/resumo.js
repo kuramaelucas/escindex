@@ -77,7 +77,7 @@ Veja também: **Diabetes** (clínica médica: tipos 1 e 2, insulinas), **Prematu
 - Glicemias de 220 com síndrome gripal: **internar para insulina**. {q-unicamp2022-053}` },
         { id: "tra-placenta", titulo: "Hipoglicemia no fim da gestação",
           questoes: ["q-unifesp2022-033","q-unicampdis2024-038"],
-          texto: `- Hipoglicemias a partir de 35 semanas: **insuficiência placentária**. {q-unifesp2022-033,q-unicampdis2024-038}` },
+          texto: `- Hipoglicemias a partir de 35 semanas: pensar em **insuficiência placentária** e avaliar vitalidade e crescimento (o achado sozinho não indica o parto). {q-unifesp2022-033,q-unicampdis2024-038}` },
       ],
     },
     {

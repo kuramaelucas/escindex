@@ -82,7 +82,7 @@ Veja também: **Pré-natal**, **Trabalho de parto e parto** (manejo ativo do ter
 - Causas: **idade, hipertensão e cocaína**. {q-sessp2024-076}
 - Tabagismo: risco **2,5×**. {q-sessp2022-075}
 - Diagnóstico **clínico**. {q-fmabc2025-078}
-- Feto vivo: **amniotomia e cesárea**. {q-unesp2023-026,q-tp20222-088,q-usp2022-093,q-uspsp1-090}
+- Feto vivo: **amniotomia e cesárea**, salvo parto vaginal iminente; a amniotomia não pode atrasar a cesárea. {q-unesp2023-026,q-tp20222-088,q-usp2022-093,q-uspsp1-090}
 - Choque e bradicardia: **cesárea imediata**. {q-tp20231-089,q-tp20212-088,q-unesp2021-025,q-unesp2024-026,q-uspsp5-042}
 - Feto vivo: vaginal **só se o parto estiver iminente**. {q-famema2023-059}
 - Feto morto: banca, **cesárea** com instabilidade; vaginal se estável. {q-unicamp2022-051,q-unicampdis2024-105}

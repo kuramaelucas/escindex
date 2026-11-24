@@ -20,7 +20,7 @@
   doencas: [
     {
       id: "historia", titulo: "História, Reforma Sanitária e a ideia de sistema",
-      introducao: `[[Até 1988, a assistência à saúde era um **benefício do trabalhador formal**: o INPS (1966) e depois o INAMPS prestavam assistência médico-hospitalar a quem tinha carteira assinada, e quem não tinha dependia da caridade ou do serviço privado. O SUS nasce para quebrar essa lógica.|q-tp20202-101,q-unesp2026-081,q-usp2025-100]]
+      introducao: `[[Até 1988, a assistência à saúde era um **benefício do trabalhador formal**: o INPS (1966) e depois o INAMPS prestavam assistência médico-hospitalar a quem tinha carteira assinada, e quem não tinha dependia das Santas Casas e da filantropia, do serviço privado ou dos poucos serviços públicos do Ministério, dos estados e dos municípios (campanhas, saúde pública). O SUS nasce para quebrar essa lógica.|q-tp20202-101,q-unesp2026-081,q-usp2025-100]]
 
 [[A **Reforma Sanitária** foi um movimento de profissionais, universidades e movimentos sociais, que consolidou na **8ª Conferência Nacional de Saúde (1986)** a ideia de saúde como direito de todos e dever do Estado; o relatório final subsidiou o **art. 196 da Constituição de 1988**.|q-famema2022-001,q-fmabc2026-099,q-famema2025-076]] A Saúde Coletiva inspirou a reforma: parte da **saúde e da vida** da população e dos determinantes sociais, enquanto a saúde pública clássica partia da doença e da morte.
 
@@ -43,7 +43,7 @@ Veja também: **Estratégia Saúde da Família** (a atenção primária no SUS, 
 - Autores associados a abordagens do processo saúde-doença: Bourdieu, Schraiber e Paim. {q-iamspe2025-096}` },
         { id: "sus-modelos-financiamento", titulo: "Modelos de sistema, financiamento e o gasto mínimo", conferir: true, diretrizes: ["lc-141"],
           questoes: ["q-adap23-023","q-unifesp2023-023","q-scmsp2021-081","q-unicamp2023-075","q-unicampdis2024-112"],
-          prosa: `[[Os sistemas de saúde seguem duas lógicas. O modelo **bismarckiano (seguro social)** financia por **contribuições prévias de trabalhadores e empregadores**, com benefício proporcional à contribuição; o **beveridgiano (seguridade social)** financia por **impostos gerais** e dá acesso universal. O SUS é **beveridgiano**, de seguridade social, mesmo com a previdência contributiva ao lado.|q-scmsp2021-081,q-unicamp2023-075,q-unicampdis2024-112]]
+          prosa: `[[Os sistemas de saúde seguem duas lógicas. O modelo **bismarckiano (seguro social)** financia por **contribuições prévias de trabalhadores e empregadores**, com o direito ligado à contribuição; o **beveridgiano (seguridade social)** financia por **impostos gerais** e dá acesso universal. O SUS é **beveridgiano**, de seguridade social, mesmo com a previdência contributiva ao lado.|q-scmsp2021-081,q-unicamp2023-075,q-unicampdis2024-112]]
 
 [[O gasto mínimo em ações e serviços públicos de saúde é vinculado à receita: **15%** da receita de impostos e transferências para os **municípios**, **12%** para os **estados**. Um município que aplica 11% está abaixo do mínimo; no âmbito federal, a **Emenda Constitucional nº 95/2016** congelou o piso da União em termos reais, o que reduz per capita o orçamento ao longo dos anos.|q-adap23-023,q-unifesp2023-023]]`,
           texto: `- **Bismarckiano**: seguro social financiado por contribuição prévia; **beveridgiano**: seguridade social por impostos, acesso universal. {q-scmsp2021-081}

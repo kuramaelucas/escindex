@@ -43,7 +43,7 @@ Veja também: **Asma e rinite alérgica** (manutenção e crise em todas as idad
           texto: `- Asmático **sem sibilos**, bradipneico, com acidose respiratória: **intubar** em sequência rápida, com **quetamina**. {q-amrigs2022-067}
 - Letargia com hipotensão e esforço intenso: **intubação orotraqueal**. {q-tp20232-054}
 - Glasgow ≤ 8 a 10 com hipoxemia: intubar, depois aquecer e transferir. {q-tp20241-053,q-usp2026-049}
-- Padrão-ouro para a posição da cânula: **radiografia de tórax**. {q-sirio2022-044}
+- Cânula na traqueia: confirma-se pelo **CO₂ expirado (capnografia)**; a **radiografia de tórax** (o padrão-ouro da prova) mostra a **altura** da ponta em relação à carina. {q-sirio2022-044}
 - Piora após intubar: pensar em **DOPE** (deslocamento/**intubação seletiva**, obstrução, pneumotórax, equipamento). {q-einstein2023-044}
 - **Epiglotite**: criança sentada inclinada para a frente, boca aberta, salivando; **não examinar a garganta**, manter no colo e garantir a via aérea **no centro cirúrgico**. {q-didepm-009}` },
         { id: "ava-pards", titulo: "PARDS e atelectasia", conferir: true, diretrizes: ["palicc"],

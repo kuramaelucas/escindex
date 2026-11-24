@@ -100,7 +100,7 @@ Veja também: **ECG, arritmias e síncope** (leitura do ECG e bloqueios), **Insu
       id: "pos-iam", titulo: "Complicações e tratamento depois do infarto",
       introducao: `[[As complicações mecânicas aparecem entre o 3º e o 7º dia, quando o tecido necrótico está mais mole: ruptura de músculo papilar (sopro mitral novo e edema pulmonar, sobretudo no infarto inferior, porque o papilar posteromedial tem irrigação única), comunicação interventricular (sopro e salto de oximetria no VD) e ruptura de parede livre (tamponamento). Todas vão à cirurgia de urgência.|q-unifesp2025-021,q-tp20212-038,q-unesp2026-069]]
 
-[[Depois do infarto, a prevenção secundária combina AAS para sempre, inibidor de P2Y12 por 12 meses após SCA (ticagrelor ou prasugrel preferidos ao clopidogrel), estatina de alta intensidade, betabloqueador e IECA quando a fração de ejeção cai.|q-didepm-001,q-amrigs2023-014,q-unesp2022-041,q-adap24-003,q-unifesp2024-006]]`,
+[[Depois do infarto, a prevenção secundária combina AAS para sempre, inibidor de P2Y12 por 12 meses após SCA (ticagrelor ou prasugrel preferidos ao clopidogrel), estatina de alta intensidade, betabloqueador (benefício firme com fração de ejeção reduzida, angina ou arritmia; com fração preservada, mantê-lo além do primeiro ano é discutível) e IECA quando a fração de ejeção cai.|q-didepm-001,q-amrigs2023-014,q-unesp2022-041,q-adap24-003,q-unifesp2024-006]]`,
       fragmentos: [
         { id: "pos-complicacoes", titulo: "Complicações mecânicas", conferir: true,
           questoes: ["q-unifesp2025-021","q-tp20212-038","q-unesp2026-069"],

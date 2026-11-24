@@ -64,7 +64,7 @@ Veja também: **Tireoidopatias** (hipotireoidismo no adulto e na criança maior)
           texto: `- RN com vômitos, desidratação, **sódio baixo e potássio alto**: **hiperplasia adrenal** (deficiência de **21-hidroxilase**, **17-OH-progesterona** alta). {q-usp2026-061,q-einstein2024-042,q-sirio2025-050,q-unicampdis2024-087}
 - Na crise: hidrocortisona, soro e glicose; **não** repor bicarbonato. {q-scmsp2021-053}
 - Icterícia, colestase, sepse por **E. coli** e galactose alta: **galactosemia**; **suspender o leite** e dar fórmula sem lactose. {q-usprp2021-026,q-adap24-093}
-- Galactose alta em bebê bem: **repetir a dosagem**. {q-unifesp2024-092}
+- Galactose pouco alta em bebê bem: a prova deu **repetir a dosagem**; se a suspeita é de galactosemia clássica (galactose muito alta ou GALT baixa), **suspende-se a lactose já**, sem esperar sintoma, enquanto se confirma. {q-unifesp2024-092}
 - G6PD alterada: **nova coleta** e afastar desencadeantes de hemólise. {q-unifesp2025-090,q-uspsp5-105}` },
       ],
     },

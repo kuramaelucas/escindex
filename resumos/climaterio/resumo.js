@@ -65,7 +65,7 @@ Veja também: **Ciclo menstrual** (insuficiência ovariana prematura em detalhe)
           questoes: ["q-022","q-scmsp2023-061","q-famema2022-060","q-famema2025-050","q-sirio2021-075","q-sirio2022-077","q-fmabc2023-072","q-unicamp2023-058","q-unesp2025-030","q-uspsp3-069","q-tp20212-098","q-unesp2026-034","q-tp20231-098"],
           prosa: `[[Antes de começar, mamografia em dia; no seguimento, perfil lipídico, glicemia e mamografia anual.|q-unicamp2023-058,q-unesp2026-034,q-famema2025-050]]`,
           texto: `- Fogachos com 52 anos sem contraindicação: **terapia hormonal** na menor dose eficaz. {q-022,q-tp20212-098,q-uspsp3-069}
-- Abaixo de 60 anos: TH é **primeira linha** para prevenir osteoporose. {q-scmsp2023-061}
+- Abaixo de 60 anos, com sintomas ou risco de fratura: TH é **primeira linha** para prevenir osteoporose; não se prescreve só para prevenção na assintomática. {q-scmsp2023-061}
 - Iniciada antes de 10 anos da menopausa: pode **reduzir doença cardiovascular**. {q-famema2022-060,q-sirio2021-075}
 - Respeitar a **janela de oportunidade**. {q-fmabc2023-072}
 - Com 65 anos e mais de 10 de menopausa: **não iniciar TH sistêmica**. {q-sirio2022-077}
@@ -76,9 +76,9 @@ Veja também: **Ciclo menstrual** (insuficiência ovariana prematura em detalhe)
 - Obesa, exames da figura: combinada, **só transdérmica**. {q-tp20231-098}` },
         { id: "ter-esquema", titulo: "Estrogênio isolado ou combinado, e a via", conferir: true, diretrizes: ["nams-2022"],
           questoes: ["q-adap24-038","q-adap25-071","q-adap22-023","q-adap26-042","q-sirio2027-075-ia","q-usp2024-105","q-sessp2022-064","q-sessp2025-065","q-sessp2026-076","q-tp20202-087","q-tp20252-045","q-tp20261-039","q-unesp2021-029","q-unesp2024-032","q-famerp2022-033","q-unicampdis2022-046","q-unicampdis2024-037","q-udisc20262-091","q-uspsp4-034","q-sirio2024-063","q-fmabc2025-063","q-einstein2023-054","q-einstein2024-055"],
-          prosa: `[[A progesterona micronizada e a didrogesterona protegem o endométrio com menos efeito na mama; a tibolona é alternativa.|q-adap22-023,q-adap26-042,q-unicampdis2024-037]] [[Depois de câncer de ovário epitelial operado, a terapia hormonal é permitida (estrogênio isolado se o útero saiu).|q-unicampdis2022-046,q-sirio2024-063]] [[Desejo sexual hipoativo na pós-menopausa, já com estrogênio, pode receber testosterona transdérmica em dose baixa.|q-einstein2024-055]]`,
+          prosa: `[[A progesterona micronizada e a didrogesterona protegem o endométrio com menos efeito na mama; a tibolona é alternativa.|q-adap22-023,q-adap26-042,q-unicampdis2024-037]] [[Depois de câncer de ovário epitelial operado, a terapia hormonal é permitida (estrogênio isolado se o útero saiu); evita-se nos tipos hormoniossensíveis (seroso de baixo grau, tumor de células da granulosa).|q-unicampdis2022-046,q-sirio2024-063]] [[Desejo sexual hipoativo na pós-menopausa, já com estrogênio, pode receber testosterona transdérmica em dose baixa.|q-einstein2024-055]]`,
           texto: `- Histerectomizada: **estrogênio isolado**. {q-adap24-038,q-adap25-071,q-famerp2022-033,q-sirio2027-075-ia}
-- Histerectomia **subtotal** ou vagina em fundo cego: estrogênio isolado. {q-sessp2025-065,q-unesp2024-032}
+- Histerectomia **subtotal** ou vagina em fundo cego: estrogênio isolado (na subtotal, se sobrou endométrio funcionante — sangramento cíclico —, soma-se progestagênio). {q-sessp2025-065,q-unesp2024-032}
 - Com útero: **estradiol transdérmico + progesterona micronizada**. {q-adap22-023,q-adap26-042}
 - Obesa com FSH 80: **transdérmico + progesterona**. {q-sessp2026-076}
 - Tabagista hipertensa: **estroprogestativa não oral**. {q-tp20252-045,q-tp20261-039}
