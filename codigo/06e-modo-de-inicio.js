@@ -9,16 +9,23 @@
    "reparar falhas" não tem o que reparar — por isso nem é perguntado.
 
    `u.modoDeInicio`:
-     "zero"         construção do zero (Formado: ler o resumo de cada tema e
-                    depois o conjunto planejado; 6º ano: calendário do 6º ano)
-     "reparar-tema" reparar falhas pela trilha por tema (o conjunto planejado
-                    sem leitura antes; < 75% no tema sugere o resumo)
-     "reparar"      reparar falhas continuando como está (só Formado: o
-                    cronograma atual, trilha por erro e revisão sugerida)
+     "zero"           construção do zero (Formado: o resumo de cada tema,
+                      recomendado, e depois o conjunto planejado; 6º ano:
+                      calendário do 6º ano)
+     "reparar-tema"   reparar falhas por tema (só 6º ano: o conjunto planejado
+                      direto, < 75% no tema sugere o resumo)
+     "reparar-manter" reparar e manter (só Formado, 24/11/2026): 1º estágio,
+                      o conjunto de cada tema da trilha como diagnóstico (< 75%
+                      recomenda o resumo); 2º, o tema ≥ 75% entra em
+                      manutenção ("Não esquecer", 05g)
+   Valores antigos do Formado ("reparar" = continuar como está, e
+   "reparar-tema") existem nos aparelhos E voltam da nuvem: são lidos como
+   "reparar-manter" (traduzirModoDeInicio), nos dois caminhos. A migração do
+   loadState (02) só reescreve "reparar", que nunca valeu fora do Formado;
+   "reparar-tema" continua válido no 6º ano e por isso é traduzido na leitura.
    Ausente = ainda não escolheu (a pergunta aparece uma vez no Início). Valor
-   que não vale para o ano da pessoa (ex.: "reparar" no 6º ano, ou alguém que
-   voltou para o 4º ano) é lido como o padrão do ano, sem apagar a escolha:
-   se ela voltar a ser Formado(a), a escolha antiga volta a valer.
+   que não vale para o ano da pessoa é lido como o padrão do ano, sem apagar
+   a escolha: se ela voltar a esse ano, a escolha antiga volta a valer.
 
    Trocar de modo não apaga nem altera resposta, revisão ou meta: muda o que
    o cronograma sugere daqui para a frente. */
@@ -27,10 +34,9 @@ const MODOS_DE_INICIO = {
     descricao: { formado: "Tema por tema: o resumo (recomendado, dá para pular), depois um conjunto de 20 questões escolhidas para cobrir cada parte do tema. Para quem quer rever a matéria inteira com calma.",
                  sexto: "Segue o calendário do 6º ano, estágio por estágio, com o resumo de cada tema recomendado antes das questões (dá para pular)." } },
   "reparar-tema": { nome: "Reparar falhas por tema", curto: "reparar falhas por tema",
-    descricao: { formado: "Direto às questões: 20 por tema, escolhidas para cobrir cada parte dele. Ficou abaixo de 75% no tema? A plataforma sugere o resumo, com um botão que leva até ele.",
-                 sexto: "Direto às questões: 20 por tema, escolhidas para cobrir cada parte dele. Ficou abaixo de 75% no tema? A plataforma sugere o resumo, com um botão que leva até ele." } },
-  reparar: { nome: "Reparar falhas como está", curto: "continuar como está", soFormado: true,
-    descricao: { formado: "Continua o cronograma de hoje: assuntos da sua trilha, mais questões onde você mais erra e a revisão do que esfriou." } },
+    descricao: { sexto: "Direto às questões: 20 por tema, escolhidas para cobrir cada parte dele. Ficou abaixo de 75% no tema? A plataforma sugere o resumo, com um botão que leva até ele." } },
+  "reparar-manter": { nome: "Reparar e manter", curto: "reparar e manter",
+    descricao: { formado: "Primeiro, 20 questões por tema como diagnóstico (abaixo de 75%, o resumo é recomendado). Tema com 75% ou mais entra em \"Não esquecer\": poucas questões por dia para manter o que você já sabe." } },
 };
 
 // "formado" | "sexto" | null (antes do 6º ano, equipe ou sem ano: não escolhe)
@@ -44,12 +50,19 @@ function grupoDoModoDeInicio(u){
 function modosDeInicioDoGrupo(grupo){
   return Object.keys(MODOS_DE_INICIO).filter(id => MODOS_DE_INICIO[id].descricao[grupo]);
 }
-// o modo que vale agora: a escolha, se ela vale para o ano da pessoa; senão "zero"
+// valores antigos → os de hoje (ver o topo). Sem grupo: devolve como veio.
+const MODOS_DE_INICIO_ANTIGOS = { formado: { reparar: "reparar-manter", "reparar-tema": "reparar-manter" } };
+function traduzirModoDeInicio(valor, grupo){
+  const t = grupo && MODOS_DE_INICIO_ANTIGOS[grupo];
+  return (t && t[valor]) || valor;
+}
+// o modo que vale agora: a escolha (traduzida), se ela vale para o ano da pessoa; senão "zero"
 function modoDeInicio(u){
   u = u || usuarioAtual();
   const grupo = grupoDoModoDeInicio(u);
   if(!grupo) return "zero";
-  return modosDeInicioDoGrupo(grupo).includes(u.modoDeInicio) ? u.modoDeInicio : "zero";
+  const modo = traduzirModoDeInicio(u.modoDeInicio, grupo);
+  return modosDeInicioDoGrupo(grupo).includes(modo) ? modo : "zero";
 }
 function _gravarModoDeInicio(modo){
   const u = usuarioAtual(), grupo = grupoDoModoDeInicio(u);
@@ -88,10 +101,10 @@ function perguntarModoDeInicio(opts){
   const opcoes = modosDeInicioDoGrupo(grupo);
   abrirModal(`<div class="modal-header"><h3>Como você quer começar?</h3></div>
     <p class="text-sm muted">${grupo === "formado"
-      ? "Você pode reconstruir a matéria do começo, lendo os resumos antes das questões, ou ir direto ao que precisa reparar."
+      ? "Você pode reconstruir a matéria do começo, com os resumos antes das questões, ou reparar o que falta e manter o que já sabe."
       : "No 6º ano você pode seguir o calendário construindo do zero ou ir direto ao que precisa reparar."}
       Em todos os caminhos a sua meta diária ou semanal continua valendo.</p>
-    <div class="grid ${opcoes.length === 3 ? "grid-3" : "grid-2"} mt-2">${_cartoesDoModoDeInicio(grupo, "", "definirModoDeInicio")}</div>
+    <div class="grid grid-2 mt-2">${_cartoesDoModoDeInicio(grupo, "", "definirModoDeInicio")}</div>
     <p class="text-xs muted mt-2">Nada se perde ao trocar depois, em Perfil e configurações.</p>`, "lg");
   const overlay = document.getElementById("modalOverlayAtivo");
   if(overlay) overlay.onclick = null;
@@ -119,7 +132,7 @@ function renderCardModoDeInicio(u){
 }
 function trocarModoDeInicio(modo){
   const u = usuarioAtual();
-  if(!u || u.modoDeInicio === modo || !_gravarModoDeInicio(modo)) return;
+  if(!u || modoDeInicio(u) === modo || !_gravarModoDeInicio(modo)) return;
   render();
   toast("Agora: " + MODOS_DE_INICIO[modo].nome.toLowerCase() + ". Seus dados continuam todos guardados.");
 }

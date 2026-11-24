@@ -21,16 +21,20 @@
 
    Quem segue o ciclo:
    - antes do 6º ano: sempre, pelos assuntos do bloco atual do calendário;
-     a leitura é OBRIGATÓRIA na primeira passagem (sem ela as questões do tema
-     não abrem); depois de lido, reler é opcional;
+     a leitura é RECOMENDADA, nunca obrigatória (24/11/2026);
    - 6º ano e Formado(a) em "do zero": mesma regra (6º ano pelo bloco do
      calendário; Formado pela fila da trilha, dados/trilha-formados.js);
-   - "reparar falhas por tema": direto às questões, pela trilha, sem leitura;
-   - Formado em "continuar como está": fora do ciclo (cronograma de 05c).
+   - 6º ano em "reparar falhas por tema": direto às questões, sem leitura;
+   - Formado em "reparar e manter": 1º estágio, o conjunto de cada tema da
+     trilha como diagnóstico (< 75% recomenda o resumo); 2º estágio, o tema
+     fechado com ≥ 75% entra em MANUTENÇÃO — "Não esquecer": poucas questões
+     por dia, primeiro as do conjunto pós-resumo ainda não feitas (temas que a
+     pessoa leu e não terminou), depois questões novas dos temas mantidos.
    Tema sem resumo: só as questões, e a tela diz por quê (seção 4-B).
    Fechou o tema com menos de 75% de acerto: sugere reler o resumo — sempre
    opcional, nunca trava o tema seguinte. */
-const CICLO_POR_TEMA = { corteDeAcerto: 0.75 };
+// questoesDeManutencao: a meta pequena do "Não esquecer" (seção 7 do projeto: "metas diárias pequenas")
+const CICLO_POR_TEMA = { corteDeAcerto: 0.75, questoesDeManutencao: 10 };
 
 /* ---------------------------- os conjuntos (carga sob demanda) ---------------------------- */
 // Pede resumos/conjuntos-por-tema.js (e o catálogo) na primeira vez e redesenha quando chegam.
@@ -82,14 +86,13 @@ function estadoDoTema(u, chave, primeiras){
 }
 
 /* ---------------------------- quem segue o ciclo e em que ordem ---------------------------- */
-// "graduando" | "zero" | "reparar-tema" | null (fora do ciclo)
+// "graduando" | "zero" | "reparar-tema" | "reparar-manter" | null (fora do ciclo: equipe)
 function caminhoDoCiclo(u){
   u = u || usuarioAtual();
   if(!u || !(u.papel === "aluno" || state.modoAluno)) return null;
   const grupo = grupoDoModoDeInicio(u);
   if(!grupo) return "graduando";
-  const modo = modoDeInicio(u);
-  return modo === "reparar" ? null : modo;
+  return modoDeInicio(u);
 }
 /* A leitura é recomendada (botão "Ler o resumo (recomendado)") para quem
    constrói do zero, enquanto não leu. Nunca trava as questões, nem para o
@@ -129,6 +132,55 @@ function cicloDoAluno(u){
   return { atual, ultimoConcluido, caminho, peloCalendario };
 }
 
+/* ---------------------------- "Não esquecer" (manutenção, reparar e manter) ----------------------------
+   Nada guardado: o tema entra em manutenção quando o conjunto dele fecha com
+   ≥ 75% (mesma régua do resultado). Só para o Formado em "reparar e manter". */
+function temasEmManutencao(u, primeiras){
+  const c = conjuntosPorTema();
+  if(!c || caminhoDoCiclo(u) !== "reparar-manter") return [];
+  primeiras = primeiras || _primeirasRespostas(u.id);
+  return Object.keys(c).map(k => estadoDoTema(u, k, primeiras)).filter(e => e && e.concluido && !e.abaixoDoCorte);
+}
+/* As questões da manutenção de hoje, até `n`: primeiro as do conjunto
+   pós-resumo que a pessoa ainda não fez (temas lidos e não terminados — a
+   leitura já foi investida, falta fixar), depois questões novas (nunca
+   respondidas, fora do conjunto) dos temas em manutenção, alternando os temas
+   para não virar uma sessão de um assunto só. Cada item diz o porquê. */
+function questoesNaoEsquecer(u, n){
+  const c = conjuntosPorTema();
+  if(!c || caminhoDoCiclo(u) !== "reparar-manter") return [];
+  n = n || CICLO_POR_TEMA.questoesDeManutencao;
+  const primeiras = _primeirasRespostas(u.id), itens = [], usados = new Set();
+  const por = (id, motivo) => { if(itens.length < n && !usados.has(id)){ usados.add(id); itens.push({ questaoId: id, motivo }); } };
+  for(const k of Object.keys(c)){
+    const e = estadoDoTema(u, k, primeiras);
+    if(e && e.lidoEm && !e.concluido) e.proximas.forEach(id => por(id, "Não esquecer: questão pós-resumo de " + e.titulo + " que ainda falta (você leu o resumo em " + formatDataBR(e.lidoEm) + ")"));
+  }
+  const mantidos = temasEmManutencao(u, primeiras);
+  if(itens.length < n && mantidos.length){
+    const disponiveis = questoesParaEstudo(u.id);
+    const filas = mantidos.map(e => {
+      const assuntos = new Set(c[e.chave].assuntos), doConjunto = new Set(c[e.chave].ids);
+      return { e, ids: disponiveis.filter(q => assuntos.has(q.assuntoId) && !doConjunto.has(q.id) && !primeiras.has(q.id) && !aguardaImagem(q)).map(q => q.id) };
+    }).filter(f => f.ids.length);
+    for(let i = 0; itens.length < n && filas.some(f => i < f.ids.length); i++)
+      filas.forEach(f => { if(i < f.ids.length) por(f.ids[i], "Não esquecer: " + f.e.titulo + " está em manutenção (" + Math.round(f.e.taxa * 100) + "% no conjunto) — questão nova para manter"); });
+  }
+  return itens;
+}
+function iniciarNaoEsquecer(){
+  const u = usuarioAtual(), itens = u && questoesNaoEsquecer(u);
+  if(!itens || !itens.length){ toast("Nada para manter agora: nenhum tema fechado com 75% ou mais ainda tem questão nova."); return; }
+  iniciarSessaoComLista(itens, "pratica");
+}
+function _htmlNaoEsquecer(u){
+  if(caminhoDoCiclo(u) !== "reparar-manter") return "";
+  const mantidos = temasEmManutencao(u), hoje = questoesNaoEsquecer(u);
+  if(!mantidos.length && !hoje.length) return `<p class="text-xs muted mt-1">Não esquecer: quando um tema fechar com ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}% ou mais, ele entra em manutenção aqui.</p>`;
+  return `<div class="card-flat mt-1 flex justify-between items-center gap-1 quebra"><span class="text-sm"><strong>Não esquecer</strong>: ${mantidos.length} ${mantidos.length === 1 ? "tema em manutenção" : "temas em manutenção"}${hoje.length ? ` · ${hoje.length} ${hoje.length === 1 ? "questão" : "questões"} para hoje` : " · nada pendente hoje"}</span>${hoje.length
+    ? `<button class="btn btn-secondary btn-sm" onclick="iniciarNaoEsquecer()">Fazer a manutenção</button>` : ""}</div>`;
+}
+
 /* ---------------------------- ações ---------------------------- */
 function iniciarQuestoesDoTema(chave){
   const u = usuarioAtual(), e = u && estadoDoTema(u, chave);
@@ -161,6 +213,7 @@ function htmlCartaoDoCicloPorTema(u){
   const e = ciclo.atual, cam = ciclo.caminho;
   const porque = cam === "graduando" ? "Você constrói o conhecimento do zero pelo calendário: em cada tema do bloco, recomendamos ler o resumo antes das questões — se já domina o tema, pode pular direto para elas."
     : cam === "zero" ? "Você escolheu construir do zero: recomendamos ler o resumo do tema antes das questões, mas pode pular direto para elas."
+    : cam === "reparar-manter" ? "Você escolheu reparar e manter: 20 questões por tema como diagnóstico (abaixo de 75%, o resumo é recomendado); tema com 75% ou mais entra em \"Não esquecer\", com poucas questões por dia."
     : "Você escolheu reparar falhas por tema: direto às questões; abaixo de 75% no tema, o resumo é sugerido.";
   let corpo;
   if(!e) corpo = `<p class="text-sm mt-1">Todos os temas ${ciclo.peloCalendario ? "deste bloco" : "da sua trilha"} com conjunto planejado estão fechados. A sessão recomendada segue com revisão e questões novas.</p>`;
@@ -184,6 +237,7 @@ function htmlCartaoDoCicloPorTema(u){
     ${explicacaoRecolhida("Por que este tema?", `<p class="text-sm muted">${porque} As questões contam para a sua meta normalmente.</p>`)}
     ${corpo}
     ${_htmlResultadoDoTema(ciclo.ultimoConcluido)}
+    ${_htmlNaoEsquecer(u)}
   </div>`;
 }
 

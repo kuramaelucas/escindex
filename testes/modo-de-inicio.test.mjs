@@ -34,27 +34,27 @@ test("modo de início: Formado escolhe entre três, 6º ano entre dois, antes do
         const o = document.getElementById("modalOverlayAtivo"), txt = o ? o.innerText : "";
         if(o) o.click();   // clicar fora não decide nem fecha
         const segue = !!document.getElementById("modalOverlayAtivo");
-        fecharModal(); return { abriu, segue, botoes: (txt.match(/Construir do zero|Reparar falhas por tema|Reparar falhas como está/g) || []).length / 2 }; };
+        fecharModal(); return { abriu, segue, botoes: (txt.match(/Construir do zero|Reparar falhas por tema|Reparar e manter/g) || []).length / 2 }; };
       const formado = pergunta("Formado(a)"), sexto = pergunta("6º ano"), quarto = pergunta("4º ano");
       // escolhe no Formado, confere que não pergunta de novo e que a escolha vale
-      u.anoFaculdade = "Formado(a)"; perguntarModoDeInicio({ mesmoComAutomacao: true }); definirModoDeInicio("reparar");
+      u.anoFaculdade = "Formado(a)"; perguntarModoDeInicio({ mesmoComAutomacao: true }); definirModoDeInicio("reparar-manter");
       const escolhido = { modo: modoDeInicio(u), janela: !!document.getElementById("modalOverlayAtivo"), deNovo: perguntarModoDeInicio({ mesmoComAutomacao: true }) };
-      // "reparar" (continuar como está) não existe no 6º ano: vale "zero", sem apagar a escolha
+      // "reparar-manter" não existe no 6º ano: vale "zero", sem apagar a escolha
       u.anoFaculdade = "6º ano"; const noSexto = { modo: modoDeInicio(u), guardado: u.modoDeInicio };
       u.anoFaculdade = "Formado(a)"; const volta = modoDeInicio(u);
       // o 6º ano não consegue gravar o que não é dele
-      u.anoFaculdade = "6º ano"; trocarModoDeInicio("reparar"); const recusou = u.modoDeInicio === "reparar";
+      u.anoFaculdade = "6º ano"; trocarModoDeInicio("reparar-manter"); const recusou = u.modoDeInicio === "reparar-manter";
       trocarModoDeInicio("reparar-tema");
       navigate("perfil"); const perfil = document.body.innerText.includes("Como você estuda");
       u.anoFaculdade = "3º ano"; render(); const perfilAntes = document.body.innerText.includes("A escolha entre construir do zero e reparar falhas abre no 6º ano");
       return { formado, sexto, quarto, escolhido, noSexto, volta, recusou, guardado: u.modoDeInicio, perfil, perfilAntes };
     });
-    assert.deepEqual(r.formado, { abriu: true, segue: true, botoes: 3 });
+    assert.deepEqual(r.formado, { abriu: true, segue: true, botoes: 2 });
     assert.deepEqual(r.sexto, { abriu: true, segue: true, botoes: 2 });
     assert.equal(r.quarto.abriu, false, "antes do 6º ano não há pergunta");
-    assert.deepEqual(r.escolhido, { modo: "reparar", janela: false, deNovo: false });
-    assert.deepEqual(r.noSexto, { modo: "zero", guardado: "reparar" });
-    assert.equal(r.volta, "reparar");
+    assert.deepEqual(r.escolhido, { modo: "reparar-manter", janela: false, deNovo: false });
+    assert.deepEqual(r.noSexto, { modo: "zero", guardado: "reparar-manter" });
+    assert.equal(r.volta, "reparar-manter");
     assert.equal(r.recusou, true, "a escolha antiga segue guardada; o 6º ano só não a usa");
     assert.equal(r.guardado, "reparar-tema");
     assert.ok(r.perfil && r.perfilAntes);
@@ -73,9 +73,11 @@ test("modo de início vem da nuvem sem passar por cima da escolha deste aparelho
       u.modoDeInicio = "zero";   // escolheu neste aparelho
       nuvemAplicarPerfilLocal(Object.assign({}, base, { modo_inicio: "reparar" })); const manteve = u.modoDeInicio;
       const sobe = linhaDoPerfil(u).modo_inicio;
-      return { lixo, veio, manteve, sobe };
+      // valor antigo vindo da nuvem num aparelho que ainda não escolheu: traduzido
+      delete u.modoDeInicio; nuvemAplicarPerfilLocal(Object.assign({}, base, { modo_inicio: "reparar" })); const antigo = u.modoDeInicio;
+      return { lixo, veio, manteve, sobe, antigo };
     });
-    assert.deepEqual(r, { lixo: undefined, veio: "reparar-tema", manteve: "zero", sobe: "zero" });
+    assert.deepEqual(r, { lixo: undefined, veio: "reparar-tema", manteve: "zero", sobe: "zero", antigo: "reparar-manter" });
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

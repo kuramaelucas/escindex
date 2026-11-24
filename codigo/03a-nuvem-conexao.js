@@ -394,7 +394,11 @@ function nuvemAplicarPerfilLocal(p){
   // a escolha feita neste aparelho vale mais que a que desce: o perfil de lá pode ser anterior a ela
   if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
   // como começar (06e): mesma regra do modo da plataforma — a escolha deste aparelho vale mais
-  if(p.modo_inicio && !u.modoDeInicio && MODOS_DE_INICIO[p.modo_inicio]) u.modoDeInicio = p.modo_inicio;
+  // valor antigo vindo de outro aparelho ("reparar", do Formado) é aceito e traduzido (06e)
+  if(p.modo_inicio && !u.modoDeInicio){
+    const m = p.modo_inicio === "reparar" ? "reparar-manter" : p.modo_inicio;
+    if(MODOS_DE_INICIO[m]) u.modoDeInicio = m;
+  }
   // a coluna pode nem existir neste banco (esquema.sql ainda não rodado de novo): só quem a traz decide
   if("prova_alvo_data" in p){ if(p.prova_alvo_data) u.provaAlvoData = p.prova_alvo_data; else delete u.provaAlvoData; }
   // os assuntos pulados da trilha: o que está neste aparelho vale mais que o que desce (mesma regra do modo da plataforma)

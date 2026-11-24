@@ -74,24 +74,40 @@ test("ciclo: graduando tem a leitura recomendada mas pode pular, continua de ond
   } finally { await contexto.close(); }
 });
 
-test("ciclo: reparar por tema vai direto às questões; Formado 'como está' fica fora; tema sem resumo diz por quê", async () => {
+test("ciclo: reparar e manter (Formado) vai direto às questões, tema ≥ 75% entra em \"Não esquecer\"; tema sem resumo diz por quê", async () => {
   const { pagina, contexto, erros } = await abrir();
   try{
     const r = await pagina.evaluate(() => {
       const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
-      u.modoDeInicio = "reparar"; const fora = cicloDoAluno(u); navigate("inicio"); const semCartao = !document.body.innerText.includes("Seu tema");
-      u.modoDeInicio = "reparar-tema"; const c = cicloDoAluno(u);
+      u.modoDeInicio = "reparar-manter"; const c = cicloDoAluno(u);
       const semLeitura = !leituraRecomendada(u, c.atual);
+      const vazio = temasEmManutencao(u).length;
+      // fecha o tema atual com 100%: entra em manutenção, e o ciclo segue para outro tema
+      const e = c.atual, hoje = hojeISO();
+      e.ids.forEach(id => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: id, correta: true, data: hoje }));
+      const mantidos = temasEmManutencao(u).map(x => x.chave);
+      const itens = questoesNaoEsquecer(u);
+      const doTema = itens.every(it => window.EscResumos.conjuntos[e.chave].assuntos.includes(getQuestao(it.questaoId).assuntoId));
+      const novas = itens.every(it => !e.ids.includes(it.questaoId));
+      navigate("inicio"); const card = document.body.innerText.includes("Não esquecer");
+      // um tema lido e não terminado: as pós-resumo vêm primeiro
+      const outro = cicloDoAluno(u).atual;
+      let primeiroPosResumo = null;
+      if(outro && !outro.semResumo){ u.resumosLidos = u.resumosLidos || {}; u.resumosLidos[outro.chave] = hoje; primeiroPosResumo = outro.ids.includes(questoesNaoEsquecer(u)[0].questaoId); }
       u.modoDeInicio = "zero"; const zero = caminhoDoCiclo(u);
       const chaveSem = Object.keys(window.EscResumos.conjuntos).find(k => window.EscResumos.conjuntos[k].semResumo);
       const eSem = estadoDoTema(u, chaveSem);
       iniciarQuestoesDoTema(chaveSem); const abriuSemResumo = state.route === "sessao";
-      return { fora, semCartao, caminho: c.caminho, semLeitura, zero, semResumo: eSem.semResumo, obrigSem: leituraRecomendada(u, eSem), abriuSemResumo };
+      return { caminho: c.caminho, semLeitura, vazio, mantido: mantidos.includes(e.chave), n: itens.length, doTema, novas, card, primeiroPosResumo, outroTema: outro && outro.chave !== e.chave,
+        zero, semResumo: eSem.semResumo, recSem: leituraRecomendada(u, eSem), abriuSemResumo };
     });
-    assert.equal(r.fora, null); assert.ok(r.semCartao);
-    assert.equal(r.caminho, "reparar-tema"); assert.ok(r.semLeitura);
+    assert.equal(r.caminho, "reparar-manter"); assert.ok(r.semLeitura, "reparar não recomenda ler antes");
+    assert.equal(r.vazio, 0); assert.ok(r.mantido, "tema ≥ 75% entra em manutenção");
+    assert.ok(r.n > 0 && r.n <= 10, "meta pequena: " + r.n); assert.ok(r.doTema && r.novas, "questões novas do tema mantido, fora do conjunto");
+    assert.ok(r.card); assert.ok(r.outroTema);
+    if(r.primeiroPosResumo !== null) assert.ok(r.primeiroPosResumo, "pós-resumo não feitas vêm primeiro");
     assert.equal(r.zero, "zero");
-    assert.deepEqual([r.semResumo, r.obrigSem, r.abriuSemResumo], [true, false, true]);
+    assert.deepEqual([r.semResumo, r.recSem, r.abriuSemResumo], [true, false, true]);
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

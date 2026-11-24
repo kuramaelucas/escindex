@@ -515,6 +515,8 @@ function loadState(){
     // ano). Quem já estava cadastrado assim é movido para 6º ano, que é onde
     // está a maior parte de quem se declarava "internato" perto da prova.
     db.usuarios.forEach(x=>{ if(x.anoFaculdade==="Internato") x.anoFaculdade = "6º ano"; });
+    // "reparar" (Formado, continuar como está) virou "reparar-manter" em 24/11/2026 (06e)
+    db.usuarios.forEach(x=>{ if(x.modoDeInicio==="reparar") x.modoDeInicio = "reparar-manter"; });
     // faculdade de origem veio depois: quem já tinha conta vale a padrão (ou a conferida por nome)
     db.usuarios.forEach(x=>{ if(!x.faculdade) x.faculdade = faculdadeInicialDe(x.nome); });
     // senha local em texto (versões antigas, backups) vira sal + hash: ver definirSenhaLocal

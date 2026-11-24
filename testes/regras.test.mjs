@@ -1019,3 +1019,20 @@ test("ao confirmar uma resposta, o envio urgente é agendado; ao fechar a págin
   assert.equal(r.aoFechar, 2);
   await contexto.close();
 });
+
+test("migração: o modo de início antigo \"reparar\" (Formado) vira \"reparar-manter\" ao abrir, e \"reparar-tema\" do Formado é lido como ele", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); const u = usuarioAtual(); u.anoFaculdade = "Formado(a)"; u.modoDeInicio = "reparar"; saveState({ imediato: true }); });
+    await pagina.reload(); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      const u = db.usuarios.find(x => x.anoFaculdade === "Formado(a)" && x.modoDeInicio);
+      const guardado = u.modoDeInicio;
+      u.modoDeInicio = "reparar-tema"; state.usuarioAtualId = u.id; const formado = modoDeInicio(u);
+      u.anoFaculdade = "6º ano"; const sexto = modoDeInicio(u);
+      return { guardado, formado, sexto };
+    });
+    assert.deepEqual(r, { guardado: "reparar-manter", formado: "reparar-manter", sexto: "reparar-tema" });
+  } finally { await contexto.close(); }
+});
