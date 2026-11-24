@@ -138,4 +138,9 @@
   { id: "dermatoses-inflamatorias", titulo: "Dermatoses inflamatórias e autoimunes", area: "Clínica Médica · Dermatologia", assunto: "ass-derm-autoimunes" },
   { id: "tep", titulo: "Tromboembolismo pulmonar", area: "Clínica Médica · Pneumologia", assunto: "ass-tep" },
   { id: "dii", titulo: "Doença inflamatória intestinal", area: "Clínica Médica · Gastroenterologia", assunto: "ass-dii" },
+  { id: "doencas-orificiais", titulo: "Doenças orificiais", area: "Cirurgia · Coloproctologia", assunto: "ass-coloprocto-orificiais" },
+  { id: "cirurgia-bariatrica", titulo: "Cirurgia bariátrica e complicações", area: "Cirurgia · Cirurgia Geral", assunto: "ass-cirbariatrica" },
+  { id: "uso-de-substancias", titulo: "Transtornos por uso de substâncias", area: "Clínica Médica · Psiquiatria", assunto: "ass-psiq-substancias" },
+  { id: "fraturas", titulo: "Fraturas e luxações", area: "Cirurgia · Ortopedia e Traumatologia", assunto: "ass-orto-fraturas" },
+  { id: "cancer-de-ovario", titulo: "Câncer de ovário e massas anexiais", area: "Ginecologia e Obstetrícia · Oncologia Ginecológica", assunto: "ass-caovario" },
 ];

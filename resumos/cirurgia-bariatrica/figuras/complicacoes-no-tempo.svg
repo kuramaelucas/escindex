@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" font-family="sans-serif"><rect width="760" height="330" fill="#fff"/>
+<text x="380" y="28" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Bypass gástrico: o que aparece em cada momento</text>
+<line x1="40" y1="70" x2="720" y2="70" stroke="#555" stroke-width="3"/>
+<g font-size="13" fill="#333" text-anchor="middle">
+<circle cx="130" cy="70" r="7" fill="#b03a2e"/><circle cx="380" cy="70" r="7" fill="#8a6a1b"/><circle cx="630" cy="70" r="7" fill="#1b5e7a"/>
+<text x="130" y="55" font-weight="bold">primeiros dias</text><text x="380" y="55" font-weight="bold">semanas a meses</text><text x="630" y="55" font-weight="bold">meses a anos</text>
+<rect x="30" y="95" width="200" height="200" rx="8" fill="#fbecec" stroke="#b03a2e"/>
+<text x="130" y="122">atelectasia (febre leve)</text><text x="130" y="146">sangramento</text><text x="130" y="170">fístula/deiscência</text><text x="130" y="194">TEP</text><text x="130" y="218">rabdomiólise</text><text x="130" y="254" font-size="12" fill="#b03a2e">taquicardia persistente</text><text x="130" y="270" font-size="12" fill="#b03a2e">= alarme</text>
+<rect x="280" y="95" width="200" height="200" rx="8" fill="#f6efe1" stroke="#8a6a1b"/>
+<text x="380" y="122">vômitos → Wernicke</text><text x="380" y="146">(tiamina)</text><text x="380" y="176">estenose da</text><text x="380" y="194">gastrojejunostomia</text><text x="380" y="224">úlcera marginal</text><text x="380" y="242">(AINE, tabaco)</text>
+<rect x="530" y="95" width="200" height="200" rx="8" fill="#e1f0f6" stroke="#1b5e7a"/>
+<text x="630" y="122">hérnia interna</text><text x="630" y="140">(Petersen) ao perder peso</text><text x="630" y="170">ferro e B12 baixos</text><text x="630" y="200">hipoglicemia</text><text x="630" y="218">pós-prandial</text><text x="630" y="248">cálculo biliar</text>
+</g>
+</svg>

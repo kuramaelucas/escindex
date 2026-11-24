@@ -326,3 +326,8 @@ Quando o resumo reúne doenças que a banca faz o aluno diferenciar, o **último
 | 23/11/2026 | Resumo de tromboembolismo pulmonar (ass-tep) |
 | 23/11/2026 | Resumo de doença inflamatória intestinal (ass-dii) |
 | 23/11/2026 | Conjunto de 20: "idêntica" passa a ignorar pontuação e espaços (TP reaplicado com uma vírgula a mais) |
+| 24/11/2026 | Resumo de doenças orificiais (ass-coloprocto-orificiais) |
+| 24/11/2026 | Resumo de cirurgia bariátrica e complicações (ass-cirbariatrica) |
+| 24/11/2026 | Resumo de transtornos por uso de substâncias (ass-psiq-substancias) |
+| 24/11/2026 | Resumo de fraturas e luxações (ass-orto-fraturas) |
+| 24/11/2026 | Resumo de câncer de ovário e massas anexiais (ass-caovario) |
