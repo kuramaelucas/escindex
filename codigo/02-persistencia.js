@@ -1097,11 +1097,22 @@ function avisarSeArmazenamentoPertoDoLimite(caracteres){
   _avisouArmazenamentoCheio = true;
   if(typeof toast === "function") toast("O armazenamento deste navegador está acima de 80%. Veja Perfil › Seus dados e, se puder, entre na conta da nuvem ou baixe uma cópia.", "err");
 }
+/* true enquanto a última gravação no navegador falhou: aí o que não subiu
+   para a nuvem só existe na memória da aba (ver o beforeunload abaixo). */
+let _naoGravouLocalmente = false;
+/* Há algo que só esta aba sabe? (gravação local falhou e a fila da nuvem
+   não esvaziou, ou nem há nuvem). */
+function haDadoSoNaMemoria(){
+  if(!_naoGravouLocalmente) return false;
+  if(typeof nuvemConectado === "function" && nuvemConectado()) return typeof nuvemPendentes === "function" && nuvemPendentes() > 0;
+  return true;
+}
 function gravarEstadoAgora(){
   if(_gravacaoPendente!==null){ clearTimeout(_gravacaoPendente); _gravacaoPendente = null; }
   // conta de teste (ver entrarComoAlunoTeste, seção 5): sem memória
   if(state.contaTeste) return true;
   let gravou = true;
+  _naoGravouLocalmente = false;
   try{
     const texto = JSON.stringify(compactarParaArmazenar(db));
     localStorage.setItem(CHAVE_STORAGE, texto);
@@ -1109,12 +1120,19 @@ function gravarEstadoAgora(){
   }catch(e){
     gravou = false;
     console.error("Falha ao salvar dados", e);
+    // o navegador não guardou: a fila da nuvem (que mora no mesmo banco) só
+    // existe na memória desta aba. Sobe agora, sem esperar o agrupamento —
+    // cada segundo parado é o que se perde se a aba fechar.
+    const comNuvem = typeof nuvemConectado === "function" && nuvemConectado();
+    const semInternet = typeof navigator !== "undefined" && navigator.onLine === false;
+    _naoGravouLocalmente = true;
+    if(comNuvem && !semInternet && typeof nuvemSincronizarAgora === "function") nuvemSincronizarAgora();
     // um toast some sozinho e some junto com o aviso; isto aqui é perda de
     // dado, e precisa parar a pessoa
     if(typeof abrirModal === "function"){
       abrirModal(`<div class="modal-header"><h3>${iconeSvg("alert")} Não foi possível salvar</h3></div>
         <p class="text-sm">O armazenamento deste navegador está cheio ou bloqueado, e <strong>o que você acabou de fazer não foi gravado</strong>. Ao recarregar a página, isso se perde.</p>
-        <p class="text-sm muted mt-1">O banco ocupa ${tamanhoBancoKb()} KB (o navegador costuma dar perto de 5.000). O que mais pesa são o histórico de respostas e as imagens embutidas em questões.${typeof nuvemConectado === "function" && nuvemConectado() ? " Com internet, o que você responde continua subindo para a sua conta na nuvem: é só este aparelho que não está guardando." : ""} Caminhos: exportar um backup agora (se você for administrador máster), liberar espaço do navegador, ou abrir a plataforma numa janela normal — janelas anônimas costumam bloquear o armazenamento.</p>
+        <p class="text-sm muted mt-1">O banco ocupa ${tamanhoBancoKb()} KB (o navegador costuma dar perto de 5.000). O que mais pesa são o histórico de respostas e as imagens embutidas em questões.${comNuvem ? (semInternet ? "</p><p class=\"text-sm mt-1\"><strong>Você está sem internet:</strong> o que ainda não subiu para a sua conta está só nesta aba. <strong>Não feche nem recarregue a página até a internet voltar</strong> — ao voltar, sobe sozinho.</p><p class=\"text-sm muted mt-1\">" : " Com internet, o que você responde continua subindo para a sua conta na nuvem: é só este aparelho que não está guardando.") : ""} Caminhos: exportar um backup agora (se você for administrador máster), liberar espaço do navegador, ou abrir a plataforma numa janela normal — janelas anônimas costumam bloquear o armazenamento.</p>
         <div class="flex gap-1 mt-2">${podeAdmin("backup") ? '<button class="btn btn-primary" onclick="exportarBackup()">Exportar backup agora</button>' : ""}<button class="btn btn-secondary" onclick="fecharModal()">Entendi</button></div>`);
     }else{
       toast("Não foi possível salvar os dados neste navegador (armazenamento cheio ou bloqueado).", "err");
@@ -1130,7 +1148,12 @@ function descartarGravacaoPendente(){ if(_gravacaoPendente!==null){ clearTimeout
 function gravarEstadoSePendente(){ if(_gravacaoPendente!==null) gravarEstadoAgora(); }
 if(typeof window !== "undefined"){
   window.addEventListener("pagehide", gravarEstadoSePendente);
-  window.addEventListener("beforeunload", gravarEstadoSePendente);
+  window.addEventListener("beforeunload", (ev)=>{
+    gravarEstadoSePendente();
+    // o navegador mostra a pergunta padrão "sair do site?": o único freio
+    // possível antes de perder o que não foi guardado em lugar nenhum
+    if(haDadoSoNaMemoria()){ ev.preventDefault(); ev.returnValue = ""; }
+  });
   document.addEventListener("visibilitychange", ()=>{ if(document.hidden) gravarEstadoSePendente(); });
 }
 function saveState(opcoes){

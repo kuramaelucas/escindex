@@ -1019,3 +1019,55 @@ test("ao confirmar uma resposta, o envio urgente é agendado; ao fechar a págin
   assert.equal(r.aoFechar, 2);
   await contexto.close();
 });
+
+test("armazenamento cheio: com nuvem e internet sobe na hora; sem internet avisa para não fechar e o navegador pergunta antes de sair", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      state.contaTeste = false;
+      const original = Storage.prototype.setItem;
+      Storage.prototype.setItem = function(){ throw new DOMException("cheio", "QuotaExceededError"); };
+      let subiu = 0;
+      window.nuvemConectado = () => true;
+      window.nuvemPendentes = () => 3;
+      window.nuvemSincronizarAgora = () => { subiu++; return Promise.resolve(true); };
+      const saida = {};
+      Object.defineProperty(navigator, "onLine", { configurable: true, get: () => true });
+      saida.gravouComInternet = gravarEstadoAgora();
+      saida.subiuComInternet = subiu;
+      saida.avisoComInternet = /não feche/i.test(document.body.innerText);
+      fecharModal();
+      Object.defineProperty(navigator, "onLine", { configurable: true, get: () => false });
+      gravarEstadoAgora();
+      saida.subiuSemInternet = subiu;
+      saida.avisoSemInternet = /não feche nem recarregue/i.test(document.body.innerText);
+      const ev = new Event("beforeunload", { cancelable: true });
+      window.dispatchEvent(ev);
+      saida.perguntaAntesDeSair = ev.defaultPrevented;
+      // a fila esvaziou: pode sair sem pergunta
+      window.nuvemPendentes = () => 0;
+      const ev2 = new Event("beforeunload", { cancelable: true });
+      window.dispatchEvent(ev2);
+      saida.perguntaComFilaVazia = ev2.defaultPrevented;
+      Storage.prototype.setItem = original;
+      fecharModal();
+      saida.voltouAGravar = gravarEstadoAgora();
+      const ev3 = new Event("beforeunload", { cancelable: true });
+      window.nuvemPendentes = () => 3;
+      window.dispatchEvent(ev3);
+      saida.perguntaDepoisDeGravar = ev3.defaultPrevented;
+      return saida;
+    });
+    assert.equal(r.gravouComInternet, false);
+    assert.equal(r.subiuComInternet, 1, "falhou no navegador e há nuvem: sobe na hora");
+    assert.equal(r.avisoComInternet, false);
+    assert.equal(r.subiuSemInternet, 1, "sem internet não tenta subir");
+    assert.equal(r.avisoSemInternet, true, "sem internet a janela pede para não fechar a aba");
+    assert.equal(r.perguntaAntesDeSair, true);
+    assert.equal(r.perguntaComFilaVazia, false);
+    assert.equal(r.voltouAGravar, true);
+    assert.equal(r.perguntaDepoisDeGravar, false, "gravou no navegador: a fila está guardada, não precisa perguntar");
+  } finally { await contexto.close(); }
+});

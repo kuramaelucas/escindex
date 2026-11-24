@@ -97,7 +97,7 @@ function renderAbaProvasAntigas(u, simuladosDaBusca){
             ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('prova:Prova ${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)} (simulado)')">Continuar o simulado</button>
                <button class="btn btn-ghost btn-sm" onclick="fazerProvaComoSimulado(${i})" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>`
             : `<button class="btn btn-primary btn-sm" onclick="fazerProvaComoSimulado(${i})">Fazer como simulado</button>`)}
-          ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, '${escapeHtml(g.banca).replace(/'/g,"&#39;")} ${anoDaProva(g)}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
+          ${g.dissertativa || !ehEquipeVendoSimulado() ? "" : `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos(${JSON.stringify("Prova "+g.banca+" "+anoDaProva(g)+" (simulado)").replace(/"/g,"&quot;")}, ${argJs(g.banca + " " + anoDaProva(g))})" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>`}
           <button class="btn ${g.dissertativa ? "btn-primary" : "btn-secondary"} btn-sm" onclick="praticarProva(${i})">${g.dissertativa ? "Fazer a prova (sem cronômetro)" : "Praticar sem cronômetro"}</button>
           ${podeGerirConteudo() ? `<button class="icon-btn" onclick="confirmarInativarProva(${i})" title="Inativar ou excluir esta prova" aria-label="Inativar ou excluir a prova">${iconeSvg("trash")}</button>` : ""}
         </div>

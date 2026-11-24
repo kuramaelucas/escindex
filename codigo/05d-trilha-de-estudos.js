@@ -238,7 +238,7 @@ function atualizarJanelaDaTrilha(deDigitacao){
   const comMais = (a) => distribuirPorPeso(cand.assuntos.filter(x => marcados.has(x.id) || x.id === a.id), Math.min(_trilha.n, TRILHA_TAMANHO_MAXIMO))[a.id];
   const erroTxt = (a) => a.conhecido ? `erro de <strong>${Math.round(a.taxaErro*100)}%</strong> · ${a.respondidas} respostas` : "poucas respostas suas";
   const linha = (a, direita) => `<label class="flex justify-between gap-2 quebra" style="padding:.2rem 0;cursor:pointer">
-      <span><input type="checkbox" ${marcados.has(a.id)?"checked":""} onchange="alternarAssuntoDaTrilha('${escapeHtml(a.id)}')"> ${escapeHtml(nomeAssunto(a.id))}</span>
+      <span><input type="checkbox" ${marcados.has(a.id)?"checked":""} onchange="alternarAssuntoDaTrilha(${argJs(a.id)})"> ${escapeHtml(nomeAssunto(a.id))}</span>
       <span class="muted">${erroTxt(a)} · ${direita}</span></label>`;
   previa.innerHTML = `<div class="peso-600 mb-1">Na trilha (${t.itens.length} questões)</div>
     ${doMarcado.length ? doMarcado.map(a => { const r = alocadas[a.id]; return linha(a, `<strong>${r ? r.alocadas : 0}</strong> ${plural(r ? r.alocadas : 0,"questão","questões")}${r && (r.novas||r.erradas||r.certas) ? " ("+[r.novas?r.novas+" "+flexionar(r.novas, "nova(s)")+"":"", r.erradas?r.erradas+" "+flexionar(r.erradas, "errada(s)")+"":"", r.certas?r.certas+" "+flexionar(r.certas, "acertada(s)")+"":""].filter(Boolean).join(", ")+")" : ""}`); }).join("") : '<p class="text-xs muted">Nenhum assunto marcado.</p>'}

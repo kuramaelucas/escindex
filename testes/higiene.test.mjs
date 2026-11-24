@@ -161,8 +161,18 @@ test("nenhum onclick interpola texto livre sem escape", () => {
   const risco = /onclick="[^"]*\$\{[^}]*\.(nome|titulo|texto|label|email|descricao|rotulo|matricula|enunciado|apelido)\b/;
   for(const [arq, s] of Object.entries(fontes)){
     s.split("\n").forEach((l, i) => {
-      if(risco.test(l) && !/escapeHtml|JSON\.stringify/.test(l)) achados.push(`${arq}:${i + 1}`);
+      if(risco.test(l) && !/escapeHtml|JSON\.stringify|argJs/.test(l)) achados.push(`${arq}:${i + 1}`);
     });
   }
-  assert.deepEqual(achados, [], "texto livre dentro de onclick sem escapeHtml/JSON.stringify");
+  assert.deepEqual(achados, [], "texto livre dentro de onclick sem escapeHtml/JSON.stringify/argJs");
+});
+
+test("argumento de texto em evento inline usa argJs, não '${escapeHtml(...)}'", () => {
+  // o navegador desfaz &#39; antes de rodar o onclick: uma aspa no valor
+  // fecharia a string e injetaria código (ver argJs, 04)
+  const achados = [];
+  for(const [arq, s] of Object.entries(fontes)){
+    for(const m of s.matchAll(/\son[a-z]+="[^"]*'\$\{escapeHtml\(/g)) achados.push(arq + ":" + s.slice(0, m.index).split("\n").length);
+  }
+  assert.deepEqual(achados, []);
 });

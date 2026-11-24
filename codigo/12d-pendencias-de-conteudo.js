@@ -72,7 +72,7 @@ function htmlPendenciaSemFigura(p){
   if(!p.semFigura.length) return '<p class="text-sm muted">Nenhuma questão espera figura.</p>';
   return p.semFigura.slice(0, PENDENCIAS_LIMITE_NA_LISTA).map(g => htmlLinhaDePendencia(
     `<strong>${escapeHtml(g.rotulo)}</strong> · ${g.itens.length} ${plural(g.itens.length,"questão","questões")}${g.numeros.length ? " (nº " + resumirNumeros(g.numeros, 6) + ")" : ""}`,
-    `<button class="btn btn-secondary btn-sm" onclick="abrirPendenciaNoBanco('${escapeHtml(g.banca).replace(/'/g, "\\'")}', ${g.ano}, 'aguarda-imagem')">Ver no Banco</button>`
+    `<button class="btn btn-secondary btn-sm" onclick="abrirPendenciaNoBanco(${argJs(g.banca)}, ${g.ano}, 'aguarda-imagem')">Ver no Banco</button>`
   )).join("") + htmlAvisoDeListaCortada(p.semFigura.length);
 }
 function htmlPendenciaLacunas(p){

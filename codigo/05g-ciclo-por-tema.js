@@ -150,7 +150,7 @@ function _htmlResultadoDoTema(e){
     ${e.semResumo ? "Este assunto ainda não tem resumo: vale revisar os erros e os cartões dele." : "Recomendamos reler o resumo — ele abre marcado nos trechos em que você errou. É opcional: o próximo tema já está liberado."}</p>
     <div class="flex gap-1 mt-1 quebra">${e.semResumo
       ? `<button class="btn btn-secondary btn-sm" onclick="navigate('revisao')">Revisar os erros</button>`
-      : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} Reler o resumo</button>`}</div></div>`;
+      : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema(${argJs(e.chave)})">${iconeSvg("book")} Reler o resumo</button>`}</div></div>`;
 }
 function htmlCartaoDoCicloPorTema(u){
   if(!CONFIG.integracaoResumos.cicloNoInicio) return "";
@@ -170,8 +170,8 @@ function htmlCartaoDoCicloPorTema(u){
     corpo = `<div class="text-sm mt-1">Tema agora: <strong>${escapeHtml(e.titulo)}</strong></div>
       <ol class="mt-1">${passo1}${passo2}</ol>
       <div class="flex gap-1 mt-1 quebra">
-        ${e.semResumo ? "" : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${escapeHtml(e.chave)}')">${iconeSvg("book")} ${e.lidoEm ? "Reler o resumo" : "Ler o resumo"}</button>`}
-        <button class="btn btn-secondary btn-sm" ${obrigatoria ? "disabled title=\"Leia o resumo primeiro\"" : ""} onclick="iniciarQuestoesDoTema('${escapeHtml(e.chave)}')">${e.feitas ? "Continuar as questões" : "Fazer as questões"}</button>
+        ${e.semResumo ? "" : `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema(${argJs(e.chave)})">${iconeSvg("book")} ${e.lidoEm ? "Reler o resumo" : "Ler o resumo"}</button>`}
+        <button class="btn btn-secondary btn-sm" ${obrigatoria ? "disabled title=\"Leia o resumo primeiro\"" : ""} onclick="iniciarQuestoesDoTema(${argJs(e.chave)})">${e.feitas ? "Continuar as questões" : "Fazer as questões"}</button>
       </div>`;
   }
   // botões secundários: o Início tem uma só ação principal ("Começar agora"), regra do visual
@@ -199,5 +199,5 @@ function htmlPosLeituraDoResumo(u, resumoId){
   else linha = `Questões pós-leitura feitas: <strong>${pctTxt}</strong> de acerto (${e.acertos} de ${e.feitas}).` + (e.abaixoDoCorte
     ? ` Abaixo de ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}%: vale reler os trechos marcados acima — opcional.` : "");
   return `<div class="resumo-pos-leitura card-flat mt-1 flex justify-between items-center gap-1 quebra"><span class="text-sm">${linha}</span>${botao
-    ? `<button class="btn btn-primary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(resumoId)}')">${botao}</button>` : ""}</div>`;
+    ? `<button class="btn btn-primary btn-sm" onclick="iniciarQuestoesDoTema(${argJs(resumoId)})">${botao}</button>` : ""}</div>`;
 }

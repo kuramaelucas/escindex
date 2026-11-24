@@ -238,7 +238,7 @@ function _htmlCasoDoResumo(id){
   const alts = q.alternativas.map(a => {
     let cls = "qcard-alt";
     if(escolhida) cls += " disabled" + (a.id === q.gabarito ? " correct" : a.id === escolhida ? " incorrect" : "");
-    return `<div class="${cls}"${escolhida ? "" : ` onclick="responderCasoDoResumo('${escapeHtml(id)}','${escapeHtml(a.id)}')"`}><span class="alt-letter">${escapeHtml(a.id)}</span><span class="alt-text">${escapeHtml(a.texto)}</span></div>`;
+    return `<div class="${cls}"${escolhida ? "" : ` onclick="responderCasoDoResumo(${argJs(id)},${argJs(a.id)})"`}><span class="alt-letter">${escapeHtml(a.id)}</span><span class="alt-text">${escapeHtml(a.texto)}</span></div>`;
   }).join("");
   return `<div class="resumo-caso" id="resumo-caso-${escapeHtml(id)}">
     <div class="resumo-rotulo">Caso ilustrado · ${escapeHtml(q.banca || "")} ${escapeHtml(String(q.ano || ""))}</div>
@@ -247,7 +247,7 @@ function _htmlCasoDoResumo(id){
       <div class="resumo-caso-enunciado">${htmlComDestaques(q.enunciado, null, true)}</div>
       <div class="qcard-alts">${alts}</div>
       ${escolhida ? `<div class="feedback-box ${escolhida === q.gabarito ? "ok" : "no"}"><strong>Gabarito: ${escapeHtml(q.gabarito)}.</strong> ${htmlComDestaques(q.explicacaoGeral, null, true)}</div>
-        <div class="text-xs muted mt-1">Aqui é só para estudar: esta tentativa não conta no seu desempenho. <button class="link-btn" onclick="responderCasoDoResumo('${escapeHtml(id)}', null)">Tentar de novo</button></div>` : ""}
+        <div class="text-xs muted mt-1">Aqui é só para estudar: esta tentativa não conta no seu desempenho. <button class="link-btn" onclick="responderCasoDoResumo(${argJs(id)}, null)">Tentar de novo</button></div>` : ""}
     </details>
   </div>`;
 }
@@ -312,7 +312,7 @@ function resumoDoAssunto(assuntoId){
 }
 function botaoLerResumo(assuntoId){
   const r = resumoDoAssunto(assuntoId);
-  return r ? `<button class="btn btn-ghost btn-sm" onclick="lerResumoDoAssunto('${escapeHtml(r.id)}')" title="Abrir o resumo: ${escapeHtml(r.titulo)}">${iconeSvg("book")} Ler resumo</button>` : "";
+  return r ? `<button class="btn btn-ghost btn-sm" onclick="lerResumoDoAssunto(${argJs(r.id)})" title="Abrir o resumo: ${escapeHtml(r.titulo)}">${iconeSvg("book")} Ler resumo</button>` : "";
 }
 /* Cartão de Meu Desempenho (nos dois modos): os resumos dos assuntos em que a
    pessoa mais erra, com pelo menos 3 questões feitas — leitura dirigida pelo erro. */
@@ -326,7 +326,7 @@ function htmlResumosDosPontosFracos(u){
   return `<div class="card mb-2"><div class="card-title">${iconeSvg("book")} Leitura para os seus pontos fracos</div>
     <p class="text-sm muted">Os resumos dos assuntos em que você mais erra (com pelo menos 3 questões feitas). Dentro do resumo, a cor mostra o trecho exato.</p>
     ${fracos.map(x => `<div class="flex justify-between items-center gap-1 card-flat mb-1"><span class="text-sm">${escapeHtml(x.r.titulo)} <span class="text-xs muted">(erro em ${Math.round(x.e.e / x.e.n * 100)}% de ${x.e.n})${resumoLidoEm(u, x.r.id) ? " · lido em " + formatDataBR(resumoLidoEm(u, x.r.id)) : ""}</span></span>
-      <button class="btn btn-secondary btn-sm" onclick="lerResumoDoAssunto('${escapeHtml(x.r.id)}')">${iconeSvg("book")} Ler resumo</button></div>`).join("")}</div>`;
+      <button class="btn btn-secondary btn-sm" onclick="lerResumoDoAssunto(${argJs(x.r.id)})">${iconeSvg("book")} Ler resumo</button></div>`).join("")}</div>`;
 }
 function lerResumoDoAssunto(id){
   navigate("resumos");
@@ -385,10 +385,10 @@ function _htmlAreaDeResumos(k, lista, cartao){
   const vistos = todos ? lista : lista.filter(it => piores.has(it));
   const nome = k ? lista[0].area.nome : "Outros";
   const resto = lista.length - vistos.length;
-  return `<details class="resumo-area mt-2" id="resumo-area-${escapeHtml(k || "outros")}"${aberta ? " open" : ""} ontoggle="alternarAreaDeResumos('${escapeHtml(k)}', this.open)">
+  return `<details class="resumo-area mt-2" id="resumo-area-${escapeHtml(k || "outros")}"${aberta ? " open" : ""} ontoggle="alternarAreaDeResumos(${argJs(k)}, this.open)">
     <summary><h3 class="mb-1" style="display:inline">${escapeHtml(nome)} <span class="text-xs muted peso-400">(${lista.length})</span></h3></summary>
     ${vistos.map(cartao).join("")}
-    ${resto > 0 ? `<p class="text-xs muted mb-1">Mostrando os ${vistos.length} de pior desempenho. <button class="link-btn" onclick="mostrarTodosOsResumosDaArea('${escapeHtml(k)}', true)">Mostrar todos (${lista.length})</button></p>` : (todos && lista.length > RESUMO_POR_AREA ? `<p class="text-xs muted mb-1"><button class="link-btn" onclick="mostrarTodosOsResumosDaArea('${escapeHtml(k)}', false)">Mostrar só os ${RESUMO_POR_AREA} de pior desempenho</button></p>` : "")}
+    ${resto > 0 ? `<p class="text-xs muted mb-1">Mostrando os ${vistos.length} de pior desempenho. <button class="link-btn" onclick="mostrarTodosOsResumosDaArea(${argJs(k)}, true)">Mostrar todos (${lista.length})</button></p>` : (todos && lista.length > RESUMO_POR_AREA ? `<p class="text-xs muted mb-1"><button class="link-btn" onclick="mostrarTodosOsResumosDaArea(${argJs(k)}, false)">Mostrar só os ${RESUMO_POR_AREA} de pior desempenho</button></p>` : "")}
   </details>`;
 }
 function alternarAreaDeResumos(k, aberta){
@@ -427,7 +427,7 @@ function _renderListaDeResumos(cat){
         <div class="cresce-220"><div class="text-xs muted">${escapeHtml(it.r.area || "")}</div>
           <div class="card-title">${escapeHtml(it.r.titulo)} ${_marcaDoResumo(it.t)}</div>
           <div class="text-xs muted">${it.t === null ? "Você ainda não respondeu questões deste assunto" : RESUMO_NOMES[_nivelDoResumo(it.t)] + " — erro em " + Math.round(it.t * 100) + "% das " + it.n + " " + plural(it.n, "questão", "questões") + " que você fez"}${it.lido ? " · <strong>lido em " + formatDataBR(it.lido) + "</strong>" : " · nunca lido"}</div></div>
-        <button class="btn ${it.lido ? "btn-secondary" : "btn-primary"} btn-sm" onclick="abrirResumo('${escapeHtml(it.r.id)}')">${it.lido ? "Reler" : "Ler"}</button>
+        <button class="btn ${it.lido ? "btn-secondary" : "btn-primary"} btn-sm" onclick="abrirResumo(${argJs(it.r.id)})">${it.lido ? "Reler" : "Ler"}</button>
       </div></div>`;
   return `<div class="page-header"><h2>Resumos <span class="badge badge-accent">Beta</span></h2>
     <p>Textos de estudo escritos a partir das questões de prova. Cada parte do texto é ligada às questões que ela responde, e a cor mostra onde você mais erra.</p></div>
@@ -553,7 +553,7 @@ function _renderCaderno(r){
         <span class="text-xs muted">Letra</span>
         <button class="btn btn-ghost btn-sm" onclick="mudarFonteDoResumo(-1)" aria-label="Diminuir a letra">A−</button>
         <button class="btn btn-ghost btn-sm" onclick="mudarFonteDoResumo(1)" aria-label="Aumentar a letra">A+</button>
-        <button class="btn btn-ghost btn-sm" onclick="abrirModalFeedback('${escapeHtml(r.id)}')">${iconeSvg("message")} Feedback</button>
+        <button class="btn btn-ghost btn-sm" onclick="abrirModalFeedback(${argJs(r.id)})">${iconeSvg("message")} Feedback</button>
       </div>
     </div>
     <div class="resumo-layout${_sumarioDoResumoFechado() ? " lateral-fechada" : ""}">
@@ -578,8 +578,8 @@ function _renderCaderno(r){
         <div class="resumo-introducao">${intro}</div>${secs.join("")}</section>`).join("")}
       <p class="resumo-fim">Fontes a conferir: ${escapeHtml((r.fontes || []).map(x => x.texto).join("; "))}.</p>
       <div class="resumo-lido card-flat mt-2 flex justify-between items-center gap-1 quebra">${resumoLidoEm(u, r.id)
-        ? `<span class="text-sm">${iconeSvg("check")} Você marcou este resumo como lido em ${formatDataBR(resumoLidoEm(u, r.id))}.</span><button class="btn btn-ghost btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', false)">Desmarcar</button>`
-        : `<span class="text-sm">Terminou a leitura?</span><button class="btn btn-primary btn-sm" onclick="marcarResumoComoLido('${escapeHtml(r.id)}', true)">${iconeSvg("check")} Marcar como lido</button>`}</div>
+        ? `<span class="text-sm">${iconeSvg("check")} Você marcou este resumo como lido em ${formatDataBR(resumoLidoEm(u, r.id))}.</span><button class="btn btn-ghost btn-sm" onclick="marcarResumoComoLido(${argJs(r.id)}, false)">Desmarcar</button>`
+        : `<span class="text-sm">Terminou a leitura?</span><button class="btn btn-primary btn-sm" onclick="marcarResumoComoLido(${argJs(r.id)}, true)">${iconeSvg("check")} Marcar como lido</button>`}</div>
       ${htmlPosLeituraDoResumo(u, r.id)}
     </article>
     </div>`;
@@ -614,12 +614,12 @@ function _htmlSecaoDoResumo(r, cap, numero, { f, t }){
     const cls = n === "dominado" ? "" : n;
     // o link para a frase só aparece onde ajuda: no ponto em que a pessoa erra (ou sem dados, em todos)
     const fr = (!_resumoUltimas || cls) ? _fraseDoPontoChave(cap, ids || f.questoes) : null;
-    const ir = fr ? ` <button class="resumo-ir" onclick="irParaFraseDoResumo('${escapeHtml(fr.chave)}')" title="Ir à explicação no texto">no texto ↑</button>` : "";
+    const ir = fr ? ` <button class="resumo-ir" onclick="irParaFraseDoResumo(${argJs(fr.chave)})" title="Ir à explicação no texto">no texto ↑</button>` : "";
     return `<li class="${cls}"${cls ? ` title="${RESUMO_NOMES[cls]}"` : ""}>${_trechoDestacavel("span", bruto, `r:${r.id}:${f.id}:k${k}`, cap)}${ir}</li>`;
   }).join("");
   return `<section class="resumo-secao" id="resumo-s-${escapeHtml(f.id)}">
     <div class="resumo-sec-cab"><span class="resumo-num">${numero}</span><h3>${escapeHtml(f.titulo)}</h3>${_marcaDoResumo(t)}${_contagemDaSecao(f.questoes)}
-      <button class="resumo-ir" onclick="cartaoDaSecaoDoResumo('${escapeHtml(f.id)}')" title="Criar um flashcard desta seção">${iconeSvg("cards")} cartão</button></div>
+      <button class="resumo-ir" onclick="cartaoDaSecaoDoResumo(${argJs(f.id)})" title="Criar um flashcard desta seção">${iconeSvg("cards")} cartão</button></div>
     ${prosa}
     ${(f.figuras || []).map(fig => _htmlFiguraDoResumo(r, fig)).join("")}
     ${(f.casos || []).map(_htmlCasoDoResumo).join("")}

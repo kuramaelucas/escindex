@@ -470,7 +470,7 @@ function abrirModalFeedback(resumoId){
       : "Pode ser sobre qualquer coisa da plataforma. Você não está numa conta da nuvem: a mensagem fica neste navegador, e a coordenação só a vê entrando aqui."}</p>
     <div class="field"><label class="label">Tipo</label><select class="select" id="fbTipo"><option value="comentario">Comentário</option><option value="sugestao">Sugestão</option><option value="reclamacao">Reclamação</option></select></div>
     <div class="field"><label class="label">Mensagem</label><textarea class="textarea" id="fbTexto" style="min-height:110px" placeholder="Escreva à vontade..."></textarea></div>
-    <button class="btn btn-primary" onclick="enviarFeedbackGeral('${escapeHtml(resumoId || "")}')">Enviar</button>
+    <button class="btn btn-primary" onclick="enviarFeedbackGeral(${argJs(resumoId || "")})">Enviar</button>
   `);
 }
 function enviarFeedbackGeral(resumoId){

@@ -50,7 +50,7 @@ function renderEditorCalendario(grupo, opts){
 
   <div class="flex justify-between items-center mb-1">
     <div class="card-title sem-mb">Calendário desta turma${grupo.oficial?"":" (sequência já girada)"}</div>
-    ${podeEditar && opts.podeEditarSequencia ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(ano)}', null)">${iconeSvg("plus")} Adicionar bloco à sequência</button>` : ""}
+    ${podeEditar && opts.podeEditarSequencia ? `<button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco(${argJs(ano)}, null)">${iconeSvg("plus")} Adicionar bloco à sequência</button>` : ""}
   </div>
   ${blocosOrdenados.map(b=>`
     <div class="card mb-1" ${atual&&b.id===atual.id?'style="border-color:var(--accent)"':""}>
@@ -62,8 +62,8 @@ function renderEditorCalendario(grupo, opts){
           <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
         </div>
         ${podeEditar && opts.podeEditarSequencia ? `<div class="flex gap-1">
-          <button class="icon-btn" title="Editar" onclick="abrirFormularioBloco('${escapeHtml(ano)}','${b.id}')">${iconeSvg("edit")}</button>
-          <button class="icon-btn" title="Excluir" onclick="confirmarExcluirBloco('${escapeHtml(ano)}','${b.id}')">${iconeSvg("trash")}</button>
+          <button class="icon-btn" title="Editar" onclick="abrirFormularioBloco(${argJs(ano)},'${b.id}')">${iconeSvg("edit")}</button>
+          <button class="icon-btn" title="Excluir" onclick="confirmarExcluirBloco(${argJs(ano)},'${b.id}')">${iconeSvg("trash")}</button>
         </div>` : ""}
       </div>
     </div>`).join("")}
@@ -97,7 +97,7 @@ function renderBlocosConfig(){
     <div class="card-title">Ano da faculdade</div>
     <p class="text-sm muted mb-2">Escolha de qual ano você quer editar a sequência. Cada ano tem a sua, porque a matéria é diferente.</p>
     <div class="seletor-periodo">
-      ${anos.map(a=>`<button class="pill ${a===anoEscolhido?"active":""}" onclick="mudarAnoBlocos('${escapeHtml(a)}')">${escapeHtml(a)}</button>`).join("")}
+      ${anos.map(a=>`<button class="pill ${a===anoEscolhido?"active":""}" onclick="mudarAnoBlocos(${argJs(a)})">${escapeHtml(a)}</button>`).join("")}
     </div>
     ${(CONFIG.anosSemCalendario||[]).length ? `<p class="text-xs muted mt-2">${escapeHtml((CONFIG.anosSemCalendario||[]).join(", "))} não aparece aqui de propósito: quem já se formou não cursa calendário de faculdade. Continua podendo entrar numa turma — e aí acompanha o calendário do ano dela.</p>` : ""}
   </div>
@@ -106,8 +106,8 @@ function renderBlocosConfig(){
     <div class="flex justify-between items-center mb-1 quebra-gap">
       <div class="card-title sem-mb">Sequência de ${escapeHtml(anoEscolhido)} (${sequencia.length} blocos)</div>
       <div class="flex gap-1 quebra">
-        <button class="btn btn-secondary btn-sm" onclick="abrirModalViradaDeAno('${escapeHtml(anoEscolhido)}')">${iconeSvg("calendar")} Virada de ano letivo</button>
-        <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}', null)">${iconeSvg("plus")} Adicionar bloco</button>
+        <button class="btn btn-secondary btn-sm" onclick="abrirModalViradaDeAno(${argJs(anoEscolhido)})">${iconeSvg("calendar")} Virada de ano letivo</button>
+        <button class="btn btn-primary btn-sm" onclick="abrirFormularioBloco(${argJs(anoEscolhido)}, null)">${iconeSvg("plus")} Adicionar bloco</button>
       </div>
     </div>
     <p class="text-sm muted mb-2">Esta é a ordem pela qual todas as turmas deste ano passam, e as datas são as janelas do calendário. As setas mudam a ordem: o conteúdo troca de janela e o rodízio inteiro anda junto. A letra ao lado de cada bloco é a <strong>turma que começa nele</strong>.</p>
@@ -122,10 +122,10 @@ function renderBlocosConfig(){
             <div class="text-xs muted mt-1">${b.especialidadeIds.map(id=>escapeHtml(nomeEspecialidade(id))).join(", ")}</div>
           </div>
           <div class="flex gap-1">
-            <button class="icon-btn" title="Subir na sequência" ${i===0?"disabled":""} onclick="moverBlocoNaSequencia('${escapeHtml(anoEscolhido)}','${b.id}',-1)">${iconeSvg("arrow-up")}</button>
-            <button class="icon-btn" title="Descer na sequência" ${i===sequencia.length-1?"disabled":""} onclick="moverBlocoNaSequencia('${escapeHtml(anoEscolhido)}','${b.id}',1)">${iconeSvg("arrow-down")}</button>
-            <button class="icon-btn" title="Editar" onclick="abrirFormularioBloco('${escapeHtml(anoEscolhido)}','${b.id}')">${iconeSvg("edit")}</button>
-            <button class="icon-btn" title="Excluir" onclick="confirmarExcluirBloco('${escapeHtml(anoEscolhido)}','${b.id}')">${iconeSvg("trash")}</button>
+            <button class="icon-btn" title="Subir na sequência" ${i===0?"disabled":""} onclick="moverBlocoNaSequencia(${argJs(anoEscolhido)},'${b.id}',-1)">${iconeSvg("arrow-up")}</button>
+            <button class="icon-btn" title="Descer na sequência" ${i===sequencia.length-1?"disabled":""} onclick="moverBlocoNaSequencia(${argJs(anoEscolhido)},'${b.id}',1)">${iconeSvg("arrow-down")}</button>
+            <button class="icon-btn" title="Editar" onclick="abrirFormularioBloco(${argJs(anoEscolhido)},'${b.id}')">${iconeSvg("edit")}</button>
+            <button class="icon-btn" title="Excluir" onclick="confirmarExcluirBloco(${argJs(anoEscolhido)},'${b.id}')">${iconeSvg("trash")}</button>
           </div>
         </div>
       </div>`).join("") || '<p class="text-sm muted">Este ano ainda não tem nenhum bloco. Adicione o primeiro.</p>'}
@@ -254,11 +254,11 @@ function abrirModalViradaDeAno(ano){
     ${cabecalhoJanela(`Virada de ano letivo — ${escapeHtml(ano)}`)}
     <p class="text-sm muted mb-2">Informe quando o <strong>primeiro bloco</strong> começa no ano letivo novo. Todas as janelas andam o mesmo tanto de dias, mantendo a duração de cada bloco e os intervalos entre eles. Nada mais muda: mesmos blocos, mesma ordem, mesmos grupos do rodízio.</p>
     <div class="field" style="max-width:260px"><label class="label">Nova data de início do bloco 1</label>
-      <input class="input" type="date" id="viradaInicio" value="${seq[0].dataInicio}" oninput="atualizarPreviaVirada('${escapeHtml(ano)}')">
+      <input class="input" type="date" id="viradaInicio" value="${seq[0].dataInicio}" oninput="atualizarPreviaVirada(${argJs(ano)})">
       <div class="hint mt-1">Hoje o bloco 1 começa em ${formatDataBR(seq[0].dataInicio)}.</div>
     </div>
     <div id="viradaPrevia"></div>
-    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="aplicarViradaDeAno('${escapeHtml(ano)}')">Aplicar as novas datas</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
+    <div class="flex gap-1 mt-2"><button class="btn btn-primary" onclick="aplicarViradaDeAno(${argJs(ano)})">Aplicar as novas datas</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
   atualizarPreviaVirada(ano);
 }
@@ -361,7 +361,7 @@ function abrirFormularioBloco(ano, blocoId){
     <div class="field"><label class="label">Especialidades trabalhadas neste bloco</label>
       ${htmlEscolhaEspecialidades(b?b.especialidadeIds:[], "fbEsp")}
     </div>
-    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoFormulario('${escapeHtml(ano)}','${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
+    <div class="flex gap-1 mt-1"><button class="btn btn-primary" onclick="salvarBlocoFormulario(${argJs(ano)},'${blocoId||""}')">Salvar</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>
   `, "lg");
 }
 function salvarBlocoFormulario(ano, blocoId){
@@ -404,7 +404,7 @@ function confirmarExcluirBloco(ano, blocoId){
   ano = anoDeReferencia(ano);
   const seq = db.sequenciasAno[ano] || [];
   if(seq.length<=1){ toast("A sequência precisa ter pelo menos um bloco.", "err"); return; }
-  abrirModal(`${cabecalhoJanela(`Excluir bloco de ${escapeHtml(ano)}`)}<p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado('${escapeHtml(ano)}','${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
+  abrirModal(`${cabecalhoJanela(`Excluir bloco de ${escapeHtml(ano)}`)}<p>Isso remove o bloco da sequência de <strong>${escapeHtml(ano)}</strong>, para todas as turmas desse ano. Simulados já recomendados para ele continuam existindo, só deixam de ter um bloco de referência. Esta ação não pode ser desfeita.</p><div class="flex gap-1 mt-2"><button class="btn btn-danger" onclick="excluirBlocoConfirmado(${argJs(ano)},'${blocoId}')">Excluir mesmo assim</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button></div>`);
 }
 function excluirBlocoConfirmado(ano, blocoId){
   ano = anoDeReferencia(ano);
@@ -582,7 +582,7 @@ function mostrarTarjaVersaoNova(nova){
   tarja.id = "tarjaVersaoNova";
   tarja.className = "aviso-dados";
   tarja.innerHTML = `<strong>Há uma versão nova da plataforma.</strong> Esta aba ainda está com a anterior.
-    Atualizar não apaga nada — o seu estudo está salvo. <button class="btn btn-primary btn-sm" style="margin-left:.5rem" onclick="recarregarVersaoNova('${escapeHtml(nova)}')">Atualizar agora</button>`;
+    Atualizar não apaga nada — o seu estudo está salvo. <button class="btn btn-primary btn-sm" style="margin-left:.5rem" onclick="recarregarVersaoNova(${argJs(nova)})">Atualizar agora</button>`;
   document.body.insertBefore(tarja, document.body.firstChild);
 }
 /* Para quem não consegue entrar: as duas coisas que o navegador guarda e que

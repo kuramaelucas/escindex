@@ -259,7 +259,7 @@ function renderSimuladoCard(s){
         ? `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="As questões deste simulado estão no seu estudo geral">${iconeSvg("check")} No meu estudo · retirar</button>`
         : `<button class="btn btn-ghost btn-sm" onclick="alternarSimuladoNoEstudo('${s.id}')" title="Hoje estas questões ficam fora das suas trilhas, da revisão e dos filtros do Estudar">Trazer para o estudo geral</button>`) : ""}
       ${podeGerirConteudo() ? `<button class="btn btn-ghost btn-sm" onclick="abrirRenomearSimulado('${s.id}')" title="Mudar o nome deste simulado">${iconeSvg("edit")} Renomear</button>` : ""}
-      ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', '${escapeHtml(s.titulo).replace(/'/g,"&#39;")}')" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
+      ${ehEquipeVendoSimulado() ? `<button class="btn btn-ghost btn-sm" onclick="abrirDesempenhoDosAlunos('${s.id}', ${argJs(s.titulo)})" title="Notas dos alunos, somadas e anônimas">${iconeSvg("chart")} Desempenho dos alunos</button>` : ""}
     </div>
   </div>`;
 }
@@ -537,7 +537,7 @@ function perguntarRecomecarSimulado(chave, chamadaRecomecar){
   abrirModalTitulado("Você já começou este simulado", `
     <p class="text-sm">Há ${p.feitas} de ${p.total} questões respondidas, guardadas desde ${formatDataBR(g.salvaEm)}. Recomeçar apaga essas respostas.</p>
     <div class="flex gap-1 mt-2 quebra">
-      <button class="btn btn-primary" onclick="fecharModal();continuarSimulado('${escapeHtml(chave).replace(/'/g,"&#39;")}')">Continuar de onde parei</button>
+      <button class="btn btn-primary" onclick="fecharModal();continuarSimulado(${argJs(chave)})">Continuar de onde parei</button>
       <button class="btn btn-danger" onclick="fecharModal();${chamadaRecomecar}">Recomeçar do zero</button>
     </div>`);
 }

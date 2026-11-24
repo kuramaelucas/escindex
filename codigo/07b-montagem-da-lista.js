@@ -89,7 +89,7 @@ function _htmlArvoreDaMontagem(arvore, est){
 function _htmlEtiquetasDaMontagem(arvore, est){
   const lista = _etiquetasDaMontagem(arvore, est.marcados);
   return lista.length
-    ? lista.map(no => `<span class="chip-filtro">${escapeHtml(no.nome)}<button type="button" class="chip-x" onclick="marcarNoDaMontagem('${escapeHtml(no.id)}')" aria-label="Tirar ${escapeHtml(no.nome)}">${iconeSvg("x")}</button></span>`).join("")
+    ? lista.map(no => `<span class="chip-filtro">${escapeHtml(no.nome)}<button type="button" class="chip-x" onclick="marcarNoDaMontagem(${argJs(no.id)})" aria-label="Tirar ${escapeHtml(no.nome)}">${iconeSvg("x")}</button></span>`).join("")
       + `<button type="button" class="link-btn text-xs" onclick="limparMontagem()">limpar tudo</button>`
     : `<span class="text-xs muted">Nada marcado: valem todos os assuntos.</span>`;
 }

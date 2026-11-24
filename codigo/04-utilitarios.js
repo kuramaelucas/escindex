@@ -20,6 +20,14 @@ function flexionar(n, texto){
   });
 }
 
+/* Argumento de texto para um evento inline: onclick="f(${argJs(id)})".
+   escapeHtml sozinho entre aspas simples NÃO basta: o navegador desfaz o
+   &#39; antes de rodar o atributo, e uma aspa no valor fecharia a string e
+   injetaria código. JSON.stringify faz a string JS; escapeHtml protege o
+   atributo (as aspas duplas viram &quot; e voltam ao rodar). */
+function argJs(v){
+  return escapeHtml(JSON.stringify(v===undefined || v===null ? "" : String(v)));
+}
 function escapeHtml(str){
   if(str===undefined || str===null) return "";
   return String(str).replace(/[&<>"']/g, function(c){
