@@ -165,6 +165,31 @@ Veja também: **Insuficiência cardíaca do adulto** (a cardiopatia por trás de
       ],
     },
     {
+      id: "pcr", titulo: "Parada cardiorrespiratória no adulto",
+      introducao: `[[No adulto, a parada súbita fora do hospital é quase sempre **arrítmica e isquêmica**: um **infarto** desencadeia **fibrilação ventricular**. A FV é tratável por choque, mas cada minuto sem desfibrilação reduz a sobrevida em cerca de 10%; por isso o elemento-chave é o **tempo até a desfibrilação**, e enquanto ela não chega, **compressões** mantêm algum fluxo ao cérebro e ao coração.|q-iamspe2025-003,q-amrigs2021-002,q-fmabc2021-026]] Na criança e no afogado a parada é hipóxica (ver o resumo de emergências pediátricas).`,
+      fragmentos: [
+        { id: "pcr-rcp", titulo: "RCP de alta qualidade e monitorização", conferir: true,
+          questoes: ["q-fmabc2021-026","q-card-22","q-amrigs2021-002","q-einstein2024-007","q-sessp2022-002","q-unifesp2025-023"],
+          prosa: `[[Leigo diante de alguém que cai irresponsivo e sem respiração normal: chamar ajuda, pedir o **DEA** e começar **compressões**. Compressão de alta qualidade: **100 a 120 por minuto**, **5 a 6 cm** de profundidade, **retorno completo do tórax**, mínimas interrupções, troca de quem comprime a cada 2 minutos; no time, um **coach** vigia a qualidade.|q-fmabc2021-026,q-card-22,q-einstein2024-007]] [[Com o paciente intubado, a qualidade se mede: **ETCO2 ≥ 10–20 mmHg** e **pressão diastólica ≥ 20–25 mmHg** indicam compressões efetivas; abaixo disso, **ajustar profundidade e frequência**. ETCO2 que sobe de repente sugere retorno da circulação.|q-sessp2022-002,q-unifesp2025-023]]`,
+          texto: `- Leigo: **compressões e DEA**. {q-fmabc2021-026}
+- **100–120/min, 5–6 cm**, retorno completo; coach vigia. {q-card-22,q-einstein2024-007}
+- Chave da sobrevida: **tempo até o choque**. {q-amrigs2021-002}
+- Diastólica 25 e ETCO2 adequado: **continuar**; baixos: **melhorar compressões**. {q-sessp2022-002,q-unifesp2025-023}` },
+        { id: "pcr-ritmos", titulo: "Ritmos chocáveis e não chocáveis, drogas e causas", conferir: true,
+          questoes: ["q-card-21","q-unesp2025-050","q-amrigs2022-011","q-famema2023-039","q-card-23","q-iamspe2025-003"],
+          prosa: `[[**Chocáveis**: **FV e TV sem pulso** — choque o quanto antes, 2 minutos de RCP, checar ritmo, novo choque. Marca-passo não impede: **desfibrilar** com as pás afastadas do gerador. **Adrenalina 1 mg** a cada 3–5 minutos depois do 2º choque e **amiodarona 300 mg, depois 150 mg** (ou lidocaína) na FV refratária.|q-card-21,q-unesp2025-050,q-amrigs2022-011,q-famema2023-039]] [[**Não chocáveis** (assistolia e **AESP**): RCP e **adrenalina** assim que possível, e procurar as **causas reversíveis** — hipovolemia, hipóxia, H+ (acidose), hipo/hipercalemia, hipotermia; tamponamento, tensão (pneumotórax), trombose coronária e pulmonar, tóxicos. No adulto que para durante esforço, pense em **infarto**.|q-card-23,q-iamspe2025-003]]`,
+          texto: `- Chocáveis: **FV e TV sem pulso**. {q-card-21}
+- FV: **choque, RCP, choque, adrenalina**; amiodarona 300 → 150. {q-unesp2025-050,q-famema2023-039}
+- Marca-passo: **desfibrilar** mesmo assim. {q-amrigs2022-011}
+- AESP: **causas reversíveis** (5H e 5T). {q-card-23}
+- FV no esforço: **infarto**. {q-iamspe2025-003}` },
+        { id: "pcr-pos", titulo: "Depois do retorno da circulação", conferir: true,
+          questoes: ["q-adap25-023"],
+          prosa: `[[Quem volta da parada e **não acorda** recebe **controle direcionado da temperatura**: alvo constante entre **32 e 37,5 °C**, e sobretudo **evitar a febre**, que piora a lesão cerebral; além de manter PAM ≥ 65, oxigenação sem hiperóxia e investigar a causa (cateterismo se infarto).|q-adap25-023]]`,
+          texto: `- Comatoso após RCE: **temperatura 32–37,5 °C, evitar febre**. {q-adap25-023}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `As diretrizes mudaram doses e escores, e algumas provas cobraram a edição anterior ou uma leitura particular do caso. A regra vem primeiro; a divergência, depois.`,
       fragmentos: [

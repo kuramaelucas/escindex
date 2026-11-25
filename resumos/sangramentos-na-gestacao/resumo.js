@@ -123,6 +123,25 @@ Veja também: **Pré-natal**, **Trabalho de parto e parto** (manejo ativo do ter
       ],
     },
     {
+      id: "trofoblastica", titulo: "Doença trofoblástica gestacional",
+      introducao: `[[A doença trofoblástica nasce de um **erro de fertilização**. Na **mola completa**, um óvulo **sem núcleo** é fecundado e o genoma é todo **paterno (46,XX)**: não há embrião, e as **vilosidades do córion** incham em vesículas ("cachos de uva", "flocos de neve" no ultrassom). Na **mola parcial**, um óvulo normal recebe dois espermatozoides (**triploide**): pode haver feto, malformado. Sem embrião para limitar, o trofoblasto prolifera e produz **hCG muito alto**.|q-amrigs2020-048,q-tp20202-006,q-tp20231-100]] [[O hCG alto explica o quadro da mola completa: **útero maior que a idade gestacional**, **sangramento escuro**, **hiperêmese**, **pré-eclâmpsia antes de 20 semanas**, hipertireoidismo (o hCG estimula o receptor do TSH) e cistos tecaluteínicos; e o tecido pode **embolizar** para o pulmão no esvaziamento.|q-usprp2024-100,q-sessp2026-061,q-unesp2026-029]]`,
+      fragmentos: [
+        { id: "dtg-mola", titulo: "Mola: diagnóstico, esvaziamento e seguimento", conferir: true,
+          questoes: ["q-amrigs2020-048","q-tp20202-006","q-tp20231-100","q-usprp2024-100","q-sessp2026-061","q-unesp2026-029","q-adap25-075","q-uspsp5-041","q-unicampdis2025-040"],
+          prosa: `[[Tratamento: **esvaziamento uterino por vácuo-aspiração** (com dilatação do colo), não curetagem nem indução com misoprostol, que aumentam embolização e perfuração.|q-usprp2024-100]] [[Seguimento: **hCG semanal** até negativar e ficar normal **3 semanas seguidas**, depois **mensal por 6 meses** (mola completa), com **contracepção eficaz** (hormonal serve; DIU não antes de negativar), porque uma gravidez confundiria o hCG.|q-adap25-075,q-uspsp5-041,q-unicampdis2025-040]]`,
+          texto: `- Mola completa: **46,XX paterno**, sem embrião, vilosidade coriônica hidrópica. {q-amrigs2020-048,q-tp20202-006,q-tp20231-100}
+- Útero grande, hiperêmese, **pré-eclâmpsia < 20 semanas**; risco de **embolização**. {q-sessp2026-061,q-unesp2026-029}
+- Tratar: **vácuo-aspiração**. {q-usprp2024-100}
+- Seguir: **hCG semanal** até 3 normais, depois mensal 6 meses, com **contracepção**. {q-adap25-075,q-uspsp5-041,q-unicampdis2025-040}` },
+        { id: "dtg-neoplasia", titulo: "Neoplasia trofoblástica: quando tratar", conferir: true,
+          questoes: ["q-didepm-068","q-usprp2022-056","q-einstein2027-048","q-unifesp2025-075"],
+          prosa: `[[Neoplasia trofoblástica gestacional (FIGO) depois da mola: **hCG em platô** (4 valores em 3 semanas), **em ascensão** (3 valores em 2 semanas), persistente por 6 meses, ou **coriocarcinoma** na histologia. Estadia-se (FIGO) e pontua-se o risco (OMS): **baixo risco** (escore ≤ 6) → **quimioterapia com agente único** (**metotrexato** ou actinomicina D); **alto risco** (≥ 7, metástase de fígado ou cérebro) → **poliquimioterapia EMA-CO**. Cura-se mesmo metastática.|q-didepm-068,q-usprp2022-056,q-einstein2027-048,q-unifesp2025-075]]`,
+          texto: `- hCG em **platô ou subindo**: neoplasia trofoblástica. {q-didepm-068,q-usprp2022-056}
+- Baixo risco: **metotrexato** (agente único); alto risco: **EMA-CO**. {q-didepm-068,q-einstein2027-048}
+- Coriocarcinoma na curetagem: **estadiar e quimioterapia**. {q-unifesp2025-075}` },
+      ],
+    },
+    {
       id: "comparativo", titulo: "Tabela comparativa",
       introducao: `As três causas de sangramento da segunda metade lado a lado.`,
       fragmentos: [

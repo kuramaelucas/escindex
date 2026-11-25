@@ -96,6 +96,51 @@ Veja também: **Cuidados perioperatórios**, **Anafilaxia**, **Ventilação mec�
       ],
     },
     {
+      id: "via-aerea", titulo: "Via aérea e intubação",
+      introducao: `[[Intubar um doente grave é o momento mais perigoso do atendimento: o paciente está **hipoxêmico**, muitas vezes **sem jejum**, e os sedativos tiram de uma vez o tônus vascular e o impulso respiratório que o mantinham. As complicações mais frequentes são **aspiração**, **hipotensão**, **hipoxemia** e **intubação esofágica**; quase todo o protocolo existe para evitá-las.|q-einstein2021-020,q-uspsp5-020]]`,
+      fragmentos: [
+        { id: "va-sequencia", titulo: "Sequência rápida e a escolha das drogas", conferir: true,
+          questoes: ["q-usp2022-070","q-einstein2023-022","q-unesp2024-079","q-unicamp2023-018","q-uspsp3-118","q-sessp2025-030","q-usp2022-012","q-unifesp2024-003","q-famema2025-091","q-adap24-002","q-sirio2027-006","q-unifesp2022-003","q-fmabc2023-017","q-fmabc2022-002","q-einstein2021-020","q-uspsp5-020","q-usp2022-013"],
+          prosa: `[[**Sequência rápida** é para o **estômago cheio** (abdome obstrutivo, trauma, jejum desconhecido): **pré-oxigenação com O2 a 100%**, hipnótico e bloqueador neuromuscular **em sequência, sem ventilar** com máscara até intubar, e pressão cricoide (**Sellick**) quando se usa. A pressão na cartilagem **tireoide para trás, para cima e para a direita (BURP)** é outra coisa: melhora a **visão das cordas vocais**. O agitado que não deixa pré-oxigenar recebe **sequência atrasada**: cetamina primeiro, oxigênio, depois o bloqueador.|q-usp2022-070,q-einstein2023-022,q-unesp2024-079,q-unicamp2023-018,q-uspsp3-118]] [[Hipnótico conforme a hemodinâmica: **etomidato** (0,3 mg/kg, início em 15–45 s) **não deprime o coração** — cardiopata, politrauma, insuficiência respiratória (pode dar mioclonias); **cetamina** mantém a pressão e **broncodilata** — **asma grave**, sepse com hipotensão (cerca de 1 mg/kg). Bloqueador: **succinilcolina** (1–1,5 mg/kg, rápida e curta) ou **rocurônio**; a succinilcolina **sobe o potássio** e é contraindicada em **hipercalemia, doença renal com potássio alto, miopatias, hipertermia maligna** e queimado/imobilizado depois de 24–48 h.|q-sessp2025-030,q-usp2022-012,q-unifesp2024-003,q-famema2025-091,q-adap24-002,q-sirio2027-006,q-unifesp2022-003,q-fmabc2023-017,q-fmabc2022-002]] [[Depois de intubar, **confirme pela capnografia**: sem curva de CO2, é **intubação esofágica**. O paciente com **acidose metabólica grave** (cetoacidose) depende da hiperventilação para compensar; se o ventilador não repete essa ventilação, o pH despenca e ele para.|q-usp2022-013,q-uspsp5-020,q-einstein2021-020]]`,
+          texto: `- Estômago cheio: **O2 100% e sequência rápida** (Sellick). {q-usp2022-070,q-einstein2023-022,q-unesp2024-079}
+- BURP: **melhora a visão** das cordas. {q-unicamp2023-018}
+- Agitado: **sequência atrasada**. {q-uspsp3-118}
+- Trauma/cardiopata: **etomidato + succinilcolina**. {q-sessp2025-030,q-usp2022-012,q-unifesp2024-003,q-famema2025-091}
+- Asma grave e sepse hipotensa: **cetamina**. {q-adap24-002,q-sirio2027-006}
+- Succinilcolina contraindicada: **hiperK, miopatia, hipertermia maligna**; alternativa rocurônio. {q-unifesp2022-003,q-fmabc2023-017}
+- Etomidato: início em **15–45 s**. {q-fmabc2022-002}
+- Sem CO2 na capnografia: **esofágica**; cetoacidose intubada: **acidose piora**. {q-usp2022-013,q-uspsp5-020}
+- Complicação mais frequente (a prova): **aspiração**. {q-einstein2021-020}` },
+        { id: "va-dificil", titulo: "Via aérea difícil e plano de resgate", conferir: true,
+          questoes: ["q-tp20252-101","q-tp20261-008","q-unesp2022-080","q-sessp2024-040","q-adap22-003","q-adap24-040"],
+          prosa: `[[Via aérea **difícil prevista** (abertura de boca e pescoço limitados, obeso com apneia do sono, massa cervical): **intubação acordado com fibroscópio flexível** e anestesia tópica, mantendo a respiração e os reflexos.|q-tp20252-101,q-tp20261-008,q-unesp2022-080]] [[Não se consegue intubar: **dispositivo supraglótico** (máscara laríngea, combitubo) para oxigenar. **Não intuba e não oxigena**: **cricotireoidostomia cirúrgica** (bisturi, bougie e tubo). Na gestante com plaquetopenia grave, o neuroeixo é proibido (hematoma espinhal): **anestesia geral**.|q-sessp2024-040,q-adap22-003,q-adap24-040]]`,
+          texto: `- Difícil prevista: **intubação acordado com fibroscópio**. {q-tp20252-101,q-tp20261-008,q-unesp2022-080}
+- Falhou a intubação: **supraglótico**; não oxigena: **cricotireoidostomia**. {q-sessp2024-040,q-adap22-003}
+- Plaquetas 48 mil: **geral**, não raqui. {q-adap24-040}` },
+      ],
+    },
+    {
+      id: "farmacos-analgesia", titulo: "Anestésicos e analgesia",
+      introducao: `[[O anestésico local **bloqueia o canal de sódio** do axônio e impede o potencial de ação. Ele entra no nervo na forma **não ionizada**; no tecido **inflamado ou infectado, o pH é ácido**, mais droga fica ionizada e o bloqueio falha. O propofol age no receptor **GABA-A** (abre o canal de cloreto e hiperpolariza o neurônio); o **sevoflurano** tem **baixa solubilidade no sangue**, por isso indução e despertar rápidos.|q-amrigs2021-031,q-tp20251-079,q-tp20261-071,q-iamspe2025-004,q-fmabc2026-026]]`,
+      fragmentos: [
+        { id: "an-local", titulo: "Anestesia local: dose e onde usar", conferir: true,
+          questoes: ["q-adap23-093","q-unesp2023-072","q-unicampdis2024-079","q-unesp2024-018","q-usp2024-047","q-amrigs2021-036","q-amrigs2021-031","q-tp20251-079","q-tp20261-071","q-unifesp2023-093"],
+          prosa: `[[**Lidocaína**: até **4,5 mg/kg sem vasoconstritor** (máximo 300 mg) e **7 mg/kg com** (máximo 500 mg). Para calcular o volume: a solução a **1% tem 10 mg/mL**, a **2%, 20 mg/mL** — 70 kg × 4,5 = 315 mg = cerca de 15 mL a 2%. Em **dedo**, o ensino clássico é **bloqueio troncular sem vasoconstritor**.|q-adap23-093,q-unesp2023-072,q-unicampdis2024-079,q-unesp2024-018,q-usp2024-047,q-amrigs2021-036]] [[No idoso frágil, raquianestesia com **dose baixa de bupivacaína isobárica** (que não migra com a posição) evita a hipotensão.|q-unifesp2023-093]]`,
+          texto: `- Lidocaína: **4,5 mg/kg sem**, 7 com vasoconstritor; 2% = 20 mg/mL. {q-adap23-093,q-unesp2023-072,q-unicampdis2024-079}
+- Dedo: **troncular sem vasoconstritor**. {q-unesp2024-018,q-usp2024-047,q-amrigs2021-036}
+- Ação: **canal de sódio**; falha no **pH ácido** da infecção. {q-amrigs2021-031,q-tp20251-079,q-tp20261-071}
+- Idoso: **bupivacaína isobárica em dose baixa**. {q-unifesp2023-093}` },
+        { id: "an-analgesia", titulo: "Sedação para procedimento e analgesia pós-operatória", conferir: true,
+          questoes: ["q-usprp2022-093","q-unicamp2022-033","q-iamspe2025-004","q-fmabc2026-026","q-amrigs2023-049","q-usprp2021-029","q-einstein2025-030","q-usprp2025-055","q-einstein2026-005","q-adap21-029"],
+          prosa: `[[Na criança que precisa de sutura ou redução, a **cetamina** dá **sedação dissociativa** com analgesia, preservando a respiração e os reflexos.|q-usprp2022-093,q-unicamp2022-033]] [[Analgesia pós-operatória é **multimodal**: dipirona ou paracetamol, anti-inflamatório (cetorolaco), cetamina em dose baixa, e **opioide** quando a dor é intensa (a criança com dor forte depois de fratura recebe opioide; o alérgico à dipirona, tramadol). **Dor neuropática** depois de cirurgia (queimação, choque, alodínia) responde a **gabapentina**; o uso crônico de opioide que perdeu efeito sugere tolerância ou hiperalgesia: **reduzir o opioide** e associar gabapentina.|q-amrigs2023-049,q-usprp2021-029,q-einstein2025-030,q-usprp2025-055,q-einstein2026-005]] [[A **cefaleia pós-raqui** é postural (piora sentada, melhora deitada): começa com **repouso, hidratação, analgésicos e cafeína**; persiste → **tampão sanguíneo peridural**.|q-adap21-029]]`,
+          texto: `- Sedação na criança: **cetamina**. {q-usprp2022-093,q-unicamp2022-033}
+- Propofol: **GABA-A**; sevoflurano: **baixa solubilidade**. {q-iamspe2025-004,q-fmabc2026-026}
+- Multimodal; dor intensa: **opioide**. {q-amrigs2023-049,q-usprp2021-029,q-einstein2025-030}
+- Dor neuropática pós-op: **gabapentina**; opioide sem efeito: **reduzir**. {q-usprp2025-055,q-einstein2026-005}
+- Cefaleia pós-raqui: conservador, **tampão** se persistir. {q-adap21-029}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

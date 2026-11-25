@@ -80,6 +80,24 @@ Veja também: **Asma**, **Tabagismo**, **Insuficiência respiratória e ventila�
       ],
     },
     {
+      id: "bronquiectasias", titulo: "Bronquiectasias e fibrose cística",
+      introducao: `[[Bronquiectasia é **dilatação permanente dos brônquios** por um ciclo vicioso: infecção e inflamação destroem a parede, o muco para de ser limpo, e o muco parado infecta de novo. Causas: **pós-infecciosa** (tuberculose, coqueluche, pneumonia grave, Covid), **fibrose cística**, imunodeficiência, discinesia ciliar, **aspergilose broncopulmonar alérgica**. Quadro: **tosse produtiva diária** de anos, pneumonias **sempre no mesmo lugar**, **hemoptise**, baqueteamento.|q-adap22-016,q-unifesp2022-016,q-tp20251-024,q-tp20261-062]]`,
+      fragmentos: [
+        { id: "bq-diagnostico", titulo: "Diagnóstico e tratamento", conferir: true,
+          questoes: ["q-adap22-016","q-unifesp2022-016","q-tp20251-024","q-tp20261-062","q-usprp2027-064","q-sirio2027-012","q-unicampdis2024-012"],
+          prosa: `[[O exame é a **tomografia de alta resolução**: brônquio mais largo que a artéria ao lado (**sinal do anel de sinete**), sem afilamento até a periferia. Hemoptise recorrente numa **bronquiectasia localizada** (lobo destruído por tuberculose antiga) com boa função pulmonar: **ressecar o lobo** (lobectomia).|q-adap22-016,q-unifesp2022-016,q-tp20251-024,q-tp20261-062,q-usprp2027-064]] [[Asmático com **tampões de muco acastanhados** e piora apesar do tratamento: **aspergilose broncopulmonar alérgica** — pedir IgE total, IgE específica e eosinófilos. Enfisematoso com **árvore em brotamento** e cultura positiva para micobactéria: **micobactéria não tuberculosa**.|q-sirio2027-012,q-unicampdis2024-012]]`,
+          texto: `- Tosse produtiva crônica, pneumonia no mesmo lobo: **TC de alta resolução**. {q-adap22-016,q-tp20251-024,q-tp20261-062}
+- Hemoptise + infecções de repetição: **bronquiectasias**; localizada: **lobectomia**. {q-unifesp2022-016,q-usprp2027-064}
+- Asmático com plugs acastanhados: **ABPA**, pedir exames. {q-sirio2027-012}
+- Árvore em brotamento no enfisematoso: **micobactéria não tuberculosa**. {q-unicampdis2024-012}` },
+        { id: "bq-fibrose-cistica", titulo: "Fibrose cística", conferir: true,
+          questoes: ["q-scmsp2022-032","q-sessp2024-060","q-usp2023-085","q-uspsp3-042"],
+          prosa: `[[Na fibrose cística, o canal de cloreto **CFTR** não funciona: o muco fica desidratado e espesso nos brônquios, no pâncreas (insuficiência exócrina, desnutrição) e no suor (**cloro alto**). A **triagem neonatal** (tripsinogênio imunorreativo) permite diagnosticar antes dos sintomas; confirma-se com **dois testes do suor com cloro ≥ 60 mmol/L** — o teste genético ajuda, mas **não é obrigatório**.|q-scmsp2022-032,q-sessp2024-060]] [[Exacerbação: antibiótico que cubra a flora do paciente (*Pseudomonas*: ceftazidima + amicacina; MRSA: linezolida ou vancomicina) por 14 dias, sem trocar o esquema que está funcionando.|q-usp2023-085,q-uspsp3-042]]`,
+          texto: `- Diagnóstico: **dois testes do suor** (genética não é obrigatória); triagem neonatal antecipa. {q-scmsp2022-032,q-sessp2024-060}
+- Exacerbação com *Pseudomonas* e MRSA: **ceftazidima + amicacina + linezolida**; manter se melhorando. {q-usp2023-085,q-uspsp3-042}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [
