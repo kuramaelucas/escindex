@@ -150,7 +150,9 @@ export function montarTodos(questoes){
   const { cobertos, incorporadoEm } = assuntosCobertosPorResumo(questoes, resumos.map(([, r]) => r));
   for(const [tema, r] of resumos){
     const meus = Object.keys(incorporadoEm).filter(a => incorporadoEm[a] === r.id).sort();
-    const deIncorporado = new Set(meus);
+    // a base (as 20) não usa questão de NENHUM assunto incorporado, mesmo que ela esteja ligada a
+    // este resumo e o assunto pertença a outro: senão incorporar um assunto mexeria nas 20 de um vizinho
+    const deIncorporado = new Set(Object.keys(incorporadoEm));
     const incorporadas = [];
     for(const a of meus){
       const soDele = new Map([...porId].filter(([, q]) => q.assuntoId === a));
