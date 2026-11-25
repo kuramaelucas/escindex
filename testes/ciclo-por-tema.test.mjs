@@ -79,7 +79,11 @@ test("ciclo: reparar por tema vai direto às questões; Formado 'como está' fic
       u.modoDeInicio = "reparar-tema"; const c = cicloDoAluno(u);
       const semLeitura = !leituraObrigatoria(u, c.atual);
       u.modoDeInicio = "zero"; const zero = caminhoDoCiclo(u);
-      const chaveSem = Object.keys(window.EscResumos.conjuntos).find(k => window.EscResumos.conjuntos[k].semResumo);
+      // desde 25/11/2026 todo assunto tem resumo; o caminho "sem resumo" continua valendo para assunto
+      // novo da taxonomia, então o teste monta um conjunto provisório quando o arquivo não tem nenhum
+      const cj = window.EscResumos.conjuntos;
+      let chaveSem = Object.keys(cj).find(k => cj[k].semResumo);
+      if(!chaveSem){ const base = cj[Object.keys(cj)[0]]; chaveSem = "ass-teste-sem-resumo"; cj[chaveSem] = { semResumo: true, assunto: chaveSem, assuntos: [chaveSem], ids: base.ids.slice(0, 5) }; }
       const eSem = estadoDoTema(u, chaveSem);
       iniciarQuestoesDoTema(chaveSem); const abriuSemResumo = state.route === "sessao";
       return { fora, semCartao, caminho: c.caminho, semLeitura, zero, semResumo: eSem.semResumo, obrigSem: leituraObrigatoria(u, eSem), abriuSemResumo };

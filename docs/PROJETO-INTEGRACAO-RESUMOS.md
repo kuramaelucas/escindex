@@ -56,7 +56,7 @@ O conjunto é **gerado por ferramenta e congelado** em `resumos/conjuntos-por-te
 
 ## 4-B. Assunto ainda sem resumo
 
-Hoje 77 temas têm resumo e **160 assuntos com questões não têm** (o projeto prevê ≈ 150 resumos, e parte dos assuntos pequenos nunca terá resumo próprio). O cronograma não espera por eles:
+Em 25/11/2026 todos os 237 assuntos passaram a ter resumo (171 resumos, alguns cobrindo assuntos vizinhos); o que segue vale para assunto novo que entrar na taxonomia (o projeto prevê ≈ 150 resumos, e parte dos assuntos pequenos nunca terá resumo próprio). O cronograma não espera por eles:
 
 - **Conjunto provisório:** sem fragmentos, a diversidade sai do texto — escolha gulosa da questão **menos parecida** com as já escolhidas (Jaccard das palavras do enunciado + alternativa correta), com a dificuldade que falta e a prova recente de desempate. Fica no mesmo arquivo, com chave = id do assunto e `semResumo: true`. Quando o resumo do assunto sai, `--gravar` troca pelo conjunto de fragmentos. Assunto agrupado num resumo vizinho (≥ metade das suas questões nos fragmentos) conta como coberto.
 - **Ciclo sem leitura:** o tema entra só com as questões; a leitura obrigatória (graduando) e a recomendação de leitura < 75% **não aparecem** — no lugar, a tela diz "Este assunto ainda não tem resumo" e, < 75%, sugere a revisão dos erros e os cartões do assunto. Quando o resumo sair, o aluno que já fez o assunto recebe o aviso "saiu o resumo de *X*" (leitura opcional).
