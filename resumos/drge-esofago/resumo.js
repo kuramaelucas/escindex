@@ -113,6 +113,32 @@ Veja também: **Doença péptica** (dispepsia e *H. pylori*), **Malária, leishm
       ],
     },
     {
+      id: "esofago-cirurgico", titulo: "Esôfago cirúrgico: perfuração, cáusticos, divertículos e câncer",
+      introducao: `[[O esôfago **não tem serosa** e é cercado pelo mediastino frouxo: uma perfuração deixa saliva, ácido e bactérias se espalharem rápido, e a **mediastinite** mata em horas se o diagnóstico atrasa. Por isso dor torácica intensa depois de vômito, endoscopia ou corpo estranho é perfuração até prova em contrário.|q-fmabc2025-034,q-famema2021-001,q-unifesp2026-016]]`,
+      fragmentos: [
+        { id: "eso-perfuracao", titulo: "Boerhaave, Mallory-Weiss e trauma do esôfago", conferir: true,
+          questoes: ["q-fmabc2025-034","q-famema2021-001","q-unifesp2026-016","q-famerp2022-079","q-iamspe2025-030","q-einstein2021-013"],
+          prosa: `[[**Boerhaave**: ruptura **transmural** pelo aumento brusco de pressão no vômito, quase sempre na **parede posterolateral esquerda do esôfago distal**. Tríade de Mackler: **vômito, dor torácica e enfisema subcutâneo**; radiografia com pneumomediastino, derrame pleural esquerdo ou nível no mediastino. Confirma-se com **esofagograma ou TC com contraste oral**. Tratamento: antibiótico, jejum, drenagem e, no diagnóstico precoce (< 24 h) e paciente estável, **reparo primário cirúrgico**.|q-fmabc2025-034,q-famema2021-001,q-unifesp2026-016]] [[**Mallory-Weiss** é a laceração **só da mucosa**, na **junção esofagogástrica**, depois de vômitos (etilista após festa): hematêmese, que para sozinha na maioria.|q-famerp2022-079]] [[Perfuração **cervical contida** (corpo estranho), estável, sem sinais sistêmicos: **jejum, hidratação, antibiótico venoso e observação**. Ferimento penetrante do pescoço com lesão do esôfago: **cervicotomia, sutura, drenagem** e sonda enteral.|q-iamspe2025-030,q-einstein2021-013]]`,
+          texto: `- Vômito + dor torácica + enfisema: **Boerhaave**; precoce → **reparo primário**. {q-fmabc2025-034,q-famema2021-001,q-unifesp2026-016}
+- Hematêmese após vômitos, só mucosa: **Mallory-Weiss**, na **junção esofagogástrica**. {q-famerp2022-079}
+- Perfuração cervical contida e estável: **clínico** (jejum, antibiótico). {q-iamspe2025-030}
+- Ferida cervical com lesão esofágica: **cervicotomia e sutura**. {q-einstein2021-013}` },
+        { id: "eso-causticos", titulo: "Ingestão de cáusticos", conferir: true,
+          questoes: ["q-didepm-087","q-amrigs2024-035"],
+          prosa: `[[Soda cáustica (álcali) causa **necrose de liquefação**, profunda. Conduta: **jejum**, **não provocar vômito nem neutralizar**, inibidor de bomba de prótons e **endoscopia entre 12 e 24 horas** para classificar a lesão (antes de 48 h, quando a parede amolece). **Corticoide não previne a estenose** e não se usa de rotina.|q-didepm-087,q-amrigs2024-035]]`,
+          texto: `- Cáustico: jejum, IBP, **endoscopia em 12–24 h**. {q-didepm-087}
+- **Sem corticoide** de rotina. {q-amrigs2024-035}` },
+        { id: "eso-motor-cancer", titulo: "Acalasia, Zenker, hipercontratilidade e câncer", conferir: true,
+          questoes: ["q-adap26-016","q-amrigs2023-021","q-amrigs2025-032","q-amrigs2023-025","q-amrigs2025-030","q-iamspe2023-020","q-iamspe2023-026"],
+          prosa: `[[Disfagia para sólidos **e líquidos**, regurgitação e perda de peso, com endoscopia sem obstrução: a **manometria de alta resolução** confirma a **acalasia** e define o subtipo (Chicago). No Brasil, a classificação radiológica de **Mascarenhas** gradua o megaesôfago pelo diâmetro: I até 4 cm, **II de 4 a 7 cm**, III de 7 a 10, IV acima de 10. O **esôfago em quebra-nozes** (hipercontrátil) é distúrbio de hipermotilidade, com dor torácica, sem predomínio de sexo.|q-adap26-016,q-amrigs2023-021,q-amrigs2025-032]] [[**Zenker** é divertículo de pulsão (falso) acima do cricofaríngeo, no idoso: halitose, regurgitação de comida velha; os **pequenos (< 1–2 cm)** são assintomáticos.|q-amrigs2023-025]] [[Câncer: o **adenocarcinoma** nasce do Barrett e predomina na **transição esofagogástrica**, em **homens brancos** obesos com refluxo longo e frequente; o espinocelular, no esôfago médio, com tabaco e álcool. A **esofagectomia de Ivor Lewis** faz anastomose esofagogástrica **intratorácica** (laparotomia + toracotomia direita).|q-amrigs2025-030,q-iamspe2023-020,q-iamspe2023-026]]`,
+          texto: `- Disfagia a sólidos e líquidos: **manometria**. {q-adap26-016}
+- Mascarenhas II: **4 a 7 cm**. {q-amrigs2023-021}
+- Quebra-nozes: hipermotilidade, **sem predomínio de sexo**. {q-amrigs2025-032}
+- Zenker pequeno: **assintomático**. {q-amrigs2023-025}
+- Transição esofagogástrica: **adenocarcinoma**; Ivor Lewis = anastomose **intratorácica**. {q-iamspe2023-020,q-iamspe2023-026,q-amrigs2025-030}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

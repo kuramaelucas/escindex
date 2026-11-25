@@ -79,7 +79,7 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
 [[Na criança, compressões são indicadas não só sem pulso: frequência abaixo de 60 com má perfusão, apesar de boa ventilação, já é parada iminente.|q-usp2025-062]] [[Os ritmos se dividem em chocáveis (fibrilação ventricular e taquicardia ventricular sem pulso), em que o choque reorganiza a atividade elétrica, e não chocáveis (assistolia e atividade elétrica sem pulso), em que só a adrenalina e a busca da causa ajudam.|q-sessp2024-052,q-famema2023-098,q-fmabc2025-046]]`,
       fragmentos: [
         { id: "pcr-basico", casos: ["q-usp2025-062"], titulo: "Suporte básico: sequência e compressões", conferir: true, diretrizes: ["aha-rcp"],
-          questoes: ["q-sessp2024-051","q-uspsp3-043","q-sirio2024-052","q-unicamp2022-037","q-sirio2023-042","q-unicamp2023-042","q-scmsp2021-050","q-unicampdis2024-028","q-usp2025-062","q-uspsp3-026"],
+          questoes: ["q-sessp2024-051","q-uspsp3-043","q-sirio2024-052","q-unicamp2022-037","q-sirio2023-042","q-unicamp2023-042","q-scmsp2021-050","q-unicampdis2024-028","q-usp2025-062","q-uspsp3-026","q-amrigs2021-071","q-unicampdis2025-074"],
           prosa: `A compressão torácica gera o fluxo que mantém o cérebro e o coração enquanto a causa é tratada; cada pausa derruba a pressão de perfusão, e por isso a sequência começa pelas compressões e elas são contínuas quando há via aérea avançada.`,
           texto: `- Sequência **C-A-B**. {q-sessp2024-051}
 - Sozinho, PCR não presenciada: **2 minutos de RCP, depois pedir ajuda**. {q-uspsp3-043}
@@ -87,9 +87,11 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
 - Profundidade: **1/3 do diâmetro anteroposterior**; frequência **100 a 120/min**. {q-sirio2023-042,q-unicamp2023-042}
 - Com via aérea avançada: compressões **contínuas** e **1 ventilação a cada 2 a 3 s** (20 a 30/min). {q-scmsp2021-050,q-unicamp2023-042,q-unicampdis2024-028}
 - FC **< 60** com má perfusão apesar da ventilação: **compressões**. {q-usp2025-062}
-- DEA disponível: **usar logo**. {q-uspsp3-026}` },
+- DEA disponível: **usar logo**. {q-uspsp3-026}
+- Criança com 2 socorristas: **15:2**. {q-amrigs2021-071}
+- Afogamento: começar pelas **ventilações de resgate** (a parada é hipóxica), depois compressões. {q-unicampdis2025-074}` },
         { id: "pcr-chocavel", figuras: [{ arquivo: "figuras/pcr-ritmos.svg", legenda: "Esquema autoral: os dois caminhos da parada, chocável e não chocável." }], titulo: "Ritmos chocáveis", conferir: true, diretrizes: ["aha-rcp"],
-          questoes: ["q-sessp2024-052","q-famema2023-098","q-famema2025-046","q-sessp2023-035","q-sessp2025-053","q-usprp2021-043","q-famerp2025-057","q-uspsp1-003","q-sirio2026-053","q-sirio2027-054","q-sirio2021-044","q-famerp2026-043"],
+          questoes: ["q-sessp2024-052","q-famema2023-098","q-famema2025-046","q-sessp2023-035","q-sessp2025-053","q-usprp2021-043","q-famerp2025-057","q-uspsp1-003","q-sirio2026-053","q-sirio2027-054","q-sirio2021-044","q-famerp2026-043","q-uspsp4-106"],
           casos: ["q-usprp2021-043","q-uspsp1-003"],
           prosa: `Fibrilação e taquicardia ventricular sem pulso são caos elétrico: só o choque despolariza todo o miocárdio de uma vez e permite que o nó sinusal retome o ritmo. Depois do choque, a RCP continua por 2 minutos, porque o coração recém-desfibrilado ainda não bombeia.`,
           texto: `- Chocáveis: **fibrilação ventricular** e **taquicardia ventricular sem pulso**. {q-sessp2024-052,q-famema2023-098}
@@ -97,7 +99,8 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
 - 1º choque: **2 J/kg**, seguido **imediatamente de 2 minutos de RCP**; depois **4 J/kg**. {q-sessp2023-035,q-usprp2021-043,q-famerp2025-057,q-sirio2027-054,q-uspsp1-003}
 - TV no monitor: **checar pulso**; sem pulso, desfibrilar. {q-sessp2025-053}
 - Adolescente com porte de adulto: carga de adulto (**120 a 200 J** bifásico). {q-sirio2021-044}
-- **Amiodarona** (ou lidocaína) **após o 3º choque**; adrenalina após o 2º. {q-famerp2026-043}` },
+- **Amiodarona** (ou lidocaína) **após o 3º choque**; adrenalina após o 2º. {q-famerp2026-043}
+- Criança de 25 kg em FV: **desfibrilar 2 J/kg** (50 J). {q-uspsp4-106}` },
         { id: "pcr-nao-chocavel", titulo: "Ritmos não chocáveis, drogas e vias", conferir: true, diretrizes: ["aha-rcp"],
           questoes: ["q-fmabc2025-046","q-sessp2022-046","q-unesp2026-009","q-uspsp3-027","q-simepm89-081","q-scmsp2023-054","q-unicampdis2023-034","q-amrigs2023-073"],
           casos: ["q-uspsp3-027"],
@@ -130,6 +133,34 @@ Nem todo lactente que sibila tem asma. [[O primeiro episódio de sibilância no 
           texto: `- QRS estreito, FC fixa > 220 (lactente), **sem onda P**: **taquicardia supraventricular**. {q-sirio2025-056,q-scmsp2026-057}
 - Perfusão preservada: **manobra vagal** (gelo na face no lactente) e, se refratária, **adenosina IV rápida**. {q-scmsp2026-057}
 - Crise hipoxêmica na tetralogia de Fallot: **oxigênio, morfina, expansão**; se não melhorar, transfusão e **betabloqueador**. {q-scmsp2021-051}` },
+      ],
+    },
+    {
+      id: "corpo-estranho", titulo: "Corpo estranho: engasgo, aspiração e ingestão",
+      introducao: `[[Crianças de **1 a 3 anos** levam tudo à boca, não têm molares para triturar e coordenam mal deglutição e fala: amendoim, grãos, peças pequenas. O corpo estranho na **via aérea** se anuncia por **engasgo súbito** seguido de **tosse, sibilo ou estridor** numa criança antes sadia; o do **tubo digestivo**, por **sialorreia**, recusa alimentar e dor ao engolir. Na história, o episódio de engasgo é o dado que mais vale.|q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040,q-unesp2026-013,q-uspsp2-053]]`,
+      fragmentos: [
+        { id: "ce-engasgo", titulo: "Engasgo: obstrução total da via aérea", conferir: true,
+          questoes: ["q-sirio2027-042","q-usprp2027-050","q-einstein2026-044","q-uspsp4-110"],
+          prosa: `[[Se a criança **tosse com força e fala ou chora**, a obstrução é parcial: **não intervir**, estimular a tosse e observar. Se **não consegue falar, tossir ou respirar** e fica cianótica: **acima de 1 ano**, **compressões abdominais (Heimlich)** — na prática brasileira, golpes nas costas seguidos de compressões abdominais, repetindo até desobstruir; **lactente**, **5 golpes nas costas e 5 compressões torácicas**, de cabeça para baixo. Lactente que engasga com leite mas **está consciente e respira**: levantar, remover o leite visível e estimular as costas.|q-sirio2027-042,q-usprp2027-050,q-einstein2026-044]] [[Se perde a consciência, começa a **RCP**: compressões, olhar a boca antes de ventilar e, na parada, **adrenalina 0,01 mg/kg** a cada 3–5 minutos, como em qualquer ritmo não chocável.|q-uspsp4-110]]`,
+          texto: `- Criança consciente sem som: **golpes dorsais + compressões abdominais**. {q-sirio2027-042,q-usprp2027-050}
+- Lactente engasgado com leite, consciente: **levantar, limpar, estimular**. {q-einstein2026-044}
+- Parou: RCP e **adrenalina 0,01 mg/kg**. {q-uspsp4-110}` },
+        { id: "ce-aspiracao", titulo: "Aspiração: broncoscopia", conferir: true,
+          questoes: ["q-usp2024-005","q-unicamp2023-041","q-unesp2024-014","q-iamspe2023-040","q-unicampdis2024-091","q-sessp2022-048","q-adap22-059"],
+          prosa: `[[O corpo estranho que passa da glote vai mais para o **brônquio direito** (mais vertical e largo): **sibilo localizado, murmúrio diminuído de um lado** e **hiperinsuflação** (efeito válvula) ou atelectasia. A radiografia pode ser normal (amendoim não aparece); a suspeita clínica basta para a **broncoscopia**, que diagnostica e retira.|q-usp2024-005,q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040]] [[O corpo estranho esquecido vira **"pneumonia" que não melhora com antibiótico** ou sibilância recorrente no mesmo lugar. No nariz, **secreção fétida unilateral** numa criança pequena é corpo estranho até prova em contrário.|q-unicampdis2024-091,q-sessp2022-048]]`,
+          texto: `- Engasgo + tosse e sibilo assimétrico: **aspiração** → **broncoscopia**. {q-usp2024-005,q-unicamp2023-041,q-unesp2024-014,q-iamspe2023-040}
+- Pneumonia que não melhora: lembrar **corpo estranho**. {q-unicampdis2024-091}
+- Secreção nasal fétida unilateral: **corpo estranho nasal**. {q-sessp2022-048}
+- Engasgo com castanha e sibilo: **broncoscopia rígida**. {q-adap22-059}` },
+        { id: "ce-ingestao", titulo: "Ingestão: bateria, moeda, perfurante e cáustico", conferir: true,
+          questoes: ["q-unesp2026-013","q-usprp2025-006","q-adap21-092","q-famerp2025-055","q-usp2023-082","q-uspsp2-053","q-usprp2023-012","q-usprp2021-092","q-udisc20262-059"],
+          prosa: `[[Ingestão suspeita: **radiografia de pescoço, tórax (frente e perfil) e abdome**. O perfil diferencia a **bateria de botão** (duplo contorno, "halo") da moeda.|q-unesp2026-013,q-usprp2025-006]] [[**Bateria no esôfago** é emergência: a corrente e o hidróxido formado na mucosa queimam em horas e perfuram (fístula, aorta). **Endoscopia em até 2 horas**. **Moeda no esôfago**, sem sintomas, também se retira por endoscopia; no estômago, a maioria passa.|q-adap21-092,q-famerp2025-055,q-usp2023-082]] [[Criança com **sialorreia, rouquidão ou dor** depois de engolir algo, ou **objeto pontiagudo** no esôfago: **endoscopia de urgência**. Perfurante que já passou do estômago e não dá sintoma: **radiografias seriadas** para ver se progride.|q-uspsp2-053,q-usprp2023-012,q-usprp2021-092]] [[**Cáusticos alcalinos** (soda) causam **necrose de liquefação**, que aprofunda e perfura o esôfago; os ácidos, necrose de coagulação, que limita a lesão.|q-udisc20262-059]]`,
+          texto: `- Investigar: Rx **cervical, tórax (2 incidências) e abdome**. {q-unesp2026-013,q-usprp2025-006}
+- **Bateria** no esôfago: endoscopia **em até 2 h**. {q-adap21-092,q-famerp2025-055}
+- Moeda no esôfago: **endoscopia**. {q-usp2023-082}
+- Sialorreia/rouquidão ou pontiagudo: **endoscopia urgente**. {q-uspsp2-053,q-usprp2023-012}
+- Prego já no intestino: **repetir a radiografia**. {q-usprp2021-092}
+- Álcali: **necrose de liquefação**. {q-udisc20262-059}` },
       ],
     },
     {

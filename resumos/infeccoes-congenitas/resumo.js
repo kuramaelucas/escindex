@@ -106,6 +106,26 @@ Veja também: **Infecções sexualmente transmissíveis** (sífilis da gestante,
       ],
     },
     {
+      id: "sepse-neonatal", titulo: "Sepse neonatal",
+      introducao: `[[A sepse **precoce** (até 72 horas) vem da **mãe**: bactérias do trato genital sobem pela bolsa rota ou o bebê as aspira no parto. Os agentes são **estreptococo do grupo B (*S. agalactiae*)** e ***E. coli***; ***Listeria*** é rara, mas clássica (mãe com quadro gripal, líquido acastanhado ou meconial em prematuro, granulomas na placenta). Fatores de risco: **bolsa rota ≥ 18 horas**, **febre materna/corioamnionite**, colonização pelo GBS sem profilaxia adequada, prematuridade.|q-iamspe2023-036,q-tp20202-043,q-fmabc2021-099,q-fmabc2022-045,q-tp20212-054,q-famerp2022-025]] [[A sepse **tardia** (depois de 72 horas) vem do **ambiente**: na UTI neonatal, **estafilococo coagulase-negativo** do cateter central e gram-negativos; em casa, GBS tardio, *E. coli* urinária. O recém-nascido não localiza a infecção: **hipoatividade, recusa alimentar, desconforto respiratório, instabilidade térmica e apneias** são sepse até prova em contrário.|q-didepm-094,q-unesp2023-001,q-unesp2026-002]]`,
+      fragmentos: [
+        { id: "sep-precoce", titulo: "Precoce: quem tratar e quem observar", conferir: true,
+          questoes: ["q-iamspe2023-036","q-tp20202-043","q-fmabc2021-099","q-fmabc2022-045","q-tp20212-054","q-famerp2022-025","q-adap26-098","q-sirio2021-054","q-usprp2025-018","q-unicamp2023-043","q-fmabc2025-049"],
+          prosa: `[[Recém-nascido **com sinais** (taquipneia, hipoatividade, recusa) nas primeiras horas: **hemocultura e ampicilina + gentamicina** de imediato (a ampicilina cobre GBS e *Listeria*, a gentamicina os gram-negativos). Também se trata sem esperar sintoma quando a exposição é forte (corioamnionite) e o bebê é prematuro.|q-adap26-098,q-sirio2021-054]] [[Recém-nascido **≥ 35 semanas, bem**, com fator de risco (corioamnionite, bolsa rota longa): **exame clínico seriado**, sem antibiótico de rotina. Mãe colonizada por GBS que recebeu **penicilina ≥ 4 horas antes do parto** (profilaxia adequada): bebê bem → **só observação**, sem exames. Com menos de 4 horas a profilaxia é inadequada, mas no bebê bem ≥ 35 semanas a conduta também é observar.|q-usprp2025-018,q-unicamp2023-043]] [[**Meningite por GBS**: penicilina ou ampicilina por **14 dias** (a prova associou gentamicina).|q-fmabc2025-049]]`,
+          texto: `- Agentes da precoce: **GBS e *E. coli***; líquido acastanhado no prematuro: ***Listeria***. {q-tp20202-043,q-fmabc2021-099,q-fmabc2022-045,q-tp20212-054,q-famerp2022-025}
+- Fator de risco: **bolsa rota ≥ 18 h**. {q-iamspe2023-036}
+- RN com sinais: **hemocultura + ampicilina e gentamicina**. {q-adap26-098,q-sirio2021-054}
+- RN ≥ 35 sem bem, com fator de risco: **exame seriado**. {q-usprp2025-018,q-unicamp2023-043}
+- Meningite por GBS: **14 dias**. {q-fmabc2025-049}` },
+        { id: "sep-tardia", titulo: "Tardia e febre no primeiro mês", conferir: true,
+          questoes: ["q-didepm-094","q-unesp2023-001","q-unesp2026-002","q-famema2022-089","q-unifesp2026-098","q-uspsp2-071"],
+          prosa: `[[Prematuro com **cateter central** que faz apneia, letargia e instabilidade: **culturas e vancomicina** (estafilococo coagulase-negativo) com aminoglicosídeo ou cefalosporina, e avaliar **retirar o cateter**.|q-didepm-094]] [[Recém-nascido em casa com desconforto e recusa alimentar: **internar, jejum, hidratação venosa, monitorização e oxigênio** se preciso, e investigar.|q-unesp2023-001,q-unesp2026-002]] [[**Febre antes de 28 dias** é infecção bacteriana grave até prova em contrário, mesmo com bom estado: **internar e investigar tudo** — hemograma, PCR, **hemocultura, urina e urocultura por sondagem, líquor** (e radiografia se houver sinal respiratório) — e **antibiótico parenteral**.|q-famema2022-089,q-unifesp2026-098,q-uspsp2-071]]`,
+          texto: `- Prematuro com cateter: **vancomicina** + aminoglicosídeo/cefalosporina; avaliar tirar o cateter. {q-didepm-094}
+- RN com desconforto e recusa: **internar, jejum, hidratação, monitorização**. {q-unesp2023-001,q-unesp2026-002}
+- Febre < 28 dias: **líquor, urina por sondagem, hemocultura**, antibiótico. {q-famema2022-089,q-unifesp2026-098,q-uspsp2-071}` },
+      ],
+    },
+    {
       id: "comparativo", titulo: "Tabela comparativa",
       introducao: `A banca descreve um recém-nascido e pede o agente. A tabela junta o que os capítulos explicaram: leia-a pela coluna do achado.`,
       fragmentos: [

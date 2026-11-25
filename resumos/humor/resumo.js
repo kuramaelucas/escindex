@@ -104,6 +104,25 @@ Veja também: **Demência e delirium** (pseudodemência no idoso), **Transtornos
       ],
     },
     {
+      id: "personalidade-alimentar", titulo: "Transtornos de personalidade e alimentares",
+      introducao: `[[**Transtorno de personalidade** é um padrão **duradouro e rígido** de pensar, sentir e se relacionar, que começa na adolescência ou início da vida adulta e aparece em todos os contextos. O **borderline** é o mais cobrado: **instabilidade afetiva**, impulsividade, **autolesão** e tentativas de suicídio repetidas, **sensação de vazio** e **medo intenso de abandono**, relações intensas e instáveis. O **histriônico** busca atenção, com emoção superficial e uso da aparência; o **evitativo** se afasta por medo de crítica em todas as relações, não só ao se expor (como na fobia social).|q-tp20252-052,q-uspsp3-089,q-amrigs2020-099,q-uspsp5-003]]`,
+      fragmentos: [
+        { id: "per-conduta", titulo: "Personalidade: reconhecer e tratar", conferir: true,
+          questoes: ["q-tp20252-052","q-uspsp3-089","q-amrigs2020-099","q-uspsp5-003"],
+          prosa: `[[O tratamento do borderline é a **psicoterapia estruturada para regulação emocional** (terapia comportamental dialética); remédio só trata sintomas ou comorbidades, e nenhum trata o transtorno. As crises costumam vir de **estressores interpessoais**, que precisam ser explorados ativamente na avaliação de risco, sem minimizar a tentativa porque "é para chamar atenção".|q-tp20252-052,q-uspsp3-089]]`,
+          texto: `- Vazio, medo de abandono, autolesão: **borderline** → **psicoterapia de regulação emocional**. {q-tp20252-052,q-uspsp3-089}
+- Busca de atenção e aparência: **histriônico**. {q-amrigs2020-099}
+- Esquiva global por medo de crítica: **evitativo**, diferente da fobia social. {q-uspsp5-003}` },
+        { id: "alim-conduta", titulo: "Anorexia, bulimia e pica", conferir: true,
+          questoes: ["q-uspsp4-116","q-famema2025-086","q-famerp2023-074","q-amrigs2020-066"],
+          prosa: `[[Na **bulimia**, compulsão seguida de **vômitos provocados**, laxantes ou diuréticos, com peso normal ou alto: a perda de ácido e potássio dá **alcalose hipocalêmica**, com fraqueza e arritmia — **potássio venoso com monitorização** se grave; laxantes em excesso machucam o reto. Na **anorexia**, a desnutrição grave pode dar **encefalopatia de Wernicke** (confusão, ataxia, nistagmo): **tiamina venosa** antes de glicose, e cuidado com a síndrome de realimentação.|q-uspsp4-116,q-famema2025-086,q-famerp2023-074]] [[**Pica**: comer **substâncias não nutritivas** de forma persistente por **pelo menos 1 mês**, inadequado ao desenvolvimento (não vale para a criança pequena) e fora de prática cultural.|q-amrigs2020-066]]`,
+          texto: `- Vômitos provocados, fraqueza e palpitação: **hipocalemia** → KCl IV monitorizado. {q-uspsp4-116}
+- Lesão retal por laxantes: **bulimia**. {q-famema2025-086}
+- Anorexia com confusão, ataxia e nistagmo: **tiamina IV**. {q-famerp2023-074}
+- Pica: **≥ 1 mês**, inadequado ao desenvolvimento. {q-amrigs2020-066}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

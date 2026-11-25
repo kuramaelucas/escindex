@@ -64,6 +64,40 @@ Veja também: **Princípios e organização do SUS**, **Políticas nacionais**, 
       ],
     },
     {
+      id: "gestao", titulo: "Gestão, planejamento e modelos de saúde",
+      introducao: `[[Os sistemas de saúde nascem de três ideias: **Beveridge** (saúde como **direito universal**, pago por impostos — o modelo do SUS e do NHS), **Bismarck** (**seguro social** dos trabalhadores, como o antigo INAMPS) e **mercado** (saúde como **bem de consumo**). O SUS é público, mas pode **contratar serviços privados de forma complementar**, com preferência às entidades filantrópicas e sem fins lucrativos.|q-sirio2026-097,q-usp2026-080]]`,
+      fragmentos: [
+        { id: "ges-oss", titulo: "Organizações sociais e contratos de gestão", conferir: true,
+          questoes: ["q-unifesp2025-047","q-uspsp4-075","q-scmsp2021-089","q-sessp2022-093","q-didepm-070","q-usp2026-080"],
+          prosa: `[[A **Lei 9.637/1998** permite qualificar como **organização social (OS)** uma entidade **privada sem fins lucrativos**, que assina **contrato de gestão** com o poder público e recebe **recursos, bens e até servidores** para gerir um serviço (hospital, AMA) com **metas pactuadas**. O Estado **continua titular** do serviço e fiscaliza. "Sem fins lucrativos" não quer dizer sem superávit: o que sobra é **reinvestido** nos objetivos sociais, não distribuído.|q-unifesp2025-047,q-uspsp4-075,q-scmsp2021-089,q-sessp2022-093,q-didepm-070]] [[Programas que compram consultas e cirurgias do setor privado (como o "Agora Tem Especialistas") usam a **participação complementar** prevista na Lei 8.080.|q-usp2026-080]]`,
+          texto: `- OS: **privada sem fins lucrativos**, contrato de gestão, recebe recursos e servidores. {q-unifesp2025-047,q-uspsp4-075,q-scmsp2021-089}
+- Pode ter superávit, **reinvestido**; Estado **mantém a titularidade**. {q-sessp2022-093,q-didepm-070}
+- Compra de serviço privado pelo SUS: **complementar**. {q-usp2026-080}` },
+        { id: "ges-aps-financiamento", titulo: "Financiamento da APS e aplicação mínima", conferir: true,
+          questoes: ["q-scmsp2025-093","q-scmsp2026-095","q-adap25-047","q-sirio2025-091"],
+          prosa: `[[O cofinanciamento federal da **APS** (Portaria 3.493/2024) tem **componente fixo** que combina **porte populacional e vulnerabilidade social** do município, componente de **vínculo e acompanhamento**, de **qualidade** e de ações estratégicas, e **fortalece a Estratégia Saúde da Família** como modelo prioritário.|q-scmsp2025-093,q-scmsp2026-095]] [[O município aplica no mínimo **15% das receitas próprias** em **ações e serviços públicos de saúde** (LC 141/2012): **comprar medicamentos da farmácia básica conta**; saneamento, merenda e pagamento de aposentados não. A **judicialização** tira recurso planejado de outras prioridades.|q-adap25-047,q-sirio2025-091]]`,
+          texto: `- Novo financiamento da APS: **porte + vulnerabilidade**, fortalece a **ESF**. {q-scmsp2025-093,q-scmsp2026-095}
+- Conta no mínimo de saúde: **medicamento da atenção básica**. {q-adap25-047}
+- Judicialização **desbalanceia** o orçamento. {q-sirio2025-091}` },
+        { id: "ges-qualidade", titulo: "Planejamento, qualidade e indicadores hospitalares", conferir: true,
+          questoes: ["q-iamspe2021-076","q-fmabc2023-087","q-amrigs2020-086","q-sessp2025-096","q-unicampdis2025-098","q-sessp2026-100","q-einstein2022-075","q-scmsp2023-005","q-fmabc2024-085"],
+          prosa: `[[O **plano municipal de saúde** começa pela **análise de situação**: **caracterizar a população** e seus problemas. Cabem à **União** as atribuições estratégicas (formular, apoiar e avaliar a política); a execução é **descentralizada** — os projetos de promoção da saúde não são feitos integralmente pelo Ministério. Melhorar o serviço passa por ouvir a equipe e pactuar mudanças; numa crise (Covid-19), a rede **reorganiza** a atenção com base nos dados.|q-iamspe2021-076,q-fmabc2023-087,q-amrigs2020-086,q-sessp2025-096,q-unicampdis2025-098]] [[Para auditar o pré-natal, a fonte é o **e-SUS APS** (registro do atendimento na unidade). Na avaliação de desempenho: **eficiência** (recursos: horas paradas do tomógrafo), **eficácia** (fazer o previsto: consultas por gestante), **efetividade** (resultado na saúde: mortalidade). Um **"red day"** é o dia de internação sem ganho, como manter alguém 3 dias só para "controlar a glicemia". Toda instituição precisa de **comissão de revisão de prontuários**.|q-sessp2026-100,q-einstein2022-075,q-scmsp2023-005,q-fmabc2024-085]]`,
+          texto: `- Plano municipal: **caracterizar a população** primeiro. {q-iamspe2021-076}
+- União: papel **estratégico**; promoção é **descentralizada**. {q-fmabc2023-087,q-amrigs2020-086}
+- Gestão: ouvir a equipe; reorganizar a rede na epidemia. {q-sessp2025-096,q-unicampdis2025-098}
+- Auditoria do pré-natal: **e-SUS APS**. {q-sessp2026-100}
+- **Eficiência – eficácia – efetividade**. {q-einstein2022-075}
+- Internação sem ganho: **red day**; **revisão de prontuários** obrigatória. {q-scmsp2023-005,q-fmabc2024-085}` },
+        { id: "ges-beneficios", titulo: "Benefícios sociais e a rede de assistência", conferir: true,
+          questoes: ["q-adap25-029","q-unifesp2025-029","q-scmsp2021-097","q-didepm-065","q-simepm89-071"],
+          prosa: `[[O **Benefício de Prestação Continuada (BPC/LOAS)** é **assistência social, não previdência**: dispensa contribuição e paga **um salário mínimo** à **pessoa com deficiência** (impedimento de longo prazo) ou ao **idoso com 65 anos ou mais**, com **renda familiar por pessoa de até 1/4 do salário mínimo**. Quem nunca contribuiu não tem aposentadoria nem auxílio-doença, mas pode ter o BPC; quem tem 61 anos, doenças crônicas controladas e não é deficiente **não tem direito**.|q-adap25-029,q-unifesp2025-029,q-scmsp2021-097]] [[Violação de direitos com vínculo familiar mantido (idoso agredido, com aposentadoria retida) vai ao **CREAS**, proteção social especial de **média complexidade**; o CRAS faz a proteção básica. Cada ente federativo tem **um só regime próprio de previdência** dos servidores.|q-didepm-065,q-simepm89-071]]`,
+          texto: `- **BPC**: deficiência ou ≥ 65 anos + renda per capita ≤ 1/4 SM, **sem contribuição**. {q-adap25-029,q-unifesp2025-029}
+- 61 anos com doença crônica, sem deficiência: **sem direito**. {q-scmsp2021-097}
+- Idoso com direitos violados: **CREAS**. {q-didepm-065}
+- **Um regime próprio** de previdência por ente. {q-simepm89-071}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

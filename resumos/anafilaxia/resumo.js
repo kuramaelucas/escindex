@@ -57,6 +57,30 @@ Veja também: **Asma**, **Choque**, **Alergia alimentar** e **Acidentes por anim
       ],
     },
     {
+      id: "alergia-alimentar", titulo: "Alergia alimentar: APLV e esofagite eosinofílica",
+      introducao: `[[Alergia alimentar é reação **imune** a uma proteína do alimento (diferente da intolerância à lactose, que é falta de enzima). Há dois mecanismos, e eles mudam tudo: a **mediada por IgE** é **imediata** (minutos a 2 horas: urticária, angioedema, vômitos, **anafilaxia**); a **não mediada por IgE** é **tardia** e digestiva (proctocolite, enteropatia, refluxo e cólica que não melhoram), mediada por células. A proteína do leite de vaca é o alérgeno mais comum no lactente; ovo, amendoim e castanhas vêm depois.|q-unifesp2025-084,q-adap25-084,q-einstein2025-036]]`,
+      fragmentos: [
+        { id: "aa-ige", titulo: "Reação imediata (IgE) e prevenção", conferir: true,
+          questoes: ["q-adap25-084","q-usp2026-057","q-einstein2025-036","q-einstein2026-034"],
+          prosa: `[[Urticária generalizada **com** vômitos, palidez, hipotonia ou queda de pressão depois do alimento é **anafilaxia**: **adrenalina IM 0,01 mg/kg** na face lateral da coxa. Urticária **sem** comprometimento respiratório, digestivo ou circulatório não preenche o critério: **anti-histamínico e observação** monitorizada.|q-adap25-084,q-usp2026-057]] [[O lactente que reagiu ao ovo ingerido não reage ao traço de ovo do leite materno: **a mãe não precisa restringir** e mantém a amamentação. Para prevenir, **não atrasar** a introdução dos alergênicos: a partir dos 6 meses, qualquer alimento, inclusive no irmão de alérgico.|q-einstein2025-036,q-einstein2026-034]]`,
+          texto: `- Urticária + vômitos/hipotonia após fórmula: **adrenalina IM 0,01 mg/kg**. {q-adap25-084}
+- Só urticária, sem outro sistema: **anti-histamínico e observação**. {q-usp2026-057}
+- Alergia ao ovo ingerido: **mãe não restringe**. {q-einstein2025-036}
+- Prevenção: **introduzir tudo a partir de 6 meses**. {q-einstein2026-034}` },
+        { id: "aa-aplv-tardia", titulo: "APLV não IgE: proctocolite e sintomas digestivos", conferir: true,
+          questoes: ["q-unifesp2025-084","q-adap25-085","q-simepm89-082","q-unesp2026-014","q-scmsp2022-035","q-sessp2023-027","q-fmabc2026-041","q-usp2025-058"],
+          prosa: `[[O caso típico: lactente **em aleitamento materno exclusivo**, **bem e ganhando peso**, com **raios de sangue nas fezes** há semanas — a **proctocolite alérgica** (a proteína do leite que a mãe toma passa pelo leite). Diagnóstico pela resposta: **manter o aleitamento** e **excluir leite de vaca e derivados da dieta da mãe por 2 a 4 semanas**; melhora, reintroduz e piora confirma. Regurgitação, cólica intensa e irritabilidade que não cedem também podem ser APLV e se testam da mesma forma.|q-unifesp2025-084,q-adap25-085,q-simepm89-082,q-unesp2026-014,q-scmsp2022-035,q-sessp2023-027]] [[Sem leite materno (ou se a mãe não fizer a dieta): **fórmula extensamente hidrolisada**; aminoácidos só se não responder ou nos casos graves. Fórmula de soja e leite de outros mamíferos não servem.|q-fmabc2026-041,q-usp2025-058]]`,
+          texto: `- Lactente bem com sangue nas fezes: **proctocolite**, reação **não IgE**. {q-unifesp2025-084,q-simepm89-082}
+- **Manter o aleitamento** e tirar o leite da dieta materna por **2–4 semanas**. {q-adap25-085,q-unesp2026-014,q-scmsp2022-035,q-sessp2023-027}
+- Sem leite materno: **extensamente hidrolisada**. {q-fmabc2026-041,q-usp2025-058}` },
+        { id: "aa-eoe", titulo: "Esofagite eosinofílica", conferir: true,
+          questoes: ["q-unifesp2025-085","q-sirio2024-006"],
+          prosa: `[[Inflamação crônica do esôfago por eosinófilos, ligada a alergia alimentar e atopia: na criança, **refluxo e dor que não melhoram com IBP**; no adulto, **disfagia e impactação de alimento**. Endoscopia com **biópsias seriadas** (≥ 15 eosinófilos por campo). Tratamento: IBP, **corticoide tópico deglutido** (fluticasona ou budesonida) e dieta de exclusão.|q-unifesp2025-085,q-sirio2024-006]]`,
+          texto: `- Refluxo refratário ao IBP em atópico: **endoscopia com biópsias**. {q-unifesp2025-085}
+- Tratamento: **fluticasona deglutida**. {q-sirio2024-006}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

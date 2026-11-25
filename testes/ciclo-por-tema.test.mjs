@@ -79,7 +79,11 @@ test("ciclo: reparar por tema vai direto às questões; Formado 'como está' fic
       u.modoDeInicio = "reparar-tema"; const c = cicloDoAluno(u);
       const semLeitura = !leituraObrigatoria(u, c.atual);
       u.modoDeInicio = "zero"; const zero = caminhoDoCiclo(u);
-      const chaveSem = Object.keys(window.EscResumos.conjuntos).find(k => window.EscResumos.conjuntos[k].semResumo);
+      // desde 25/11/2026 todo assunto tem resumo; o caminho "sem resumo" continua valendo para assunto
+      // novo da taxonomia, então o teste monta um conjunto provisório quando o arquivo não tem nenhum
+      const cj = window.EscResumos.conjuntos;
+      let chaveSem = Object.keys(cj).find(k => cj[k].semResumo);
+      if(!chaveSem){ const base = cj[Object.keys(cj)[0]]; chaveSem = "ass-teste-sem-resumo"; cj[chaveSem] = { semResumo: true, assunto: chaveSem, assuntos: [chaveSem], ids: base.ids.slice(0, 5) }; }
       const eSem = estadoDoTema(u, chaveSem);
       iniciarQuestoesDoTema(chaveSem); const abriuSemResumo = state.route === "sessao";
       return { fora, semCartao, caminho: c.caminho, semLeitura, zero, semResumo: eSem.semResumo, obrigSem: leituraObrigatoria(u, eSem), abriuSemResumo };
@@ -116,6 +120,35 @@ test("no ar hoje: só a pós-leitura — sem pergunta de início nem cartão no 
     assert.equal(r.pergunta, false); assert.equal(r.cartao, false); assert.equal(r.antes, false);
     assert.match(r.texto, /questões pós-leitura/);
     assert.ok(r.sessao > 0);
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});
+
+test("assunto incorporado ao resumo: quem já fez as 20 do tema recebe as novas primeiro, com o motivo", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual(); db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const c = window.EscResumos.conjuntos, chave = Object.keys(c).find(k => (c[k].incorporadas || []).length);
+      const t = c[chave], inc = new Set(t.incorporadas), base = t.ids.filter(id => !inc.has(id));
+      const ordemOk = t.ids.slice(0, inc.size).every(id => inc.has(id));
+      // fez as originais antes de o assunto vizinho entrar no resumo
+      base.forEach(id => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: id, correta: true, data: "2026-01-10" }));
+      const e = estadoDoTema(u, chave);
+      u.resumosLidos = u.resumosLidos || {}; u.resumosLidos[chave] = "2026-01-09";
+      const pos = htmlPosLeituraDoResumo(u, chave);
+      iniciarQuestoesDoTema(chave);
+      const itens = state.sessaoAtual ? state.sessaoAtual.itens : [];
+      return { ordemOk, concluido: e.concluido, novas: e.novasIncorporadas, proximasSaoNovas: e.proximas.every(id => inc.has(id)), nInc: e.ids.filter(id => inc.has(id)).length,
+        primeiraNova: itens.length > 0 && inc.has(itens[0].questaoId), motivo: itens[0] ? itens[0].motivo : "", avisa: /vêm primeiro|vem primeiro/.test(pos),
+        doAssunto: resumoDoAssunto(t.assuntos.find(a => a !== t.assunto)) && resumoDoAssunto(t.assuntos.find(a => a !== t.assunto)).id === chave };
+    });
+    assert.ok(r.ordemOk, "as incorporadas abrem a lista");
+    assert.equal(r.concluido, false, "o tema volta a ter o que fazer");
+    assert.equal(r.novas, r.nInc); assert.ok(r.proximasSaoNovas);
+    assert.ok(r.primeiraNova); assert.match(r.motivo, /incorporado/);
+    assert.ok(r.avisa, "a pós-leitura diz que as novas vêm primeiro");
+    assert.ok(r.doAssunto, "o assunto incorporado leva ao resumo que o cobre");
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });

@@ -123,6 +123,31 @@ Veja também: **Insuficiência cardíaca do adulto** e **Cirrose** (hiponatremia
       ],
     },
     {
+      id: "paratireoide", titulo: "Cálcio e paratireoide",
+      introducao: `[[O cálcio iônico é regulado pelo **PTH**: quando o cálcio cai, a paratireoide solta PTH, que tira cálcio do osso, segura cálcio no rim, joga fósforo fora e ativa a **1-alfa-hidroxilase** renal (vitamina D ativa, que absorve cálcio no intestino). A pergunta-chave diante de cálcio alto é o **PTH**: **alto ou normal (inapropriado)** = **hiperparatireoidismo primário**; **suprimido** = causa fora da paratireoide.|q-uspsp5-008,q-famerp2025-073,q-sirio2025-006]]`,
+      fragmentos: [
+        { id: "pth-primario", titulo: "Hiperparatireoidismo primário", conferir: true,
+          questoes: ["q-uspsp5-008","q-famerp2025-073","q-sirio2025-006","q-einstein2024-010","q-sirio2022-005","q-uspsp1-062","q-adap25-022","q-adap26-025"],
+          prosa: `[[É a causa mais comum de hipercalcemia no ambulatório: mulher na pós-menopausa, quase sempre **adenoma único**, achado de rotina. **Cálcio alto com PTH alto ou "normal"** (deveria estar suprimido). Com vitamina D baixa, o cálcio pode estar normal e só subir depois da reposição (**normocalcêmico** desmascarado); a 25-OH-vitamina D costuma estar **normal ou baixa** porque o PTH a converte na forma ativa.|q-uspsp5-008,q-famerp2025-073,q-sirio2025-006,q-einstein2024-010,q-sirio2022-005]] [[Litíase de repetição com história familiar: hiperparatireoidismo primário (pensar em NEM 1). **Indicação de paratireoidectomia**: sintomático (litíase, osteíte), ou assintomático com **cálcio > 1 mg/dL acima do normal**, **osteoporose** (T ≤ −2,5 em qualquer sítio, inclusive o **terço distal do rádio**, o osso cortical que o PTH mais rouba) ou fratura, **TFG < 60**, cálcio urinário alto ou litíase, ou idade **< 50 anos**.|q-uspsp1-062,q-famerp2025-073,q-adap25-022,q-adap26-025]]`,
+          texto: `- Cálcio alto + PTH alto/normal: **primário**. {q-uspsp5-008,q-sirio2025-006,q-famerp2025-073}
+- Vitamina D baixa esconde a hipercalcemia: **repor e repetir**. {q-einstein2024-010}
+- 25-OH-vitamina D **normal ou baixa**. {q-sirio2022-005}
+- Cirurgia: litíase, **osteoporose (rádio distal conta)**, cálcio +1, TFG < 60, < 50 anos. {q-uspsp1-062,q-adap25-022,q-adap26-025}` },
+        { id: "hipercalcemia-outras", titulo: "Hipercalcemia com PTH suprimido", conferir: true,
+          questoes: ["q-tp20252-054","q-usp2026-023","q-scmsp2023-010","q-famerp2025-003","q-famerp2026-051","q-unesp2022-044","q-unifesp2026-025","q-usp2022-087","q-unifesp2025-022"],
+          prosa: `[[No paciente internado a causa é o **câncer**: **PTHrP** (carcinoma epidermoide de esôfago, pulmão, cabeça e pescoço; mama), **metástase óssea lítica** ou mieloma. **Linfomas** e doenças granulomatosas (**sarcoidose**, tuberculose) produzem **calcitriol** pela 1-alfa-hidroxilase dos macrófagos. O quadro: **confusão, sonolência, poliúria e sede, constipação, vômitos**, às vezes convulsão.|q-tp20252-054,q-usp2026-023,q-scmsp2023-010,q-famerp2025-003,q-famerp2026-051,q-unesp2022-044]] [[Também elevam o cálcio: **intoxicação por vitamina D** (suplemento em megadose → hipercalciúria e **nefrocalcinose**), **lítio** (no bipolar) e **tiazídicos** (reduzem a calciúria). Tratamento da hipercalcemia grave: **hidratação venosa vigorosa** primeiro, depois bisfosfonato (ou calcitonina, corticoide nos granulomas e linfoma).|q-unifesp2026-025,q-usp2022-087,q-unifesp2025-022,q-unesp2022-044]]`,
+          texto: `- Câncer com hipercalcemia: **PTHrP** ou metástase. {q-tp20252-054,q-usp2026-023,q-scmsp2023-010}
+- Calcitriol alto: **linfoma** ou **sarcoidose** (hidratação). {q-famerp2025-003,q-famerp2026-051,q-unesp2022-044}
+- Megadose de vitamina D: **nefrocalcinose**; tiazídico e vitamina D também sobem o cálcio. {q-usp2022-087,q-unifesp2026-025,q-unifesp2025-022}` },
+        { id: "hipocalcemia", titulo: "Hipocalcemia e hiperparatireoidismo secundário", conferir: true,
+          questoes: ["q-tp20251-073","q-tp20261-005","q-didepm-066","q-scmsp2021-004","q-usprp2026-014"],
+          prosa: `[[Depois de **tireoidectomia total**, a lesão ou retirada das paratireoides dá **hipocalcemia** em 24 a 72 horas: **parestesia perioral e de dedos, cãibras**, **Trousseau** (espasmo do carpo ao insuflar o manguito) e Chvostek, **QT longo** no ECG. Sintomática: **gluconato de cálcio venoso lento** com monitorização, depois **cálcio oral e calcitriol**.|q-tp20251-073,q-tp20261-005,q-didepm-066,q-scmsp2021-004]] [[Na **doença renal crônica**, o rim não ativa a vitamina D e retém fósforo: o cálcio cai e as paratireoides crescem — **hiperplasia difusa das quatro glândulas** (secundário), que pode ficar autônoma (terciário).|q-usprp2026-014]]`,
+          texto: `- Pós-tireoidectomia, parestesia e Trousseau: **hipocalcemia**; QT longo. {q-tp20251-073,q-tp20261-005,q-scmsp2021-004}
+- Sintomática: **gluconato de cálcio IV** + calcitriol e cálcio oral. {q-didepm-066}
+- DRC: **hiperplasia das paratireoides**. {q-usprp2026-014}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `As armadilhas deste tema estão na ordem das condutas e no uso da palavra "imediata".`,
       fragmentos: [

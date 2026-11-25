@@ -134,6 +134,25 @@ Veja também: **Sepse** (versão completa da sepse urinária), **Antibioticotera
       ],
     },
     {
+      id: "febre-sem-foco", titulo: "Febre sem sinais localizatórios no lactente",
+      introducao: `[[Febre sem foco é febre com **história e exame que não mostram a causa**. Quase sempre é virose, mas o risco de **infecção bacteriana grave** (bacteremia, meningite e, sobretudo, **infecção urinária**, a mais comum) é maior quanto **menor a idade** e **menor a cobertura vacinal**. Por isso a conduta se divide por faixa etária: **até 28 dias** tudo é investigado e tratado (ver sepse neonatal); **29 a 90 dias** se estratifica o risco com exames; acima de 3 meses vacinado, a urina é o exame central.|q-famerp2026-047,q-sessp2024-048]]`,
+      fragmentos: [
+        { id: "fsf-1-3-meses", titulo: "De 1 a 3 meses: estratificar o risco", conferir: true,
+          questoes: ["q-famerp2026-047","q-uspsp1-010","q-uspsp2-049","q-famema2023-096","q-sessp2024-045"],
+          prosa: `[[Entre 1 e 3 meses, bom estado geral e exame normal, o risco se define por exames: **hemograma** (leucócitos 5.000–15.000, bastonetes < 1.500), **urina** (sedimento e **urocultura por cateterismo**), hemocultura e **PCR/procalcitonina**. Tudo normal = **baixo risco**: antitérmico, sem antibiótico, **reavaliação em 24 horas**.|q-famerp2026-047,q-uspsp1-010,q-uspsp2-049,q-famema2023-096]] [[Urina alterada aponta **infecção urinária**, mas a **urocultura** é o exame que confirma; colhida por sonda, antes do antibiótico.|q-sessp2024-045]]`,
+          texto: `- 1–3 meses: **hemograma, urina por sonda, urocultura, hemocultura, PCR**. {q-famerp2026-047,q-uspsp2-049,q-famema2023-096}
+- Exames normais: **antitérmico e reavaliar em 24 h**. {q-uspsp1-010}
+- Confirmação da ITU: **urocultura**. {q-sessp2024-045}` },
+        { id: "fsf-maiores", titulo: "Acima de 3 meses, roséola e febre periódica", conferir: true,
+          questoes: ["q-uspsp3-041","q-sessp2024-048","q-fmabc2022-055","q-uspsp2-052","q-einstein2025-040"],
+          prosa: `[[Lactente acima de 3 meses **vacinado**, bem, com febre alta sem foco: o exame é a **urina** (por **sondagem** se não tem controle esfincteriano). Bem e com urina normal, **antitérmico e retorno** se a febre passar de 48 horas ou surgir sintoma. Acima de 60 dias, bem apresentado, o tratamento de infecção bacteriana pode ser **oral e ambulatorial**.|q-uspsp3-041,q-sessp2024-048,q-fmabc2022-055]] [[Febre alta por 3 dias que **cessa e dá lugar a exantema** no tronco, em lactente de 6 meses a 2 anos: **exantema súbito (roséola, HHV-6)**; o antibiótico dado no caminho **não é alergia** e se suspende.|q-uspsp2-052]] [[Febre alta **a cada 3–6 semanas, como relógio**, com **faringite, aftas e adenite cervical** e criança bem entre os episódios: **PFAPA**; **dose única de corticoide** corta a crise.|q-einstein2025-040]]`,
+          texto: `- > 3 meses vacinado: **urina por sonda**. {q-uspsp3-041}
+- Bem, urina normal: **antitérmico e retorno**; > 60 dias pode ser **oral/ambulatorial**. {q-fmabc2022-055,q-sessp2024-048}
+- Febre cessa e vem exantema: **roséola**, suspender antibiótico. {q-uspsp2-052}
+- Febre periódica + aftas + faringite + adenite: **PFAPA**, corticoide em dose única. {q-einstein2025-040}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

@@ -75,6 +75,9 @@ function estadoDoTema(u, chave, primeiras){
     chave, titulo: tituloDoTema(chave), semResumo: !!t.semResumo, assunto: t.assunto, ids,
     feitas: feitasR.length, acertos, taxa, concluido,
     proximas: ids.filter(id => !primeiras.has(id)),
+    // questões de assunto incorporado ao resumo depois que a pessoa começou: vêm primeiro (lib-conjuntos)
+    incorporadas: new Set(t.incorporadas || []),
+    novasIncorporadas: feitasR.length ? ids.filter(id => !primeiras.has(id) && (t.incorporadas || []).includes(id)).length : 0,
     abaixoDoCorte: concluido && taxa < CICLO_POR_TEMA.corteDeAcerto,
     lidoEm: t.semResumo ? null : resumoLidoEm(u, chave),
     ultimaData: feitasR.reduce((m, r) => (r.data > m ? r.data : m), ""),
@@ -134,7 +137,8 @@ function iniciarQuestoesDoTema(chave){
   if(!e.proximas.length){ toast("Você já fez todas as questões do conjunto deste tema."); return; }
   const total = e.ids.length;
   iniciarSessaoComLista(e.proximas.map(id => ({ questaoId: id,
-    motivo: "Conjunto planejado de " + e.titulo + ": questão " + (e.ids.indexOf(id) + 1) + " de " + total + " (escolhidas para cobrir cada parte do tema)" })), "pratica");
+    motivo: "Conjunto planejado de " + e.titulo + ": questão " + (e.ids.indexOf(id) + 1) + " de " + total + (e.incorporadas.has(id)
+      ? " (assunto vizinho incorporado ao resumo: estas vêm primeiro)" : " (escolhidas para cobrir cada parte do tema)") })), "pratica");
 }
 function lerResumoDoTema(chave){ lerResumoDoAssunto(chave); }
 
@@ -195,7 +199,8 @@ function htmlPosLeituraDoResumo(u, resumoId){
   const pctTxt = e.taxa === null ? "" : Math.round(e.taxa * 100) + "%";
   let linha, botao = "";
   if(!e.feitas) { linha = `Agora, <strong>${e.ids.length} questões pós-leitura</strong>, escolhidas para cobrir cada parte deste tema.`; botao = "Fazer as questões pós-leitura"; }
-  else if(!e.concluido) { linha = `Questões pós-leitura: <strong>${e.feitas} de ${e.ids.length}</strong> · ${pctTxt} de acerto até aqui. Você continua das que ainda não fez.`; botao = "Continuar as questões"; }
+  else if(!e.concluido) { linha = `Questões pós-leitura: <strong>${e.feitas} de ${e.ids.length}</strong> · ${pctTxt} de acerto até aqui. Você continua das que ainda não fez.` + (e.novasIncorporadas
+    ? ` O resumo passou a cobrir um assunto vizinho: ${e.novasIncorporadas === 1 ? "a questão nova vem" : `as <strong>${e.novasIncorporadas} questões novas</strong> vêm`} primeiro.` : ""); botao = "Continuar as questões"; }
   else linha = `Questões pós-leitura feitas: <strong>${pctTxt}</strong> de acerto (${e.acertos} de ${e.feitas}).` + (e.abaixoDoCorte
     ? ` Abaixo de ${Math.round(CICLO_POR_TEMA.corteDeAcerto * 100)}%: vale reler os trechos marcados acima — opcional.` : "");
   return `<div class="resumo-pos-leitura card-flat mt-1 flex justify-between items-center gap-1 quebra"><span class="text-sm">${linha}</span>${botao

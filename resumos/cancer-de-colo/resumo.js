@@ -163,6 +163,19 @@ Veja também: **IST** (verrugas pelo HPV, dono das lesões genitais benignas), *
       ],
     },
     {
+      id: "vulva", titulo: "Vulva: líquen escleroso, lesões precursoras e câncer",
+      introducao: `[[O câncer de vulva tem dois caminhos. Na **mulher idosa**, nasce do **líquen escleroso** (inflamação crônica que deixa a pele **branca, fina, "papel de seda"**, com **prurido** de anos e apagamento dos pequenos lábios) passando pela **NIV diferenciada**, sem HPV. Na **mulher mais jovem**, vem do **HPV** (lesão intraepitelial de alto grau, **multicêntrica e recidivante**, com **tabagismo** e imunossupressão como fatores). Nos dois, a regra é **biopsiar** a lesão que coça e não melhora: muitas são tratadas meses como "micose".|q-didepm-088,q-unicamp2023-064,q-unicampdis2024-043,q-fmabc2025-062,q-unifesp2026-045]]`,
+      fragmentos: [
+        { id: "vul-conduta", titulo: "Biópsia, líquen e tratamento do câncer", conferir: true,
+          questoes: ["q-didepm-088","q-unicamp2023-064","q-unicampdis2024-043","q-fmabc2025-062","q-usprp2023-032","q-scmsp2022-044","q-adap26-045","q-unifesp2026-045"],
+          prosa: `[[**Líquen escleroso**: **clobetasol 0,05%** (corticoide potente) e seguimento, biopsiando área suspeita. Lesão branca, ulcerada ou elevada na idosa: **biópsia** (incisional, da borda). Lesão intraepitelial: **excisão com margens**.|q-didepm-088,q-unicamp2023-064,q-fmabc2025-062,q-usprp2023-032,q-scmsp2022-044]] [[Carcinoma espinocelular invasor: **excisão local radical com margem de 1 cm**. Com invasão de **até 1 mm** (estádio IA), **sem avaliação linfonodal**; mais profundo, avaliar a virilha — **linfonodo sentinela** se a lesão tem menos de 4 cm e é unifocal, ou esvaziamento.|q-adap26-045,q-unifesp2026-045]]`,
+          texto: `- Prurido crônico, pele branca fina: **líquen escleroso** → clobetasol. {q-didepm-088,q-unicamp2023-064}
+- Lesão vulvar na idosa: **biópsia**. {q-fmabc2025-062,q-usprp2023-032}
+- Lesão de alto grau multicêntrica: **HPV**; tratar com **excisão**. {q-unicampdis2024-043,q-scmsp2022-044}
+- Invasão ≤ 1 mm: **excisão radical sem linfonodo**; maior: **sentinela**. {q-adap26-045,q-unifesp2026-045}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas que mudam de banca para banca ou que contrariam a diretriz atual. Em cada item, primeiro a regra que se deve aprender; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

@@ -76,6 +76,31 @@ Veja também: **Assistência ao parto**, **Pré-eclâmpsia**, **Restrição de c
       ],
     },
     {
+      id: "rcf", titulo: "Restrição de crescimento fetal",
+      introducao: `[[O feto restrito é o que **não alcançou o seu potencial** porque a placenta não entrega o suficiente: o trofoblasto não remodelou bem as artérias espiraladas e a resistência placentária sobe. Fatores maternos que pesam: **hipertensão**, **tabagismo**, baixo peso, idade avançada. Pequeno **não é sinônimo** de restrito: o **constitucionalmente pequeno** cresce sempre no mesmo percentil, o restrito **cai de percentil**.|q-famerp2022-047,q-tp20251-081,q-uspsp2-041]] [[Definição (consenso Delphi): peso estimado ou circunferência abdominal **abaixo do percentil 3**, ou **abaixo do percentil 10 com Doppler alterado**. **Precoce** antes de 32 semanas (placentária, grave, com Doppler da umbilical alterado), **tardia** depois (Doppler umbilical muitas vezes normal, centralização).|q-unesp2022-027,q-sirio2026-070]]`,
+      fragmentos: [
+        { id: "rcf-suspeita", titulo: "Suspeitar: altura uterina e biometria", conferir: true,
+          questoes: ["q-famema2025-059","q-tp20231-092","q-tp20251-081","q-unesp2024-028","q-sirio2025-068","q-famerp2022-047","q-uspsp2-041","q-unesp2022-027","q-sirio2026-070"],
+          prosa: `[[A **altura uterina** abaixo do percentil 10 da curva (cerca de 3 cm a menos que a idade gestacional depois de 20 semanas) é o rastreio; o diagnóstico é a **ultrassonografia**, e a medida mais sensível é a **circunferência abdominal** (o fígado do feto mal nutrido encolhe primeiro). Altura baixa também é **oligoâmnio**; acima da curva, **diabetes gestacional** (macrossomia, polidrâmnio) ou gemelar.|q-famema2025-059,q-tp20231-092,q-tp20251-081,q-sirio2025-068]] [[Sem idade gestacional confiável, um exame só não diz se o feto é restrito: **biometria a cada 2 semanas** mede a velocidade de crescimento. Curva de altura uterina subindo dentro da faixa com peso no percentil 42 é **crescimento adequado**, mesmo com fator de risco.|q-famerp2022-047,q-unesp2024-028]] [[Gestante tabagista com queixa ou altura limítrofe: **ultrassom com Doppler das umbilicais e uterinas**.|q-uspsp2-041]]`,
+          texto: `- Medida mais sensível: **circunferência abdominal**. {q-famema2025-059}
+- AU baixa → **ultrassom**; também pensar em **oligoâmnio**; AU alta → diabetes. {q-tp20251-081,q-tp20231-092,q-sirio2025-068}
+- IG incerta: **biometria quinzenal**. {q-famerp2022-047}
+- Curva de AU normal: **crescimento adequado**. {q-unesp2024-028}
+- Peso < p3 (ou < p10 + Doppler) antes de 32 sem: **RCF precoce**. {q-unesp2022-027,q-sirio2026-070}
+- Tabagista: **Doppler** das umbilicais e uterinas. {q-uspsp2-041}` },
+        { id: "rcf-doppler", titulo: "Doppler e o momento do parto", conferir: true,
+          questoes: ["q-einstein2026-051","q-famerp2025-023","q-unesp2021-028","q-simepm89-027","q-uspsp4-044","q-famema2022-043","q-famema2022-050","q-unicampdis2022-040","q-unicampdis2024-044"],
+          prosa: `[[A deterioração segue uma sequência. A **artéria umbilical** mostra a placenta: o índice de pulsatilidade sobe, depois a **diástole zera** e por fim **inverte**. O feto se defende **centralizando**: vasodilata a **cerebral média** e a **relação cérebro-placentária cai**. O último a alterar é o **ducto venoso** (onda *a* ausente ou reversa): reflete falência cardíaca e é o **melhor preditor isolado de óbito** em curto prazo.|q-einstein2026-051,q-famerp2025-023,q-unesp2021-028]] [[O parto se marca pelo pior achado: umbilical com IP alto ou centralização, **37 semanas** (indução é possível, com monitorização); **diástole zero**, **34 semanas**; **diástole reversa**, cerca de **30–32 semanas**; **ducto venoso alterado** ou cardiotocografia anormal, **parto já**. Antes de 34 semanas, **corticoide**; antes de 32, **sulfato de magnésio** para neuroproteção. Com zero ou reversa, a via costuma ser a **cesárea**.|q-simepm89-027,q-uspsp4-044,q-famema2022-043,q-famema2022-050,q-unicampdis2024-044]] [[Feto restrito com Doppler e cardiotocografia normais e líquido normal: **vigilância** seriada, não parto imediato.|q-unicampdis2022-040]]`,
+          texto: `- Centralização: **relação cérebro-placentária reduzida**. {q-einstein2026-051}
+- **Ducto venoso** alterado: maior preditor de óbito. {q-famerp2025-023,q-unesp2021-028}
+- Diástole zero a 30 sem com DV normal: corticoide, vigilância, **parto com 34**. {q-simepm89-027}
+- Diástole **reversa** a 32 sem: **cesárea já**. {q-uspsp4-044}
+- 28 sem, diástole zero (prova): corticoide, magnésio, cesárea. {q-famema2022-043}
+- Termo com Doppler umbilical alterado: **induzir**. {q-famema2022-050,q-unicampdis2024-044}
+- Doppler e CTG normais: **vigilância**. {q-unicampdis2022-040}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

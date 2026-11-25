@@ -66,6 +66,36 @@ Veja também: **Anemias** (anemia ferropriva na criança, completa lá), **Cresc
       ],
     },
     {
+      id: "recem-nascido", titulo: "O recém-nascido: exame e primeiros dias",
+      introducao: `[[O exame do recém-nascido separa o **fisiológico** (que se explica à mãe e não se trata) do que precisa de conduta. Muito do que assusta nos primeiros dias é adaptação: o bebê nasce com **reserva de água** que gasta até a descida do leite (perde **até 10% do peso** e recupera em 10 a 14 dias), pode demorar **24 a 36 horas** para a primeira diurese e tem lesões de pele que somem sozinhas.|q-usprp2024-061,q-amrigs2024-065]]`,
+      fragmentos: [
+        { id: "rn-primeiros-dias", titulo: "Alojamento conjunto, vitamina K e alta", conferir: true,
+          questoes: ["q-usprp2024-061","q-amrigs2024-065","q-amrigs2023-066","q-unesp2025-004","q-sirio2021-053","q-unicampdis2025-078","q-sessp2026-056"],
+          prosa: `[[O recém-nascido tem pouca **vitamina K** (atravessa mal a placenta, o leite materno tem pouco e o intestino ainda não tem flora): os fatores **II, VII, IX e X** ficam baixos. Sem a **vitamina K intramuscular ao nascer**, aparece a **doença hemorrágica**: bebê bem que sangra pelo tubo digestivo ou pelo coto, com **TP e TTPA prolongados e plaquetas normais**. A dose ao nascer previne a **forma clássica** (2º ao 7º dia).|q-unesp2025-004,q-sirio2021-053]] [[Alta do alojamento conjunto (SBP), depois de 48 horas: sinais vitais estáveis, **eliminações fisiológicas**, sucção eficaz e **triagens feitas** (orelhinha, olhinho, coraçãozinho). Para a dor da punção do calcanhar: **sacarose ou glicose oral** cerca de 2 minutos antes, ou o bebê **ao seio**, contato pele a pele.|q-amrigs2023-066,q-unicampdis2025-078]] [[Lacrimejamento com secreção num olho só, conjuntiva calma, no primeiro mês: **obstrução do ducto lacrimonasal**, que abre sozinha na maioria; **limpeza** (e massagem) basta.|q-sessp2026-056]]`,
+          texto: `- Perda de até 10% do peso: **reserva hídrica** até a apojadura. {q-usprp2024-061}
+- Sem diurese com 20 h: **aguardar** (até 24–36 h). {q-amrigs2024-065}
+- Sangramento, TP/TTPA longos, plaquetas normais: **doença hemorrágica**; vitamina K ao nascer previne a **forma clássica**. {q-unesp2025-004,q-sirio2021-053}
+- Alta: **eliminações e triagens** feitas. {q-amrigs2023-066}
+- Dor da punção: **sacarose/glicose oral** ou seio. {q-unicampdis2025-078}
+- Lacrimejamento unilateral: **obstrução lacrimal**, limpeza. {q-sessp2026-056}` },
+        { id: "rn-pele", titulo: "A pele do recém-nascido", conferir: true,
+          questoes: ["q-fmabc2023-042","q-amrigs2021-075","q-sirio2023-044","q-sirio2022-050","q-sirio2023-041"],
+          prosa: `[[**Eritema tóxico**: aparece entre o 2º e o 3º dia, **pápulas e pústulas sobre base eritematosa**, poupa palmas e plantas, pústula com **eosinófilos**; some sozinho. **Melanose pustulosa transitória**: já **presente ao nascer**, mais em **bebês negros**, pústulas sem eritema que se rompem e deixam **colarete de descamação e máculas hipercrômicas**; também benigna.|q-fmabc2023-042,q-amrigs2021-075,q-sirio2023-044,q-sirio2022-050]] [[**Bolhas flácidas** que surgem depois de alguns dias, em bebê bem, são **impetigo bolhoso por *Staphylococcus aureus*** (toxina esfoliativa): precisam de antibiótico.|q-sirio2023-041]]`,
+          texto: `- 2º–3º dia, eritema + pústulas, poupa palmas: **eritema tóxico**. {q-fmabc2023-042}
+- Ao nascer, pústulas que deixam colarete e manchas: **melanose pustulosa**. {q-amrigs2021-075,q-sirio2023-044,q-sirio2022-050}
+- Bolhas no 6º dia: ***S. aureus***. {q-sirio2023-041}` },
+        { id: "rn-neuro-trauma", titulo: "Reflexos, tônus e tocotraumatismos", conferir: true,
+          questoes: ["q-fmabc2023-048","q-famema2021-089","q-iamspe2025-061","q-usp2022-060","q-amrigs2020-070","q-usp2022-059","q-amrigs2023-068"],
+          prosa: `[[O recém-nascido a termo normal tem **tônus flexor dos membros com hipotonia axial**, **preensão palmar** e **sucção** reflexas. O **Moro** (abertura e depois "abraço" diante da sensação de queda) some até 4–6 meses; **ausente dos dois lados** ao nascer sugere lesão do sistema nervoso; **assimétrico**, lesão do lado que não mexe (plexo ou clavícula). Bebê **hipotônico** (cabeça cai na tração, sinal do cachecol, escorrega na suspensão) pede **investigação neurológica**.|q-fmabc2023-048,q-famema2021-089,q-iamspe2025-061,q-usp2022-060]] [[Parto difícil (fórcipe, macrossomia, distocia de ombro): **paralisia de Erb-Duchenne** (C5–C6) deixa o braço **aduzido, em rotação interna, com o punho fletido** ("gorjeta do garçom") e Moro assimétrico. **Céfalo-hematoma** é sangue sob o periósteo, **limitado a um osso** e não cruza suturas: **observar** e vigiar a **icterícia** (o sangue reabsorvido vira bilirrubina).|q-amrigs2020-070,q-usp2022-059]] [[Classificar o peso pela idade gestacional: termo com peso, comprimento e perímetro cefálico **todos abaixo do percentil 10** = **PIG simétrico** (agressão precoce: genética, infecção).|q-amrigs2023-068]]`,
+          texto: `- Normal: **tônus flexor, hipotonia axial**, preensão e sucção. {q-fmabc2023-048}
+- **Moro**: some até os 6 meses; ausente bilateral = anormal. {q-famema2021-089,q-iamspe2025-061}
+- RN hipotônico: **investigação neurológica**. {q-usp2022-060}
+- Braço em rotação interna após fórcipe: **Erb-Duchenne**. {q-amrigs2020-070}
+- Abaulamento limitado a um osso: **céfalo-hematoma**, observar icterícia. {q-usp2022-059}
+- Tudo abaixo de p10 a termo: **PIG simétrico**. {q-amrigs2023-068}` },
+      ],
+    },
+    {
       id: "crescimento", titulo: "Crescimento",
       introducao: `Crescer é o sinal de saúde mais sensível da criança. Quase toda doença crônica, carência ou problema de vínculo aparece primeiro como uma curva que **muda de canal**. Por isso, mais do que um ponto isolado no gráfico, interessa a **tendência**: a criança que sempre esteve no escore z −1,5 e segue nele cresce bem; a que estava em +1 e caiu para −1 tem um problema, mesmo estando "dentro do normal". [[A **desaceleração do crescimento** pede investigar alimentação e dinâmica familiar e um retorno breve.|q-uspsp4-080]]
 
@@ -147,11 +177,12 @@ O desenvolvimento depende também de estímulo e vínculo. [[Conversar com o beb
 **Por que proteger.** O aleitamento exclusivo até 6 meses e continuado até 2 anos ou mais reduz diarreia, pneumonia, otite, alergia e obesidade, e protege a mãe de câncer de mama e ovário. [[A melhora dos indicadores no Brasil nos últimos 40 anos veio de políticas integradas: Hospital Amigo da Criança, bancos de leite, licença-maternidade e a **norma que regula a propaganda de fórmulas, mamadeiras e bicos** (NBCAL).|q-unifesp2023-067]]`,
       fragmentos: [
         { id: "ama-leite", titulo: "Composição do leite e proteção da amamentação", conferir: true,
-          questoes: ["q-tp20251-111","q-sessp2025-048","q-unesp2022-004","q-unifesp2023-067"],
+          questoes: ["q-tp20251-111","q-sessp2025-048","q-unesp2022-004","q-unifesp2023-067","q-sessp2022-053"],
           texto: `- **Colostro**: rico em **imunoglobulinas (IgA secretória)**, leucócitos e proteínas. {q-tp20251-111}
 - Leite maduro: proteína principal **alfa-lactoalbumina**; carboidrato principal **lactose**; gordura maior no fim da mamada. {q-sessp2025-048}
 - Composição semelhante entre as mulheres, mas **individualizada** para cada dupla mãe-bebê. {q-unesp2022-004}
-- Proteção por política pública: IHAC, bancos de leite, licença e a **regulação da propaganda** de fórmulas, mamadeiras e bicos (NBCAL). {q-unifesp2023-067}` },
+- Proteção por política pública: IHAC, bancos de leite, licença e a **regulação da propaganda** de fórmulas, mamadeiras e bicos (NBCAL). {q-unifesp2023-067}
+- **Fator bifidogênico** do leite humano favorece a microbiota de bifidobactérias. {q-sessp2022-053}` },
         { id: "ama-tecnica", casos: ["q-tp20222-041"], titulo: "Pega, posição e as queixas dos primeiros dias", conferir: true,
           prosa: `[[Quase toda dificuldade de amamentar nas primeiras semanas (dor, fissura, bebê que chora e larga o peito, baixo ganho) tem a mesma raiz: **pega ou posição inadequadas**. O bebê que abocanha só o mamilo machuca a mãe e não esvazia a mama, que então produz menos.|q-unifesp2022-070,q-tp20222-041,q-tp20212-118,q-tp20252-001,q-didepm-014,q-amrigs2025-063]] Por isso a primeira conduta é observar a mamada. [[Um bebê com bom ganho de peso e pega correta não precisa de nenhuma intervenção na técnica.|q-sirio2023-050]]`,
           questoes: ["q-unifesp2022-070","q-tp20222-041","q-tp20212-118","q-tp20252-001","q-didepm-014","q-amrigs2025-063","q-sirio2023-050","q-famerp2023-037","q-famerp2025-053","q-famema2025-038","q-sirio2025-051","q-udisc20262-057"],

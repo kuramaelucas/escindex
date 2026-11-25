@@ -124,5 +124,31 @@ A lógica é fisiológica. [[A criança com desidratação moderada ainda tem a 
 - Cetoacidose diabética: as provas cobram **SF ou Ringer 20 mL/kg** na expansão inicial. {q-sessp2026-055,q-tp20231-042,q-tp20231-045}` },
       ],
     },
+    {
+      id: "adulto-toxinfeccao", titulo: "No adulto: diarreia aguda, toxinfecção alimentar e febre tifoide",
+      introducao: `[[No adulto, cerca de **90% das diarreias agudas são infecciosas** e quase todas passam sozinhas: o tratamento é **hidratação** e sintomáticos. Antibiótico fica para a **disenteria com febre** (sangue e muco), o imunossuprimido e o grave.|q-sirio2023-095,q-einstein2023-011]]`,
+      fragmentos: [
+        { id: "tox-adulto", titulo: "Diarreia aguda do adulto: hidratar e quando tratar", conferir: true,
+          questoes: ["q-sirio2023-095","q-einstein2023-011","q-sessp2025-006","q-einstein2022-020","q-sessp2024-088","q-sirio2023-012"],
+          prosa: `[[Diarreia aquosa com febre baixa, sem sangue e sem sinais de gravidade: **hidratação e observação**, sem antibiótico; se os vômitos impedem a via oral, **hidratação venosa**. Dor abdominal com diarreia desde o início, abdome sem peritonite e exames sem alarme: **sintomáticos e observação**. Para encurtar a diarreia aquosa (viagem, compromisso), a **racecadotrila** reduz a secreção sem parar o intestino.|q-einstein2023-011,q-sessp2025-006,q-einstein2022-020,q-sessp2024-088]] [[**Disenteria com febre** (*Shigella*, *Campylobacter*): **azitromicina**, que serve também à **gestante** (quinolona evitada).|q-sirio2023-012]]`,
+          texto: `- 90% **infecciosas**; aquosa sem alarme: **hidratar**, sem antibiótico. {q-sirio2023-095,q-einstein2023-011,q-einstein2022-020}
+- Vômitos que impedem via oral: **hidratação venosa**. {q-sessp2025-006}
+- Antissecretor: **racecadotrila**. {q-sessp2024-088}
+- Disenteria febril na gestante: **azitromicina**. {q-sirio2023-012}` },
+        { id: "tox-surto", titulo: "Toxinfecção alimentar e investigação de surto", conferir: true,
+          questoes: ["q-famema2023-034","q-famema2025-003","q-tp20261-072","q-udisc20262-018"],
+          prosa: `[[O **tempo de incubação** aponta o agente. Vômitos intensos **1 a 6 horas** depois de comer (maionese, salada, doces com creme deixados fora da geladeira): **toxina pré-formada do *Staphylococcus aureus*** (ou *Bacillus cereus* no arroz); não há febre e passa em 24 h. Depois de 12 a 72 h, com febre e diarreia, são bactérias que se multiplicam no intestino (*Salmonella*, *Campylobacter*, *E. coli*).|q-famema2023-034,q-famema2025-003]] [[No surto, compara-se quem comeu cada alimento com quem não comeu (caso-controle ou coorte): o alimento com **maior medida de associação** (OR ou risco relativo, com IC 95% que não cruza 1) é o suspeito. A **taxa de ataque** é **casos** (os que cumprem a definição de caso, não todos os que procuraram atendimento) ÷ **expostos**: 702 casos entre 4.320 comensais = 163 por 1.000.|q-tp20261-072,q-udisc20262-018]]`,
+          texto: `- Vômitos em poucas horas após maionese/salada: ***S. aureus*** (toxina). {q-famema2023-034,q-famema2025-003}
+- Alimento suspeito: **maior OR** com IC que não cruza 1. {q-tp20261-072}
+- **Taxa de ataque** = casos definidos ÷ expostos. {q-udisc20262-018}` },
+        { id: "tox-tifoide", titulo: "Febre tifoide", conferir: true,
+          questoes: ["q-gdhepatoesplenomegalias-065","q-gdhepatoesplenomegalias-010","q-gdhepatoesplenomegalias-073","q-gdhepatoesplenomegalias-055","q-gdhepatoesplenomegalias-061","q-gdhepatoesplenomegalias-042","q-gdhepatoesplenomegalias-038"],
+          prosa: `[[A ***Salmonella* Typhi** só infecta o homem e se transmite por **água e alimento contaminados**: no Brasil, acompanha a falta de **saneamento**. Ela atravessa a mucosa do íleo, cai no sangue e se multiplica no sistema reticuloendotelial: **febre que sobe em degraus**, prostração, cefaleia, tosse seca, **dissociação pulso-temperatura (sinal de Faget)**, hepatoesplenomegalia, roséolas, e constipação mais que diarreia; complica na 3ª semana com **perfuração e sangramento intestinal**.|q-gdhepatoesplenomegalias-065,q-gdhepatoesplenomegalias-010,q-gdhepatoesplenomegalias-073]] [[Diagnóstico por isolamento: **hemocultura** na 1ª semana, **mielocultura** (a mais sensível, positiva mesmo com antibiótico), **coprocultura a partir da 3ª**. O portador crônico guarda a bactéria na **vesícula biliar**. Tratamento: **ciprofloxacina** (ou azitromicina); no quadro grave complicado, **ceftriaxona**.|q-gdhepatoesplenomegalias-055,q-gdhepatoesplenomegalias-061,q-gdhepatoesplenomegalias-042,q-gdhepatoesplenomegalias-038,q-gdhepatoesplenomegalias-073]]`,
+          texto: `- Ligada ao **saneamento**; **sinal de Faget**. {q-gdhepatoesplenomegalias-065,q-gdhepatoesplenomegalias-010}
+- Mais sensível: **mielocultura**; 3ª semana: **coprocultura**. {q-gdhepatoesplenomegalias-055,q-gdhepatoesplenomegalias-061}
+- Portador: **vesícula biliar**. {q-gdhepatoesplenomegalias-042}
+- Tratar: **ciprofloxacina**; grave: **ceftriaxona**. {q-gdhepatoesplenomegalias-073,q-gdhepatoesplenomegalias-038}` },
+      ],
+    },
   ],
 });

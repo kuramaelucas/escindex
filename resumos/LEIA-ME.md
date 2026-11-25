@@ -89,6 +89,8 @@ Marcações dentro do texto:
 22. **Esquema autoral conferido renderizado** (Playwright, captura de tela): nenhum texto encosta ou sai da caixa, e cada afirmação do esquema existe no texto da seção.
 23. **Fonte lida antes de publicar.** Leia o texto oficial (`npm run texto-oficial`) das diretrizes das seções de conduta e preencha `lidoEm`; só então tire o `conferir: true` daquelas seções. Sem a leitura, a seção continua "a conferir".
 
+24. **Assunto vizinho pequeno vai para dentro de um resumo existente** quando o resumo já trata do tema (capítulo ou seção nova, ligando as questões dele). Ligue **pelo menos metade** das questões do assunto (é o que faz a ferramenta considerá-lo coberto), acrescente o id em `assuntos: [...]` no `catalogo.js` e rode `npm run conjuntos-por-tema -- --gravar`: as questões dele entram além das 20 do tema e vêm primeiro (`docs/PROJETO-INTEGRACAO-RESUMOS.md`, seção 4).
+
 Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 16 a 21 viram erro) e `node --test testes/resumos.test.mjs`.
 
 ## Ainda por fazer
@@ -255,3 +257,19 @@ Antes do commit: `npm run resumo -- <tema> --exigir` (os avisos das condições 
 | `deficiencias-nutricionais` | `ass-deficvitaminica` | 24 questões; B1, B3, B12, C, D, A, remédios que esgotam nutrientes, desnutrição, realimentação, ferropenia e ferritina; 1 figura |
 | `complicacoes-anestesicas` | `ass-anestesio-complicacoes` | 24 questões; hipertermia maligna, succinilcolina, anafilaxia, capnografia, NVPO, propofol, despertar, vasoplegia, anestésico local e lipídio, cefaleia pós-raqui, morfina intratecal, anticoagulante e neuroeixo, fitoterápicos; 1 figura, 1 caso |
 | `violencia-sexual` | `ass-violenciasexual` | 22 questões (1 anulada com reposição no resumo); acolhimento e notificação, contracepção de emergência, ISTs, PEP, hepatite B e HPV, aborto legal; 1 figura |
+| `doencas-da-aorta` | `ass-cirvasc-aneurisma` + `ass-cirvasc-disseccao` | 40 | — |
+| `pericardio` | `ass-pericardio` | 20 | — |
+| `neurologia` | `ass-neuro-epilepsia` + `ass-neuro-coma`, `ass-neuro-cefaleias`, `ass-neuro-vertigem`, `ass-neuro-movimento` | 84 | 1 (anulada pela banca) |
+| `neurocirurgia` | `ass-neurocir-tumores` + `ass-neurocir-hidrocefalia`, `ass-neurocir-plexobraquial` | 37 | — |
+| `oftalmologia` | `ass-oft-olhovermelho` + `ass-oft-glaucoma`, `ass-oft-catarata`, `ass-oft-trauma`, `ass-oft-retina`, `ass-oft-refracao` | 67 | — |
+| `ortopedia` | `ass-orto-infeccoes` + `ass-orto-coluna`, `ass-orto-artrose`, `ass-orto-ombro` | 63 | — |
+| `urologia` | `ass-uro-oncologia` + `ass-uro-malformacoes` | 41 | — |
+| `hipofise` | `ass-hipofise` | 18 | — |
+| `psicoses` | `ass-psiq-psicoses` | 18 | — |
+| `pancreas-e-sarcomas` | `ass-capancreas` + `ass-cironco-sarcomas` | 21 | — |
+| `oncologia-pediatrica` | `ass-oncopediatrica` | 19 | — |
+| `cabeca-e-pescoco` | `ass-cabecapescoco` + `ass-orl-glandulas`, `ass-orl-fratura`, `ass-cirtorax-viaaerea` | 34 | — |
+| `intersticiais` | `ass-pneumo-intersticiais` | 14 | — |
+| `imunodeficiencias` | `ass-imunodeficiencias` | 14 | — |
+| `dor-pelvica` | `ass-dorpelvica` | 21 | — |
+| `anatomia-cirurgica` | `ass-anatomiacirurgica` | 21 | 1 (dor referida do ureter: ligada no resumo de dor pélvica (dor-pelvica)) |

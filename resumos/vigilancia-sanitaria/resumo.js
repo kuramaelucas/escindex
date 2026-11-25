@@ -69,6 +69,34 @@ Veja também: **Sistemas de informação em saúde**, **Epidemiologia descritiva
       ],
     },
     {
+      id: "medicamentos", titulo: "Medicamentos: receitas controladas, farmacovigilância e incorporação no SUS",
+      introducao: `[[O medicamento passa por três controles do Estado: **antes de chegar ao mercado** (ensaios clínicos e registro na Anvisa), **na prescrição e venda** (Portaria 344/98 para os controlados) e **depois de usado por muitos** (farmacovigilância). Entrar no SUS é outra decisão: a **CONITEC** avalia se vale a pena pagar por ele.|q-unesp2023-091,q-usp2023-068]]`,
+      fragmentos: [
+        { id: "med-receitas", titulo: "Receitas controladas (Portaria 344/98)", conferir: true,
+          questoes: ["q-unifesp2023-029","q-adap23-029","q-unifesp2025-058","q-unifesp2026-072"],
+          prosa: `[[**Notificação de Receita A (amarela)**: entorpecentes e psicotrópicos das listas **A1, A2 e A3** (morfina, metadona, anfetaminas), talonário fornecido pela **autoridade sanitária**. **Notificação B (azul)**: psicotrópicos B1 (**benzodiazepínicos**, como o clonazepam) e B2 (anorexígenos). **Receita de controle especial (branca, duas vias)**: lista C1 — **antidepressivos** (fluoxetina), anticonvulsivantes, e, desde 2025, os **agonistas de GLP-1**. Codeína e tramadol: **acima de 100 mg** por unidade, Notificação A; abaixo, controle especial.|q-unifesp2023-029,q-adap23-029,q-unifesp2025-058,q-unifesp2026-072]]`,
+          texto: `- A1–A3 (entorpecentes): **Notificação A amarela**, talonário da autoridade sanitária. {q-unifesp2023-029}
+- Clonazepam: **B azul**; fluoxetina: **branca em duas vias**. {q-adap23-029}
+- Codeína/tramadol: **> 100 mg A**, < 100 mg controle especial. {q-unifesp2025-058}
+- GLP-1 (2025): **branca, duas vias**. {q-unifesp2026-072}` },
+        { id: "med-farmacovigilancia", titulo: "Farmacovigilância e fase IV", conferir: true,
+          questoes: ["q-unesp2023-091","q-didepm-030","q-usprp2027-084","q-sirio2022-089","q-einstein2021-045","q-adap26-072","q-sirio2025-096","q-adap25-058"],
+          prosa: `[[A fase III estuda milhares de pessoas por pouco tempo; **eventos raros** (1 em 10.000) só aparecem depois, com milhões de usuários. Por isso existe a **fase IV**: vigilância **pós-comercialização**, que detecta reações novas e mede a frequência das conhecidas (a prova da Sírio considerou que ela não é randomizada). A **farmacovigilância** cuida de reações adversas, erros e uso abusivo de medicamentos.|q-unesp2023-091,q-didepm-030,q-usprp2027-084,q-sirio2022-089,q-einstein2021-045]] [[A **suspeita** de reação adversa se notifica no **VigiMed** (Anvisa), **sem precisar de certeza do nexo causal**, e o paciente é acompanhado. Reação **tipo A** é dose-dependente e previsível (efeito farmacológico aumentado); **tipo B (bizarra)** é **imprevisível, não ligada à dose**, geralmente alérgica, como a anafilaxia à amoxicilina.|q-adap26-072,q-sirio2025-096,q-adap25-058]]`,
+          texto: `- Fase IV: **pós-comercialização**, eventos raros. {q-unesp2023-091,q-didepm-030,q-usprp2027-084}
+- Prova: fase IV **não randomizada**. {q-sirio2022-089}
+- Uso abusivo de medicamento: **farmacovigilância**. {q-einstein2021-045}
+- Suspeita: **notificar no VigiMed** sem esperar certeza. {q-adap26-072,q-sirio2025-096}
+- Anafilaxia à amoxicilina: **tipo B**. {q-adap25-058}` },
+        { id: "med-incorporacao", titulo: "CONITEC, RENAME, PCDT e judicialização", conferir: true,
+          questoes: ["q-usp2023-068","q-usp2023-069","q-uspsp1-115","q-iamspe2023-076","q-famema2023-004","q-sessp2022-011","q-sirio2026-100","q-sirio2027-098"],
+          prosa: `[[Para entrar no SUS, a tecnologia passa pela **CONITEC**, que faz **avaliação de tecnologias em saúde (ATS)**: **eficácia, acurácia, efetividade e segurança**, mais **custo-efetividade e impacto orçamentário**, comparada ao que já existe. **Eficácia** é o efeito em condições ideais (ensaio); **efetividade**, nas **condições habituais** da prática; **eficiência**, o resultado pelo custo.|q-usp2023-068,q-usp2023-069,q-uspsp1-115,q-iamspe2023-076]] [[Incorporado, o remédio entra na **RENAME** (acompanhada do **Formulário Terapêutico Nacional**) e é usado conforme o **PCDT**, que define critérios (ex.: sacubitril-valsartana só para FEVE ≤ 35%, NYHA II, BNP alto, ≤ 75 anos e refratário). Remédio **não incorporado** obtido na Justiça depende do **caso concreto**: evidência, ausência de alternativa no SUS e incapacidade de pagar.|q-famema2023-004,q-sessp2022-011,q-sirio2026-100,q-sirio2027-098]]`,
+          texto: `- CONITEC: **eficácia, segurança, custo-efetividade, impacto orçamentário**. {q-usp2023-068,q-usp2023-069,q-uspsp1-115}
+- **Efetividade** = condições habituais. {q-iamspe2023-076}
+- RENAME + **FTN**; uso pelo **PCDT**. {q-famema2023-004,q-sessp2022-011,q-sirio2026-100}
+- Judicialização: **caso concreto**. {q-sirio2027-098}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

@@ -254,6 +254,48 @@ Veja também: **Trabalho de parto e parto**, **Diabetes gestacional**, **Hiperte
       ],
     },
     {
+      id: "aloimunizacao", titulo: "Aloimunização Rh e doença hemolítica perinatal",
+      introducao: `[[A mãe **RhD negativo** que recebe hemácias D positivas (do feto, no parto, no aborto, no sangramento ou num trauma) produz **anticorpo anti-D**. A primeira resposta é IgM e chega tarde; na **gestação seguinte**, a IgG atravessa a placenta e **destrói as hemácias do feto D positivo**: anemia, eritropoese extramedular, hepatoesplenomegalia e, no extremo, **hidropisia** (ascite, derrames, edema) por insuficiência cardíaca de alto débito e hipoalbuminemia. Por isso a primigesta raramente adoece e a doença piora a cada gestação.|q-usp2025-014,q-simepm89-023,q-famerp2026-028]]
+
+[[O **Coombs indireto** procura o anticorpo no soro da mãe. **Positivo** pede **identificação e título** do anticorpo: só alguns (anti-D, anti-Kell, anti-c) causam doença grave, e o título diz o risco.|q-einstein2025-053]]`,
+      fragmentos: [
+        { id: "rh-profilaxia", titulo: "Prevenção: quem recebe imunoglobulina anti-D", conferir: true,
+          questoes: ["q-adap25-074","q-usprp2022-042","q-famerp2025-021","q-famema2023-057","q-famerp2022-045","q-usprp2024-092","q-didepm-063","q-uspsp3-055","q-fmabc2022-074","q-unicampdis2025-089"],
+          prosa: `[[A gestante Rh negativo **não sensibilizada** (Coombs indireto negativo) com parceiro Rh positivo ou desconhecido recebe **imunoglobulina anti-D com 28 semanas** e **nova dose em até 72 horas após o parto** se o recém-nascido for Rh positivo, **qualquer que seja o Coombs** no parto (a dose de 28 semanas pode deixá-lo positivo). Também recebe depois de **sangramento, aborto, ectópica, procedimento invasivo ou trauma**, em qualquer idade gestacional.|q-adap25-074,q-usprp2022-042,q-famerp2025-021,q-famema2023-057,q-famerp2022-045]] [[**Parceiro comprovadamente Rh negativo** (pai certo): o feto será Rh negativo, **dispensa a imunoglobulina**. Sem profilaxia na 28ª semana, o Coombs indireto se repete **mensalmente** a partir do 2º trimestre.|q-didepm-063,q-uspsp3-055]] [[Coombs indireto positivo depois da imunoglobulina costuma ser **anticorpo passivo** (título baixo, dura semanas): pergunte quando ela recebeu a dose antes de chamar de aloimunização. E um anticorpo **diferente do anti-D** (anti-Jk, anti-Kell) não protege contra a sensibilização ao D: a gestante **continua recebendo anti-D**.|q-fmabc2022-074,q-unicampdis2025-089,q-usprp2024-092]]`,
+          texto: `- Rh neg, Coombs neg: **anti-D com 28 semanas** e **até 72 h após o parto** se RN Rh+. {q-adap25-074,q-usprp2022-042,q-famerp2025-021}
+- Sangramento, aborto, procedimento: **anti-D** se Coombs negativo. {q-famema2023-057,q-famerp2022-045}
+- Pai comprovadamente Rh neg: **dispensa**. {q-didepm-063}
+- Sem profilaxia: **Coombs indireto mensal**. {q-uspsp3-055}
+- Coombs positivo após a imunoglobulina: **anticorpo passivo**. {q-fmabc2022-074,q-unicampdis2025-089}
+- Anticorpo anti-Jk: ainda **recebe anti-D**. {q-usprp2024-092}` },
+        { id: "rh-sensibilizada", titulo: "Gestante sensibilizada: Doppler da cerebral média e cordocentese", conferir: true,
+          questoes: ["q-einstein2025-053","q-famerp2024-034","q-unifesp2025-074","q-uspsp3-057","q-famerp2026-028","q-amrigs2022-043","q-fmabc2025-070","q-usp2025-014","q-uspsp3-054","q-simepm89-023","q-iamspe2026-053"],
+          prosa: `[[Título de anti-D **acima do crítico (1:16)**, ou antecedente de feto afetado, manda investigar anemia fetal **sem invadir**: **Doppler do pico de velocidade sistólica da artéria cerebral média**, semanal, a partir de cerca de **18 semanas**. O sangue anêmico é **menos viscoso** e o débito aumenta: o fluxo cerebral acelera.|q-famerp2024-034,q-unifesp2025-074,q-uspsp3-057,q-famerp2026-028,q-amrigs2022-043,q-fmabc2025-070]] [[Pico **acima de 1,5 MoM** ou **hidropisia** = anemia fetal moderada a grave: **cordocentese**, que mede a hemoglobina e já permite a **transfusão intrauterina**. A cordocentese direta com título alto é a conduta antiga que algumas provas ainda cobram.|q-usp2025-014,q-simepm89-023,q-iamspe2026-053,q-uspsp3-054]]`,
+          texto: `- Coombs positivo: **identificar e titular** o anticorpo. {q-einstein2025-053}
+- Título > 1:16: **Doppler da ACM** (semanal, desde ~18 semanas). {q-famerp2024-034,q-unifesp2025-074,q-uspsp3-057,q-famerp2026-028,q-fmabc2025-070}
+- Fluxo acelera por **menor viscosidade**. {q-amrigs2022-043}
+- ACM > 1,5 MoM ou hidropisia: **cordocentese** e transfusão intrauterina. {q-usp2025-014,q-simepm89-023,q-iamspe2026-053,q-uspsp3-054}` },
+      ],
+    },
+    {
+      id: "gemelar", titulo: "Gestação múltipla",
+      introducao: `[[Gêmeos **dizigóticos** vêm de dois óvulos: são sempre **dicoriônicos e diamnióticos**, e sua frequência sobe com idade materna, raça negra, história familiar e reprodução assistida. **Monozigóticos** vêm de um zigoto que se divide; a **época da divisão** define a placentação: até o 3º dia, **dicoriônica diamniótica**; do 4º ao 8º, **monocoriônica diamniótica** (a mais comum); do 8º ao 12º, **monocoriônica monoamniótica**; depois, gêmeos unidos. Por isso gêmeos idênticos podem ter qualquer das três placentações.|q-amrigs2021-048,q-iamspe2022-062,q-sirio2022-064]] [[A gemelaridade aumenta a **morbimortalidade materna** (pré-eclâmpsia, hemorragia, diabetes, anemia) e **fetal e neonatal** (prematuridade, restrição, paralisia cerebral).|q-amrigs2020-047]]`,
+      fragmentos: [
+        { id: "gem-corionicidade", titulo: "Corionicidade e as complicações da placenta única", conferir: true,
+          questoes: ["q-scmsp2023-078","q-sessp2026-068","q-iamspe2025-051","q-didepm-073","q-einstein2027-052"],
+          prosa: `[[A corionicidade é o dado que mais muda o risco e se determina pela **ultrassonografia do 1º trimestre** (entre 11 e 14 semanas): **sinal do lambda** (o córion entra entre as membranas) = **dicoriônica**; **sinal do T** (membrana fina, sem córion) = **monocoriônica**. Depois, as placentas se fundem e o sinal some.|q-scmsp2023-078,q-sessp2026-068]] [[Na placenta única os fetos dividem vasos (anastomoses). Desequilíbrio do fluxo é a **síndrome de transfusão feto-fetal**, **só das monocoriônicas**: o **doador** fica com oligoâmnio e **bexiga não visível**, o **receptor** com polidrâmnio e sobrecarga. Tratamento: **fotocoagulação a laser** das anastomoses por fetoscopia, em centro de medicina fetal. A divisão desigual da placenta dá **restrição seletiva** de um gêmeo, com morbimortalidade maior pela resistência placentária do menor.|q-iamspe2025-051,q-didepm-073,q-einstein2027-052]]`,
+          texto: `- Corionicidade: **ultrassom do 1º trimestre**; lambda = dicoriônica, T = monocoriônica. {q-scmsp2023-078,q-sessp2026-068}
+- Transfusão feto-fetal: **só monocoriônica**; doador sem bexiga → **laser**. {q-iamspe2025-051,q-didepm-073}
+- Discordância de 30% na monocoriônica: risco por **resistência placentária** do menor. {q-einstein2027-052}` },
+        { id: "gem-conduta", titulo: "Pré-natal, momento e via de parto", conferir: true,
+          questoes: ["q-amrigs2024-054","q-usprp2025-050","q-scmsp2026-074","q-unifesp2025-079","q-adap25-079","q-sirio2023-061","q-usp2023-033"],
+          prosa: `[[Gemelaridade é fator de risco para pré-eclâmpsia: **AAS em dose baixa (e cálcio) de 12 a 16 semanas até 36**; começado depois de 20 semanas, **não se prescreve** (perde o efeito sobre a placentação).|q-amrigs2024-054,q-usprp2025-050]] [[Momento do parto da gestação sem complicações: **dicoriônica, 37–38 semanas**; monocoriônica diamniótica, 36–37; monoamniótica, 32–34 por cesárea. Dicoriônica a termo com diabetes controlado: **induzir**.|q-scmsp2026-074,q-unifesp2025-079]] [[A via depende do **primeiro gemelar**: **cefálico** → **parto vaginal** possível (o segundo, mesmo pélvico, com equipe treinada); **primeiro pélvico** → **cesárea**.|q-adap25-079,q-sirio2023-061,q-usp2023-033]]`,
+          texto: `- AAS de 12 a 16 semanas; iniciado tarde (> 20 sem): **não prescrever**. {q-amrigs2024-054,q-usprp2025-050}
+- Dicoriônica sem complicação: **até 37–38 semanas**; com DMG controlado a termo, **induzir**. {q-scmsp2026-074,q-unifesp2025-079}
+- 1º cefálico: **vaginal**; 1º pélvico: **cesárea**. {q-adap25-079,q-sirio2023-061,q-usp2023-033}` },
+      ],
+    },
+    {
       id: "vitalidade", titulo: "Vitalidade e crescimento fetal",
       introducao: `[[A cardiotocografia anteparto reativa (acelerações com os movimentos) mostra um feto bem oxigenado; a não reativa pede mais tempo, estímulo ou perfil biofísico, e o padrão sinusoidal sugere anemia fetal grave.|q-usprp2023-026,q-usp2023-037,q-iamspe2025-058,q-usprp2021-057]] [[Restrição de crescimento por insuficiência placentária aumenta a resistência na artéria umbilical; o feto pequeno com Doppler normal é apenas pequeno para a idade gestacional e nasce perto do termo.|q-iamspe2021-062,q-unesp2023-030,q-amrigs2022-042,q-usp2025-018]]`,
       fragmentos: [

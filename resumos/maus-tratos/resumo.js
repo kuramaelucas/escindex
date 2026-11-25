@@ -87,5 +87,17 @@ Veja também: **Infecções sexualmente transmissíveis** (profilaxias após vio
 - Suspeita de violência doméstica: **notificar às autoridades competentes**, sem precisar de confirmação. {q-einstein2022-065,q-einstein2025-034,q-adap25-097}` },
       ],
     },
+    {
+      id: "idoso", titulo: "Violência contra a pessoa idosa",
+      introducao: `[[A violência contra o idoso costuma vir de **dentro de casa**, de quem cuida: o **cuidador esgotado** (idoso com demência, agitação, dependência) é o principal fator de risco. As formas: física, **psicológica** (humilhação, ameaça: o idoso calado, de olhar baixo, inseguro na frente do familiar), financeira, sexual, **negligência** e abandono.|q-unifesp2024-021,q-tp20252-027]]`,
+      fragmentos: [
+        { id: "idoso-conduta", titulo: "Reconhecer e notificar", conferir: true,
+          questoes: ["q-unifesp2024-021","q-tp20252-027","q-adap24-066","q-famerp2024-004"],
+          prosa: `[[Como na criança, a **suspeita basta**: notificação compulsória no **Sinan** (Estatuto da Pessoa Idosa) e comunicação aos órgãos de proteção (Conselho do Idoso, Ministério Público, delegacia), **sem exigir confirmação nem consentimento** da vítima, ao mesmo tempo em que se trata e protege. Ao cuidador sobrecarregado se oferece apoio, sem que isso substitua a notificação.|q-adap24-066,q-famerp2024-004]]`,
+          texto: `- Fator de risco: **estresse do cuidador**. {q-unifesp2024-021}
+- Idoso calado e inseguro diante do filho: violência **psicológica**. {q-tp20252-027}
+- **Suspeita → notificar** (Sinan), sem confirmação ou consentimento. {q-adap24-066,q-famerp2024-004}` },
+      ],
+    },
   ],
 });

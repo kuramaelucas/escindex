@@ -77,6 +77,23 @@ Veja também: **Hipertensão secundária**, **Hiponatremia e hipercalemia**, **H
       ],
     },
     {
+      id: "neuroendocrinos", titulo: "Tumores neuroendócrinos do pâncreas e do intestino",
+      introducao: `[[As células neuroendócrinas espalhadas pelo pâncreas e pelo tubo digestivo produzem hormônios e aminas; o tumor delas se reconhece **pelo hormônio que sobra**, não pela massa. O **insulinoma** é o mais comum e o de **menor malignidade** (cerca de 90% benigno); gastrinoma e VIPoma são mais frequentemente malignos. O tumor **carcinoide** é mais comum no **intestino delgado (íleo)**.|q-udisc20262-067,q-udisc20262-073]] [[Na **NEM 1** (paratireoide, hipófise e pâncreas), o tumor pancreático funcionante mais comum é o **gastrinoma**; feocromocitoma e carcinoma medular são da NEM 2 (ver o capítulo do feocromocitoma).|q-famema2022-078]]`,
+      fragmentos: [
+        { id: "net-insulinoma", titulo: "Hipoglicemia: insulinoma ou insulina de fora", conferir: true,
+          questoes: ["q-famema2022-061","q-tp20202-037"],
+          prosa: `[[A **tríade de Whipple** (sintomas de hipoglicemia, glicemia baixa documentada e melhora com glicose) abre a investigação; o padrão-ouro é o **jejum supervisionado de 72 horas**, dosando glicose, insulina, **peptídeo C** e pró-insulina no momento da hipoglicemia.|q-famema2022-061]] [[O peptídeo C sai do pâncreas junto com a insulina: **insulina alta com peptídeo C alto** = produção própria (insulinoma ou sulfonilureia); **insulina alta com peptídeo C suprimido** = **insulina aplicada** (hipoglicemia factícia).|q-tp20202-037]]`,
+          texto: `- Whipple: **jejum de 72 h** é o padrão-ouro. {q-famema2022-061}
+- Insulina alta + **peptídeo C baixo**: insulina exógena. {q-tp20202-037}` },
+        { id: "net-diarreia", titulo: "Diarreia secretora: VIPoma e síndrome carcinoide", conferir: true,
+          questoes: ["q-famema2022-062","q-famerp2026-072","q-fmabc2024-007","q-famema2023-076","q-famema2022-076"],
+          prosa: `[[O **VIPoma (síndrome de Verner-Morrison)** dá **diarreia aquosa volumosa que persiste em jejum**, **hipocalemia** e acloridria (WDHA), às vezes rubor. Conduta: **corrigir água e potássio**, controlar a diarreia com **análogo da somatostatina** (octreotida, muito eficaz) e **ressecar o tumor**.|q-famema2022-062,q-famerp2026-072,q-fmabc2024-007]] [[A **síndrome carcinoide** (serotonina e outras aminas) aparece quando há **metástase hepática** (o fígado deixa de inativar as aminas): **rubor, diarreia, broncoespasmo** e lesão de valva direita; hiperqueratose não faz parte. O **carcinoide de apêndice de até 1–2 cm**, distal e ressecado, é curado pela **apendicectomia**: observação.|q-famema2023-076,q-famema2022-076]]`,
+          texto: `- Diarreia aquosa em jejum + **hipocalemia**: **VIPoma**; somatostatina e cirurgia. {q-famema2022-062,q-famerp2026-072,q-fmabc2024-007}
+- Carcinoide: rubor, diarreia, broncoespasmo (não hiperqueratose). {q-famema2023-076}
+- Carcinoide de apêndice de 1 cm, distal: **observação**. {q-famema2022-076}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [

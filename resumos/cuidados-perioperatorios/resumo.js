@@ -112,13 +112,15 @@ No **risco pulmonar**, [[o DPOC estável (GOLD II, sem exacerbação em seis mes
       introducao: `[[A antibioticoprofilaxia é **dose única**, dada **até 60 minutos antes da incisão**, para que o tecido tenha nível máximo de antibiótico quando o bisturi corta; ela **não é tratamento**, e prolongá-la no pós-operatório não diminui infecção.|q-einstein2026-023,q-famerp2023-052,q-amrigs2021-032]]`,
       fragmentos: [
         { id: "profilaxia-atb", titulo: "Quando, quanto e em que cirurgia", conferir: true, diretrizes: ["profilaxia-atb"],
-          questoes: ["q-amrigs2020-026","q-amrigs2021-032","q-uspsp2-073","q-famerp2023-052","q-einstein2026-023"],
+          questoes: ["q-amrigs2020-026","q-amrigs2021-032","q-uspsp2-073","q-famerp2023-052","q-einstein2026-023","q-toce-13","q-usp2026-034","q-fmabc2025-036"],
           prosa: `[[A dose se **repete** na cirurgia longa (passa de duas meias-vidas do antibiótico, em geral 3 a 4 horas, ou o sangramento ultrapassa cerca de 1.500 mL), e não se mantém por 7 dias em cirurgia grande.|q-amrigs2020-026]] [[A cirurgia **limpa** em geral não pede profilaxia, **exceto com prótese**, imunodeprimido ou grande descolamento; a reconstrução arterial infrainguinal com prótese sintética leva **dose única 30 a 60 minutos antes da incisão**; a cirurgia potencialmente contaminada recebe **profilaxia**, e não antibioticoterapia, que é tratamento da infecção estabelecida; na cirurgia infectada, usa-se antibiótico terapêutico.|q-amrigs2021-032,q-uspsp2-073]] [[A **apendicite não complicada** recebe **cefazolina em dose única** até uma hora antes da incisão, sem continuar depois; na cistectomia com conduto ileal, o antibiótico vai **até uma hora antes da incisão** (não antes da intubação nem ao entrar na sala).|q-famerp2023-052,q-einstein2026-023]]`,
           texto: `- Cirurgia longa: **repetir a dose**; não manter 7 dias. {q-amrigs2020-026}
 - Cirurgia potencialmente contaminada: **profilaxia**, não antibioticoterapia (a incorreta pedia isso). {q-amrigs2021-032}
 - Reconstrução arterial com prótese: **dose única 30 a 60 minutos antes da incisão**. {q-uspsp2-073}
 - Apendicite aguda não complicada: **cefazolina 1 g em dose única** até 1 hora antes. {q-famerp2023-052}
-- Cistectomia com Bricker: antibiótico **até 1 hora antes da incisão**. {q-einstein2026-023}` },
+- Cistectomia com Bricker: antibiótico **até 1 hora antes da incisão**. {q-einstein2026-023}
+- Profilaxia **30–60 min antes da incisão**, repique se longa ou sangrante. {q-toce-13}
+- Colorretal e histerectomia: **cefoxitina** (cobre anaeróbios). {q-usp2026-034,q-fmabc2025-036}` },
         { id: "seguranca", titulo: "Checklist de cirurgia segura (OMS)", conferir: true,
           questoes: ["q-amrigs2025-038"],
           prosa: `O checklist da OMS tem três momentos: antes da indução (identidade, via aérea difícil, risco de sangramento), **antes da incisão** e antes de o paciente sair da sala (contagem de compressas e instrumentos). [[O **time-out** é a pausa feita imediatamente antes da incisão, em que toda a equipe **confirma a identidade, o procedimento e o local**; a avaliação de via aérea e a contagem de compressas são de outras etapas.|q-amrigs2025-038]]`,
@@ -189,6 +191,53 @@ No **risco pulmonar**, [[o DPOC estável (GOLD II, sem exacerbação em seis mes
           prosa: `Na desnutrição grave a oferta de glicose estimula a insulina e **desloca fósforo, potássio e magnésio para dentro das células**, com arritmia e insuficiência respiratória e cardíaca. [[O desnutrido grave (IMC de 11,8 com fístulas de alto débito) começa a nutrição parenteral com cerca de **30 % da meta** (450 kcal de 1.500) e os distúrbios esperados são **hipofosfatemia e hipopotassemia**; na transição da parenteral para a enteral e oral, **monitorizam-se rigorosamente fósforo, magnésio e potássio** (e repõe-se tiamina), sem suspender a NPT de uma vez nem mantê-la indefinidamente.|q-uspsp3-105,q-scmsp2025-028]]`,
           texto: `- IMC 11,8 e fístulas de alto débito: iniciar com **450 kcal** (cerca de 30 % da meta); hipofosfatemia e hipopotassemia. {q-uspsp3-105}
 - Desnutrido grave na transição da NPT: **monitorizar fósforo, magnésio e potássio**. {q-scmsp2025-028}` },
+      ],
+    },
+    {
+      id: "tecnica-operatoria", titulo: "Técnica operatória: campo, instrumental, incisões, vídeo e acesso venoso",
+      introducao: `[[A técnica operatória organiza o ato cirúrgico em **diérese** (cortar), **hemostasia** (parar o sangramento), **exérese** e **síntese** (fechar), num campo mantido estéril. Quase tudo o que se cobra deriva de dois princípios: **reduzir a contaminação** da ferida e **lesar o mínimo** de tecido.|q-einstein2022-024,q-tp20252-014]]`,
+      fragmentos: [
+        { id: "toce-campo", titulo: "Antissepsia, paramentação, posicionamento e classe da ferida", conferir: true,
+          questoes: ["q-toce-11","q-toce-12","q-toce-15","q-amrigs2021-029","q-toce-30","q-famerp2022-065","q-toce-14","q-usprp2024-039","q-famema2023-070"],
+          prosa: `[[Pele: **clorexidina alcoólica** (ação rápida e efeito residual); em mucosa e ferida aberta, solução **aquosa**. **Tricotomia só se indispensável**, imediatamente antes, com **tricotomizador elétrico** (a lâmina faz microlesões que infectam). Depois de paramentado, é estéril a **frente do avental, dos ombros à cintura, e as mangas**; dorso e abaixo da cintura não. O avental estéril se veste **antes de iniciar a cirurgia**.|q-toce-11,q-toce-12,q-toce-15,q-amrigs2021-029,q-famerp2022-065]] [[Posicionamento: na **litotomia** prolongada, a perneira comprime o **nervo fibular comum** na cabeça da fíbula e dá **pé caído**; previne-se acolchoando.|q-toce-30]] [[Classe da ferida: **limpa** (não abre víscera oca: herniorrafia, piloromiotomia), **potencialmente contaminada** (abre trato digestivo, biliar ou urinário de forma controlada: colecistectomia com abertura da via biliar), **contaminada** (extravasamento, trauma recente), **infectada** (pus, víscera perfurada).|q-toce-14,q-usprp2024-039,q-famema2023-070]]`,
+          texto: `- **Clorexidina alcoólica**; tricotomia só se preciso, **elétrica**, na hora. {q-toce-11,q-toce-12}
+- Estéril: **frente do avental, ombros à cintura, e mangas**. {q-toce-15,q-amrigs2021-029}
+- Litotomia longa: **nervo fibular** (pé caído). {q-toce-30}
+- Ferida simples: clorexidina aquosa, campo, anestesia, limpeza, sutura. {q-famerp2022-065}
+- **Limpa**: herniorrafia, piloromiotomia; via biliar aberta: **potencialmente contaminada**. {q-toce-14,q-usprp2024-039,q-famema2023-070}` },
+        { id: "toce-instrumental", titulo: "Instrumental, mesa e hemostasia", conferir: true,
+          questoes: ["q-toce-01","q-toce-02","q-toce-03","q-toce-04","q-fmabc2024-021","q-toce-05","q-tp20251-059","q-unicampdis2025-019","q-einstein2022-024","q-tp20252-014","q-unesp2024-065","q-toce-20","q-toce-21","q-toce-22"],
+          prosa: `[[**Diérese**: bisturi; tesoura de **Metzenbaum** (delicada, dissecção) e de **Mayo** (tecidos firmes e fios). **Hemostasia**: pinças sem dentes — **Halsted (mosquito)** para vasos pequenos, **Kelly**; **Kocher** (com dente, preensão firme) e **Mixter** (ângulo reto, para passar fio atrás do vaso). **Preensão atraumática** de alça: **Babcock**. **Afastadores**: Farabeuf (manual), **Gosset** e Finochietto (**autostáticos**). **Síntese**: **porta-agulhas** (Mayo-Hegar), com a agulha presa na **junção do terço médio com o posterior**.|q-toce-01,q-toce-02,q-toce-03,q-toce-04,q-fmabc2024-021,q-toce-05,q-tp20251-059,q-unicampdis2025-019]] [[Na mesa do instrumentador, os grupos seguem **a ordem de uso**: diérese e hemostasia mais à mão, afastadores e síntese depois — o posicionamento muda conforme o lado da mesa.|q-einstein2022-024,q-tp20252-014,q-unesp2024-065]] [[Hemostasia **temporária** (compressão, pinçamento, **manobra de Pringle**: clampear o **ligamento hepatoduodenal**, cortando artéria hepática e porta) × **definitiva** (**ligadura**, eletrocoagulação). No **bisturi monopolar**, a corrente atravessa o paciente até a **placa dispersiva**, que deve ser ampla e bem aderida (senão, queima).|q-toce-20,q-toce-21,q-toce-22]]`,
+          texto: `- Vaso pequeno: **Halsted**; alça: **Babcock**; Metzenbaum delicada, Mayo forte. {q-toce-01,q-toce-02,q-toce-03}
+- Autostático: **Gosset**. {q-toce-04,q-fmabc2024-021}
+- Agulha no porta-agulhas: **terço médio com posterior**. {q-toce-05}
+- Sem função hemostática: **tesoura e porta-agulhas**. {q-unicampdis2025-019,q-tp20251-059}
+- Mesa: **diérese, hemostasia, afastadores, síntese**, na ordem de uso. {q-einstein2022-024,q-tp20252-014,q-unesp2024-065}
+- **Pringle** = ligamento hepatoduodenal; monopolar = **placa**; ligadura = definitiva. {q-toce-20,q-toce-21,q-toce-22}` },
+        { id: "toce-incisoes", titulo: "Incisões, drenos e curativos", conferir: true,
+          questoes: ["q-toce-16","q-amrigs2021-027","q-toce-17","q-toce-18","q-toce-19","q-adap24-060","q-unifesp2024-005","q-toce-23","q-toce-24","q-usp2023-008","q-unesp2024-067","q-sirio2021-022","q-amrigs2022-030","q-fmabc2025-029"],
+          prosa: `[[**Mediana** (linha alba): rápida, pouco sangrante, **ampliável a toda a cavidade** — a do trauma e do paciente instável (**xifopúbica**). **McBurney** (apendicectomia): **divulsiona os músculos no sentido das fibras**, sem cortá-los. **Pfannenstiel** (cesárea): melhor estética e **menos hérnia**, exposição limitada. Na pele, a incisão **paralela às linhas de Langer** (na fronte, **horizontal**, seguindo as rugas) tem menos tensão e cicatriz melhor.|q-toce-16,q-amrigs2021-027,q-toce-17,q-toce-18,q-toce-19,q-adap24-060,q-unifesp2024-005]] [[Drenos: **Penrose** é **laminar, passivo**, funciona por capilaridade e gravidade, sistema aberto; o de **sucção (Portovac)** funciona por **gradiente de pressão, ativo** — usado sob retalho e tela, retirado com **débito < 50 mL/dia seroso**. **Dreno de rotina não** se usa em colecistectomia simples; o **sentinela** (túbulo-laminar) se deixa perto de anastomose de risco, como na **retossigmoidectomia**.|q-toce-23,q-toce-24,q-usp2023-008,q-unesp2024-067,q-sirio2021-022]] [[O curativo ideal mantém **umidade**, protege, absorve exsudato e **permite trocas gasosas**. O **curativo a vácuo** contrai a ferida, retira exsudato e **aumenta** o fluxo sanguíneo e o tecido de granulação.|q-amrigs2022-030,q-fmabc2025-029]]`,
+          texto: `- Instável: **mediana xifopúbica**; McBurney **divulsiona**; Pfannenstiel: estética, menos hérnia. {q-toce-16,q-amrigs2021-027,q-toce-17,q-toce-18}
+- Langer: menos tensão; na fronte, **horizontal**. {q-toce-19,q-adap24-060,q-unifesp2024-005}
+- Penrose: **laminar passivo**; Portovac: **ativo**, tirar com **< 50 mL seroso**. {q-toce-23,q-usp2023-008,q-sirio2021-022}
+- Sem dreno de rotina na colecistectomia; **sentinela** na retossigmoidectomia. {q-toce-24,q-unesp2024-067}
+- Vácuo **aumenta** o fluxo; curativo deve permitir trocas gasosas. {q-amrigs2022-030,q-fmabc2025-029}` },
+        { id: "toce-video", titulo: "Videolaparoscopia e pneumoperitônio", conferir: true,
+          questoes: ["q-toce-28","q-toce-29","q-amrigs2022-034","q-scmsp2026-037","q-famema2022-080","q-amrigs2021-034"],
+          prosa: `[[O gás é o **CO2**: inerte, **não combustível**, muito **solúvel** no sangue (embolia rara) e eliminado pelos pulmões. A pressão habitual é **12 a 15 mmHg** (média de 12). O pneumoperitônio **eleva o diafragma**, aumenta a pressão intratorácica e reduz a complacência, **diminui o retorno venoso** e o débito, e a absorção do CO2 dá **hipercapnia e acidose respiratória**. Em troca, a cirurgia por vídeo dá menos dor, menos infecção de ferida e **retorno mais precoce ao trabalho**.|q-toce-28,q-toce-29,q-amrigs2022-034,q-scmsp2026-037,q-famema2022-080,q-amrigs2021-034]]`,
+          texto: `- **CO2**: inerte, não inflamável, solúvel. {q-toce-28}
+- Pressão **12–15 mmHg**. {q-famema2022-080,q-scmsp2026-037}
+- Efeitos: **menos retorno venoso, hipercapnia**, diafragma elevado. {q-toce-29,q-amrigs2022-034}
+- Vantagem: **retorno precoce** às atividades. {q-amrigs2021-034}` },
+        { id: "acesso-venoso", titulo: "Acesso venoso central e intraósseo", conferir: true,
+          questoes: ["q-amrigs2021-022","q-scmsp2022-066","q-famema2025-016","q-famema2021-005","q-unifesp2025-017","q-adap25-017","q-unicampdis2025-003","q-famema2021-008","q-usp2022-052"],
+          prosa: `[[Indicações do cateter central: drogas vesicantes (**nutrição parenteral total**, vasopressor em dose alta), monitorização, falta de acesso periférico. Reparos: **jugular interna** no ápice do triângulo entre as **duas cabeças do esternocleidomastóideo e a clavícula**; **subclávia** abaixo da clavícula, na **junção do terço médio com o distal**. Com **coagulopatia ou plaquetas muito baixas**, prefira a **femoral** (compressível).|q-amrigs2021-022,q-scmsp2022-066,q-famema2025-016,q-famema2021-005]] [[Complicações: ao ultrassom, bolhas de ar entre agulha e veia = agulha fora do lúmen → **nova punção em outro ponto**; **artéria dilatada** por engano → **não retirar** o introdutor, chamar a vascular; piora respiratória e hipotensão logo após punção = **pneumotórax**. Febre com cateter de 15 dias no queimado: **retirar o cateter**, mandar a ponta para cultura e passar outro em **outro sítio**.|q-unifesp2025-017,q-adap25-017,q-unicampdis2025-003,q-famema2021-008]] [[Na criança em choque sem veia periférica: **intraósseo** na tíbia proximal, abaixo da tuberosidade.|q-usp2022-052]]`,
+          texto: `- Indicação clássica: **nutrição parenteral**. {q-amrigs2021-022}
+- Jugular: **triângulo do ECM**; subclávia: **terço médio/distal** da clavícula; coagulopatia: **femoral**. {q-scmsp2022-066,q-famema2025-016,q-famema2021-005}
+- Bolhas no ultrassom: **nova punção**; artéria dilatada: **manter o introdutor**. {q-unifesp2025-017,q-adap25-017}
+- Hipóxia e hipotensão após punção: **pneumotórax**. {q-unicampdis2025-003}
+- Infecção de cateter: **retirar, cultivar, outro sítio**. {q-famema2021-008}
+- Criança em choque: **intraósseo**. {q-usp2022-052}` },
       ],
     },
     {

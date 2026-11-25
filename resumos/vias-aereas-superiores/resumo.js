@@ -93,12 +93,13 @@ Veja também: **Doenças exantemáticas** (mononucleose e escarlatina) e **Bronq
       fragmentos: [
         { id: "est-crupe", titulo: "Crupe viral", conferir: true, diretrizes: ["sbp-ivas"],
           figuras: [{ arquivo: "figuras/estridor.svg", legenda: "Esquema autoral: as três causas de estridor que a prova compara." }],
-          questoes: ["q-usp2026-069","q-tp20252-007","q-tp20212-048","q-unesp2024-013","q-uspsp2-061","q-uspsp4-120","q-unicampdis2022-026","q-iamspe2025-067","q-sessp2025-045"],
+          questoes: ["q-usp2026-069","q-tp20252-007","q-tp20212-048","q-unesp2024-013","q-uspsp2-061","q-uspsp4-120","q-unicampdis2022-026","q-iamspe2025-067","q-sessp2025-045","q-adap23-091"],
           casos: ["q-usp2026-069"],
           texto: `- Coriza, tosse ladrante, rouquidão e estridor: **laringotraqueobronquite (crupe)**, edema **subglótico**. {q-usp2026-069,q-unicampdis2022-026}
 - **Estridor em repouso**: **adrenalina inalatória + dexametasona** e observação. {q-tp20252-007,q-unesp2024-013,q-uspsp2-061,q-uspsp4-120,q-tp20212-048}
 - O "guincho" da **coqueluche** é diferente: inspiração ruidosa **depois** do acesso de tosse. {q-iamspe2025-067}
-- Tosse paroxística com guincho: **coqueluche**, azitromicina. {q-sessp2025-045}` },
+- Tosse paroxística com guincho: **coqueluche**, azitromicina. {q-sessp2025-045}
+- Crupe com estridor em repouso: **dexametasona 0,6 mg/kg + adrenalina nebulizada**, observar 2–4 h. {q-adap23-091}` },
         { id: "est-bacterianas", titulo: "Epiglotite e traqueíte bacteriana", conferir: true,
           questoes: ["q-sirio2021-056","q-famerp2023-023","q-amrigs2020-077"],
           prosa: `| | Crupe | Epiglotite | Traqueíte bacteriana |
@@ -110,6 +111,33 @@ Veja também: **Doenças exantemáticas** (mononucleose e escarlatina) e **Bronq
           texto: `- Salivação, prostração e **pescoço em hiperextensão**: **epiglotite**. {q-sirio2021-056}
 - Secreção purulenta na traqueia e **cânula menor que a calculada**: **traqueíte bacteriana**. {q-famerp2023-023}
 - Agente mais frequente da traqueíte: ***Staphylococcus aureus***. {q-amrigs2020-077}` },
+      ],
+    },
+    {
+      id: "orl", titulo: "Otorrino além da infecção: sono, estridor, audição e sinusite do adulto",
+      introducao: `[[Na **apneia obstrutiva do sono**, a faringe colapsa durante o sono e a respiração para; o cérebro desperta brevemente para reabrir, o sono vira fragmentos e o sistema simpático dispara a noite toda. Daí o **ronco com pausas**, a **sonolência diurna** e os esquecimentos no adulto, e **agitação, desatenção e alteração de comportamento**, enurese e sudorese na criança. A apneia é **fator de risco independente** para hipertensão (inclusive **resistente**), diabetes e síndrome metabólica.|q-unesp2023-074,q-unesp2022-055,q-unifesp2026-093]] [[**Estridor** é o som da obstrução da via aérea **superior**; inspiratório e presente **desde as primeiras semanas**, pior ao choro e deitado de costas, num lactente que cresce bem, é **laringomalácia** (a supraglote colapsa na inspiração), que melhora sozinha até 1–2 anos.|q-iamspe2022-038,q-unifesp2022-059,q-einstein2023-036]]`,
+      fragmentos: [
+        { id: "orl-sono", titulo: "Apneia do sono e insônia", conferir: true,
+          questoes: ["q-unesp2023-074","q-unesp2022-055","q-usp2023-041","q-unifesp2026-093","q-adap26-093","q-tp20252-082","q-amrigs2022-097"],
+          prosa: `[[O diagnóstico é a **polissonografia**. No **adulto**, o tratamento da apneia moderada a grave é o **CPAP** (pressão positiva que mantém a faringe aberta), com perda de peso. Na **criança**, a causa é a **hipertrofia de adenoide e amígdalas**: **adenoamigdalectomia** é a primeira linha.|q-unesp2022-055,q-usp2023-041,q-adap26-093,q-tp20252-082]] [[**Insônia** é mais comum em **mulheres**; trata-se primeiro com **higiene do sono** e terapia cognitivo-comportamental, e sonolência diurna manda investigar apneia.|q-amrigs2022-097]]`,
+          texto: `- Apneia: fator de risco para **HAS, DM** e síndrome metabólica; criança: **comportamento**. {q-unesp2023-074,q-unifesp2026-093}
+- Diagnóstico: **polissonografia**; adulto: **CPAP**. {q-unesp2022-055,q-usp2023-041}
+- Criança com hipertrofia: **adenoamigdalectomia**. {q-adap26-093,q-tp20252-082}
+- Insônia: mais em **mulheres**; higiene do sono. {q-amrigs2022-097}` },
+        { id: "orl-estridor-audicao", titulo: "Estridor do lactente, obstrução no adulto e audição", conferir: true,
+          questoes: ["q-iamspe2022-038","q-unifesp2022-059","q-einstein2023-036","q-unifesp2023-091","q-unesp2021-018","q-sirio2023-058"],
+          prosa: `[[Adulto com **cornagem** (estridor) e dispneia, sem resposta ao oxigênio: obstrução da via aérea central (tumor, estenose, corpo estranho), investigada e tratada por **broncoscopia**.|q-unifesp2023-091]] [[Criança com **atraso de fala**, trocas fonêmicas e desatenção, ou adolescente que aumenta o volume da TV: primeiro **avaliar a audição** (audiometria). A **surdez neurossensorial bilateral** da criança pede investigação genética, de infecções congênitas e imagem.|q-unesp2021-018,q-sirio2023-058]]`,
+          texto: `- Obstrução de via aérea superior: **estridor**. {q-iamspe2022-038}
+- Estridor desde o nascimento, bem: **laringomalácia**. {q-unifesp2022-059,q-einstein2023-036}
+- Adulto com cornagem: **broncoscopia**. {q-unifesp2023-091}
+- Atraso de fala ou volume alto: **avaliação audiológica**; neurossensorial: genética, sorologias, imagem. {q-unesp2021-018,q-sirio2023-058}` },
+        { id: "orl-sinusite-complicacoes", titulo: "Sinusite do adulto e infecções profundas", conferir: true,
+          questoes: ["q-usp2022-017","q-unesp2021-074","q-sirio2027-015","q-fmabc2024-005","q-einstein2023-020"],
+          prosa: `[[Cefaleia e febre por dias com dor facial e secreção: **sinusite**. Unilateral, fétida, depois de **extração de molar superior**: **sinusite maxilar odontogênica** (a raiz do molar fica no assoalho do seio). **Rinossinusite crônica** (mais de 12 semanas de obstrução, perda de olfato, peso facial): **lavagem nasal de alto volume e corticoide tópico** contínuo.|q-usp2022-017,q-unesp2021-074,q-sirio2027-015]] [[Complicações graves: otite no diabético que evolui com **dor retro-orbitária e paralisia do VI nervo (abducente)** é **síndrome de Gradenigo** (petrosite); abscesso cervical com **gás e necrose** no etilista é **infecção cervical profunda necrosante**, que exige **desbridamento cirúrgico amplo** e procurar a origem dentária.|q-fmabc2024-005,q-einstein2023-020]]`,
+          texto: `- Febre, cefaleia e dor facial: **sinusite**; após extração de molar: **odontogênica**. {q-usp2022-017,q-unesp2021-074}
+- Crônica: **lavagem nasal + corticoide tópico**. {q-sirio2027-015}
+- Otite + paralisia do VI: **Gradenigo**. {q-fmabc2024-005}
+- Abscesso cervical com gás: **desbridamento amplo**. {q-einstein2023-020}` },
       ],
     },
     {

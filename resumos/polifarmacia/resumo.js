@@ -74,6 +74,30 @@ Veja também: **Demência e delirium**, **Hipertensão**, **Diabetes** e **Cuida
       ],
     },
     {
+      id: "fragilidade-quedas", titulo: "Quedas, fragilidade e perda de peso",
+      introducao: `[[A queda no idoso raramente tem uma causa só: soma-se o que a idade muda (marcha mais lenta, visão, reflexos posturais), as doenças (artrose, neuropatia, demência, hipotensão postural) e, sobretudo, **os remédios** (benzodiazepínicos, hipnóticos, antidepressivos tricíclicos, anti-histamínicos, anti-hipertensivos). **Mulher**, idade avançada, queda prévia e medo de cair aumentam o risco; sexo masculino não é fator de risco.|q-amrigs2021-087,q-scmsp2023-095,q-udisc20262-013]]`,
+      fragmentos: [
+        { id: "quedas", titulo: "Queda: avaliação multifatorial", conferir: true,
+          questoes: ["q-amrigs2021-087","q-scmsp2023-095","q-udisc20262-013","q-adap26-046","q-einstein2026-063","q-tp20212-117","q-unicampdis2025-002","q-sessp2026-094","q-unifesp2026-046","q-famema2025-031","q-tp20241-022"],
+          prosa: `[[Quem caiu duas vezes ou tem dificuldade de marcha recebe **avaliação multifatorial**: revisar os remédios (**desprescrever o benzodiazepínico aos poucos**, tirar o hipnótico e o anticolinérgico, como a meclizina dada para uma vertigem posicional que se trata com manobra), medir a **pressão deitado e em pé**, olhar visão, pés, calçado e a casa, e prescrever **exercício de força e equilíbrio**, que é a intervenção com mais evidência.|q-adap26-046,q-einstein2026-063,q-tp20212-117,q-unicampdis2025-002,q-sessp2026-094]] [[O **benzodiazepínico** é a classe mais ligada a **fratura de quadril**. Quem tem medo de cair por osteopenia se protege com **exercício resistido e proprioceptivo** e calçado adequado; mulher idosa sem densitometria faz o **rastreio de osteoporose**. Idosa que caiu e chega confusa e taquicárdica: procurar a causa clínica da queda (**desidratação**, infecção, delirium).|q-udisc20262-013,q-unifesp2026-046,q-tp20241-022,q-famema2025-031]]`,
+          texto: `- Causa multifatorial; **mulher** (não homem) é fator de risco. {q-amrigs2021-087,q-scmsp2023-095}
+- Quedas: **rever remédios, hipotensão postural, força e equilíbrio**. {q-adap26-046,q-sessp2026-094}
+- **Desprescrever benzodiazepínico**; meclizina não. {q-einstein2026-063,q-tp20212-117,q-unicampdis2025-002}
+- Fratura de quadril: **benzodiazepínicos**. {q-udisc20262-013}
+- Osteopenia com medo de cair: **exercício resistido** e calçado. {q-unifesp2026-046}
+- Idosa sem rastreio: **densitometria**. {q-tp20241-022}
+- Queda + confusão + taquicardia: **desidratação**/delirium. {q-famema2025-031}` },
+        { id: "fragilidade", titulo: "Fragilidade, sarcopenia e perda de peso", conferir: true,
+          questoes: ["q-sessp2022-016","q-tp20202-040","q-unesp2021-050","q-unesp2026-056","q-sirio2026-018","q-unesp2023-051","q-famerp2024-074","q-tp20222-114","q-tp20252-008","q-sirio2022-003"],
+          prosa: `[[O **fenótipo de Fried** define a fragilidade por 5 itens: **perda de peso não intencional** (≥ 4,5 kg ou 5% em 1 ano), **exaustão**, **fraqueza** (preensão), **marcha lenta** e **baixa atividade física**; **3 ou mais = frágil**, 1–2 = pré-frágil. O índice **SOF** é mais simples: perda de peso, **levantar da cadeira 5 vezes sem os braços** e baixa energia. A **escala FRAIL** troca a força por "não consegue subir um lance de escada" e "não anda uma quadra".|q-sessp2022-016,q-tp20202-040,q-unesp2021-050,q-unesp2026-056,q-sirio2026-018,q-unesp2023-051]] [[**Sarcopenia** (EWGSOP2): **força baixa** = provável; confirma-se com **massa muscular baixa** (DEXA, bioimpedância); marcha lenta define a gravidade.|q-famerp2024-074]] [[Casal de 90 anos que mora só e faz tudo: **independência** é o dado que mais pesa no prognóstico. Perda de peso de 5–6% com investigação básica normal: **reavaliar em 3 meses**; **mirtazapina e megestrol** são remédios para ganhar peso, não causas de perda.|q-tp20222-114,q-tp20252-008,q-sirio2022-003]]`,
+          texto: `- Fried: **perda de peso, exaustão, fraqueza, marcha lenta, pouca atividade**; ≥ 3 = frágil. {q-sessp2022-016,q-tp20202-040,q-unesp2021-050,q-sirio2026-018}
+- FRAIL: inclui escada e uma quadra; SOF: **levantar 5×** da cadeira. {q-unesp2026-056,q-unesp2023-051}
+- Sarcopenia: força baixa, **confirmar massa**. {q-famerp2024-074}
+- Independência no idoso muito velho: dado de **bom prognóstico**. {q-tp20222-114}
+- Perda de peso com exames normais: **reavaliar em 3 meses**; mirtazapina não emagrece. {q-tp20252-008,q-sirio2022-003}` },
+      ],
+    },
+    {
       id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
       introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
       fragmentos: [
