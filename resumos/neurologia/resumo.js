@@ -10,6 +10,7 @@
   criadoEm: "2026-11-25",
   fontes: [
     { id: "ilae", texto: "ILAE 2014/2017 — definição operacional de epilepsia e classificação das crises; Neurocritical Care Society/AES — manejo do estado de mal epiléptico", lidoEm: null },
+    { id: "aes-estado-de-mal", texto: "American Epilepsy Society 2016 — Guideline: treatment of convulsive status epilepticus in children and adults (Glauser et al., Epilepsy Curr 2016;16:48-61, PMC4749120)", lidoEm: "2026-11-25" },
     { id: "cfm-me", texto: "Resolução CFM nº 2.173/2017 — critérios do diagnóstico de morte encefálica", lidoEm: null },
     { id: "ichd3", texto: "ICHD-3 (Classificação Internacional das Cefaleias, 3ª ed.) e consenso da SBCe sobre tratamento da migrânea", lidoEm: null },
     { id: "mds-parkinson", texto: "MDS 2015 — critérios clínicos da doença de Parkinson", lidoEm: null },
@@ -31,9 +32,9 @@ Veja também: **Convulsão febril**, **Meningites**, **Acidente vascular cerebra
 - Investigar: **TC, eletrólitos, glicemia, ECG; líquor** se febre/encefalite. {q-famerp2022-055,q-famerp2026-063}
 - Uma crise não provocada: **não é epilepsia** ainda. {q-einstein2027-012}
 - Temporal: **esclerose hipocampal**, cirurgia possível. {q-unesp2021-098}` },
-        { id: "epi-estado-de-mal", titulo: "Estado de mal epiléptico", conferir: true, diretrizes: ["ilae"],
+        { id: "epi-estado-de-mal", titulo: "Estado de mal epiléptico", conferir: true, diretrizes: ["aes-estado-de-mal"],
           questoes: ["q-tp20222-057","q-scmsp2023-051","q-uspsp5-114","q-usp2024-018","q-usprp2025-015","q-unicamp2022-036","q-unesp2026-008","q-scmsp2023-052","q-unesp2022-058","q-tp20202-008","q-tp20232-033","q-tp20241-029","q-tp20261-080"],
-          prosa: `[[**Estado de mal** é crise que dura **5 minutos ou mais**, ou crises repetidas sem recuperar a consciência entre elas: depois disso ela raramente para sozinha e começa a lesar neurônios. Tempo zero: via aérea, oxigênio, **glicemia**. **Primeira linha: benzodiazepínico** — com acesso venoso, **diazepam IV (0,3 mg/kg na criança)** ou lorazepam; **sem acesso**, **midazolam IM, intranasal ou bucal**. Pode repetir uma vez.|q-tp20222-057,q-scmsp2023-051,q-uspsp5-114,q-usp2024-018,q-usprp2025-015,q-unicamp2022-036]] [[Persistindo, **segunda linha**: **fenitoína 20 mg/kg em infusão lenta** (até 50 mg/min, em 20–30 minutos, com **monitorização cardíaca** — **nunca em bolus**, causa arritmia e hipotensão), ou valproato, levetiracetam, fenobarbital. A crise focal motora contínua (epilepsia parcial contínua) no diabético descompensado também é estado de mal: benzodiazepínico, fenitoína e **corrigir a glicemia**.|q-unesp2026-008,q-scmsp2023-052,q-unesp2022-058]]`,
+          prosa: `[[**Estado de mal** é crise que dura **5 minutos ou mais**, ou crises repetidas sem recuperar a consciência entre elas: depois disso ela raramente para sozinha e começa a lesar neurônios. Tempo zero: via aérea, oxigênio, **glicemia**. **Primeira linha: benzodiazepínico** — com acesso venoso, **diazepam IV (0,2–0,3 mg/kg na criança, máximo 10 mg)** ou lorazepam (0,1 mg/kg); **sem acesso**, **midazolam IM, intranasal ou bucal**. Pode repetir uma vez.|q-tp20222-057,q-scmsp2023-051,q-uspsp5-114,q-usp2024-018,q-usprp2025-015,q-unicamp2022-036]] [[Persistindo, **segunda linha**: **fenitoína 20 mg/kg em infusão lenta** (até 50 mg/min, em 20–30 minutos, com **monitorização cardíaca** — **nunca em bolus**, causa arritmia e hipotensão), ou valproato, levetiracetam, fenobarbital. A crise focal motora contínua (epilepsia parcial contínua) no diabético descompensado também é estado de mal: benzodiazepínico, fenitoína e **corrigir a glicemia**.|q-unesp2026-008,q-scmsp2023-052,q-unesp2022-058]]`,
           texto: `- Crise ≥ 5 min: **estado de mal** → benzodiazepínico já. {q-tp20222-057}
 - Com veia: **diazepam IV**; sem veia: **midazolam IM/intranasal**. {q-scmsp2023-051,q-uspsp5-114,q-usp2024-018,q-usprp2025-015,q-unicamp2022-036}
 - Mecanismo: **potencializa o GABA**. {q-tp20202-008,q-tp20232-033,q-tp20241-029,q-tp20261-080}
@@ -52,7 +53,7 @@ Veja também: **Convulsão febril**, **Meningites**, **Acidente vascular cerebra
       id: "coma", titulo: "Coma e morte encefálica",
       introducao: `[[A consciência depende do **sistema reticular ativador** do tronco e dos dois hemisférios: coma é lesão do tronco ou dos **dois** hemisférios, ou um problema difuso (tóxico, metabólico). O exame localiza: **pupilas médio-fixas** = mesencéfalo; puntiformes = ponte ou opioide; **midríase de um lado sem reação** = compressão do III nervo (**herniação do uncus**, aneurisma, às vezes enxaqueca); **decorticação** (flexão dos braços, extensão das pernas) = lesão acima do mesencéfalo; descerebração (extensão de tudo) = mais baixa e pior.|q-usp2024-068,q-amrigs2022-008,q-amrigs2025-062]]`,
       fragmentos: [
-        { id: "com-avaliacao", titulo: "Avaliar o paciente em coma", conferir: true,
+        { id: "com-avaliacao", titulo: "Avaliar o paciente em coma", 
           questoes: ["q-usp2024-068","q-amrigs2022-008","q-amrigs2025-062","q-usp2024-069","q-amrigs2024-077","q-tp20251-022"],
           prosa: `[[A **escala de Glasgow** vale para coma **traumático e não traumático**: abertura ocular (1–4), verbal (1–5) e motora (1–6); **3 é o mínimo**, coma profundo, **não é morte**. A **prova calórica** testa o tronco: **água fria** num ouvido com tronco íntegro dá **desvio tônico do olhar para o lado irrigado**; a fase rápida do nistagmo para o outro lado só aparece se o córtex funciona.|q-amrigs2024-077,q-usp2024-069]] [[Antes de tudo, **glicemia capilar**: o diabético em uso de sulfonilureia que "não acordou" está hipoglicêmico até prova em contrário.|q-tp20251-022]]`,
           texto: `- Médio-fixas: **mesencéfalo**; midríase unilateral: **III nervo** (herniação, enxaqueca). {q-usp2024-068,q-amrigs2022-008}
@@ -62,7 +63,7 @@ Veja também: **Convulsão febril**, **Meningites**, **Acidente vascular cerebra
 - Coma no diabético: **glicemia capilar**. {q-tp20251-022}` },
         { id: "com-morte-encefalica", titulo: "Protocolo de morte encefálica", conferir: true, diretrizes: ["cfm-me"],
           questoes: ["q-unicampdis2025-017","q-unicamp2022-022","q-usprp2022-034","q-sirio2023-056","q-einstein2022-014","q-udisc20262-002","q-unicampdis2023-005","q-tp20231-014","q-famema2023-067","q-usp2024-070"],
-          prosa: `[[Pré-requisitos (CFM 2.173/2017): **lesão encefálica de causa conhecida e irreversível**, **sem confundidores** (hipotermia, sedativos, distúrbio metabólico grave), temperatura > 35 °C, PAM adequada e **observação mínima de 6 horas** — **24 horas** depois de **lesão anóxica** (parada cardíaca, estrangulamento). A família é **comunicada** quando o protocolo começa.|q-unicampdis2025-017,q-unicamp2022-022,q-usprp2022-034]] [[O protocolo tem: **dois exames clínicos** por médicos diferentes (coma não perceptivo, **ausência de reflexos de tronco**, pupilas médio-fixas ou midriáticas) com intervalo mínimo conforme a idade — **1 hora a partir de 2 anos**, 12 h de 2 a 24 meses, 24 h de 7 dias a 2 meses; **um teste de apneia** (positivo se **não há movimento respiratório com PaCO2 > 55 mmHg**; se não chegar a 55, é inconclusivo e se repete); e **um exame complementar** (angiografia, Doppler transcraniano, EEG). O **horário do óbito** é o da **conclusão do último procedimento**. **Doador efetivo** é aquele em que a cirurgia de captação começou.|q-sirio2023-056,q-einstein2022-014,q-udisc20262-002,q-unicampdis2023-005,q-tp20231-014,q-famema2023-067,q-usp2024-070]]`,
+          prosa: `[[Pré-requisitos (CFM 2.173/2017): **lesão encefálica de causa conhecida e irreversível**, **sem confundidores** (hipotermia, sedativos, distúrbio metabólico grave e **lesão medular cervical alta**, que por si só tira a respiração e reflexos), temperatura > 35 °C, PAM adequada e **observação mínima de 6 horas** — **24 horas** depois de **lesão anóxica** (parada cardíaca, estrangulamento). A família é **comunicada** quando o protocolo começa.|q-unicampdis2025-017,q-unicamp2022-022,q-usprp2022-034]] [[O protocolo tem: **dois exames clínicos** por médicos diferentes (coma não perceptivo, **ausência de reflexos de tronco**, pupilas médio-fixas ou midriáticas) com intervalo mínimo conforme a idade — **1 hora a partir de 2 anos**, 12 h de 2 a 24 meses, 24 h de 7 dias a 2 meses; **um teste de apneia** (positivo se **não há movimento respiratório com PaCO2 > 55 mmHg**; se não chegar a 55, é inconclusivo e se repete); e **um exame complementar** (angiografia, Doppler transcraniano, EEG). O **horário do óbito** é o da **conclusão do último procedimento**. **Doador efetivo** é aquele em que a cirurgia de captação começou.|q-sirio2023-056,q-einstein2022-014,q-udisc20262-002,q-unicampdis2023-005,q-tp20231-014,q-famema2023-067,q-usp2024-070]]`,
           texto: `- Após PCR/anóxia: esperar **24 h**; sem confundidores; comunicar a família ao abrir. {q-unicamp2022-022,q-unicampdis2025-017,q-usprp2022-034}
 - **2 exames clínicos + 1 apneia + 1 complementar**. {q-sirio2023-056,q-usp2024-070}
 - Apneia: **PaCO2 > 55** sem movimento; abaixo disso, repetir. {q-einstein2022-014,q-udisc20262-002}
@@ -96,14 +97,14 @@ Veja também: **Convulsão febril**, **Meningites**, **Acidente vascular cerebra
       id: "vertigem", titulo: "Tontura e vertigem",
       introducao: `[[Vertigem é a ilusão de **rotação**: assimetria entre os dois labirintos ou entre as vias vestibulares centrais. A pergunta que decide é **periférica ou central**. Periférica (labirinto, nervo vestibular): vertigem intensa com náusea, nistagmo **horizontal-torcional que bate para um lado e melhora fixando o olhar**, sem outros sinais neurológicos, e a pessoa **consegue ficar de pé**. Central (tronco, cerebelo — quase sempre **AVC da circulação posterior**): **idoso com fatores de risco cardiovascular**, tontura contínua, **incapacidade de ficar de pé**, nistagmo vertical ou que muda de direção, sonolência, disartria, diplopia.|q-adap25-019,q-sirio2024-086,q-einstein2024-066]]`,
       fragmentos: [
-        { id: "ver-periferica", titulo: "VPPB, neurite vestibular e Ménière", conferir: true,
+        { id: "ver-periferica", titulo: "VPPB, neurite vestibular e Ménière", 
           questoes: ["q-famema2025-011","q-einstein2023-009","q-unifesp2025-019","q-usp2024-053","q-uspsp3-073","q-unicamp2023-004","q-famerp2025-016","q-uspsp5-012"],
           prosa: `[[**VPPB**: crises de **segundos** desencadeadas por **mudar a cabeça de posição** (deitar, virar na cama), por otólitos soltos no canal semicircular posterior. Diagnóstico pela **manobra de Dix-Hallpike** (nistagmo **torcional batendo para a orelha de baixo**); tratamento pela **manobra de reposição (Epley)**, não por remédio.|q-famema2025-011,q-einstein2023-009]] [[**Neurite vestibular**: vertigem **súbita e contínua por dias**, com náusea e vômitos, que piora ao mexer a cabeça, **sem perda auditiva**. **Doença de Ménière**: excesso de endolinfa — **crises de minutos a horas** com **zumbido, plenitude auricular e perda auditiva neurossensorial flutuante em graves**, que pede **audiometria**; afeta os dois sexos igualmente, a partir da 4ª–5ª década. Perda **condutiva + neurossensorial** na audiometria (gap aéreo-ósseo e via óssea rebaixada) = **perda mista**.|q-unifesp2025-019,q-usp2024-053,q-uspsp3-073,q-unicamp2023-004,q-famerp2025-016,q-uspsp5-012]]`,
           texto: `- Segundos, ao mudar de posição: **VPPB** → **Dix-Hallpike** (torcional para a orelha de baixo). {q-famema2025-011,q-einstein2023-009}
 - Súbita, contínua, sem perda auditiva: **neurite vestibular**. {q-unifesp2025-019}
 - Minutos a horas + zumbido + plenitude + hipoacusia: **Ménière** → **audiometria**. {q-usp2024-053,q-uspsp3-073,q-unicamp2023-004,q-famerp2025-016}
 - Condução + neurossensorial: **perda mista**. {q-uspsp5-012}` },
-        { id: "ver-central", titulo: "Vertigem central: pensar em AVC", conferir: true,
+        { id: "ver-central", titulo: "Vertigem central: pensar em AVC", 
           questoes: ["q-adap25-019","q-sirio2024-086","q-einstein2024-066","q-sessp2024-011","q-usprp2026-028","q-uspsp5-090"],
           prosa: `[[Idoso hipertenso e diabético com **tontura contínua há horas ou dias**, sem gatilho posicional, com **sonolência** ou incapaz de andar: **vertigem central**, AVC de fossa posterior até prova em contrário. Encaminhar **com urgência** e investigar com **ressonância** (a tomografia vê mal a fossa posterior e é normal nas primeiras horas).|q-adap25-019,q-sirio2024-086,q-einstein2024-066,q-sessp2024-011,q-usprp2026-028,q-uspsp5-090]]`,
           texto: `- Contínua, idoso com risco CV, não fica de pé: **AVC posterior**. {q-adap25-019,q-sirio2024-086,q-einstein2024-066}
@@ -122,12 +123,24 @@ Veja também: **Convulsão febril**, **Meningites**, **Acidente vascular cerebra
 - Tratamento: **levodopa + inibidor da descarboxilase**. {q-adap22-087}
 - Psicose em ~**20%**, na fase avançada. {q-usp2024-071}
 - Após bromoprida, cinarizina, risperidona: **parkinsonismo por droga** → suspender; **clozapina**. {q-usp2026-020,q-sessp2023-077,q-tp20232-011,q-tp20241-011}` },
-        { id: "mov-outros", titulo: "Tremor essencial, mioclonia e ataxia", conferir: true,
+        { id: "mov-outros", titulo: "Tremor essencial, mioclonia e ataxia", 
           questoes: ["q-adap24-087","q-unifesp2024-081","q-amrigs2020-096","q-unifesp2022-087"],
           prosa: `[[**Tremor essencial**: tremor **postural e de ação** (ao segurar a xícara), bilateral, de longa data, **familiar** (autossômico dominante), que **melhora com álcool**; sem bradicinesia. Diagnóstico **clínico**, sem exames; tratar quando atrapalha: **propranolol** ou primidona.|q-adap24-087,q-unifesp2024-081]] [[**Mioclonia**: contrações **súbitas, breves (< 100 ms), em choque**. **Ataxia de marcha** (base alargada, cambaleante) no etilista: degeneração do **cerebelo** (vermis).|q-amrigs2020-096,q-unifesp2022-087]]`,
           texto: `- Tremor de ação familiar: **essencial**; clínico; **propranolol**. {q-adap24-087,q-unifesp2024-081}
 - Abalos breves em choque: **mioclonia**. {q-amrigs2020-096}
 - Etilista com marcha instável: **ataxia cerebelar**. {q-unifesp2022-087}` },
+      ],
+    },
+    {
+      id: "armadilhas", titulo: "Armadilhas e divergências entre provas",
+      introducao: `Aqui ficam as respostas em que a prova cobrou algo diferente da regra atual ou que exploram uma confusão comum. Em cada item, primeiro a regra; depois, o que a prova cobrou. O gabarito nunca é alterado para caber no resumo.`,
+      fragmentos: [
+        { id: "arm-divergencias", titulo: "A regra e o que a prova cobrou",
+          questoes: ["q-scmsp2023-052","q-famerp2025-016","q-tp20241-011"],
+          prosa: `[[**Fenitoína venosa**: infusão lenta, diluída em **soro fisiológico** (no glicosado ela precipita); a scmsp2023-052 aceitou só "não fazer em bolus", embora a frase sobre evitar o soro glicosado também seja verdadeira.|q-scmsp2023-052]] [[**Ménière**: a doença é em geral esporádica, com formas familiares autossômicas dominantes em uma minoria, e começa entre a 4ª e a 6ª década; a famerp2025-016 tomou como correta "acomete igualmente os sexos e começa após a quinta década" e considerou errada a frase sobre formas familiares.|q-famerp2025-016]] [[**Parkinsonismo por antipsicótico em quem ainda precisa dele**: trocar por clozapina ou quetiapina; a tp20241-011 cobrou **clozapina**, mas o quadro (idosa com psicose e sensibilidade a neuroléptico) também levanta demência com corpos de Lewy.|q-tp20241-011]]`,
+          texto: `- Fenitoína: lenta e em soro fisiológico; a prova cobrou só o "sem bolus". {q-scmsp2023-052}
+- Ménière: esporádica, 4ª–6ª década; a prova cobrou "após a quinta década". {q-famerp2025-016}
+- Psicose + parkinsonismo por droga: a prova cobrou **clozapina**; pense em Lewy. {q-tp20241-011}` },
       ],
     },
   ],
