@@ -388,15 +388,26 @@ function analiseDeTempo(usuarioId){
    Errar achando que sabia é o erro mais caro: o aluno não volta ao assunto
    porque acha que já domina. Estas funções separam a fila de revisão por
    tipo de erro, em vez de tratar todo erro do mesmo jeito. */
-function questoesErroComCerteza(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && !u.correta && u.confianca==="certeza"; });
+/* As três listas saem de UMA passada pelo banco, guardada por geração do db
+   e pessoa: a tela de Revisão e o Início pedem as três no mesmo desenho, e
+   cada uma refazia a varredura de todas as questões. Devolve cópias. */
+let _cacheCalibracao = null;
+function _calibracaoDoUsuario(usuarioId){
+  // a visão de faculdade muda as questões ativas sem passar por saveState
+  const chave = _geracaoDb + "|" + usuarioId + "|" + faculdadeDaVisao();
+  if(_cacheCalibracao && _cacheCalibracao.chave === chave) return _cacheCalibracao;
+  const certeza = [], chute = [], duvida = [];
+  questoesParaEstudo(usuarioId).forEach(q=>{
+    const u = ultimaResposta(usuarioId, q.id); if(!u) return;
+    if(!u.correta && u.confianca==="certeza") certeza.push(q);
+    else if(u.correta && u.confianca==="chute") chute.push(q);
+    else if(!u.correta && u.confianca==="duvida") duvida.push(q);
+  });
+  return (_cacheCalibracao = { chave, certeza, chute, duvida });
 }
-function questoesAcertoNoChute(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && u.correta && u.confianca==="chute"; });
-}
-function questoesErroNaDuvida(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && !u.correta && u.confianca==="duvida"; });
-}
+function questoesErroComCerteza(usuarioId){ return _calibracaoDoUsuario(usuarioId).certeza.slice(); }
+function questoesAcertoNoChute(usuarioId){ return _calibracaoDoUsuario(usuarioId).chute.slice(); }
+function questoesErroNaDuvida(usuarioId){ return _calibracaoDoUsuario(usuarioId).duvida.slice(); }
 function assuntosComFalsaSeguranca(usuarioId, minimo){
   minimo = minimo || 3;
   const porAssunto = {};

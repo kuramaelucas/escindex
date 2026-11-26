@@ -172,7 +172,8 @@ let _cacheProvasInativas = null;
 // as inativas de agora: as do banco mais as que já chegam inativas e ninguém reativou
 function provasInativasLista(){
   const doBanco = (db.provasInativas || []).filter(p => p.inativa !== false);
-  const padrao = (SEED_PROVAS_INATIVAS || []).filter(p => !(db.provasInativas || []).some(e => e.chave === p.chave));
+  const comDecisao = new Set((db.provasInativas || []).map(e => e.chave));
+  const padrao = (SEED_PROVAS_INATIVAS || []).filter(p => !comDecisao.has(p.chave));
   return doBanco.concat(padrao.map(p => ({ chave:p.chave, rotulo:p.rotulo, data:p.data || "", por:p.por || "" })));
 }
 function _registrarEstadoDaProva(chave, rotulo, inativa){
@@ -869,8 +870,8 @@ function resumoFlashcards(usuarioId){
   const revs = db.revisoesFlashcards[usuarioId] || {};
   const vencidos = ativos.filter(c=>cartaoVencido(usuarioId, c.id)).length;
   const novos = ativos.filter(c=>!revs[c.id]).length;
-  const falsos = assuntosComFalsaSeguranca(usuarioId).map(f=>f.assuntoId);
-  const deFalsaSeguranca = ativos.filter(c=>falsos.includes(c.assuntoId)).length;
+  const falsos = new Set(assuntosComFalsaSeguranca(usuarioId).map(f=>f.assuntoId));
+  const deFalsaSeguranca = ativos.filter(c=>falsos.has(c.assuntoId)).length;
   return {
     total:ativos.length, vencidos, novos, deFalsaSeguranca,
     meus: meusFlashcards(usuarioId).length,
