@@ -213,6 +213,8 @@ alter table public.perfis add column if not exists resumos_lidos jsonb not null 
 alter table public.perfis add column if not exists meta_questoes_semana integer;
 -- questões por sessão recomendada escolhidas pela pessoa (Ajustar meta); nulo = padrão da plataforma
 alter table public.perfis add column if not exists tamanho_sessao integer;
+-- tamanho da sessão extra (depois da meta batida); nulo = metade da meta diária, mínimo 5
+alter table public.perfis add column if not exists sessao_extra integer;
 -- ritmo das fases do cronograma de Formados ('firme' ou 'rapida'); nulo = padrão
 alter table public.perfis add column if not exists regua_formado text;
 -- a trilha do cronograma de Formado(a): { pulados: {assunto: data}, resumo: {...} }.

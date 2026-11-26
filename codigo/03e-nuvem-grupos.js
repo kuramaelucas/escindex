@@ -52,6 +52,8 @@ function linhaDoGrupo(g){
   if(g.anoFaculdade) dados.anoFaculdade = g.anoFaculdade;
   dados.deslocamento = g.deslocamento || 0;
   if(g.nomeAutomatico) dados.nomeAutomatico = true;
+  if(g.faculdade) dados.faculdade = g.faculdade;          // de que escola é o grupo (Meu Grupo lista a do aluno primeiro)
+  if(g.instituicao) dados.instituicao = g.instituicao;    // nome digitado quando a escola não está na lista
   if(g.blocoAtualIdManual) dados.blocoAtualIdManual = g.blocoAtualIdManual;
   if(Array.isArray(g.blocosProprios)) dados.blocosProprios = copiaProfunda(g.blocosProprios);
   if(g.divisao && Object.keys(g.divisao).length) dados.divisao = copiaProfunda(g.divisao);
@@ -215,7 +217,7 @@ function aplicarGrupoDaNuvem(l){
     nome: l.nome || g.nome || "", criadoPor: l.criado_por || null, criadoPorNome: l.criado_por_nome || "",
     doRodizio: !!d.doRodizio, criadoEm: (l.criado_em || "").slice(0, 10) || g.criadoEm || hojeISO(),
     anoFaculdade: d.anoFaculdade || null, deslocamento: d.deslocamento || 0, nomeAutomatico: !!d.nomeAutomatico,
-    blocoAtualIdManual: d.blocoAtualIdManual || null,
+    blocoAtualIdManual: d.blocoAtualIdManual || null, faculdade: d.faculdade || null, instituicao: d.instituicao || null,
   });
   if(Array.isArray(d.blocosProprios)) g.blocosProprios = copiaProfunda(d.blocosProprios); else delete g.blocosProprios;
   if(d.divisao && typeof d.divisao === "object") g.divisao = copiaProfunda(d.divisao); else delete g.divisao;

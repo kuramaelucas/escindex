@@ -212,6 +212,10 @@ function blocoAtualDoGrupo(grupo, usuario){
   const hoje = hojeISO();
   const ordenados = blocos.slice().sort((a,b)=>a.ordem-b.ordem);
   for(const b of ordenados){ if(hoje>=b.dataInicio && hoje<=b.dataFim) return b; }
+  // calendário próprio que já terminou: ninguém o renova sozinho (o rodízio a
+  // coordenação renova), e repetir o último bloco para sempre prendia o grupo
+  // numa matéria só — sem bloco, a sessão passa a ser a sem calendário
+  if(grupoComCalendarioProprio(grupo) && hoje > ordenados[ordenados.length-1].dataFim) return null;
   return hoje < ordenados[0].dataInicio ? ordenados[0] : ordenados[ordenados.length-1];
 }
 function getBlocoAtual(usuario){
@@ -946,7 +950,7 @@ function assuntosDeAnosAnteriores(usuarioId){
   const anoAtual = CONFIG.hoje().getFullYear();
   const grupo = getGrupoDoUsuario(usuario);
   const conjunto = new Set();
-  blocosDoGrupo(grupo).filter(b=>anoDaData(b.dataFim) < anoAtual).forEach(b=>assuntoIdsDoBloco(b).forEach(a=>conjunto.add(a)));
+  blocosDoGrupo(grupo, usuario).filter(b=>anoDaData(b.dataFim) < anoAtual).forEach(b=>assuntoIdsDoBloco(b).forEach(a=>conjunto.add(a)));
   db.respostas.filter(r=>r.usuarioId===usuarioId && anoDaData(r.data) < anoAtual).forEach(r=>{ if(r.assuntoId) conjunto.add(r.assuntoId); });
   return [...conjunto];
 }
@@ -960,7 +964,7 @@ function misturaEfetiva(usuario){
   const rampa = (db.configGeral && db.configGeral.rampaRevisaoInicio) || CONFIG.rampaRevisaoInicio;
   const grupo = getGrupoDoUsuario(usuario);
   const blocoAtual = getBlocoAtual(usuario);
-  const passados = blocoAtual ? getBlocosPassados(blocoAtual, blocosDoGrupo(grupo)) : [];
+  const passados = blocoAtual ? getBlocosPassados(blocoAtual, blocosDoGrupo(grupo, usuario)) : [];
   const assuntosPassados = passados.flatMap(assuntoIdsDoBloco);
   const anteriores = assuntosDeAnosAnteriores(usuario.id);
   const indice = blocoAtual ? Math.max(0, blocoAtual.ordem-1) : 0;
@@ -970,7 +974,7 @@ function misturaEfetiva(usuario){
   // montarSessaoSemCalendario
   if(!blocoAtual){
     return {atual:0, revisaoPassados:CONFIG.revisaoSemCalendario, previaFuturos:0, ajustada:false, temAnteriores:false, indiceBloco:0, semCalendario:true,
-      explicacao:"Você não segue um calendário de blocos: a sessão mistura revisão (o que você errou e o que já venceu) com questões que você ainda não viu, começando pelos assuntos que mais caem e em que você mais erra. Para ter bloco atual, entre num grupo com calendário em Meu Grupo."};
+      explicacao:"Você não segue um calendário de blocos agora: a sessão mistura revisão (o que você errou e o que já venceu) com questões que você ainda não viu, começando pelos assuntos que mais caem e em que você mais erra. Para ter bloco atual, entre num grupo com calendário em Meu Grupo."};
   }
   if(anteriores.length){
     return {...base, ajustada:false, temAnteriores:true, indiceBloco:indice,

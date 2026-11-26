@@ -39,13 +39,15 @@ function montarSessaoRecomendadaDeHoje(minutos){
   const u = usuarioAtual();
   const feitas = questoesRespondidasHoje(u.id);
   const crono = cronogramaDoUsuario(u);
-  // meta batida e cronograma do 6º ano passado da cota: a sessão extra não
-  // pode ser de 5 questões, que não dá para treinar prova
+  // cronograma do 6º ano passado da cota: a sessão não pode ser curta demais para treinar prova
   const piso = crono && feitas >= crono.questoesNoSistema ? crono.sessaoMinimaDeProva : 5;
-  // meta semanal: a sessão completa o que falta para ficar em dia (05b, progressoDaMeta)
-  const restante = Math.max(piso, progressoDaMeta(u).faltam);
+  // meta semanal: a sessão completa o que falta para ficar em dia (05b, progressoDaMeta);
+  // meta batida: vem a SESSÃO EXTRA, no tamanho escolhido em Ajustar meta (05b, tamanhoDaSessaoExtra)
+  const faltam = progressoDaMeta(u).faltam;
+  const restante = faltam > 0 ? Math.min(Math.max(piso, faltam), tamanhoDaSessaoDoUsuario(u)) : Math.max(piso, tamanhoDaSessaoExtra(u));
   // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
-  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, tamanhoDaSessaoDoUsuario(u));
+  const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : restante;
+  if(!minutos && faltam <= 0) toast("Meta batida: esta é uma sessão extra de "+tamanho+" "+plural(tamanho,"questão","questões")+" (muda em Ajustar meta).");
   iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
 }
 /* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para
