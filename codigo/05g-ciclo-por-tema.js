@@ -135,7 +135,9 @@ function cicloDoAluno(u){
    conjunto chegava "gasto" e a régua do tema (primeira resposta) media o
    acaso da sessão, não a leitura. Só para quem segue o ciclo; a questão já
    respondida não é reservada (a revisão espaçada traz de volta o que a pessoa
-   errou, inclusive do conjunto) e o complemento de banco esgotado ainda pode usá-la. */
+   errou, inclusive do conjunto). Não é proibição: quando as questões fora
+   dos conjuntos acabam num trecho da sessão, as do conjunto entram (05c,
+   completarComConjuntosDosResumos). */
 let _cacheReservadasPosResumo = null;
 function questoesReservadasAoPosResumo(u){
   if(!u || !caminhoDoCiclo(u)) return new Set();
@@ -149,6 +151,11 @@ function questoesReservadasAoPosResumo(u){
   for(const k in c) for(const id of c[k].ids) if(!respondidas.has(id)) ids.add(id);
   _cacheReservadasPosResumo = { chave, ids };
   return ids;
+}
+// as reservadas que a sessão pode usar quando as outras acabarem (05c, completarComConjuntosDosResumos)
+function questoesReservadasDaSessao(usuarioId){
+  const reservadas = questoesReservadasAoPosResumo(getUsuario(usuarioId));
+  return reservadas.size ? questoesParaEstudo(usuarioId).filter(q => reservadas.has(q.id)) : [];
 }
 function questoesDaSessaoRecomendada(usuarioId){
   const reservadas = questoesReservadasAoPosResumo(getUsuario(usuarioId));

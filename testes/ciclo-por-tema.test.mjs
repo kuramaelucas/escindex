@@ -169,14 +169,21 @@ test("sessão extra, resumo ao lado da meta e conjunto do tema reservado ao pós
       // conjunto planejado ainda não feito não aparece na sessão recomendada
       const reservadas = questoesReservadasAoPosResumo(u);
       const sessao = montarSessaoRecomendada(u.id, 40);
-      const vazou = sessao.filter(it => reservadas.has(it.questaoId) && it.origem !== "complemento").length;
+      // do conjunto só entra com o motivo dizendo que as de fora acabaram naquele trecho
+      const vazou = sessao.filter(it => reservadas.has(it.questaoId) && it.origem !== "complemento" && !/do conjunto do resumo/.test(it.motivo)).length;
+      // tirando do banco as de fora dos conjuntos, a sessão usa as do conjunto em vez de ficar curta
+      const ocultasAntes = db.questoesOcultas; db.questoesOcultas = (db.questoesOcultas || []).concat(questoesDaSessaoRecomendada(u.id).map(q => ({ usuarioId: u.id, questaoId: q.id })));
+      _geracaoDb++;
+      const soConjunto = montarSessaoRecomendada(u.id, 20);
+      const usouConjunto = soConjunto.filter(it => reservadas.has(it.questaoId) && /do conjunto do resumo/.test(it.motivo)).length;
+      db.questoesOcultas = ocultasAntes; _geracaoDb++;
       // a linha ao lado da meta: tema atual sem leitura = resumo atrasado; lido e sem questões = questões atrasadas
       db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
       const e = cicloDoAluno(u).atual;
       navigate("inicio"); const antes = document.body.innerText;
       if(!e.semResumo) marcarResumoComoLido(e.chave, true);
       navigate("inicio"); const depois = document.body.innerText;
-      return { padrao30, padrao6, escolhida, nExtra, temReservadas: reservadas.size > 0, vazou,
+      return { padrao30, padrao6, escolhida, nExtra, temReservadas: reservadas.size > 0, vazou, usouConjunto,
         semResumo: e.semResumo, antes: /Resumo indicado/.test(antes) && /resumo atrasado/.test(antes), depois: /questões atrasadas/.test(depois) };
     });
     assert.equal(r.padrao30, 15);
@@ -185,6 +192,7 @@ test("sessão extra, resumo ao lado da meta e conjunto do tema reservado ao pós
     assert.equal(r.nExtra, 15);
     assert.equal(r.temReservadas, true);
     assert.equal(r.vazou, 0);
+    assert.ok(r.usouConjunto > 0, "sem questões fora dos conjuntos, a sessão usa as do conjunto");
     if(!r.semResumo){ assert.equal(r.antes, true); assert.equal(r.depois, true); }
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }

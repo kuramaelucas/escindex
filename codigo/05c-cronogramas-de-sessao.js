@@ -140,13 +140,19 @@ function montarSessaoDeFormado(usuario, tamanho){
   const itemDaTrilha = {}; if(trilha) trilha.itens.forEach(it => { itemDaTrilha[it.id] = it; });
   const consolidado = id => trilha ? !!(itemDaTrilha[id] && itemDaTrilha[id].consolidado && !itemDaTrilha[id].misc) : faseDe(id).concluido;
   const raro = id => !!(trilha && itemDaTrilha[id] && itemDaTrilha[id].misc);
-  const assuntos = {};
-  questoesDaSessaoRecomendada(usuarioId).forEach(q=>{
-    if(usados.has(q.id) || jaFoiRespondida(usuarioId, q.id)) return;
-    const a = assuntos[q.assuntoId] || (assuntos[q.assuntoId] = { id:q.assuntoId, niveis:[[],[],[]], naSessao:[0,0,0], postas:0 });
-    a.niveis[nivelProprioDaQuestao(q)].push(q);
-  });
-  Object.values(assuntos).forEach(a=>{ a.niveis = a.niveis.map(l=>embaralhar(l)); });
+  /* Duas passadas: primeiro as questões fora dos conjuntos dos resumos; as do
+     conjunto (questoesReservadasDaSessao, 05g) só depois que aquelas acabarem. */
+  let assuntos = {};
+  const montarAssuntos = lista => {
+    assuntos = {};
+    lista.forEach(q=>{
+      if(usados.has(q.id) || jaFoiRespondida(usuarioId, q.id)) return;
+      const a = assuntos[q.assuntoId] || (assuntos[q.assuntoId] = { id:q.assuntoId, niveis:[[],[],[]], naSessao:[0,0,0], postas:0 });
+      a.niveis[nivelProprioDaQuestao(q)].push(q);
+    });
+    Object.values(assuntos).forEach(a=>{ a.niveis = a.niveis.map(l=>embaralhar(l)); });
+  };
+  montarAssuntos(questoesDaSessaoRecomendada(usuarioId));
   const tirar = (a, motivoExtra) => {
     const e = faseDe(a.id), fase = Math.min(e.fase, c.fases.length - 1);   // reaberto depois de concluir: mistura da última fase
     const feitas = e.porNivel.map((n,l)=>n + a.naSessao[l]);
@@ -176,21 +182,26 @@ function montarSessaoDeFormado(usuario, tamanho){
     const e = faseDe(a.id), espera = e.ultimaData ? Math.min(c.esperaMaxima, 1 + diasEntre(e.ultimaData, hoje)/7) : 1;
     return (e.total ? 1 : c.pesoAssuntoNovo) * (pesoInc[a.id] || 1) * espera;
   };
-  const todos = Object.values(assuntos).filter(a => !raro(a.id));
-  const grupos = trilha
-    ? [[todos.filter(a => a.id in lugar), " · na sua trilha"], [todos.filter(a => !(a.id in lugar) && !consolidado(a.id)), " · fora da trilha (os assuntos em estudo não bastaram)"], [todos.filter(a => consolidado(a.id)), " · assunto já consolidado (faltou questão nos outros)"]]
-    : [[todos.filter(a => !consolidado(a.id)), ""], [todos.filter(a => consolidado(a.id)), " · assunto já concluído (faltou questão nos outros)"]];
-  // rodadas: uma questão por assunto por vez, até o teto de `maxPorAssunto`; no último grupo, o teto some (banco quase todo respondido)
-  grupos.forEach(([lista, extra], g) => {
-    const fila = sortearComPeso(lista, lista.length, peso);
-    for(const teto of g === grupos.length - 1 ? [c.maxPorAssunto, Infinity] : [c.maxPorAssunto]){
-      let andou = true;
-      while(itens.length < tamanho && andou){
-        andou = false;
-        for(const a of fila){ if(itens.length >= tamanho) break; if(a.postas < teto && tirar(a, extra)) andou = true; }
+  const rodadas = sufixo => {
+    const todos = Object.values(assuntos).filter(a => !raro(a.id));
+    const grupos = (trilha
+      ? [[todos.filter(a => a.id in lugar), " · na sua trilha"], [todos.filter(a => !(a.id in lugar) && !consolidado(a.id)), " · fora da trilha (os assuntos em estudo não bastaram)"], [todos.filter(a => consolidado(a.id)), " · assunto já consolidado (faltou questão nos outros)"]]
+      : [[todos.filter(a => !consolidado(a.id)), ""], [todos.filter(a => consolidado(a.id)), " · assunto já concluído (faltou questão nos outros)"]])
+      .map(([lista, extra]) => [lista, extra + sufixo]);
+    // rodadas: uma questão por assunto por vez, até o teto de `maxPorAssunto`; no último grupo, o teto some (banco quase todo respondido)
+    grupos.forEach(([lista, extra], g) => {
+      const fila = sortearComPeso(lista, lista.length, peso);
+      for(const teto of g === grupos.length - 1 ? [c.maxPorAssunto, Infinity] : [c.maxPorAssunto]){
+        let andou = true;
+        while(itens.length < tamanho && andou){
+          andou = false;
+          for(const a of fila){ if(itens.length >= tamanho) break; if(a.postas < teto && tirar(a, extra)) andou = true; }
+        }
       }
-    }
-  });
+    });
+  };
+  rodadas("");
+  if(itens.length < tamanho){ montarAssuntos(questoesReservadasDaSessao(usuarioId)); rodadas(MOTIVO_DO_CONJUNTO_DO_RESUMO); }
   if(itens.length < tamanho){
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
     embaralharSemRepetir(usuarioId, sobra).slice(0, tamanho - itens.length).forEach(q=>itens.push({questaoId:q.id, origem:"complemento", motivo:"Complemento — você já respondeu quase tudo do banco"}));
@@ -287,6 +298,7 @@ function montarSessaoSemCalendario(usuario, tamanho){
   const naoVistas = questoesDaSessaoRecomendada(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id));
   selecionarComProgressao(naoVistas, tamanho - itens.length, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
     .forEach(q=>{ itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Questão que você ainda não viu"+rotulo(q)}); usados.add(q.id); });
+  completarComConjuntosDosResumos(usuario, itens, tamanho, usados, () => true, "nao_vista", "Questão que você ainda não viu", (p,k)=>selecionarComInterleaving(p, k, pesos));
   if(itens.length < tamanho){
     // banco quase todo respondido: completa com o que já venceu e, por fim, com qualquer questão
     const sobra = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id));
@@ -344,6 +356,11 @@ function montarSessaoDeProvaReal(usuarioId, n, excluidas){
   const itens = sortearComPeso(semRepeticaoPrematura(usuarioId, reais), n, q=>pesos[q.assuntoId] || 1)
     .map(q=>({questaoId:q.id, origem:"extra_prova", motivo:motivo(q)}));
   if(itens.length < n){
+    const ja = new Set([...excluidas, ...itens.map(it=>it.questaoId)]);
+    sortearComPeso(questoesReservadasDaSessao(usuarioId).filter(q=>!ja.has(q.id) && !ehConsolidacao(q)), n - itens.length, q=>pesos[q.assuntoId] || 1)
+      .forEach(q=>itens.push({questaoId:q.id, origem:"extra_prova", motivo:motivo(q)+MOTIVO_DO_CONJUNTO_DO_RESUMO}));
+  }
+  if(itens.length < n){
     const ja = new Set(itens.map(it=>it.questaoId));
     const resto = livres.filter(q=>!ja.has(q.id));
     [...embaralharSemRepetir(usuarioId, resto.filter(q=>!ehConsolidacao(q))), ...embaralharSemRepetir(usuarioId, resto.filter(ehConsolidacao))]
@@ -394,6 +411,9 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const itensAtual = selecionarComProgressao(poolAtual, nAtual, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos)).map(q=>({questaoId:q.id, origem:"bloco_atual",
     motivo:"Bloco atual — "+blocoAtual.nome + (destaque.has(q.assuntoId) ? " · prioridade: cai muito na "+bancaDeReferencia() : "") + rotulo(q)}));
 
+  const usadosAtual = new Set(itensAtual.map(it=>it.questaoId));
+  completarComConjuntosDosResumos(usuario, itensAtual, nAtual, usadosAtual, q=>assuntosAtual.includes(q.assuntoId), "bloco_atual", "Bloco atual — "+blocoAtual.nome, (p,k)=>selecionarComInterleaving(p, k, pesos));
+
   /* Ordem da revisão: primeiro o que a pessoa ERROU (ou acertou no chute),
      depois o que acertou e já passou o prazo e, só se sobrar vaga, o que ela
      ainda não viu dos assuntos anteriores — ver partesDaRevisaoEspacada. */
@@ -408,6 +428,8 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const reservadas = questoesReservadasAoPosResumo(usuario);
   selecionarComProgressao(partesRevisao.novas.filter(q => !reservadas.has(q.id)), Math.max(0, nRevisao - itensRevisao.length), usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
     .forEach(q=>itensRevisao.push({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
+  const passadosSet = new Set(assuntosPassados);
+  completarComConjuntosDosResumos(usuario, itensRevisao, nRevisao, new Set([...usadosAtual, ...itensRevisao.map(it=>it.questaoId)]), q=>passadosSet.has(q.assuntoId), "revisao_nova", "Revisão — assunto de bloco anterior que você ainda não viu", (p,k)=>selecionarComInterleaving(p, k, pesos));
 
   const poolPrevia = semRepeticaoPrematura(usuarioId, questoesDaSessaoRecomendada(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
@@ -517,4 +539,20 @@ function assuntosParaRevisao(usuario){
   const conjunto = new Set([...passados.flatMap(assuntoIdsDoBloco), ...assuntosDeAnosAnteriores(usuario.id)]);
   if(!blocoAtual) db.respostas.forEach(r=>{ if(r.usuarioId===usuario.id && r.assuntoId) conjunto.add(r.assuntoId); });
   return [...conjunto];
+}
+
+/* QUESTÕES DO CONJUNTO DO RESUMO POR ÚLTIMO. A sessão recomendada tira as
+   questões novas primeiro do que está FORA dos conjuntos planejados dos
+   resumos (05g); só quando elas acabam naquele trecho (bloco atual, revisão de
+   assunto anterior, sem calendário, extras de prova, Formado) entram as do
+   conjunto — e o motivo diz isso. Assim o conjunto chega quase intacto ao
+   pós-resumo sem a sessão ficar curta. */
+const MOTIVO_DO_CONJUNTO_DO_RESUMO = " · do conjunto do resumo (as questões fora dos resumos deste trecho acabaram)";
+function completarComConjuntosDosResumos(usuario, itens, alvo, usados, filtro, origem, motivo, escolher){
+  if(itens.length >= alvo) return;
+  const pool = semRepeticaoPrematura(usuario.id, questoesReservadasDaSessao(usuario.id).filter(q => !usados.has(q.id) && filtro(q)));
+  selecionarComProgressao(pool, alvo - itens.length, usuario, escolher).forEach(q => {
+    usados.add(q.id);
+    itens.push({questaoId:q.id, origem, motivo: motivo + MOTIVO_DO_CONJUNTO_DO_RESUMO + rotuloProgressao(q, usuario)});
+  });
 }
