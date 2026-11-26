@@ -803,7 +803,7 @@ function bancaDeReferencia(){ return (db.configGeral && db.configGeral.bancaFoco
 const TODAS_AS_PROVAS = "*";
 function incidenciaNaBanca(banca){
   banca = banca || bancaDeReferencia();
-  if(_cacheIncidencia && _cacheIncidencia.geracao===_geracaoDb && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
+  if(_cacheIncidencia && _cacheIncidencia.geracao===geracaoDoConteudo() && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
   const daProva = banca===TODAS_AS_PROVAS ? (q=>!ehConsolidacao(q) && !q.grupoId) : (q=>q.real && q.banca===banca);
   const reais = db.questoes.filter(q=>daProva(q) && q.status!=="desatualizada");
   const porAssunto = {}, porArea = {}, anos = new Set();
@@ -814,7 +814,7 @@ function incidenciaNaBanca(banca){
     porArea[q.areaId] = (porArea[q.areaId]||0) + 1;
   });
   const r = { banca, total: reais.length, anos: [...anos].sort(), porAssunto, porArea };
-  _cacheIncidencia = { geracao:_geracaoDb, banca, r };
+  _cacheIncidencia = { geracao:geracaoDoConteudo(), banca, r };
   return r;
 }
 function acertoGeralDoUsuario(usuarioId){
@@ -822,7 +822,18 @@ function acertoGeralDoUsuario(usuarioId){
   return { total: rs.length, acertos: rs.filter(r=>r.correta).length,
            taxa: rs.length ? rs.filter(r=>r.correta).length/rs.length : CONFIG.incidencia.acertoPresumido };
 }
+/* A sessão recomendada pede as prioridades duas vezes (pesos e "o que mais
+   cai"), e cada pedido refazia o desempenho por assunto. Cache por geração
+   do db (as respostas mudam a conta), pessoa e banca; devolve cópia da
+   lista para quem ordenar no lugar não estragar o cache. */
+let _cachePrioridades = null;
 function prioridadesDeEstudo(usuarioId, banca){
+  banca = banca || bancaDeReferencia();
+  const chave = _geracaoDb + "|" + usuarioId + "|" + banca;
+  if(!_cachePrioridades || _cachePrioridades.chave !== chave) _cachePrioridades = { chave, lista: _calcularPrioridadesDeEstudo(usuarioId, banca) };
+  return _cachePrioridades.lista.slice();
+}
+function _calcularPrioridadesDeEstudo(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   if(!inc.total) return [];
   const geral = acertoGeralDoUsuario(usuarioId);

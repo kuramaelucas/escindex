@@ -135,10 +135,10 @@ function questoesAtivas(incluirGrupoId){
   // devolve cópia para quem ordenar/embaralhar no lugar não corromper o cache.
   const chave = incluirGrupoId===true ? "tudo" : (incluirGrupoId===undefined ? "geral" : null);
   const visao = faculdadeDaVisao();
-  if(chave && _cacheAtivas[chave] && _cacheAtivas.geracao===_geracaoDb && _cacheAtivas.total===db.questoes.length && _cacheAtivas.visao===visao) return _cacheAtivas[chave].slice();
+  if(chave && _cacheAtivas[chave] && _cacheAtivas.geracao===geracaoDoConteudo() && _cacheAtivas.total===db.questoes.length && _cacheAtivas.visao===visao) return _cacheAtivas[chave].slice();
   const lista = _filtrarQuestoesAtivas(incluirGrupoId);
   if(chave){
-    if(_cacheAtivas.geracao!==_geracaoDb || _cacheAtivas.total!==db.questoes.length || _cacheAtivas.visao!==visao) _cacheAtivas = { geracao:_geracaoDb, total:db.questoes.length, visao };
+    if(_cacheAtivas.geracao!==geracaoDoConteudo() || _cacheAtivas.total!==db.questoes.length || _cacheAtivas.visao!==visao) _cacheAtivas = { geracao:geracaoDoConteudo(), total:db.questoes.length, visao };
     _cacheAtivas[chave] = lista;
     return lista.slice();
   }
@@ -163,7 +163,7 @@ function _estadoDaProva(chave){
 }
 function provaInativa(q){
   if(!q.real) return false;
-  const c = (_cacheProvasInativas && _cacheProvasInativas.geracao === _geracaoDb) ? _cacheProvasInativas : (_cacheProvasInativas = { geracao:_geracaoDb, porChave:{} });
+  const c = (_cacheProvasInativas && _cacheProvasInativas.geracao === geracaoDoConteudo()) ? _cacheProvasInativas : (_cacheProvasInativas = { geracao:geracaoDoConteudo(), porChave:{} });
   const k = chaveDaProvaDe(q);
   if(!(k in c.porChave)) c.porChave[k] = _estadoDaProva(k);
   return c.porChave[k];
@@ -241,12 +241,12 @@ function especificidadeNivel(dificuldadeManual){
    ficaria lento à medida que o banco crescer para milhares. */
 let _cachePrevalencias = null;
 function mapaPrevalenciasAssuntos(){
-  if(_cachePrevalencias && _cachePrevalencias.geracao===_geracaoDb) return _cachePrevalencias;
+  if(_cachePrevalencias && _cachePrevalencias.geracao===geracaoDoConteudo()) return _cachePrevalencias;
   const mapa = {};
   questoesAtivas().forEach(q=>{ mapa[q.assuntoId] = (mapa[q.assuntoId]||0)+1; });
   let max = 1;
   db.taxonomia.assuntos.forEach(a=>{ if((mapa[a.id]||0)>max) max = mapa[a.id]; });
-  _cachePrevalencias = { geracao:_geracaoDb, mapa, max };
+  _cachePrevalencias = { geracao:geracaoDoConteudo(), mapa, max };
   return _cachePrevalencias;
 }
 function partesDaDificuldade(q, semUsuarioId){
@@ -765,7 +765,7 @@ function registrarRevisaoFlashcard(usuarioId, cartaoId, nota){
   const feitosNoDia = (db.cartoesPorDia[usuarioId][hojeISO()] || 0) + 1;
   db.cartoesPorDia[usuarioId][hojeISO()] = feitosNoDia;
   nuvemRegistrar({usuarioId, diaCartao:hojeISO(), quantidadeCartoesDoDia:feitosNoDia});
-  saveState();
+  saveState({soEstudo:true});
 }
 /* Uma linha por avaliação de cartão. A revisão espaçada (revisoesFlashcards)
    guarda só o ESTADO de cada cartão — a última nota e o próximo prazo —, e
@@ -1071,6 +1071,6 @@ function registrarResposta(usuarioId, questaoId, alternativaEscolhida, confianca
     });
   }
   registrarRevisao(usuarioId, questaoId, correta, confianca);
-  saveState();
+  saveState({soEstudo:true});   // só o estudo mudou: os caches do conteúdo continuam valendo
   return resposta;
 }
