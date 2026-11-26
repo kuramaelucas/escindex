@@ -1074,6 +1074,14 @@ function tamanhoBancoKb(){
   try{ return Math.round(JSON.stringify(compactarParaArmazenar(db)).length/1024); }catch(e){ return 0; }
 }
 let _geracaoDb = 0; // incrementado a cada saveState(); invalida caches derivados de db (ver mapaPrevalenciasAssuntos)
+/* Gravação que só muda o ESTUDO de alguém (resposta, cartão avaliado) não
+   mexe no conteúdo: questões ativas, provas inativas, prevalência e
+   incidência na banca continuam valendo. Sem esta separação, cada resposta
+   jogava fora esses caches e o próximo desenho refiltrava o banco inteiro.
+   A geração do conteúdo é _geracaoDb menos os saltos "só de estudo"; assim
+   quem sobe _geracaoDb direto (testes, código antigo) continua invalidando tudo. */
+let _saltosSoDeEstudo = 0;
+function geracaoDoConteudo(){ return _geracaoDb - _saltosSoDeEstudo; }
 /* Gravar é o passo caro: serializa o banco inteiro (milhares de questões
    compactadas, respostas, histórico) e é síncrono. Fazia isso a cada clique
    de resposta e a cada edição, travando a tela em aparelho fraco. Agora
@@ -1135,6 +1143,7 @@ if(typeof window !== "undefined"){
 }
 function saveState(opcoes){
   _geracaoDb++;
+  if(opcoes && opcoes.soEstudo) _saltosSoDeEstudo++;
   // a conta de teste não grava no navegador nem sobe para a nuvem
   if(state.contaTeste) return true;
   let gravou = true;

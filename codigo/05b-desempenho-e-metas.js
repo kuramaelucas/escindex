@@ -388,15 +388,26 @@ function analiseDeTempo(usuarioId){
    Errar achando que sabia é o erro mais caro: o aluno não volta ao assunto
    porque acha que já domina. Estas funções separam a fila de revisão por
    tipo de erro, em vez de tratar todo erro do mesmo jeito. */
-function questoesErroComCerteza(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && !u.correta && u.confianca==="certeza"; });
+/* As três listas saem de UMA passada pelo banco, guardada por geração do db
+   e pessoa: a tela de Revisão e o Início pedem as três no mesmo desenho, e
+   cada uma refazia a varredura de todas as questões. Devolve cópias. */
+let _cacheCalibracao = null;
+function _calibracaoDoUsuario(usuarioId){
+  // a visão de faculdade muda as questões ativas sem passar por saveState
+  const chave = _geracaoDb + "|" + usuarioId + "|" + faculdadeDaVisao();
+  if(_cacheCalibracao && _cacheCalibracao.chave === chave) return _cacheCalibracao;
+  const certeza = [], chute = [], duvida = [];
+  questoesParaEstudo(usuarioId).forEach(q=>{
+    const u = ultimaResposta(usuarioId, q.id); if(!u) return;
+    if(!u.correta && u.confianca==="certeza") certeza.push(q);
+    else if(u.correta && u.confianca==="chute") chute.push(q);
+    else if(!u.correta && u.confianca==="duvida") duvida.push(q);
+  });
+  return (_cacheCalibracao = { chave, certeza, chute, duvida });
 }
-function questoesAcertoNoChute(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && u.correta && u.confianca==="chute"; });
-}
-function questoesErroNaDuvida(usuarioId){
-  return questoesParaEstudo(usuarioId).filter(q=>{ const u = ultimaResposta(usuarioId,q.id); return u && !u.correta && u.confianca==="duvida"; });
-}
+function questoesErroComCerteza(usuarioId){ return _calibracaoDoUsuario(usuarioId).certeza.slice(); }
+function questoesAcertoNoChute(usuarioId){ return _calibracaoDoUsuario(usuarioId).chute.slice(); }
+function questoesErroNaDuvida(usuarioId){ return _calibracaoDoUsuario(usuarioId).duvida.slice(); }
 function assuntosComFalsaSeguranca(usuarioId, minimo){
   minimo = minimo || 3;
   const porAssunto = {};
@@ -815,7 +826,7 @@ function bancaDeReferencia(){ return (db.configGeral && db.configGeral.bancaFoco
 const TODAS_AS_PROVAS = "*";
 function incidenciaNaBanca(banca){
   banca = banca || bancaDeReferencia();
-  if(_cacheIncidencia && _cacheIncidencia.geracao===_geracaoDb && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
+  if(_cacheIncidencia && _cacheIncidencia.geracao===geracaoDoConteudo() && _cacheIncidencia.banca===banca) return _cacheIncidencia.r;
   const daProva = banca===TODAS_AS_PROVAS ? (q=>!ehConsolidacao(q) && !q.grupoId) : (q=>q.real && q.banca===banca);
   const reais = db.questoes.filter(q=>daProva(q) && q.status!=="desatualizada");
   const porAssunto = {}, porArea = {}, anos = new Set();
@@ -826,7 +837,7 @@ function incidenciaNaBanca(banca){
     porArea[q.areaId] = (porArea[q.areaId]||0) + 1;
   });
   const r = { banca, total: reais.length, anos: [...anos].sort(), porAssunto, porArea };
-  _cacheIncidencia = { geracao:_geracaoDb, banca, r };
+  _cacheIncidencia = { geracao:geracaoDoConteudo(), banca, r };
   return r;
 }
 function acertoGeralDoUsuario(usuarioId){
@@ -834,7 +845,18 @@ function acertoGeralDoUsuario(usuarioId){
   return { total: rs.length, acertos: rs.filter(r=>r.correta).length,
            taxa: rs.length ? rs.filter(r=>r.correta).length/rs.length : CONFIG.incidencia.acertoPresumido };
 }
+/* A sessão recomendada pede as prioridades duas vezes (pesos e "o que mais
+   cai"), e cada pedido refazia o desempenho por assunto. Cache por geração
+   do db (as respostas mudam a conta), pessoa e banca; devolve cópia da
+   lista para quem ordenar no lugar não estragar o cache. */
+let _cachePrioridades = null;
 function prioridadesDeEstudo(usuarioId, banca){
+  banca = banca || bancaDeReferencia();
+  const chave = _geracaoDb + "|" + usuarioId + "|" + banca;
+  if(!_cachePrioridades || _cachePrioridades.chave !== chave) _cachePrioridades = { chave, lista: _calcularPrioridadesDeEstudo(usuarioId, banca) };
+  return _cachePrioridades.lista.slice();
+}
+function _calcularPrioridadesDeEstudo(usuarioId, banca){
   const inc = incidenciaNaBanca(banca);
   if(!inc.total) return [];
   const geral = acertoGeralDoUsuario(usuarioId);

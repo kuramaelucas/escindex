@@ -399,7 +399,12 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const nRevisao = Math.round(tamanho*mistura.revisaoPassados);
   const nPrevia = Math.max(0, tamanho - nAtual - nRevisao);
 
-  const poolAtual = semRepeticaoPrematura(usuarioId, questoesDaSessaoRecomendada(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId)));
+  /* A lista de estudo e os assuntos viram Set/variável uma vez só: os filtros
+     abaixo passam pelo banco inteiro, e .includes num array dentro deles
+     multiplicava o custo pelo número de assuntos do bloco. */
+  const paraEstudo = questoesDaSessaoRecomendada(usuarioId);
+  const doAtual = new Set(assuntosAtual), doFuturo = new Set(assuntosFuturos);
+  const poolAtual = semRepeticaoPrematura(usuarioId, paraEstudo.filter(q=>doAtual.has(q.assuntoId)));
   const pesos = pesosDeIncidencia(usuarioId);
   const destaque = assuntosQueMaisCaem(usuarioId);
   /* A proporção consolidação/residência do ano do aluno (CONFIG.progressaoConsolidacao)
@@ -420,9 +425,10 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const partesRevisao = partesDaRevisaoEspacada(usuarioId, assuntosPassados);
   const atrasoDe = v => diasEntre(proximaRevisaoEfetiva(v.entry), hojeISO());
   const itensRevisao = [];
+  const porErroSet = new Set(partesRevisao.erros);
   [...partesRevisao.erros, ...partesRevisao.decaimentos].slice(0, nRevisao).forEach(v=>{
     const atraso = atrasoDe(v);
-    const porErro = partesRevisao.erros.includes(v);
+    const porErro = porErroSet.has(v);
     itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" "+plural(atraso,"dia","dias")+"" : ", no prazo")});
   });
   const reservadas = questoesReservadasAoPosResumo(usuario);
@@ -431,7 +437,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const passadosSet = new Set(assuntosPassados);
   completarComConjuntosDosResumos(usuario, itensRevisao, nRevisao, new Set([...usadosAtual, ...itensRevisao.map(it=>it.questaoId)]), q=>passadosSet.has(q.assuntoId), "revisao_nova", "Revisão — assunto de bloco anterior que você ainda não viu", (p,k)=>selecionarComInterleaving(p, k, pesos));
 
-  const poolPrevia = semRepeticaoPrematura(usuarioId, questoesDaSessaoRecomendada(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
+  const poolPrevia = semRepeticaoPrematura(usuarioId, paraEstudo.filter(q=>doFuturo.has(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
   let todos = semQuestoesRepetidas([...itensAtual, ...itensRevisao, ...itensPrevia]);
