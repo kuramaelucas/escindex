@@ -18,7 +18,10 @@
      botões da direita (questão)      A = cima · B = esquerda · C = direita · D = baixo · R1/RB = E
      com a alternativa marcada        cima = chute · esquerda = certeza · baixo = dúvida
                                       (C e E ficam sem função até desmarcar)
-     Start                            finaliza o conjunto/simulado, só com todas as questões respondidas
+     Start                            abre o menu lateral: ↑ ↓ escolhem a ferramenta, ✕/A (baixo) entra, ○/B (direita) ou Start fecham
+     fora das questões e cartões      ↑ ↓ ← → andam pelos botões, links e campos da página (destacados), ✕/A clica
+     janela aberta                    o mesmo, só dentro dela; ○/B fecha a janela
+     Select / Back                    finaliza o conjunto/simulado, só com todas as questões respondidas
      L1 / LB                          desmarca, para voltar a escolher A, B ou D
      L2 / LT segurado + A–E           risca a alternativa (é o × do mouse) em vez de marcá-la; soltou, volta ao normal
      questão já respondida            baixo = próxima questão
@@ -41,12 +44,12 @@ const CONTROLE_BOTAO_NOTA_CARTAO = { 3:"naolembrei", 2:"sabia", 0:"quase" };
 const CONTROLE_POS_LETRA = { A:"cima", B:"esquerda", C:"direita", D:"baixo", E:"r1" };
 const CONTROLE_POS_CONFIANCA = { chute:"cima", certeza:"esquerda", duvida:"baixo" };
 const CONTROLE_POS_NOTA_CARTAO = { naolembrei:"cima", sabia:"esquerda", quase:"baixo" };
-const CONTROLE_BOTAO = { desmarcar:4, gatilhoRiscar:6, start:9, cima:12, baixo:13, esquerda:14, direita:15 };
+const CONTROLE_BOTAO = { desmarcar:4, gatilhoRiscar:6, select:8, start:9, cima:12, baixo:13, esquerda:14, direita:15 };
 const CONTROLE_VELOCIDADES = { lenta:{ nome:"Lenta", px:450 }, normal:{ nome:"Normal", px:900 }, rapida:{ nome:"Rápida", px:1600 } };
 const CONTROLE_ZONA_MORTA = 0.25;   // o analógico nunca volta exatamente a zero: sem folga a tela andaria sozinha
 const CONTROLE_CHAVE = "esc_controle_v1";
 
-const controleEstado = { rodando:false, anterior:{}, ultimoQuadro:0, avisou:false };
+const controleEstado = { rodando:false, anterior:{}, ultimoQuadro:0, avisou:false, menu:false };
 
 /* ---------- escolha da pessoa (por aparelho) ---------- */
 function controleConfig(){
@@ -64,7 +67,7 @@ function renderCardControle(){
   const c = controleConfig();
   return `<div class="card mt-2" style="max-width:460px">
     <div class="card-title">Controle de videogame</div>
-    <p class="text-sm muted">Com um controle conectado (aperte um botão para o navegador reconhecê-lo), as setas rolam e trocam de questão, e os botões da direita escolhem a alternativa e a confiança. ${controleConectados().length ? "<strong>Há um controle conectado agora.</strong>" : "Nenhum controle conectado agora."} Esta opção vale só neste aparelho.</p>
+    <p class="text-sm muted">Com um controle conectado (aperte um botão para o navegador reconhecê-lo), Start abre o menu lateral e as setas andam pelos botões de cada tela; nas questões, as setas rolam e trocam de questão, e os botões da direita escolhem a alternativa e a confiança. ${controleConectados().length ? "<strong>Há um controle conectado agora.</strong>" : "Nenhum controle conectado agora."} Esta opção vale só neste aparelho.</p>
     <label class="checkbox-row mt-1"><input type="checkbox" ${c.ativo?"checked":""} onchange="controleSalvarConfig({ativo:this.checked})"><span>Usar o controle quando conectado</span></label>
     <div class="field mt-1"><label class="label" for="controleVelocidade">Velocidade da rolagem</label>
       <select class="input" id="controleVelocidade" style="max-width:200px" onchange="controleSalvarConfig({velocidade:this.value})">
@@ -142,8 +145,10 @@ function controleQuadro(agora){
     // desligado nas configurações: o estado continua sendo lido (para não disparar tudo de uma vez ao religar), mas nada age
     if(ativo){
       atual.forEach((apertado, i) => { if(apertado && !antes[i]) controleAoApertar(i, g); });
-      if(atual[CONTROLE_BOTAO.cima]) rolar -= 1;
-      if(atual[CONTROLE_BOTAO.baixo]) rolar += 1;
+      // as setas só rolam na questão e no cartão; no menu, nas janelas e nas outras telas elas andam de botão em botão
+      const setasRolam = !controleEstado.menu && !controleJanelaAberta() && controleEmEstudo();
+      if(setasRolam && atual[CONTROLE_BOTAO.cima]) rolar -= 1;
+      if(setasRolam && atual[CONTROLE_BOTAO.baixo]) rolar += 1;
       const esquerdo = g.axes && g.axes[1] || 0;
       if(Math.abs(esquerdo) > CONTROLE_ZONA_MORTA) rolar += esquerdo;
       const direito = g.axes && g.axes[3] || 0;
@@ -188,9 +193,13 @@ function controleRiscando(g){
 function controleAoApertar(botao, g){
   const alvo = document.activeElement;
   if(alvo && (alvo.tagName==="INPUT" || alvo.tagName==="TEXTAREA" || alvo.isContentEditable)) return;   // quem está escrevendo não responde sem querer
-  if(controleJanelaAberta()) return;   // com uma janela aberta o controle só rola; responder por trás dela seria às cegas
-  // Start finaliza o conjunto, mas só com todas as questões respondidas (nunca fecha às cegas)
-  if(botao===CONTROLE_BOTAO.start){ controleFinalizar(); return; }
+  if(botao===CONTROLE_BOTAO.start){ controleAlternarMenu(); return; }
+  if(controleEstado.menu){ controleNoMenu(botao); return; }
+  // janela aberta: anda pelos botões DELA (nunca responde por trás, às cegas); ○/B fecha
+  if(controleJanelaAberta()){ controleNaPagina(botao, document.querySelector("#modalOverlayAtivo .modal")); return; }
+  // Select finaliza o conjunto, mas só com todas as questões respondidas (nunca fecha às cegas)
+  if(botao===CONTROLE_BOTAO.select){ controleFinalizar(); return; }
+  if(!controleEmEstudo()){ controleNaPagina(botao, document.getElementById("conteudoPagina")); return; }
   if(botao===CONTROLE_BOTAO.esquerda){ voltarPorGesto(); return; }
   if(botao===CONTROLE_BOTAO.direita){ avancarPorGesto(); return; }
   if(state.route==="flashcards" && state.sessaoFlash && !state.sessaoFlash.finalizada){ controleNoCartao(botao, g); return; }
@@ -224,6 +233,87 @@ function controleAoApertar(botao, g){
   const letra = CONTROLE_BOTAO_LETRA[botao];
   if(letra && ctx.q.alternativas.some(a => a.id===letra)) ctx.selecionar(letra);
 }
+/* ---------- navegação pela plataforma ----------
+   Sem isso o controle só servia dentro de um conjunto já aberto: para chegar
+   a ele era preciso o mouse. Start abre o menu lateral (no celular ele desliza
+   como no botão ☰), e nas outras telas as setas levam um destaque de um
+   elemento clicável ao seguinte, na ordem da página — o mesmo foco do Tab do
+   teclado, então o leitor de tela acompanha. "Em estudo" (questão aberta ou
+   cartão em revisão) as setas continuam rolando e trocando de questão. */
+function controleEmEstudo(){
+  // conjunto terminado (tela de resultado) é tela comum: as setas levam aos botões "mais uma rodada", "voltar"…
+  const s = state.sessaoAtual;
+  if(state.route==="sessao") return !!s && !s.finalizada;
+  if(state.route==="simulado-ativo") return !!s && !s.finalizado;
+  return state.route==="flashcards" && !!state.sessaoFlash && !state.sessaoFlash.finalizada;
+}
+const CONTROLE_SELETOR_FOCO = 'button:not([disabled]), a[href], input:not([type="hidden"]):not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [onclick], [role="button"], [tabindex="0"]';
+function controleFocaveis(raiz){
+  if(!raiz) return [];
+  return Array.from(raiz.querySelectorAll(CONTROLE_SELETOR_FOCO)).filter(el => {
+    if(!el.getClientRects().length || getComputedStyle(el).visibility === "hidden") return false;
+    // um [onclick] que só embrulha outro botão duplicaria o passo: fica o de dentro
+    return !(el.matches("[onclick]") && el.tagName !== "BUTTON" && el.querySelector("button, a[href], input, select"));
+  });
+}
+function controleFocar(el){
+  document.querySelectorAll(".controle-foco").forEach(x => x.classList.remove("controle-foco"));
+  if(!el) return;
+  el.classList.add("controle-foco");
+  if(!el.hasAttribute("tabindex") && !/^(BUTTON|A|INPUT|SELECT|TEXTAREA|SUMMARY)$/.test(el.tagName)) el.setAttribute("tabindex", "-1");
+  try{ el.focus({ preventScroll:true }); }catch(e){}
+  el.scrollIntoView({ block:"nearest", inline:"nearest" });
+}
+function controleMover(lista, passo){
+  if(!lista.length) return;
+  const atual = lista.findIndex(el => el.classList.contains("controle-foco"));
+  // sem destaque ainda: começa pelo primeiro elemento visível na tela, não pelo topo da página
+  const inicio = atual >= 0 ? atual + passo : Math.max(0, lista.findIndex(el => el.getBoundingClientRect().bottom > 0));
+  controleFocar(lista[Math.max(0, Math.min(lista.length - 1, inicio))]);
+}
+function controleAtivar(el){
+  if(!el) return;
+  if(el.tagName === "INPUT" && /^(text|search|number|email|password|date|)$/.test(el.type || "")) { el.focus(); return; }
+  el.click();
+}
+function controleNaPagina(botao, raiz){
+  const lista = controleFocaveis(raiz);
+  if(botao===CONTROLE_BOTAO.cima || botao===CONTROLE_BOTAO.esquerda){ controleMover(lista, -1); return; }
+  if(botao===CONTROLE_BOTAO.baixo || botao===CONTROLE_BOTAO.direita){ controleMover(lista, 1); return; }
+  if(botao===0){ controleAtivar(lista.find(el => el.classList.contains("controle-foco"))); return; }
+  if(botao===1 && controleJanelaAberta()) fecharModal();
+}
+function controleAlternarMenu(){
+  if(controleEstado.menu){ controleFecharMenu(); return; }
+  if(controleJanelaAberta()) return;
+  const barra = document.getElementById("sidebarMenu"); if(!barra) return;
+  controleEstado.menu = true;
+  document.body.classList.add("controle-no-menu");
+  if(getComputedStyle(barra).transform !== "none" || barra.getBoundingClientRect().right <= 0) abrirMenuMobile();
+  const itens = controleFocaveis(barra);
+  controleFocar(itens.find(el => el.classList.contains("active")) || itens[0]);
+}
+function controleFecharMenu(){
+  controleEstado.menu = false;
+  document.body.classList.remove("controle-no-menu");
+  document.querySelectorAll(".controle-foco").forEach(x => x.classList.remove("controle-foco"));
+  fecharMenuMobile();
+}
+function controleNoMenu(botao){
+  const barra = document.getElementById("sidebarMenu"), itens = controleFocaveis(barra);
+  if(botao===CONTROLE_BOTAO.cima){ controleMover(itens, -1); return; }
+  if(botao===CONTROLE_BOTAO.baixo){ controleMover(itens, 1); return; }
+  if(botao===1){ controleFecharMenu(); return; }
+  if(botao===0){
+    const el = itens.find(x => x.classList.contains("controle-foco")); if(!el) return;
+    // abrir ou fechar um grupo do menu (Mais, Gestão…) não sai do menu: redesenha e mantém o destaque no grupo
+    if(el.classList.contains("nav-grupo")){ const nome = el.dataset.grupo; el.click();
+      controleFocar(controleFocaveis(document.getElementById("sidebarMenu")).find(x => x.dataset && x.dataset.grupo === nome)); return; }
+    controleFecharMenu(); el.click();
+    // já na tela nova: o destaque nasce no primeiro botão dela
+    controleMover(controleFocaveis(document.getElementById("conteudoPagina")), 1);
+  }
+}
 /* Cartão: a mesma régua da confiança da questão (esquerda certeza → "sabia",
    baixo dúvida → "quase", cima chute → "não lembrei"). A nota só vale com o
    cartão virado, como no botão: tentar lembrar antes de virar é o que fixa. */
@@ -238,7 +328,7 @@ function controleFinalizar(){
   if(!s || s.somenteLeitura || !s.itens) return;
   if(state.route==="sessao" && !s.finalizada && !indicesEmBranco(s).length){ finalizarSessaoPratica(); return; }
   if(state.route==="simulado-ativo" && !s.finalizado && s.itens.every(it => s.respostasSimulado[it.questaoId] !== undefined)){ pedirFinalizarSimulado(); return; }
-  if(state.route==="sessao" || state.route==="simulado-ativo") toast("Responda todas as questões para finalizar com Start.");
+  if(state.route==="sessao" || state.route==="simulado-ativo") toast("Responda todas as questões para finalizar com Select.");
 }
 function controleRespondida(){
   const s = state.sessaoAtual;

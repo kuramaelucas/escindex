@@ -213,7 +213,7 @@ function graficoDesempenhoEmBlocos(respostas, maxBlocos){
   const blocos = [];
   for(let i = 0; i < rs.length; i += 10){
     const grupo = rs.slice(i, i + 10), por = [0, 1, 2].map(() => ({ t: 0, a: 0 }));
-    grupo.forEach(r => { const q = getQuestao(r.questaoId), nv = q ? nivelProprioDaQuestao(q) : null; if(nv !== null && por[nv]){ por[nv].t++; if(r.correta) por[nv].a++; } });
+    grupo.forEach(r => { const q = getQuestao(r.questaoId), nv = q ? nivelProprioDaQuestao(q, r.usuarioId) : null; if(nv !== null && por[nv]){ por[nv].t++; if(r.correta) por[nv].a++; } });
     blocos.push({ de: i + 1, ate: i + grupo.length, geral: Math.round(100 * grupo.filter(r => r.correta).length / grupo.length), por });
   }
   const mostrados = blocos.slice(-(maxBlocos || 12));

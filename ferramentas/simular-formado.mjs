@@ -28,7 +28,7 @@ function simularNaPagina(op){
   const areas = [...new Set(questoesParaEstudo(u.id).map(q => q.areaId))];
   // cada área com um acerto próprio: uma mais fraca, uma mais forte (o aluno real não é uniforme)
   const ajuste = {}; areas.forEach((a, i) => { ajuste[a] = i === 0 ? 0.1 : i === 1 ? -0.15 : 0; });
-  const acertoDe = q => Math.max(0.05, Math.min(0.98, op.acerto + ajuste[q.areaId] + [0.15, 0, -0.2][nivelProprioDaQuestao(q)]));
+  const acertoDe = q => Math.max(0.05, Math.min(0.98, op.acerto + ajuste[q.areaId] + [0.15, 0, -0.2][nivelProprioDaQuestao(q, u.id)]));
   const porDia = Math.ceil(op.porSemana / op.diasPorSemana);
   const inicio = new Date("2027-01-04T12:00:00");
   const semanas = [], falhas = [];
@@ -62,8 +62,8 @@ function simularNaPagina(op){
             else if(trilha && !/fora da trilha|consolidado|^Miscelânea/.test(it.motivo)) foraDaTrilhaSemAviso++;
             if(consolidado.has(q.assuntoId) && !/consolidado/.test(it.motivo)) novaEmConsolidadoSemAviso++;
             // assunto que já passou das fases e a trilha reabriu (esfriou) vai à parte: não é a fase 3 em andamento
-            if(e && e.concluido) misturaReabertos[nivelProprioDaQuestao(q)]++;
-            else misturaPorFase[e ? e.fase : 0][nivelProprioDaQuestao(q)]++;
+            if(e && e.concluido) misturaReabertos[nivelProprioDaQuestao(q, u.id)]++;
+            else misturaPorFase[e ? e.fase : 0][nivelProprioDaQuestao(q, u.id)]++;
           } else if(/^revisao_/.test(it.origem)) sem.revisao++; else sem.complemento++;
           const ok = rnd() < acertoDe(q);
           const errada = (q.alternativas || []).map(a => a.letra || a.id).find(l => l !== q.gabarito) || "A";

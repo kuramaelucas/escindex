@@ -33,50 +33,60 @@ function papelDoTutorial(u){
 
 /* ---------- o tour rápido, passo a passo, por papel ---------- */
 const PASSOS_COMUNS_FIM = [
-  { icone:"settings", titulo:"Ajuda sempre à mão",
+  { icone:"settings", titulo:"Ajuda sempre à mão", rota:"perfil",
     texto:"Este tour e um guia completo, função por função, ficam em <strong>Perfil e configurações › Ajuda e tutorial</strong>, no fim do menu. Lá você também escolhe se quer ver este tour quando entrar." },
 ];
 const TUTORIAL_RAPIDO = {
   aluno: [
-    { icone:"home", titulo:"Bem-vindo(a) ao Esc",
-      texto:"Um tour de um minuto pelo essencial. O Esc organiza o seu estudo pelo calendário da sua turma e decide, a cada dia, o que vale a pena você fazer." },
-    { icone:"play", titulo:"Comece pelo Início",
-      texto:"A <strong>sessão recomendada</strong> do dia mistura o seu bloco atual, revisão dos blocos que já passaram e uma prévia do próximo, no tamanho da sua meta. Quer escolher o assunto? Use <strong>Estudar › Monte sua própria lista</strong> (botão <strong>Criar minha lista</strong>)." },
-    { icone:"target", titulo:"Responda dizendo quanto sabe",
-      texto:"Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>: é isso que decide quando a questão volta para você. O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou." },
-    { icone:"refresh", titulo:"Revise na hora certa",
-      texto:"<strong>Revisão</strong> traz de volta as questões no momento de não esquecer — os erros e os chutes primeiro. <strong>Flashcards</strong> são os flashcards: os da equipe e os que você cria a partir de uma questão." },
-    { icone:"clipboard", titulo:"Treine como na prova",
-      texto:"Em <strong>Provas e Simulados</strong> estão as provas antigas de verdade, inteiras, para fazer no cronômetro ou sem pressa, e os simulados montados pela equipe. As questões dos simulados da equipe <strong>não entram nas suas trilhas</strong> de estudo, para você as ver só na prova; se quiser, <strong>Trazer para o estudo geral</strong> libera as de um simulado. Com 10 ou mais alunos no mesmo simulado, o resultado mostra seu percentil, o P50, o P90 e a curva de Gauss, e compara seus assuntos no simulado com o seu estudo. Se você já fez o simulado, clique no título dele para ver todas as tentativas e a variação da nota; no resultado, uma seta marca as questões que mudaram desde a tentativa anterior (↑ passou a acertar, ↓ passou a errar)." },
-    { icone:"upload", titulo:"Envie questões e compartilhe com o grupo",
-      texto:"Tem uma lista de exercícios ou uma prova em PDF? Em <strong>Enviar Questões</strong>: 1) diga a instituição e o ano; 2) copie o pedido pronto e cole numa IA junto com o PDF; 3) cole a resposta de volta, confira e envie para <strong>Questões do meu grupo</strong>. <strong>Dica:</strong> suba as listas que você recebe e compartilhe com os colegas — cada um ganha mais questões, e em <strong>Meu Grupo</strong> vocês ainda dividem o conjunto entre quem quiser." },
-    { icone:"chart", titulo:"Acompanhe a sua evolução",
-      texto:"<strong>Meu Desempenho</strong> mostra o acerto por área e assunto, o que mais cai na prova e a sua nota estimada. Em cada questão você pode favoritar com uma anotação, virar flashcard, sinalizar um erro ou pedir para não vê-la mais." },
+    { icone:"home", titulo:"Bem-vindo(a) ao Esc", rota:"inicio",
+      texto:"Um tour pelas funções principais — cada passo tem <strong>Abrir esta tela</strong> para você ver na hora, e o botão <strong>Continuar o tutorial</strong> traz você de volta. O Esc organiza o estudo pelo calendário da sua turma (ou, para quem é formado, por uma trilha de assuntos) e decide, a cada dia, o que vale a pena fazer." },
+    { icone:"play", titulo:"Comece pelo Início", rota:"inicio",
+      texto:"A <strong>sessão recomendada</strong> do dia mistura o seu bloco atual, revisão do que já passou e uma prévia do próximo, no tamanho da sua meta. O Início também mostra a <strong>meta de hoje</strong>, os <strong>avisos</strong> da coordenação, a contagem para a <strong>prova-alvo</strong> e o cartão <strong>Seu tema</strong>: ler o resumo e fazer as 20 questões planejadas dele." },
+    { icone:"target", titulo:"Responda dizendo quanto sabe", rota:"estudar",
+      texto:"Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>: é isso que decide quando a questão volta. O <strong>×</strong> risca a alternativa descartada; selecionar um trecho deixa <strong>destacá-lo</strong>; e na questão você <strong>favorita</strong>, vira <strong>flashcard</strong>, <strong>sinaliza</strong> um erro ou copia um pedido pronto para <strong>tirar a dúvida com uma IA</strong>. Setas ← → passam de questão." },
+    { icone:"book", titulo:"Estudar: você escolhe o caminho", rota:"estudar",
+      texto:"Em <strong>Estudar</strong>: <strong>Monte sua própria lista</strong> (Área › Especialidade › Assunto, instituição, ano, só erros ou só inéditas), a <strong>trilha por erro</strong> (mais questões onde você mais erra) e a <strong>meta</strong> por dia ou por semana. Quem é formado(a) vê aqui as <strong>fases</strong> de cada assunto, o <strong>Ritmo das fases</strong> e <strong>Ver minha trilha</strong>." },
+    { icone:"book-open", titulo:"Resumos ligados às questões", rota:"resumos",
+      texto:"<strong>Resumos (Beta)</strong> são textos por tema em que cada trecho está ligado às questões que ele responde: o que você erra fica marcado no texto. Destaque em azul, crie flashcard de um trecho, mude o tamanho da letra e, ao <strong>marcar como lido</strong>, faça as questões pós-leitura do tema." },
+    { icone:"refresh", titulo:"Revise na hora certa", rota:"revisao",
+      texto:"<strong>Revisão</strong> traz de volta as questões no momento de não esquecer — erros e chutes primeiro. A <strong>Revisão sugerida</strong> junta os assuntos que esfriaram (30 dias ou mais sem ver), e <strong>Quanto você retém</strong> mostra o que ficou na memória." },
+    { icone:"cards", titulo:"Flashcards", rota:"flashcards",
+      texto:"Os cartões da equipe, os seus e os gerados das questões que você errou com certeza ou acertou no chute. Monte o seu baralho por assunto, crie vários cartões de uma vez, traga um baralho inteiro de uma IA ou compartilhe com a sua faculdade." },
+    { icone:"clipboard", titulo:"Treine como na prova", rota:"simulados",
+      texto:"Em <strong>Provas e Simulados</strong> estão as provas antigas de verdade, inteiras, para fazer no cronômetro ou sem pressa, e os simulados da equipe. As questões dos simulados <strong>não entram nas suas trilhas</strong> (para você as ver só na prova); <strong>Trazer para o estudo geral</strong> as libera. Com 10 ou mais alunos, o resultado mostra seu percentil e a curva da turma." },
+    { icone:"chart", titulo:"Acompanhe a sua evolução", rota:"desempenho",
+      texto:"<strong>Meu Desempenho</strong> mostra o acerto por área e assunto, a evolução de 15 em 15 dias, <strong>o que mais cai</strong> cruzado com o seu acerto e a <strong>nota estimada</strong>. <strong>Histórico</strong> mostra cada dia de estudo num calendário, e <strong>Favoritos</strong> guarda questões e cartões com as suas anotações." },
+    { icone:"users", titulo:"Meu Grupo e envio de questões", rota:"meu-grupo",
+      texto:"Em <strong>Meu Grupo</strong> você escolhe a turma do rodízio (é ela que decide o seu bloco) ou cria um grupo com colegas para dividir questões. Tem uma lista ou prova em PDF? Em <strong>Enviar Questões</strong>, copie o pedido pronto, cole numa IA com o PDF, confira e envie para o grupo." },
+    { icone:"search", titulo:"Ache qualquer coisa", rota:"inicio",
+      texto:"O botão <strong>Buscar</strong> no alto (ou <kbd>Ctrl</kbd>+<kbd>K</kbd>) vai direto a uma tela, a um assunto — com um conjunto rápido de questões — ou a uma questão pelo trecho do enunciado." },
+    { icone:"settings", titulo:"Do seu jeito", rota:"perfil",
+      texto:"Em <strong>Perfil e configurações</strong>: modo <strong>resumido</strong> ou <strong>estatístico</strong>, como começar (do zero ou reparando falhas), lembrete da meta, IA preferida para dúvidas, estudo <strong>sem internet</strong>, instalar como aplicativo, conta na nuvem, <strong>controle de videogame</strong> e o <strong>visual retrô</strong> (liga e desliga com um clique)." },
     ...PASSOS_COMUNS_FIM,
   ],
   residente: [
     { icone:"home", titulo:"Bem-vindo(a), residente",
       texto:"Um tour de um minuto pelo que é seu no Esc: responder às dúvidas da turma e cuidar da qualidade das questões." },
-    { icone:"message", titulo:"Fila de Dúvidas",
+    { icone:"message", titulo:"Fila de Dúvidas", rota:"fila-duvidas",
       texto:"As dúvidas que os alunos deixam nas questões chegam aqui. Responda com as suas palavras e uma fonte — a resposta aparece para quem perguntou e para quem cair na mesma questão." },
-    { icone:"alert", titulo:"Questões Difíceis",
+    { icone:"alert", titulo:"Questões Difíceis", rota:"revisao-dificeis",
       texto:"As questões que a turma mais erra. Vale conferir se o gabarito e a explicação estão certos e claros — às vezes o problema é a questão, e não o aluno." },
-    { icone:"upload", titulo:"Enviar provas e questões",
+    { icone:"upload", titulo:"Enviar provas e questões", rota:"importar-questoes",
       texto:"Em <strong>Enviar Questões</strong> e na <strong>Central de Provas</strong> você cola uma prova inteira (em lotes) e acompanha a transcrição até a publicação." },
-    { icone:"edit", titulo:"Revisar Formatação",
+    { icone:"edit", titulo:"Revisar Formatação", rota:"revisao-formatacao",
       texto:"Questões importadas às vezes chegam com texto quebrado. Aqui você corrige a formatação antes de elas irem para os alunos." },
     ...PASSOS_COMUNS_FIM,
   ],
   professor: [
     { icone:"home", titulo:"Bem-vindo(a), professor(a)",
       texto:"Um tour de um minuto pelas ferramentas da equipe: o banco de questões, as provas, os simulados e o acompanhamento da turma." },
-    { icone:"database", titulo:"Banco de Questões",
+    { icone:"database", titulo:"Banco de Questões", rota:"banco-questoes",
       texto:"Todas as questões, com filtros por instituição, ano, área e status. Em <strong>Status › Aguardando imagem</strong> ficam as que dependem de uma figura da prova ainda não anexada — elas não aparecem para os alunos até a imagem chegar." },
-    { icone:"archive", titulo:"Importar e Central de Provas",
+    { icone:"archive", titulo:"Importar e Central de Provas", rota:"central-provas",
       texto:"Traga questões em lote ou uma prova inteira. A Central acompanha cada prova até a publicação, e a conferência aponta gabarito faltando, questão repetida e assunto inexistente. <strong>Pendências</strong> (aba ao lado) lista, direto do banco, o que ainda falta: figuras, questões desatualizadas, números de prova faltando e assuntos sem cartão." },
-    { icone:"plus", titulo:"Simulados e material",
+    { icone:"plus", titulo:"Simulados e material", rota:"criar-simulado",
       texto:"<strong>Criar Simulado</strong> monta uma prova para a turma; <strong>Material em PDF</strong> gera listas para imprimir; <strong>Flashcards</strong> cuida do baralho da equipe." },
-    { icone:"chart", titulo:"Turma",
+    { icone:"chart", titulo:"Turma", rota:"painel-turma",
       texto:"Como a turma está indo: acerto por área, quem está parado e os assuntos mais errados. <strong>Questões Difíceis</strong> mostra onde a turma trava." },
     { icone:"user", titulo:"Veja pelo olhar do aluno",
       texto:"O <strong>modo aluno</strong> mostra a plataforma como o aluno a vê — e as respostas dadas nele contam para o seu próprio progresso." },
@@ -87,11 +97,11 @@ const TUTORIAL_RAPIDO = {
       texto:"Um tour de um minuto pelo que só a administração faz, além das ferramentas de conteúdo da equipe. O que aparece no seu menu depende do seu nível de acesso." },
     { icone:"check", titulo:"Cadastros e usuários",
       texto:"Em <strong>Turma › Cadastros e usuários</strong>: aprovar quem pediu acesso, mudar papel, nível de administrador e situação de cada conta — tudo na mesma tela do painel de uso." },
-    { icone:"calendar", titulo:"Blocos de Estudo",
+    { icone:"calendar", titulo:"Blocos de Estudo", rota:"blocos",
       texto:"O calendário de cada ano da faculdade e das turmas do rodízio. É ele que decide o bloco atual e, portanto, a sessão do dia dos alunos." },
     { icone:"database", titulo:"Conteúdo",
       texto:"Banco de Questões, Importar, Central de Provas, Simulados e Flashcards, como para os professores. As questões em <strong>Aguardando imagem</strong> ficam fora do estudo dos alunos até a figura chegar." },
-    { icone:"settings", titulo:"Configurações e segurança",
+    { icone:"settings", titulo:"Configurações e segurança", rota:"config-geral",
       texto:"Metas, pesos do algoritmo e a banca de referência ficam em <strong>Configurações</strong>. O administrador máster cuida do backup — exporte uma cópia com frequência." },
     ...PASSOS_COMUNS_FIM,
   ],
@@ -106,6 +116,8 @@ const GUIA_ALUNO = [
     "<strong>No 6º ano há um cronograma por dia:</strong> as primeiras 30 questões seguem a sessão recomendada; da 31ª em diante só entram questões de prova real de residência, nos assuntos que mais caem no banco e em que você mais erra. Cada questão extra diz o porquê.",
     "A <strong>meta de hoje</strong> mostra quantas questões e cartões faltam.",
     "Se você sair no meio de uma sessão, ela fica guardada: o Início oferece <strong>Continuar</strong> de onde parou.",
+    "<strong>Como começar</strong> (6º ano e formados): a plataforma pergunta uma vez se você quer <strong>construir do zero</strong> (resumo de cada tema e depois as questões dele), <strong>reparar falhas</strong> (questões primeiro, resumo onde errar) ou <strong>continuar como está</strong>. A escolha muda em Perfil e configurações.",
+    "<strong>Seu tema</strong> (cartão no Início): o ciclo é ler o resumo do tema, fazer o conjunto planejado de 20 questões que cobre cada parte dele e ver o resultado; abaixo de 75%, a plataforma sugere reler só os trechos que você errou.",
   ]},
   { titulo:"Formado(a): fases, ritmo e revisão", itens:[
     "<strong>Por que fases.</strong> Quem já se formou tem a matéria inteira para rever, e cada pessoa sabe uns assuntos melhor que outros. Por isso a sessão não trata você como um bloco só: <strong>cada assunto anda sozinho</strong> por três fases, cada uma com mais questão difícil — fase 1: 50% fácil, 35% média, 15% difícil; fase 2: 35/50/15; fase 3: 15/50/35. Nenhuma fase é só fácil: quem já sabe o assunto vê questão difícil desde o começo e sobe rápido.",
@@ -126,7 +138,7 @@ const GUIA_ALUNO = [
   ]},
   { titulo:"Respondendo uma questão", itens:[
     "Com o teclado, as setas ← → passam de questão (e de cartão, depois de virar), como as setas das pontas da barra de questões.",
-    "Com um controle de videogame conectado (aperte um botão para o navegador reconhecê-lo): ↑ ↓ rolam a tela, ← → passam de questão, e os botões da direita escolhem a alternativa (cima = A, esquerda = B, direita = C, baixo = D, R1 = E). Com a alternativa marcada, cima = chute, esquerda = certeza e baixo = dúvida; L1 desmarca para escolher outra e segure L2 e aperte uma alternativa para riscá-la em vez de marcá-la (ao soltar, volta ao normal). Depois de responder, o botão de baixo vai para a próxima. Nos cartões: direita vira, esquerda = sabia, baixo = quase, cima = não lembrei. O analógico direito rola mais rápido, e o controle vibra ao responder. Os desenhos de cada botão (△ □ ○ ✕ ou Y X B A, conforme a marca) só aparecem enquanto o controle estiver conectado; a opção e a velocidade ficam no Perfil.",
+    "Com um controle de videogame conectado (aperte um botão para o navegador reconhecê-lo): ↑ ↓ rolam a tela, ← → passam de questão, e os botões da direita escolhem a alternativa (cima = A, esquerda = B, direita = C, baixo = D, R1 = E). Com a alternativa marcada, cima = chute, esquerda = certeza e baixo = dúvida; L1 desmarca para escolher outra e segure L2 e aperte uma alternativa para riscá-la em vez de marcá-la (ao soltar, volta ao normal). Depois de responder, o botão de baixo vai para a próxima. Nos cartões: direita vira, esquerda = sabia, baixo = quase, cima = não lembrei. <strong>Start abre o menu lateral</strong>: ↑ ↓ escolhem a ferramenta, o botão de baixo (✕ / A) entra e o da direita (○ / B) fecha. Nas outras telas, as setas levam um destaque amarelo de botão em botão e o botão de baixo clica; numa janela aberta é igual, e o da direita a fecha. <strong>Select</strong> termina o conjunto quando todas as questões estão respondidas. O analógico direito rola mais rápido, e o controle vibra ao responder. Os desenhos de cada botão (△ □ ○ ✕ ou Y X B A, conforme a marca) só aparecem enquanto o controle estiver conectado; a opção e a velocidade ficam no Perfil.",
     "Escolha a alternativa e marque <strong>Certeza</strong>, <strong>Na dúvida</strong> ou <strong>Chute</strong>. A confiança entra na revisão espaçada: chute e erro voltam antes.",
     "O <strong>×</strong> ao lado de cada alternativa risca o que você já descartou (clique de novo para trazer de volta).",
     "Assunto, especialidade e dificuldade só aparecem <strong>depois de responder</strong>, para não entregar o diagnóstico. Se a questão tem imagem, ela vem logo abaixo do enunciado, antes das alternativas.",
@@ -168,6 +180,7 @@ const GUIA_ALUNO = [
     "Em <strong>Perfil e configurações</strong> (no fim do menu): ano da faculdade, lembrete diário de meta, este tutorial e o guia, senha (a troca pede a senha atual), guardar todas as questões para estudar sem internet, instalar o Esc como aplicativo, conta na nuvem e baixar uma cópia do seu estudo.",
     "<strong>Buscar:</strong> o botão <em>Buscar</em> no alto da tela (ou <kbd>Ctrl</kbd>+<kbd>K</kbd>, <kbd>⌘</kbd>+<kbd>K</kbd> no Mac) abre uma busca que vai direto a uma tela, a um assunto — onde você monta um <strong>conjunto rápido</strong>, escolhendo quantas questões (sugestão: 15), de quais instituições e anos — ou a uma questão pelo trecho do enunciado. Use as setas e o Enter. Ela não abre durante um simulado em andamento.",
     "Com a nuvem ligada, o estudo sincroniza entre aparelhos. Sem ela, tudo fica salvo neste navegador.",
+    "<strong>Visual retrô</strong>: cores de fliperama, letra pixelada nos menus e botões, golpes rápidos de acerto e erro (PERFECT!, K.O.!, OUCH!) com combo e troca de questão em degraus, como num jogo de luta. O texto das questões, das alternativas, da explicação e dos cartões continua na letra normal, e no simulado sem modo aprendizado não há golpe (ele entregaria o acerto). Liga e desliga no menu (<strong>Visual retrô</strong> / <strong>Visual normal</strong>) ou em Perfil, e vale só no aparelho. Quem tem controle de videogame recebe um convite na primeira vez que o conecta — e há um código secreto no teclado para os curiosos.",
     "<strong>Prova-alvo:</strong> existe no 6º ano e para quem já se formou. Sem data marcada vale o 1º de dezembro, e o Início mostra quanto falta, e em <strong>Ajustar a data</strong> (no Início, com o calendário na hora; ou em Perfil) você marca a data exata da sua primeira prova importante. Quando a prova se aproxima, as revisões espaçadas passam a voltar em no máximo 25% do tempo que falta — para o que você revisa não ficar para depois dela. Do 3º ao 5º ano não há prova-alvo.",
   ]},
 ];
@@ -256,6 +269,7 @@ function desenharPassoTutorial(){
       <div class="tutorial-pontos" aria-hidden="true">${passos.map((_, k) => `<span class="${k === i ? "ativo" : ""}"></span>`).join("")}</div>
     </div>
     <label class="checkbox-row mt-2"><input type="checkbox" id="tutorialNaoMostrar" ${oculto ? "checked" : ""} onchange="definirTutorialAoEntrar(!this.checked)"> Não mostrar este tutorial quando eu entrar</label>
+    ${p.rota && podeAbrirTelaDoTutorial(p.rota) ? `<div class="mt-1"><button class="btn btn-ghost btn-sm" onclick="abrirTelaDoTutorial()">${iconeSvg("chevron-r")} Abrir esta tela</button></div>` : ""}
     <div class="tutorial-acoes mt-2">
       ${i > 0 ? `<button class="btn btn-secondary btn-sm" onclick="passoTutorial(-1)">Voltar</button>` : `<button class="btn btn-ghost btn-sm" onclick="fecharTutorial()">Pular</button>`}
       <span class="flex gap-1 quebra">
@@ -272,7 +286,41 @@ function passoTutorial(delta){
 }
 function fecharTutorial(){
   state.tutorial = null;
+  tirarBotaoContinuarTutorial();
   fecharModal();
+}
+/* EXPLORAR AO VIVO. O tour descrevia a tela, mas a pessoa só aprende vendo:
+   cada passo com `rota` leva até ela, e um botão flutuante (fora do render,
+   para sobreviver à troca de tela) retoma do mesmo passo. Rota que o papel da
+   pessoa não abre fica sem botão. */
+function podeAbrirTelaDoTutorial(rota){
+  const perm = typeof PERMISSAO_DA_ROTA !== "undefined" && PERMISSAO_DA_ROTA[rota];
+  return !perm || podeAdmin(perm);
+}
+function abrirTelaDoTutorial(){
+  const t = state.tutorial; if(!t) return;
+  const passos = TUTORIAL_RAPIDO[t.papel] || TUTORIAL_RAPIDO.aluno, p = passos[t.passo];
+  const pausa = { passo: t.passo, papel: t.papel, total: passos.length };
+  state.tutorial = null;
+  fecharModal();
+  if(p && p.rota) navigate(p.rota);
+  tirarBotaoContinuarTutorial();
+  state.tutorialPausado = pausa;
+  const b = document.createElement("button");
+  b.id = "botaoContinuarTutorial"; b.className = "btn btn-primary btn-sm tutorial-continuar";
+  b.innerHTML = iconeSvg("play") + " Continuar o tutorial (" + (state.tutorialPausado.passo + 1) + " de " + state.tutorialPausado.total + ")";
+  b.onclick = continuarTutorial;
+  document.body.appendChild(b);
+}
+function continuarTutorial(){
+  const pausa = state.tutorialPausado; tirarBotaoContinuarTutorial();
+  if(!pausa) return abrirTutorialRapido();
+  state.tutorial = { passo: pausa.passo, papel: pausa.papel };
+  desenharPassoTutorial();
+}
+function tirarBotaoContinuarTutorial(){
+  state.tutorialPausado = null;
+  const b = document.getElementById("botaoContinuarTutorial"); if(b) b.remove();
 }
 
 /* A escolha de ver (ou não) o tour ao entrar fica no cadastro da pessoa. */

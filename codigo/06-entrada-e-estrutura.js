@@ -801,6 +801,7 @@ function htmlMenuLateral(u){
       <div class="sidebar-footer">
         ${u.papel!=="aluno" ? `<div class="nav-item" onclick="alternarModoAluno()">${iconeSvg("book")}<span>${state.modoAluno?"Sair do modo aluno":"Entrar no modo aluno"}</span></div>` : ""}
         <div class="nav-item" onclick="alternarTema()">${iconeSvg("theme")}<span>${document.documentElement.getAttribute("data-theme")==="dark"?"Tema claro":"Tema escuro"}</span></div>
+        ${htmlItemMenuRetro()}
         <div class="nav-item ${state.route==="perfil"?"active":""}" onclick="navigate('perfil')">${iconeSvg("user")}<span>Perfil e configurações</span></div>
         <div class="nav-item" onclick="fazerLogout()">${iconeSvg("logout")}<span>Sair</span></div>
       </div>`;

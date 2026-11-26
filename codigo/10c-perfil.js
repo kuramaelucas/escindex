@@ -54,6 +54,7 @@ function renderPerfil(){
   ${renderCardModoPlataforma(u)}
   ${renderCardModoDeInicio(u)}
   ${renderCardControle()}
+  ${renderCardRetro()}
   ${renderCardEstudoOffline()}
   ${renderCardIaDuvidas(u)}
   ${renderCardAjuda()}
