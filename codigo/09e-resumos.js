@@ -361,7 +361,7 @@ function renderResumos(){
    na ordem padrão de MAIOR ERRO da pessoa nas questões do assunto — o que mais
    rende vem primeiro. A pessoa pode trocar para ordem alfabética ou para os
    nunca lidos primeiro; a escolha fica em state.filtroRota.resumoOrdem. */
-const RESUMO_ORDENS = { erro: "Onde você mais erra", alfabetica: "Ordem alfabética", "nao-lidos": "Nunca lidos primeiro" };
+const RESUMO_ORDENS = { erro: "Onde você mais erra (%)", "erro-qtd": "Mais erros (em número)", alfabetica: "Ordem alfabética", "nao-lidos": "Nunca lidos primeiro" };
 function mudarOrdemDosResumos(v){ state.filtroRota.resumoOrdem = RESUMO_ORDENS[v] ? v : "erro"; render(); }
 function _erroPorAssunto(usuarioId){
   const ult = _ultimasRespostasDe(usuarioId), soma = {};
@@ -381,7 +381,8 @@ function _htmlAreaDeResumos(k, lista, cartao){
   const f = state.filtroRota;
   const aberta = !!(f.resumoAreasAbertas && f.resumoAreasAbertas[k]);
   const todos = !!(f.resumoAreasTodas && f.resumoAreasTodas[k]);
-  const piores = new Set([...lista].sort((a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || a.r.titulo.localeCompare(b.r.titulo, "pt-BR")).slice(0, RESUMO_POR_AREA));
+  const porQtd = f.resumoOrdem === "erro-qtd";
+  const piores = new Set([...lista].sort((a, b) => porQtd ? ((b.e || 0) - (a.e || 0)) || ((b.t || 0) - (a.t || 0)) || a.r.titulo.localeCompare(b.r.titulo, "pt-BR") : (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || a.r.titulo.localeCompare(b.r.titulo, "pt-BR")).slice(0, RESUMO_POR_AREA));
   const vistos = todos ? lista : lista.filter(it => piores.has(it));
   const nome = k ? lista[0].area.nome : "Outros";
   const resto = lista.length - vistos.length;
@@ -407,12 +408,14 @@ function _renderListaDeResumos(cat){
   const itens = cat.map(r => {
     const e = erros[r.assunto];
     const area = areaDeAssunto(r.assunto);
-    return { r, t: e && e.n ? e.e / e.n : null, n: e ? e.n : 0, lido: resumoLidoEm(u, r.id), area };
+    return { r, t: e && e.n ? e.e / e.n : null, n: e ? e.n : 0, e: e ? e.e : 0, lido: resumoLidoEm(u, r.id), area };
   });
   const porNome = (a, b) => a.r.titulo.localeCompare(b.r.titulo, "pt-BR");
   const ordens = {
     // sem resposta fica depois de quem erra e antes de quem domina (mesma regra do caderno, _faixaDoResumo)
     erro: (a, b) => (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || porNome(a, b),
+    // quantidade absoluta de erros: 12 erros em 60 questões pesa mais que 2 em 3
+    "erro-qtd": (a, b) => ((b.e || 0) - (a.e || 0)) || ((b.t || 0) - (a.t || 0)) || porNome(a, b),
     alfabetica: porNome,
     "nao-lidos": (a, b) => (!!a.lido - !!b.lido) || (_faixaDoResumo(b.t) - _faixaDoResumo(a.t)) || ((b.t || 0) - (a.t || 0)) || porNome(a, b),
   };
@@ -426,7 +429,7 @@ function _renderListaDeResumos(cat){
       <div class="flex justify-between items-center gap-2 quebra">
         <div class="cresce-220"><div class="text-xs muted">${escapeHtml(it.r.area || "")}</div>
           <div class="card-title">${escapeHtml(it.r.titulo)} ${_marcaDoResumo(it.t)}</div>
-          <div class="text-xs muted">${it.t === null ? "Você ainda não respondeu questões deste assunto" : RESUMO_NOMES[_nivelDoResumo(it.t)] + " — erro em " + Math.round(it.t * 100) + "% das " + it.n + " " + plural(it.n, "questão", "questões") + " que você fez"}${it.lido ? " · <strong>lido em " + formatDataBR(it.lido) + "</strong>" : " · nunca lido"}</div></div>
+          <div class="text-xs muted">${it.t === null ? "Você ainda não respondeu questões deste assunto" : RESUMO_NOMES[_nivelDoResumo(it.t)] + " — " + it.e + " " + plural(it.e, "erro", "erros") + " em " + it.n + " " + plural(it.n, "questão", "questões") + " (" + Math.round(it.t * 100) + "%)"}${it.lido ? " · <strong>lido em " + formatDataBR(it.lido) + "</strong>" : " · nunca lido"}</div></div>
         <button class="btn ${it.lido ? "btn-secondary" : "btn-primary"} btn-sm" onclick="abrirResumo('${escapeHtml(it.r.id)}')">${it.lido ? "Reler" : "Ler"}</button>
       </div></div>`;
   return `<div class="page-header"><h2>Resumos <span class="badge badge-accent">Beta</span></h2>
@@ -437,6 +440,7 @@ function _renderListaDeResumos(cat){
       <label class="text-sm flex items-center gap-1">Ordem
         <select class="select" aria-label="Ordem dos resumos" onchange="mudarOrdemDosResumos(this.value)">${Object.entries(RESUMO_ORDENS).map(([k, v]) => `<option value="${k}" ${k === ordem ? "selected" : ""}>${v}</option>`).join("")}</select></label>
     </div>
+    ${ordem === "erro-qtd" ? `<p class="text-xs muted mb-2">Dentro de cada grande área, primeiro os resumos com mais questões erradas em número absoluto, mesmo que a porcentagem seja menor.</p>` : ""}
     ${ordem === "erro" ? `<p class="text-xs muted mb-2">Dentro de cada grande área, primeiro os resumos dos assuntos em que você mais erra, depois os que você ainda não respondeu e por último os que já domina.</p>` : ""}
     ${chaves.map(k => _htmlAreaDeResumos(k, grupos[k], cartao)).join("")}`;
 }

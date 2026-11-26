@@ -251,8 +251,7 @@ function renderSimuladoCard(s){
         ${previo.variacao!==null ? `<span class="badge ${previo.variacao>=0?"badge-accent":"badge-danger"}">${previo.variacao>=0?"+":""}${previo.variacao} pts vs. anterior</span>` : ""}
       </div>` : '<div class="qcard-meta mt-1"><span class="badge badge-muted">ainda não realizado</span></div>'}
     <div class="flex gap-1 prova-acoes quebra">
-      ${prog ? `<button class="btn btn-primary btn-sm" onclick="continuarSimulado('${s.id}')">Continuar</button>
-      <button class="btn btn-ghost btn-sm" onclick="iniciarSimulado('${s.id}')" title="Descarta o que já foi respondido e começa do zero">Recomeçar</button>` : `<button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')">${previo?"Refazer":"Começar"}</button>`}
+      <button class="btn btn-primary btn-sm" onclick="iniciarSimulado('${s.id}')"${prog ? ` title="Você tem este simulado pela metade: escolha continuar ou recomeçar"` : ""}>${prog ? "Continuar" : previo ? "Refazer" : "Começar"}</button>
       ${previo ? `<button class="btn btn-secondary btn-sm" onclick="abrirHistoricoDoSimulado('${s.id}')" title="Todas as vezes que você fez, lado a lado">Minhas tentativas</button>` : ""}
       ${previo && previo.ultima.itens ? `<button class="btn btn-secondary btn-sm" onclick="verDetalheResultadoSimulado('${previo.ultima.id}')">Ver resultado anterior</button>` : ""}
       ${s.tipo==="simulado_professor" ? (simuladoLiberadoParaEstudo(usuarioAtual().id, s.id)

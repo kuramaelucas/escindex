@@ -239,8 +239,14 @@ function marcarUltimos5Anos(){
 }
 /* A lista sai em camadas (inéditas → para revisar → no prazo), como o
    conjunto do assunto; o simulado usa as mesmas questões, embaralhadas. */
-function gerarListaPersonalizada(comoSimulado){
+function gerarListaPersonalizada(comoSimulado, recomecar){
   const u = usuarioAtual();
+  // simulado personalizado deixado pela metade: pergunta antes de gerar outro por cima
+  if(comoSimulado === true && !recomecar){
+    const mapa = (db.simuladosEmAndamento && db.simuladosEmAndamento[u.id]) || {};
+    const chave = Object.keys(mapa).find(k => !mapa[k].simuladoId && /^prova:Simulado personalizado/.test(k) && simuladoEmAndamentoDe(u, k));
+    if(chave){ perguntarRecomecarSimulado(chave, `descartarSimuladoEmAndamento('${chave}');gerarListaPersonalizada(true, true)`); return; }
+  }
   const tamanho = parseInt(document.getElementById("filtroTamanho").value)||15;
   // simulado corrige sozinho e a dissertativa não tem gabarito: fica de fora dele
   const pool = buscarQuestoesPorFiltro(u.id, lerFiltrosPersonalizados()).filter(q=>comoSimulado!==true || !ehDissertativa(q));
