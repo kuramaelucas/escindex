@@ -121,7 +121,9 @@ function precisaDasBoasVindas(u){
 function renderBoasVindas(){
   const u = usuarioAtual();
   const anoEscolhido = state.filtroRota.boasVindasAno || u.anoFaculdade || CONFIG.anoFaculdadePadrao;
-  const comCalendario = temCalendarioProprio(anoEscolhido);
+  // aluno de outra escola não tem turma no rodízio daqui (ver segueCalendarioDaFaculdade)
+  const outraFaculdade = !segueCalendarioDaFaculdade(u);
+  const comCalendario = temCalendarioProprio(anoEscolhido) && !outraFaculdade;
   const minima = (db.configGeral && db.configGeral.metaMinimaQuestoesDia) || 10;
   const ideal = (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia;
   const meta = state.filtroRota.boasVindasMeta || metaDoUsuario(u);
@@ -142,12 +144,13 @@ function renderBoasVindas(){
         </select>
       </div>
 
-      <div class="field"><label class="label">2. Qual é o seu grupo do rodízio?</label>
+      <div class="field"><label class="label">${outraFaculdade ? "2. E o calendário da sua turma?" : "2. Qual é o seu grupo do rodízio?"}</label>
         ${comCalendario ? `<select class="select" id="bvGrupo">
           <option value="">Ainda não sei — escolho depois</option>
           ${opcoesRodizioPorLetra(anoEscolhido).map(o=>`<option value="${o.deslocamento}">${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}
         </select>
         <div class="hint mt-1">${opcoesRodizio(anoEscolhido).some(o=>o.nomeado) ? "É a letra do calendário impresso da faculdade." : "Neste ano o grupo é identificado pelo bloco em que ele começa."} Isso decide qual bloco é o seu agora — e, portanto, a matéria da sua sessão do dia.</div>`
+        : outraFaculdade && temCalendarioProprio(anoEscolhido) ? `<div class="hint">O rodízio daqui é o da ${escapeHtml(CONFIG.faculdadeDoCalendario)} e não vale para a sua faculdade. Em Meu Grupo, crie um grupo com o calendário da sua escola (ou entre no de um colega): é ele que diz a matéria do seu bloco. Até lá, a sessão mistura revisão com questões que você ainda não viu.</div>`
         : `<div class="hint">Quem já se formou não segue calendário de faculdade. Depois, em Meu Grupo, você pode entrar num grupo de colegas ou criar o seu — para dividir questões ou montar um calendário próprio.</div>`}
       </div>
 
@@ -174,7 +177,7 @@ function concluirBoasVindas(pulou){
     if(!meta || meta < 1){ toast("Informe quantas questões por dia (pelo menos 1).", "err"); return; }
     if(ano) u.anoFaculdade = ano;
     u.metaQuestoesDia = meta;
-    if(grupo !== "" && grupo !== undefined && temCalendarioProprio(u.anoFaculdade)){
+    if(grupo !== "" && grupo !== undefined && temCalendarioProprio(u.anoFaculdade) && segueCalendarioDaFaculdade(u)){
       const turma = turmaDoRodizio(u.anoFaculdade, grupo);
       if(turma) entrarNoGrupo(u, turma.id);
     }

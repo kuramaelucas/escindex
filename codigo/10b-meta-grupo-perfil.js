@@ -132,8 +132,16 @@ function renderMeuGrupo(){
   const proprio = grupoComCalendarioProprio(meuGrupo);
   const anoDaMinhaTurma = anoDoGrupo(meuGrupo, u);
   const formado = !temCalendarioProprio(u.anoFaculdade);
+  // aluno de outra escola: o rodízio e o calendário oficial não são dele (ver segueCalendarioDaFaculdade)
+  const outraFaculdade = !segueCalendarioDaFaculdade(u);
+  const semRodizio = formado || outraFaculdade;
+  const minhaFaculdade = instituicaoDoUsuario(u);
   const anoParaCriar = formado ? CONFIG.anoFaculdadePadrao : u.anoFaculdade;
-  const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id && !g.oficial);
+  // os da escola do aluno primeiro; as turmas do rodízio só para quem segue o calendário dele
+  const daMinha = g => !!minhaFaculdade && normalizarFaculdade(faculdadeDoGrupo(g)) === normalizarFaculdade(minhaFaculdade);
+  const outrosGrupos = db.grupos.filter(g=>g.id!==meuGrupo.id && !g.oficial && !(outraFaculdade && g.doRodizio))
+    .sort((a,b)=>(daMinha(b)?1:0)-(daMinha(a)?1:0));
+  const gruposParaCopiar = db.grupos.filter(g=>grupoComCalendarioProprio(g) && g.blocosProprios.length);
   // os pedidos de TODOS os grupos que a pessoa criou — ela pode estar em outro
   // (criar um grupo tira a pessoa do atual, mas o antigo continua dela)
   const gruposComPedido = gruposQueCriei(u).filter(g=>(g.solicitacoesPendentes||[]).length);
@@ -146,8 +154,10 @@ function renderMeuGrupo(){
   <div class="page-header"><h2>Meu Grupo</h2><p>Um grupo é uma turma de colegas. Ele pode seguir o <strong>rodízio do seu ano</strong> — todas as turmas passam pelos mesmos blocos, e o que muda é por qual bloco cada uma começa —, ter um <strong>calendário próprio</strong>, montado pelo grupo, ou existir só para <strong>dividir questões</strong> entre os membros. Além do grupo do calendário, você pode estar num <strong>segundo grupo, só para compartilhar questões</strong> (ele não muda o seu calendário).</p></div>
 
   ${semTurma ? `<div class="card mb-2 borda-destaque">
-    <div class="card-title">${iconeSvg("users")} ${formado ? "Entre num grupo ou crie o seu" : "Escolha a sua turma"}</div>
-    ${formado
+    <div class="card-title">${iconeSvg("users")} ${semRodizio ? "Entre num grupo ou crie o seu" : "Escolha a sua turma"}</div>
+    ${outraFaculdade && !formado
+      ? `<p class="text-sm">Você estuda em <strong>${escapeHtml(minhaFaculdade || "outra faculdade")}</strong>. O rodízio e o calendário oficial daqui são da ${escapeHtml(CONFIG.faculdadeDoCalendario)}, então não valem para você: sem grupo, a sessão recomendada mistura revisão com questões que você ainda não viu. Para estudar a matéria do seu bloco, <strong>crie um grupo com calendário próprio</strong> (os blocos do seu internato ou do seu semestre, com as datas da sua escola) e chame os colegas — ou entre num grupo que alguém da sua faculdade já criou.</p>`
+      : formado
       ? `<p class="text-sm">Você está como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>, e quem já se formou não segue um calendário de faculdade. Por isso não há bloco atual para você: a sessão recomendada mistura revisão com questões que você ainda não viu. Num grupo você pode <strong>dividir questões</strong> com os colegas e, se quiserem, <strong>montar um calendário próprio</strong> — é só criar o grupo abaixo, ou entrar num que já exista.</p>`
       : `<p class="text-sm">Você ainda está no <strong>calendário oficial da coordenação</strong>. Ele funciona, mas segue o primeiro grupo do rodízio: se a sua turma é outra, o bloco atual aparece trocado. Escolha abaixo a turma em que você está — ou crie a sua, se ela ainda não existir aqui.</p>
     <div class="flex gap-1 items-end mt-2 quebra">
@@ -166,8 +176,8 @@ function renderMeuGrupo(){
       ${podeRenomearGrupo(meuGrupo, u) ? `<button class="btn btn-secondary btn-sm" onclick="abrirRenomearGrupo('${meuGrupo.id}')">${iconeSvg("edit")} Mudar o nome do grupo</button>` : ""}
     </div>
     <div class="text-sm muted mt-1">${detalheCalendario}${!meuGrupo.oficial?" · "+((meuGrupo.membrosAprovados||[]).length)+" "+flexionar((meuGrupo.membrosAprovados||[]).length,"membro(s)"):""}.</div>
-    ${formado && !proprio ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>: ${meuGrupo.oficial ? "não há calendário de formado, então não existe bloco atual para você." : "o calendário que você acompanha é o do ano desta turma."}</div>` : ""}
-    ${!semTurma ? `<div class="flex gap-1 mt-2 quebra"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${formado ? "" : " e voltar ao calendário oficial"}</button>
+    ${formado && !proprio && !outraFaculdade ? `<div class="text-xs muted mt-1">Você está marcado como <strong>${escapeHtml(u.anoFaculdade||"Formado(a)")}</strong>: ${meuGrupo.oficial ? "não há calendário de formado, então não existe bloco atual para você." : "o calendário que você acompanha é o do ano desta turma."}</div>` : ""}
+    ${!semTurma ? `<div class="flex gap-1 mt-2 quebra"><button class="btn btn-ghost btn-sm" onclick="sairDoMeuGrupo()">Sair deste grupo${semRodizio ? "" : " e voltar ao calendário oficial"}</button>
       ${!meuGrupo.doRodizio ? `<button class="btn btn-ghost btn-sm" onclick="passarGrupoParaSoQuestoes()" title="Libera o calendário para você escolher a turma do rodízio e continua neste grupo só para questões">Passar este grupo para só questões</button>` : ""}
       ${podeExcluirGrupo(meuGrupo, u) ? `<button class="btn btn-ghost btn-sm" onclick="excluirGrupo('${meuGrupo.id}')">${iconeSvg("trash")} Excluir grupo</button>` : ""}</div>` : ""}
   </div>
@@ -196,7 +206,7 @@ function renderMeuGrupo(){
   ${proprio ? `<div class="card mb-2">
     <div class="card-title">Calendário deste grupo</div>
     ${renderCalendarioProprio(meuGrupo, podeEditarCalendarioDoGrupo(meuGrupo, u))}
-  </div>` : (semTurma && formado) ? "" : `<div class="card mb-2">
+  </div>` : (semTurma && semRodizio) ? "" : `<div class="card mb-2">
     <div class="card-title">Calendário desta turma</div>
     ${renderEditorCalendario(meuGrupo, {podeEditar: souDono, usuario: u, podeEditarSequencia: podeAdmin("blocos")})}
     ${!souDono && !semTurma ? '<p class="text-xs muted mt-1">Só quem criou a turma muda o grupo do rodízio. Se estiver errado, avise o dono da turma ou a coordenação.</p>' : ""}
@@ -215,25 +225,35 @@ function renderMeuGrupo(){
     <p class="text-sm muted">Escolha como o grupo funciona. Quem pedir para entrar precisa da sua aprovação, e criar um grupo do calendário faz você sair do atual; um grupo só de questões não mexe no seu calendário.</p>
     <div class="field mt-1" style="max-width:520px"><label class="label">Tipo de grupo</label>
       <select class="select" id="novoGrupoTipo" onchange="alternarTipoNovoGrupo()">
-        ${formado ? "" : `<option value="rodizio">Segue o rodízio de ${escapeHtml(anoParaCriar)} — entra por um bloco da sequência</option>`}
+        ${semRodizio ? "" : `<option value="rodizio">Segue o rodízio de ${escapeHtml(anoParaCriar)} — entra por um bloco da sequência</option>`}
         <option value="proprio">Calendário próprio — eu monto os blocos (ou deixo sem, só para dividir questões)</option>
-        ${semTurma && formado ? "" : `<option value="questoes">Só para compartilhar questões — não muda o meu calendário</option>`}
+        ${semTurma && semRodizio ? "" : `<option value="questoes">Só para compartilhar questões — não muda o meu calendário</option>`}
       </select>
     </div>
     <div class="flex gap-1 items-end mt-1 quebra">
-      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label" id="novoGrupoNomeRotulo">${formado ? "Nome do grupo" : "Nome do grupo (opcional)"}</label><input class="input" id="novoGrupoNome" placeholder="${formado ? "Ex.: Residência 2027 — R1" : "Deixe em branco para usar o bloco de início"}"></div>
-      <div class="field" id="novoGrupoRodizioCampo" style="margin-bottom:0;min-width:200px;${formado ? "display:none" : ""}"><label class="label">Grupo do rodízio</label>
+      <div class="field" style="margin-bottom:0;min-width:240px"><label class="label" id="novoGrupoNomeRotulo">${semRodizio ? "Nome do grupo" : "Nome do grupo (opcional)"}</label><input class="input" id="novoGrupoNome" maxlength="80" placeholder="${formado ? "Ex.: Residência 2027 — R1" : outraFaculdade ? "Ex.: Internato 2027 — Turma B" : "Deixe em branco para usar o bloco de início"}"></div>
+      <div class="field" id="novoGrupoFaculdadeCampo" style="margin-bottom:0;min-width:200px;${semRodizio ? "" : "display:none"}"><label class="label">Faculdade do grupo</label><input class="input" id="novoGrupoFaculdade" maxlength="80" value="${escapeHtml(minhaFaculdade)}" placeholder="Ex.: UFMG"></div>
+      <div class="field" id="novoGrupoCopiarCampo" style="margin-bottom:0;min-width:220px;${semRodizio && gruposParaCopiar.length ? "" : "display:none"}"><label class="label">Começar com os blocos de</label>
+        <select class="select" id="novoGrupoCopiar"><option value="">Nenhum — monto os blocos depois</option>
+          ${gruposParaCopiar.map(g=>`<option value="${g.id}">${escapeHtml(g.nome)}${faculdadeDoGrupo(g) ? " · "+escapeHtml(faculdadeDoGrupo(g)) : ""} (${g.blocosProprios.length} ${flexionar(g.blocosProprios.length, "bloco(s)")})</option>`).join("")}
+        </select>
+      </div>
+      <div class="field" id="novoGrupoRodizioCampo" style="margin-bottom:0;min-width:200px;${semRodizio ? "display:none" : ""}"><label class="label">Grupo do rodízio</label>
         <select class="select" id="novoGrupoRodizio">
           ${opcoesRodizioPorLetra(anoParaCriar).map(o=>`<option value="${o.deslocamento}">${escapeHtml(tituloOpcaoRodizio(o))}</option>`).join("")}
         </select>
       </div>
       <button class="btn btn-primary" onclick="criarMeuGrupo()">Criar grupo</button>
     </div>
-    <p class="text-xs muted mt-1">No rodízio, o grupo segue a sequência de blocos de ${escapeHtml(anoParaCriar)} — é assim que duas turmas do mesmo ano estudam matérias diferentes na mesma semana. Sem nome, o grupo é identificado pelo bloco em que começa.</p>
+    ${semRodizio
+      ? `<p class="text-xs muted mt-1">O grupo leva o nome da faculdade, para os colegas da mesma escola o acharem primeiro na lista. Os blocos copiados são uma cópia: depois cada grupo edita os seus sem mexer no outro.</p>`
+      : `<p class="text-xs muted mt-1">No rodízio, o grupo segue a sequência de blocos de ${escapeHtml(anoParaCriar)} — é assim que duas turmas do mesmo ano estudam matérias diferentes na mesma semana. Sem nome, o grupo é identificado pelo bloco em que começa.</p>`}
   </div>
 
   <div class="card">
     <div class="card-title">Entrar em um grupo já existente</div>
+    ${outrosGrupos.length > 5 ? `<div class="field" style="max-width:360px"><input class="input" id="buscaGrupos" placeholder="Procurar pelo nome ou pela faculdade" oninput="filtrarListaDeGrupos(this.value)"></div>` : ""}
+    ${outraFaculdade ? `<p class="text-xs muted mb-1">As turmas do rodízio da ${escapeHtml(CONFIG.faculdadeDoCalendario)} não aparecem aqui: o calendário delas não é o da sua escola.</p>` : ""}
     ${outrosGrupos.length ? outrosGrupos.map(g=>{
       const souMembro = g.doRodizio || g.criadoPor===u.id || (g.membrosAprovados||[]).includes(u.id);
       const ehMeuQuestoes = !!grupoQ && grupoQ.id===g.id;
@@ -246,10 +266,11 @@ function renderMeuGrupo(){
       // o bloco por onde o grupo do rodízio começa: é o que o identifica
       // quando o nome é só a letra (ou nem letra tem)
       const inicio = proprioG ? null : blocosDoGrupo(g, u)[0];
+      const facG = faculdadeDoGrupo(g);
       return `
-      <div class="flex justify-between items-center mb-1 card-flat quebra-gap">
+      <div class="flex justify-between items-center mb-1 card-flat quebra-gap item-grupo" data-busca="${escapeHtml((g.nome+" "+facG).toLowerCase())}">
         <div>
-          <div class="peso-600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(g, u))}</span></div>
+          <div class="peso-600">${escapeHtml(g.nome)} <span class="badge badge-accent">${escapeHtml(rotuloDoGrupo(g, u))}</span>${facG ? ` <span class="badge ${daMinha(g) ? "badge-accent" : "badge-muted"}">${escapeHtml(facG)}${daMinha(g) ? " · sua faculdade" : ""}</span>` : ""}</div>
           <div class="text-xs muted">${proprioG ? "calendário próprio · "+g.blocosProprios.length+" "+flexionar(g.blocosProprios.length, "bloco(s)")+"" : escapeHtml(anoG)+(inicio ? " · começa em "+escapeHtml(inicio.nome) : "")} · hoje em ${escapeHtml(atualG?atualG.nome:"—")} · ${criador}</div>
         </div>
         <div class="flex gap-1 quebra">
@@ -268,9 +289,13 @@ function renderMeuGrupo(){
    segue o rodízio; o nome é opcional só nele (o grupo sem nome é identificado
    pelo bloco de início, e o de calendário próprio não tem bloco de início). */
 function alternarTipoNovoGrupo(){
-  const proprio = document.getElementById("novoGrupoTipo").value !== "rodizio";
+  const tipo = document.getElementById("novoGrupoTipo").value, proprio = tipo !== "rodizio";
   const campo = document.getElementById("novoGrupoRodizioCampo");
   if(campo) campo.style.display = proprio ? "none" : "";
+  const fac = document.getElementById("novoGrupoFaculdadeCampo");
+  if(fac) fac.style.display = proprio ? "" : "none";
+  const copiar = document.getElementById("novoGrupoCopiarCampo"), opcoes = document.getElementById("novoGrupoCopiar");
+  if(copiar) copiar.style.display = tipo === "proprio" && opcoes && opcoes.options.length > 1 ? "" : "none";
   const rotulo = document.getElementById("novoGrupoNomeRotulo");
   if(rotulo) rotulo.textContent = proprio ? "Nome do grupo" : "Nome do grupo (opcional)";
 }
@@ -279,21 +304,41 @@ function alternarTipoNovoGrupo(){
 function nomeAutomaticoDoGrupo(ano, deslocamento){
   return ano + " — " + nomeRodizio(ano, deslocamento);
 }
+/* A escola do aluno como texto ("Outra" não diz nada: aí vale a do grupo em que
+   ele está, se houver) e a comparação sem acento e sem caixa. */
+function instituicaoDoUsuario(u){
+  const f = faculdadeDoUsuario(u);
+  if(f !== "Outra") return f;
+  const g = getGrupoDoUsuario(u);
+  return (g && !g.oficial && g.instituicao) || "";
+}
+function normalizarFaculdade(t){ return (t || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, ""); }
+function filtrarListaDeGrupos(texto){
+  const t = (texto || "").toLowerCase().trim();
+  document.querySelectorAll(".item-grupo").forEach(el => { el.style.display = !t || el.dataset.busca.includes(t) ? "" : "none"; });
+}
 function criarMeuGrupo(){
   const u = usuarioAtual();
-  const formado = !temCalendarioProprio(u.anoFaculdade);
+  const semRodizio = !temCalendarioProprio(u.anoFaculdade) || !segueCalendarioDaFaculdade(u);
   const campoTipo = document.getElementById("novoGrupoTipo");
   const soQuestoes = !!campoTipo && campoTipo.value === "questoes";
-  const proprio = soQuestoes || formado || (campoTipo && campoTipo.value === "proprio");
-  const nomeDigitado = document.getElementById("novoGrupoNome").value.trim();
+  const proprio = soQuestoes || semRodizio || (campoTipo && campoTipo.value === "proprio");
+  const nomeDigitado = document.getElementById("novoGrupoNome").value.trim().slice(0, 80);
   if(proprio && !nomeDigitado){ toast("Dê um nome para o grupo.", "err"); return; }
   const base = { id:uid("grupo"), criadoPor:u.id, criadoPorNome:u.nome, oficial:false, publico:true, criadoEm:hojeISO(),
-                 blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[] };
+                 blocoAtualIdManual:null, membrosAprovados:[], solicitacoesPendentes:[], faculdade: faculdadeDoUsuario(u) };
   let novo;
   if(proprio){
-    // calendário próprio: começa sem blocos (serve para dividir questões) e o
-    // dono acrescenta os blocos quando quiser
-    novo = { ...base, nome:nomeDigitado, anoFaculdade:null, deslocamento:0, blocosProprios:[] };
+    // calendário próprio: começa sem blocos (serve para dividir questões) ou
+    // com uma CÓPIA dos blocos de outro grupo (colegas da mesma escola não
+    // precisam digitar o internato de novo); o dono edita quando quiser
+    const campoFac = document.getElementById("novoGrupoFaculdade");
+    const instituicao = campoFac ? campoFac.value.trim().slice(0, 80) : "";
+    const origem = !soQuestoes ? getGrupo((document.getElementById("novoGrupoCopiar")||{}).value) : null;
+    const blocos = origem && grupoComCalendarioProprio(origem)
+      ? origem.blocosProprios.map(b => ({ ...copiaProfunda(b), id: uid("blocop") })) : [];
+    novo = { ...base, nome:nomeDigitado, anoFaculdade:null, deslocamento:0, blocosProprios:blocos };
+    if(instituicao && normalizarFaculdade(instituicao) !== normalizarFaculdade(faculdadeDoUsuario(u))) novo.instituicao = instituicao;
   }else{
     // o grupo herda a sequência do ano de quem cria e escolhe só em qual grupo
     // do rodízio entra — o bloco por onde começa a sequência
@@ -542,7 +587,7 @@ function sairDoMeuGrupo(){
   if(podeExcluirGrupo(atual, u) && atual.criadoPor===u.id){ excluirGrupo(atual.id, true); return; }
   entrarNoGrupo(u, db.grupoOficialId);
   saveState();
-  toast("Você voltou ao calendário oficial da coordenação.");
+  toast(segueCalendarioDaFaculdade(u) && temCalendarioProprio(u.anoFaculdade) ? "Você voltou ao calendário oficial da coordenação." : "Você saiu do grupo.");
   render();
 }
 function sairDoGrupoDeQuestoesPelaTela(){

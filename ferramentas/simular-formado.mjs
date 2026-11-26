@@ -127,7 +127,7 @@ async function principal(){
   const { exigir, json, ...op } = lerArgumentos(process.argv.slice(2));
   const { chromium } = await import("playwright");
   const { subirServidor } = await import("../testes/servidor.mjs");
-  const navegador = await chromium.launch(), servidor = await subirServidor({ semNuvem: true });
+  const navegador = await chromium.launch(process.env.ESC_CHROMIUM ? { executablePath: process.env.ESC_CHROMIUM } : {}), servidor = await subirServidor({ semNuvem: true });
   let r;
   try{
     const contexto = await navegador.newContext({ serviceWorkers: "block" });

@@ -12,9 +12,9 @@
    questão difícil que a anterior (`fases`: 50/35/15, 35/50/15 e 15/50/35 de
    fácil/média/difícil). Nenhuma fase é "só fácil": quem sabe o assunto vê
    questão difícil desde o começo e sobe rápido; quem não sabe fica na
-   mistura mais leve até acertar. As questões novas se dividem entre as
-   grandes áreas numa cota fixa (metade igual, metade pela incidência nas
-   provas), para nenhuma matéria ficar para trás. */
+   mistura mais leve até acertar. QUAIS assuntos vêm da trilha (05e), na
+   ordem da demanda nas provas × pré-requisitos (a antiga cota por grande
+   área saiu na fusão com a trilha). */
 function cronogramaDeFormado(usuario){
   const c = CONFIG.cronogramaFormado;
   return c && usuario && c.anos.includes(usuario.anoFaculdade) ? c : null;
@@ -366,7 +366,9 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const grupo = getGrupoDoUsuario(usuario);
   const blocoAtual = getBlocoAtual(usuario);
   if(!blocoAtual) return montarSessaoSemCalendario(usuario, tamanho);
-  const blocosGrupo = blocosDoGrupo(grupo);
+  // com o usuário: sem ele, o ano (calendário oficial) e a ordem dos estágios
+  // eram os de quem está logado, e o "próximo bloco" saía de outra sequência
+  const blocosGrupo = blocosDoGrupo(grupo, usuario);
   const proximo = getProximoBloco(blocoAtual, blocosGrupo);
   const mistura = misturaEfetiva(usuario);
 

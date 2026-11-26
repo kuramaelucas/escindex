@@ -459,7 +459,10 @@ function gerarNotificacoes(usuario){
     // no calendário oficial o aluno vê o bloco do Grupo A, que pode não ser o
     // dele
     if(getGrupoDoUsuario(usuario).oficial && temCalendarioProprio(usuario.anoFaculdade)){
-      notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"});
+      // aluno de outra escola não tem turma no rodízio daqui: o convite é para o calendário da escola dele
+      notifs.push(segueCalendarioDaFaculdade(usuario)
+        ? {icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"}
+        : {icon:"users", texto:"Monte em Meu Grupo o calendário da sua faculdade (ou entre no de um colega) — até lá a sessão não tem bloco atual.", rota:"meu-grupo"});
     }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" "+plural(vencidas,"questão","questões")+" "+flexionar(vencidas, "vencida(s)")+" para revisão espaçada.", rota:"revisao"});
