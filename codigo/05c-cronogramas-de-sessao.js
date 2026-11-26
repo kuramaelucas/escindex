@@ -40,12 +40,13 @@ function fasesDosAssuntosFormado(usuarioId){
   minhas.forEach(r=>{
     if(vistas.has(r.questaoId)) return;
     vistas.add(r.questaoId);
-    const e = mapa[r.assuntoId] || (mapa[r.assuntoId] = faseVaziaFormado());
+    // o assunto ATUAL da questão: reclassificada depois da resposta, ela passa a contar no assunto novo (é ele que a sessão sorteia)
+    const q = getQuestao(r.questaoId), assunto = (q && q.assuntoId) || r.assuntoId;
+    const e = mapa[assunto] || (mapa[assunto] = faseVaziaFormado());
     e.total++; e.ultimaData = r.data || e.ultimaData;
     if(e.fase >= c.fases.length) return;
-    const q = getQuestao(r.questaoId);
     e.naFase.push(!!r.correta && r.confianca !== "chute");
-    if(q) e.porNivel[nivelProprioDaQuestao(q)]++;
+    if(q) e.porNivel[nivelProprioDaQuestao(q, usuarioId)]++;
     if(passouDaFaseFormado(e.naFase, e.fase, regua)){ e.fase++; e.naFase = []; e.porNivel = [0,0,0]; }
   });
   Object.values(mapa).forEach(e=>{ e.concluido = e.fase >= c.fases.length; e.acertosNaFase = e.naFase.filter(Boolean).length; });

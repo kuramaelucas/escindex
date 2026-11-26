@@ -464,6 +464,7 @@ function confirmarResposta(confianca){
   salvarSessaoEmAndamento();
   nuvemEnviarUrgenteLogo();   // a resposta e a fila aberta sobem já, para o outro aparelho não repetir
   render();
+  retroAoResponder(resp.correta, confianca);
 }
 /* Atalho de teclado para responder sem o mouse. No simulado em modo
    aprendizado (o único que tem "Confirmar resposta"), o espaço confirma. Na
@@ -806,6 +807,7 @@ function irParaIndiceDaSessao(indice){
   salvarSessaoEmAndamento();
   render();
   window.scrollTo(0, 0);
+  retroTransicao();
 }
 /* O cartão da questão em si — só ele. Marcar uma alternativa ou riscar outra
    muda esta parte e mais nada: o mapa, a barra e os botões continuam os

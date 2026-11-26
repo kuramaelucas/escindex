@@ -728,6 +728,7 @@ details.secao-expansivel > .secao-corpo{padding:0 1.2rem 1.1rem}
 .tutorial-texto{line-height:1.6;margin:0 auto;max-width:34rem}
 .tutorial-pontos{display:flex;gap:.35rem;justify-content:center;margin-top:var(--esp-2)}
 .tutorial-pontos span{width:.5rem;height:.5rem;border-radius:50%;background:var(--border, #cfd8d5)}
+.tutorial-continuar{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom, 0px));z-index:900;box-shadow:0 6px 20px rgba(0,0,0,.25)}
 .tutorial-pontos span.ativo{background:var(--accent);width:1.2rem;border-radius:.3rem}
 .tutorial-acoes{display:flex;justify-content:space-between;align-items:center;gap:var(--esp-1);flex-wrap:wrap}
 .guia-secoes{display:flex;flex-direction:column;gap:var(--esp-1)}
@@ -1030,3 +1031,65 @@ html[data-theme="dark"]{
 .resumo-contagem{font:.72rem/1 system-ui,sans-serif;color:var(--ink-2);margin-left:.35rem;white-space:nowrap}
 .resumo-desempenho{display:grid;gap:.35rem}
 .resumo-erros-fora{margin:.3rem 0 0 1.1rem;padding:0}
+
+/* ---------- Visual retrô (06f): só com html[data-retro="1"] ----------
+   Cores de fliperama nos dois temas (o retrô é sempre "tela de arcade"),
+   fonte pixelada só na moldura (títulos, menu, botões, selos). O texto que se
+   LÊ — questão, alternativas, explicação, cartão, resumo — volta à fonte
+   normal no bloco logo abaixo. */
+html[data-retro="1"]{
+  --bg:#0d0b1e; --surface:#17142f; --surface-2:#221d44;
+  --ink:#f4f1ff; --ink-2:#c9c3ef; --muted:#9a93c9;
+  --border:#3b3470; --border-strong:#5a50a3;
+  --accent:#39ff88; --accent-dark:#8dffbf; --accent-soft:#163a2b;
+  --amber:#ffd23f; --amber-soft:#3b3214; --destaque:rgba(255,210,63,.35);
+  --danger:#ff4f6d; --danger-soft:#3d1622;
+  --barra-acerto:#39ff88; --barra-erro:#3b3470; --toast-bg:#2b0f4a;
+  --font-display:'Press Start 2P',ui-monospace,monospace;
+  --font-body:'VT323',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius-sm:0; --radius:0; --radius-lg:0;
+  --shadow-xs:3px 3px 0 #000; --shadow-sm:4px 4px 0 #000; --shadow-md:6px 6px 0 #000; --shadow-pop:8px 8px 0 #000;
+  color-scheme:dark;
+}
+html[data-retro="1"] body{background:var(--bg) repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 3px);font-size:1.18rem}
+html[data-retro="1"] .card, html[data-retro="1"] .qcard, html[data-retro="1"] .modal{border:2px solid var(--border-strong);box-shadow:var(--shadow-sm)}
+html[data-retro="1"] h1, html[data-retro="1"] h2, html[data-retro="1"] h3, html[data-retro="1"] .card-title, html[data-retro="1"] .topbar-title, html[data-retro="1"] .sidebar-brand{font-family:var(--font-display);letter-spacing:.02em;line-height:1.5;font-size:.85em;color:var(--amber)}
+html[data-retro="1"] .btn{font-family:var(--font-display);font-size:.62rem;text-transform:uppercase;border:2px solid #000;box-shadow:3px 3px 0 #000;transition:none}
+html[data-retro="1"] .btn:active{transform:translate(3px,3px);box-shadow:none}
+html[data-retro="1"] .btn-primary{background:var(--accent);color:#0d0b1e}
+html[data-retro="1"] .btn-secondary{background:#ff3cac;color:#fff}
+html[data-retro="1"] .badge{border-radius:0;border:1px solid currentColor}
+html[data-retro="1"] .nav-item.active{background:#ff3cac;color:#fff;box-shadow:3px 3px 0 #000}
+html[data-retro="1"] .nav-item.active::before{content:"▶";font-size:.7em}
+html[data-retro="1"] .sidebar, html[data-retro="1"] .topbar{border-color:var(--border-strong)}
+/* o que se lê com atenção continua legível: fonte e tamanho normais */
+html[data-retro="1"] .qcard-enunciado, html[data-retro="1"] .qcard-alt, html[data-retro="1"] .qcard .explicacao,
+html[data-retro="1"] .qcard [class*="explic"], html[data-retro="1"] .feedback-box, html[data-retro="1"] .flashcard, html[data-retro="1"] .resumo-caderno,
+html[data-retro="1"] .resumo-caso-enunciado, html[data-retro="1"] input, html[data-retro="1"] textarea, html[data-retro="1"] select{
+  font-family:'IBM Plex Sans','Segoe UI',Roboto,Arial,sans-serif;letter-spacing:normal}
+html[data-retro="1"] .qcard-enunciado{font-size:var(--fs-enunciado)}
+html[data-retro="1"] .qcard-alt{font-size:var(--fs-base)}
+html[data-retro="1"] .tutorial-continuar{box-shadow:4px 4px 0 #000}
+/* tela de título do convite (Easter egg do controle) */
+.retro-titulo-tela{text-align:center;padding:var(--esp-2) 0}
+.retro-titulo-marca{font-family:'Press Start 2P',ui-monospace,monospace;font-size:2.4rem;color:#ffd23f;text-shadow:4px 4px 0 #ff3cac,8px 8px 0 #000;margin-bottom:var(--esp-2)}
+.retro-titulo-pisca{font-family:'Press Start 2P',ui-monospace,monospace;font-size:.8rem;color:#39ff88;margin-bottom:var(--esp-2);animation:retroPisca 1s steps(2) infinite}
+@keyframes retroPisca{50%{opacity:0}}
+/* golpes de acerto e erro: por cima de tudo, sem pegar clique, somem sozinhos */
+.retro-golpe{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);z-index:2000;pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:.6rem;animation:retroGolpe .7s steps(7) forwards}
+.retro-golpe-texto{font-family:'Press Start 2P',ui-monospace,monospace;font-size:clamp(1.8rem,8vw,3.6rem);color:#ffd23f;text-shadow:4px 4px 0 #ff3cac,8px 8px 0 #000;white-space:nowrap}
+.retro-golpe-sub{font-family:'Press Start 2P',ui-monospace,monospace;font-size:.7rem;color:#fff;background:#000;padding:.35rem .6rem}
+.retro-acerto .retro-golpe-texto{color:#39ff88;text-shadow:4px 4px 0 #0a6b3a,8px 8px 0 #000}
+.retro-erro .retro-golpe-texto{color:#ff4f6d;text-shadow:4px 4px 0 #5a0d1d,8px 8px 0 #000}
+.retro-sorte .retro-golpe-texto{color:#ffd23f}
+@keyframes retroGolpe{0%{transform:translate(-50%,-50%) scale(2.2);opacity:0}15%{transform:translate(-50%,-50%) scale(1);opacity:1}80%{opacity:1}100%{transform:translate(-50%,-70%) scale(1);opacity:0}}
+.retro-erro::after{content:"";position:fixed;inset:-100vh -100vw;background:rgba(255,40,70,.18);animation:retroFlash .25s steps(2) forwards}
+.retro-acerto::after{content:"";position:fixed;inset:-100vh -100vw;background:rgba(57,255,136,.12);animation:retroFlash .25s steps(2) forwards}
+@keyframes retroFlash{to{opacity:0}}
+body.retro-tremor #conteudoPagina{animation:retroTremor .35s steps(6)}
+@keyframes retroTremor{0%,100%{transform:none}20%{transform:translate(-6px,2px)}40%{transform:translate(6px,-2px)}60%{transform:translate(-4px,0)}80%{transform:translate(4px,1px)}}
+/* troca de questão ou de cartão: entra deslizando em degraus, como troca de fase */
+.retro-entra{animation:retroEntra .22s steps(4)}
+@keyframes retroEntra{from{transform:translateX(24px);opacity:.2}to{transform:none;opacity:1}}
+@keyframes retroSome{99%{opacity:1}100%{opacity:0}}
+@media (prefers-reduced-motion: reduce){ .retro-golpe{animation:retroSome .7s forwards} .retro-erro::after,.retro-acerto::after{display:none} .retro-titulo-pisca{animation:none} }

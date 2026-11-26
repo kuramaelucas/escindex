@@ -392,11 +392,12 @@ function responderFlashcard(nota){
   if(s.indice < s.cartoes.length-1){ s.indice++; s.virado = false; }
   else s.finalizada = true;
   render(); window.scrollTo(0,0);
+  retroAoAvaliarCartao(nota); retroTransicao();
 }
 function pularFlashcard(delta){
   const s = state.sessaoFlash; if(!s) return;
   s.indice = Math.max(0, Math.min(s.cartoes.length-1, s.indice+delta));
-  s.virado = false; render();
+  s.virado = false; render(); retroTransicao();
 }
 function sairDaSessaoFlash(){ state.sessaoFlash = null; navigate("flashcards"); }
 function renderFlashcardEmSessao(s){
