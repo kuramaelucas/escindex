@@ -46,7 +46,7 @@ function montarSessaoRecomendadaDeHoje(minutos){
   const restante = Math.max(piso, progressoDaMeta(u).faltam);
   // com tempo contado, o tamanho vem do ritmo da pessoa (ver abrirSessaoPorTempo)
   const tamanho = minutos ? questoesQueCabemEm(u.id, minutos) : Math.min(restante, tamanhoDaSessaoDoUsuario(u));
-  iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica");
+  iniciarSessaoComLista(montarSessaoDoDia(u.id, tamanho, feitas), "pratica", true);
 }
 /* "Tempo contado?" — a pessoa diz quanto tempo tem e a sessão se monta para
    caber nele. Atalhos para os tempos comuns e um relógio editável (horas e
@@ -157,7 +157,21 @@ function adiantarTextoDaProximaSessao(){
     }catch(e){ console.warn("Não foi possível adiantar o texto da próxima sessão:", e); }
   }, 1500);
 }
-function iniciarSessaoComLista(itens, tipo){
+function iniciarSessaoComLista(itens, tipo, substituir){
+  // a fila guardada é uma só: começar outra lista por cima apagava, sem avisar, um conjunto
+  // pela metade (ex.: a prática de uma prova antiga, que não tem cronômetro). Pergunta antes.
+  const guardada = substituir ? null : sessaoEmAndamentoDe(usuarioAtual());
+  if(guardada && itens.length > 1 && respostasFeitas(guardada).length){
+    const tratar = ordem => { fecharModal(); if(ordem === "nova") iniciarSessaoComLista(itens, tipo, true); else retomarSessaoEmAndamento(); };
+    window._tratarListaPendente = tratar;
+    abrirModalTitulado("Você tem um conjunto pela metade", `
+      <p class="text-sm">Há ${respostasFeitas(guardada).length} de ${guardada.itens.length} ${flexionar(guardada.itens.length, "respondida(s)")} no conjunto que você começou${guardada.salvaEm ? " em " + formatDataBR(guardada.salvaEm) : ""}. Começar esta lista nova descarta o que falta daquele conjunto (as respostas já dadas continuam no histórico).</p>
+      <div class="flex gap-1 mt-3 quebra">
+        <button class="btn btn-primary" onclick="_tratarListaPendente('continuar')">Continuar o conjunto anterior</button>
+        <button class="btn btn-secondary" onclick="_tratarListaPendente('nova')">Começar esta lista nova</button>
+      </div>`);
+    return;
+  }
   // listas montadas à mão (favoritas, uma prova antiga) também não levam
   // questão à espera da figura — ver aguardaImagem()
   itens = semQuestoesRepetidas(itens.filter(it => !aguardaImagem(getQuestao(it.questaoId))));

@@ -885,7 +885,7 @@ test("dois aparelhos na mesma fila: resposta já feita em outro aparelho não é
     const depois = db.respostas.filter(x => x.questaoId === ids[0] && x.usuarioId === u.id).length;
     const adotou = state.sessaoAtual.respostasSessao[0] && state.sessaoAtual.respostasSessao[0].id === doOutro.id;
     // depois de uma sincronização, a fila aberta já mostra a questão como respondida
-    iniciarSessaoComLista(ids.map(id => ({questaoId:id, motivo:"teste"})), "pratica");
+    iniciarSessaoComLista(ids.map(id => ({questaoId:id, motivo:"teste"})), "pratica", true);
     const s2 = state.sessaoAtual;
     db.respostas.push({ id:uid("r"), usuarioId:u.id, questaoId:ids[1], alternativaEscolhida:"A", correta:false,
       confianca:"duvida", data:hojeISO(), sessaoId:s2.id, origem:"lista", tentativa:1 });
