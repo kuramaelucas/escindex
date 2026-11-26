@@ -92,7 +92,12 @@ test("tutorial rápido: passos, guia completo e o pedido de não mostrar ao entr
     // em navegador de automação o tour não abre sozinho; aqui ele é forçado
     const abriu = mostrarTutorialAoEntrar({ mesmoComAutomacao: true });
     const passos = TUTORIAL_RAPIDO.aluno.length;
-    for(let i = 1; i < passos; i++) passoTutorial(1);
+    // "Abrir esta tela" leva à tela do passo e o botão flutuante retoma do mesmo passo
+    passoTutorial(4); abrirTelaDoTutorial();
+    const telaDoPasso = state.route, botao = !!document.getElementById("botaoContinuarTutorial"), janelaFechada = !document.querySelector(".tutorial-passo");
+    document.getElementById("botaoContinuarTutorial").click();
+    const retomou = Number(document.querySelector(".tutorial-passo").dataset.passo), botaoSumiu = !document.getElementById("botaoContinuarTutorial");
+    for(let i = 5; i < passos; i++) passoTutorial(1);
     const ultimo = document.querySelector(".tutorial-passo").dataset.passo;
     const temGuia = !!Array.from(document.querySelectorAll(".modal button")).find(b => /guia completo/i.test(b.textContent));
     // uma vez por sessão: não abre de novo
@@ -102,9 +107,10 @@ test("tutorial rápido: passos, guia completo e o pedido de não mostrar ao entr
     const secoes = document.querySelectorAll(".guia-secao").length;
     fecharModal();
     definirTutorialAoEntrar(false);
-    return { abriu, passos, ultimo: Number(ultimo), temGuia, deNovo, secoes, oculto: usuarioAtual().tutorialOcultoAoEntrar };
+    return { abriu, passos, ultimo: Number(ultimo), temGuia, deNovo, secoes, oculto: usuarioAtual().tutorialOcultoAoEntrar, telaDoPasso, botao, janelaFechada, retomou, botaoSumiu };
   });
   assert.equal(r.abriu, true);
+  assert.equal(r.telaDoPasso, "resumos"); assert.ok(r.botao && r.janelaFechada && r.botaoSumiu); assert.equal(r.retomou, 4);
   assert.equal(r.ultimo, r.passos - 1);
   assert.ok(r.temGuia);
   assert.equal(r.deNovo, false);
@@ -1018,4 +1024,24 @@ test("ao confirmar uma resposta, o envio urgente é agendado; ao fechar a págin
   assert.equal(r.depoisDoAtraso, 1);
   assert.equal(r.aoFechar, 2);
   await contexto.close();
+});
+
+test("Formado: a resposta da própria pessoa não muda o nível (fácil/média/difícil) da questão na contagem da fase", async () => {
+  const { pagina, contexto } = await abrir();
+  try{
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    const r = await pagina.evaluate(() => {
+      fazerLoginDemo("aluno"); fecharModal();
+      const u = usuarioAtual();
+      // questão sem respostas de outros: o nível vem só da dificuldade sugerida
+      const q = questoesParaEstudo(u.id).find(x => !jaFoiRespondida(u.id, x.id) && nivelProprioDaQuestao(x) === 0);
+      q.estatisticas = { respostas: 0, acertos: 0, distribuicaoAlternativas: {} };
+      const antes = nivelProprioDaQuestao(q);
+      for(let i = 0; i < 30; i++){ q.estatisticas.respostas++; db.respostas.push({ id: "r"+i, usuarioId: u.id, questaoId: q.id, assuntoId: q.assuntoId, correta: false, data: hojeISO() }); }
+      _geracaoDb++;
+      return { antes, paraEla: nivelProprioDaQuestao(q, u.id), paraTodos: nivelProprioDaQuestao(q) };
+    });
+    assert.equal(r.paraEla, r.antes);
+    assert.ok(r.paraTodos > r.antes, "para os outros, os erros dela contam");
+  } finally { await contexto.close(); }
 });

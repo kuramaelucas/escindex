@@ -459,7 +459,10 @@ function gerarNotificacoes(usuario){
     // no calendário oficial o aluno vê o bloco do Grupo A, que pode não ser o
     // dele
     if(getGrupoDoUsuario(usuario).oficial && temCalendarioProprio(usuario.anoFaculdade)){
-      notifs.push({icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"});
+      // aluno de outra escola não tem turma no rodízio daqui: o convite é para o calendário da escola dele
+      notifs.push(segueCalendarioDaFaculdade(usuario)
+        ? {icon:"users", texto:"Escolha a sua turma do rodízio em Meu Grupo — até lá você segue o calendário oficial.", rota:"meu-grupo"}
+        : {icon:"users", texto:"Monte em Meu Grupo o calendário da sua faculdade (ou entre no de um colega) — até lá a sessão não tem bloco atual.", rota:"meu-grupo"});
     }
     const vencidas = questoesRevisaoEspacadaVencidas(usuario.id).length;
     if(vencidas>0) notifs.push({icon:"refresh", texto:vencidas+" "+plural(vencidas,"questão","questões")+" "+flexionar(vencidas, "vencida(s)")+" para revisão espaçada.", rota:"revisao"});
@@ -540,6 +543,15 @@ function questoesRespondidasHoje(usuarioId){ return db.respostas.filter(r=>r.usu
    (Ajustar meta), senão o padrão. Separado da meta porque quem faz 40 por
    dia costuma preferir duas sessões de 20 — e quem estuda de uma vez, a meta inteira. */
 function tamanhoDaSessaoDoUsuario(usuario){ return (usuario && usuario.tamanhoSessao) || CONFIG.tamanhoSessaoPadrao; }
+/* SESSÃO EXTRA: a que vem depois da meta batida. O piso fixo de 5 dava uma
+   sessão que mal começava; o padrão é metade da meta diária (mínimo 5) e a
+   pessoa escolhe outro número em Ajustar meta (u.tamanhoSessaoExtra). Com meta
+   semanal, a "diária" é a semanal dividida pelos dias de estudo. */
+function sessaoExtraPadrao(usuario){
+  const diaria = usuario && usuario.metaQuestoesSemana ? Math.ceil(usuario.metaQuestoesSemana / DIAS_DE_ESTUDO_NA_META_SEMANAL) : metaDoUsuario(usuario);
+  return Math.max(5, Math.round(diaria / 2));
+}
+function tamanhoDaSessaoExtra(usuario){ return (usuario && usuario.tamanhoSessaoExtra) || sessaoExtraPadrao(usuario); }
 function metaDoUsuario(usuario){ return (usuario && usuario.metaQuestoesDia) || (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia; }
 /* META SEMANAL. Quem não estuda os 7 dias (plantão, fim de semana livre) não
    pode aparecer "atrasado" num dia de folga. Com u.metaQuestoesSemana a meta

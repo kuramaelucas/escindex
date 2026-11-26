@@ -211,6 +211,10 @@ function blocoAtualDoGrupo(grupo, usuario){
   const hoje = hojeISO();
   const ordenados = blocos.slice().sort((a,b)=>a.ordem-b.ordem);
   for(const b of ordenados){ if(hoje>=b.dataInicio && hoje<=b.dataFim) return b; }
+  // calendário próprio que já terminou: ninguém o renova sozinho (o rodízio a
+  // coordenação renova), e repetir o último bloco para sempre prendia o grupo
+  // numa matéria só — sem bloco, a sessão passa a ser a sem calendário
+  if(grupoComCalendarioProprio(grupo) && hoje > ordenados[ordenados.length-1].dataFim) return null;
   return hoje < ordenados[0].dataInicio ? ordenados[0] : ordenados[ordenados.length-1];
 }
 function getBlocoAtual(usuario){
@@ -249,12 +253,13 @@ function mapaPrevalenciasAssuntos(){
   _cachePrevalencias = { geracao:_geracaoDb, mapa, max };
   return _cachePrevalencias;
 }
-function partesDaDificuldade(q){
-  const taxa = (q.estatisticas && q.estatisticas.respostas>0) ? (q.estatisticas.acertos/q.estatisticas.respostas) : 0.7;
+function partesDaDificuldade(q, semUsuarioId){
+  const est = semUsuarioId ? estatisticasSemOUsuario(q, semUsuarioId) : q.estatisticas;
+  const taxa = (est && est.respostas>0) ? (est.acertos/est.respostas) : 0.7;
   const espNivel = especificidadeNivel(q.dificuldadeManual);
   const pesos = (db.configGeral && db.configGeral.pesosDificuldade) || CONFIG.pesosDificuldade;
   // pouca resposta: a taxa de acerto vale menos e o peso que sobra vai para a dificuldade sugerida
-  const respostas = (q.estatisticas && q.estatisticas.respostas) || 0;
+  const respostas = (est && est.respostas) || 0;
   const confianca = Math.min(1, respostas / (CONFIG.respostasParaConfiarNaTaxa || 1));
   const pesoTaxa = pesos.taxaAcerto*confianca;
   const pesoEspecificidade = pesos.especificidade + pesos.taxaAcerto*(1-confianca);
@@ -271,7 +276,18 @@ function calcularDificuldade(q){
    Formados escolhe fácil/média/difícil DENTRO de um assunto; com a
    prevalência, todo intermediário de assunto pouco cobrado virava difícil e
    104 assuntos ficavam sem nenhuma questão média. */
-function nivelProprioDaQuestao(q){ const p = partesDaDificuldade(q); const s = p.pesoProprio ? 100*p.propria/p.pesoProprio : 50; return s<35 ? 0 : s<60 ? 1 : 2; }
+/* Com `usuarioId`, o nível sai SEM as respostas dessa pessoa. Sem isso, a
+   própria resposta mudava o nível da questão já feita: na contagem da fase
+   (05c), a fácil que o aluno errou passava a "média" e a média que acertou a
+   "fácil", e a mistura da fase 1 entregava 40% de fácil para alvo de 50%
+   (simulador, acerto 50%). O nível que a pessoa recebeu é o de antes dela. */
+function estatisticasSemOUsuario(q, usuarioId){
+  const e = q.estatisticas; if(!e || !e.respostas) return e;
+  const minhas = respostasDaQuestao(usuarioId, q.id); if(!minhas.length) return e;
+  const acertos = minhas.filter(r => r.correta).length;
+  return { respostas: Math.max(0, e.respostas - minhas.length), acertos: Math.max(0, e.acertos - acertos) };
+}
+function nivelProprioDaQuestao(q, semUsuarioId){ const p = partesDaDificuldade(q, semUsuarioId); const s = p.pesoProprio ? 100*p.propria/p.pesoProprio : 50; return s<35 ? 0 : s<60 ? 1 : 2; }
 function rotuloDificuldade(score){ return score<35 ? "Fácil" : score<60 ? "Médio" : "Difícil"; }
 function nivelDaQuestao(q){ const s = calcularDificuldade(q); return s<35 ? 0 : s<60 ? 1 : 2; }
 
@@ -933,7 +949,7 @@ function assuntosDeAnosAnteriores(usuarioId){
   const anoAtual = CONFIG.hoje().getFullYear();
   const grupo = getGrupoDoUsuario(usuario);
   const conjunto = new Set();
-  blocosDoGrupo(grupo).filter(b=>anoDaData(b.dataFim) < anoAtual).forEach(b=>assuntoIdsDoBloco(b).forEach(a=>conjunto.add(a)));
+  blocosDoGrupo(grupo, usuario).filter(b=>anoDaData(b.dataFim) < anoAtual).forEach(b=>assuntoIdsDoBloco(b).forEach(a=>conjunto.add(a)));
   db.respostas.filter(r=>r.usuarioId===usuarioId && anoDaData(r.data) < anoAtual).forEach(r=>{ if(r.assuntoId) conjunto.add(r.assuntoId); });
   return [...conjunto];
 }
@@ -947,7 +963,7 @@ function misturaEfetiva(usuario){
   const rampa = (db.configGeral && db.configGeral.rampaRevisaoInicio) || CONFIG.rampaRevisaoInicio;
   const grupo = getGrupoDoUsuario(usuario);
   const blocoAtual = getBlocoAtual(usuario);
-  const passados = blocoAtual ? getBlocosPassados(blocoAtual, blocosDoGrupo(grupo)) : [];
+  const passados = blocoAtual ? getBlocosPassados(blocoAtual, blocosDoGrupo(grupo, usuario)) : [];
   const assuntosPassados = passados.flatMap(assuntoIdsDoBloco);
   const anteriores = assuntosDeAnosAnteriores(usuario.id);
   const indice = blocoAtual ? Math.max(0, blocoAtual.ordem-1) : 0;
@@ -957,7 +973,7 @@ function misturaEfetiva(usuario){
   // montarSessaoSemCalendario
   if(!blocoAtual){
     return {atual:0, revisaoPassados:CONFIG.revisaoSemCalendario, previaFuturos:0, ajustada:false, temAnteriores:false, indiceBloco:0, semCalendario:true,
-      explicacao:"Você não segue um calendário de blocos: a sessão mistura revisão (o que você errou e o que já venceu) com questões que você ainda não viu, começando pelos assuntos que mais caem e em que você mais erra. Para ter bloco atual, entre num grupo com calendário em Meu Grupo."};
+      explicacao:"Você não segue um calendário de blocos agora: a sessão mistura revisão (o que você errou e o que já venceu) com questões que você ainda não viu, começando pelos assuntos que mais caem e em que você mais erra. Para ter bloco atual, entre num grupo com calendário em Meu Grupo."};
   }
   if(anteriores.length){
     return {...base, ajustada:false, temAnteriores:true, indiceBloco:indice,

@@ -447,6 +447,8 @@ function confirmarRespostaSimulado(confianca){
   delete sessao.escolhaPendente[qid];
   salvarSimuladoEmAndamento();
   render();
+  // só aqui (modo aprendizado, que mostra o gabarito na hora): no simulado comum o golpe entregaria o acerto
+  const q = getQuestao(qid); if(q) retroAoResponder(escolha === q.gabarito, confianca);
 }
 function alternarOcultarTimerSimulado(){
   const sessao = state.sessaoAtual; if(!sessao) return;
@@ -454,8 +456,8 @@ function alternarOcultarTimerSimulado(){
   salvarSimuladoEmAndamento();
   render();
 }
-function irQuestaoSimulado(delta){ const s=state.sessaoAtual; acumularTempoQuestaoSimulado(); s.indiceAtual=Math.max(0,Math.min(s.itens.length-1,s.indiceAtual+delta)); salvarSimuladoEmAndamento(); render(); }
-function irQuestaoSimuladoIndice(i){ acumularTempoQuestaoSimulado(); state.sessaoAtual.indiceAtual=i; salvarSimuladoEmAndamento(); render(); }
+function irQuestaoSimulado(delta){ const s=state.sessaoAtual; acumularTempoQuestaoSimulado(); s.indiceAtual=Math.max(0,Math.min(s.itens.length-1,s.indiceAtual+delta)); salvarSimuladoEmAndamento(); render(); retroTransicao(); }
+function irQuestaoSimuladoIndice(i){ acumularTempoQuestaoSimulado(); state.sessaoAtual.indiceAtual=i; salvarSimuladoEmAndamento(); render(); retroTransicao(); }
 function confirmarSairSimulado(){
   abrirModal(`${cabecalhoJanela("Sair do simulado?")}<p class="text-sm">Suas respostas já estão guardadas neste aparelho: você pode <strong>continuar depois</strong>, de onde parou. O relógio fica parado enquanto o simulado está fechado.</p>
     <div class="flex gap-1 mt-2 quebra">
