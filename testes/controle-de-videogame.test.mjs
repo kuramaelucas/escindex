@@ -308,3 +308,29 @@ test("no simulado, L2 segurado + letra também risca (e não marca); gatilho só
     assert.equal((await estado()).resp, "A");
   } finally { await contexto.close(); }
 });
+
+test("Start abre o menu lateral, as setas escolhem a ferramenta e, na tela nova, andam pelos botões", async () => {
+  const contexto = await navegador.newContext({ serviceWorkers: "block" });
+  try{
+    const pagina = await abrirPagina(contexto);
+    await pagina.evaluate(() => { fazerLoginDemo("aluno"); fecharModal(); navigate("inicio"); window.__padLigado = true; window.dispatchEvent(new Event("gamepadconnected")); });
+    const apertar = async b => { await pagina.evaluate(b => controleAoApertar(b, window.__pad), b); };
+    await apertar(9);
+    const noMenu = await pagina.evaluate(() => ({ menu: controleEstado.menu, foco: document.querySelector(".sidebar .controle-foco")?.textContent.trim() }));
+    assert.equal(noMenu.menu, true); assert.match(noMenu.foco, /Início/);
+    await apertar(13);   // seta para baixo: Estudar
+    assert.match(await pagina.evaluate(() => document.querySelector(".sidebar .controle-foco").textContent), /Estudar/);
+    await apertar(0);    // entra
+    const tela = await pagina.evaluate(() => ({ rota: state.route, menu: controleEstado.menu, foco: !!document.querySelector("#conteudoPagina .controle-foco") }));
+    assert.deepEqual(tela, { rota: "estudar", menu: false, foco: true });
+    const antes = await pagina.evaluate(() => document.querySelector(".controle-foco").outerHTML);
+    await apertar(13);
+    assert.notEqual(await pagina.evaluate(() => document.querySelector(".controle-foco").outerHTML), antes);
+    // janela aberta: o botão da direita a fecha
+    await pagina.evaluate(() => abrirModalTitulado("Teste", "<button>Um</button><button>Dois</button>"));
+    await apertar(13);
+    assert.equal(await pagina.evaluate(() => !!document.querySelector(".modal .controle-foco")), true);
+    await apertar(1);
+    assert.equal(await pagina.evaluate(() => !!document.getElementById("modalOverlayAtivo")), false);
+  } finally { await contexto.close(); }
+});

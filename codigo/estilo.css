@@ -1093,3 +1093,5 @@ body.retro-tremor #conteudoPagina{animation:retroTremor .35s steps(6)}
 @keyframes retroEntra{from{transform:translateX(24px);opacity:.2}to{transform:none;opacity:1}}
 @keyframes retroSome{99%{opacity:1}100%{opacity:0}}
 @media (prefers-reduced-motion: reduce){ .retro-golpe{animation:retroSome .7s forwards} .retro-erro::after,.retro-acerto::after{display:none} .retro-titulo-pisca{animation:none} }
+/* controle de videogame (06d): o elemento em que as setas pararam */
+.controle-foco{outline:3px solid var(--amber) !important;outline-offset:2px;box-shadow:0 0 0 6px rgba(255,210,63,.25)}
