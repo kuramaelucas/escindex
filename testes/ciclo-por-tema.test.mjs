@@ -152,3 +152,48 @@ test("assunto incorporado ao resumo: quem já fez as 20 do tema recebe as novas 
     assert.deepEqual(erros, []);
   } finally { await contexto.close(); }
 });
+
+test("sessão extra, resumo ao lado da meta e conjunto do tema reservado ao pós-resumo", async () => {
+  const { pagina, contexto, erros } = await abrir();
+  try{
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual(); u.anoFaculdade = "4º ano"; db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      // sessão extra: padrão = metade da meta diária (mínimo 5); escolha própria vale
+      u.metaQuestoesDia = 30; const padrao30 = tamanhoDaSessaoExtra(u);
+      u.metaQuestoesDia = 6; const padrao6 = tamanhoDaSessaoExtra(u);
+      u.metaQuestoesDia = 30; u.tamanhoSessaoExtra = 12; const escolhida = tamanhoDaSessaoExtra(u); delete u.tamanhoSessaoExtra;
+      // meta batida (30 hoje): a sessão recomendada sai com a extra
+      const hoje = hojeISO(), livres = questoesParaEstudo(u.id).slice(0, 30);
+      livres.forEach(q => db.respostas.push({ id: uid("r"), usuarioId: u.id, questaoId: q.id, assuntoId: q.assuntoId, correta: true, data: hoje }));
+      montarSessaoRecomendadaDeHoje(); const nExtra = state.sessaoAtual.itens.length; state.sessaoAtual = null;
+      // conjunto planejado ainda não feito não aparece na sessão recomendada
+      const reservadas = questoesReservadasAoPosResumo(u);
+      const sessao = montarSessaoRecomendada(u.id, 40);
+      // do conjunto só entra com o motivo dizendo que as de fora acabaram naquele trecho
+      const vazou = sessao.filter(it => reservadas.has(it.questaoId) && it.origem !== "complemento" && !/do conjunto do resumo/.test(it.motivo)).length;
+      // tirando do banco as de fora dos conjuntos, a sessão usa as do conjunto em vez de ficar curta
+      const ocultasAntes = db.questoesOcultas; db.questoesOcultas = (db.questoesOcultas || []).concat(questoesDaSessaoRecomendada(u.id).map(q => ({ usuarioId: u.id, questaoId: q.id })));
+      _geracaoDb++;
+      const soConjunto = montarSessaoRecomendada(u.id, 20);
+      const usouConjunto = soConjunto.filter(it => reservadas.has(it.questaoId) && /do conjunto do resumo/.test(it.motivo)).length;
+      db.questoesOcultas = ocultasAntes; _geracaoDb++;
+      // a linha ao lado da meta: tema atual sem leitura = resumo atrasado; lido e sem questões = questões atrasadas
+      db.respostas = db.respostas.filter(x => x.usuarioId !== u.id);
+      const e = cicloDoAluno(u).atual;
+      navigate("inicio"); const antes = document.body.innerText;
+      if(!e.semResumo) marcarResumoComoLido(e.chave, true);
+      navigate("inicio"); const depois = document.body.innerText;
+      return { padrao30, padrao6, escolhida, nExtra, temReservadas: reservadas.size > 0, vazou, usouConjunto,
+        semResumo: e.semResumo, antes: /Resumo indicado/.test(antes) && /resumo atrasado/.test(antes), depois: /questões atrasadas/.test(depois) };
+    });
+    assert.equal(r.padrao30, 15);
+    assert.equal(r.padrao6, 5);
+    assert.equal(r.escolhida, 12);
+    assert.equal(r.nExtra, 15);
+    assert.equal(r.temReservadas, true);
+    assert.equal(r.vazou, 0);
+    assert.ok(r.usouConjunto > 0, "sem questões fora dos conjuntos, a sessão usa as do conjunto");
+    if(!r.semResumo){ assert.equal(r.antes, true); assert.equal(r.depois, true); }
+    assert.deepEqual(erros, []);
+  } finally { await contexto.close(); }
+});

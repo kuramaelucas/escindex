@@ -266,6 +266,9 @@ function blocosDoGrupo(grupo, usuario){
     return grupo.blocosProprios.slice().sort((a,b)=>a.dataInicio.localeCompare(b.dataInicio))
       .map((b,i)=>({ id:b.id, nome:b.nome, especialidadeIds:b.especialidadeIds||[], subdivisoes:[], ordem:i+1, dataInicio:b.dataInicio, dataFim:b.dataFim }));
   }
+  // o rodízio e o calendário oficial são da faculdade do calendário: o aluno de
+  // outra escola não cursa esses blocos, e emprestá-los trocava a matéria da sessão dele
+  if(!segueCalendarioDaFaculdade(usuario || usuarioAtual())) return [];
   const ano = anoDoGrupo(grupo, usuario);
   // quem já se formou não tem calendário de faculdade: sem turma de um ano e
   // sem grupo com calendário próprio, não há bloco nenhum para seguir
@@ -439,6 +442,17 @@ function usuarioAtual(){ return state.usuarioAtualId ? getUsuario(state.usuarioA
    mostra: só aluno é restringido — a equipe confere e corrige tudo, então
    para ela devolve "" (sem restrição). */
 function faculdadeDoUsuario(u){ return (u && u.faculdade) || CONFIG.faculdadePadrao; }
+/* Segue o rodízio/calendário oficial? Só o aluno é restringido: a equipe
+   confere os calendários de todas as turmas. */
+function segueCalendarioDaFaculdade(u){
+  return !u || u.papel !== "aluno" || faculdadeDoUsuario(u) === CONFIG.faculdadeDoCalendario;
+}
+/* A faculdade de um grupo, para a lista de Meu Grupo: o nome digitado por quem
+   criou (escola fora da lista), a faculdade dele, ou — turma do rodízio — a do calendário. */
+function faculdadeDoGrupo(g){
+  if(!g) return "";
+  return g.instituicao || (g.faculdade && g.faculdade !== "Outra" ? g.faculdade : "") || (g.doRodizio ? CONFIG.faculdadeDoCalendario : "");
+}
 function faculdadeDaVisao(){
   const u = usuarioAtual();
   return (u && u.papel === "aluno") ? faculdadeDoUsuario(u) : "";

@@ -204,6 +204,11 @@ const CONFIG = {
      pessoas de `faculdadesPorNome` (conferidas à mão com a coordenação). */
   faculdades: ["EPM/Unifesp", "UEL", "Outra"],
   faculdadePadrao: "EPM/Unifesp",
+  /* A faculdade dona do calendário oficial e do rodízio (db.sequenciasAno).
+     Aluno de outra escola não cursa esses blocos: para ele o calendário
+     oficial não tem bloco nenhum (sessão sem calendário) e Meu Grupo oferece
+     calendário próprio em vez de turma do rodízio (segueCalendarioDaFaculdade, 04b). */
+  faculdadeDoCalendario: "EPM/Unifesp",
   faculdadesPorNome: [{ nome: /^\s*matheus\s+arabori\b/i, faculdade: "UEL" }],
   /* Conteúdo que só alunos de certas faculdades enxergam: o Simulado da Turma
      89 e os simulados reais da USP-SP. Casa pela banca da questão real. Equipe
