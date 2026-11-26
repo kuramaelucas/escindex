@@ -129,6 +129,33 @@ function cicloDoAluno(u){
   return { atual, ultimoConcluido, caminho, peloCalendario };
 }
 
+/* ---------------------------- questões reservadas ao pós-resumo ----------------------------
+   A questão do conjunto planejado de um tema é feita no ciclo (depois do
+   resumo), não solta na sessão recomendada: se ela aparecesse antes, o
+   conjunto chegava "gasto" e a régua do tema (primeira resposta) media o
+   acaso da sessão, não a leitura. Só para quem segue o ciclo; a questão já
+   respondida não é reservada (a revisão espaçada traz de volta o que a pessoa
+   errou, inclusive do conjunto) e o complemento de banco esgotado ainda pode usá-la. */
+let _cacheReservadasPosResumo = null;
+function questoesReservadasAoPosResumo(u){
+  if(!u || !caminhoDoCiclo(u)) return new Set();
+  // pede o arquivo sem redesenhar (conjuntosPorTema redesenha): a sessão já
+  // está montada, e um render fora de hora refazia a tela da questão no meio do uso
+  const c = window.EscResumos && window.EscResumos.conjuntos;
+  if(!c){ _carregarScriptDeResumo("conjuntos-por-tema"); return new Set(); }
+  const chave = u.id + "|" + _geracaoDb + "|" + db.respostas.length;
+  if(_cacheReservadasPosResumo && _cacheReservadasPosResumo.chave === chave) return _cacheReservadasPosResumo.ids;
+  const respondidas = _primeirasRespostas(u.id), ids = new Set();
+  for(const k in c) for(const id of c[k].ids) if(!respondidas.has(id)) ids.add(id);
+  _cacheReservadasPosResumo = { chave, ids };
+  return ids;
+}
+function questoesDaSessaoRecomendada(usuarioId){
+  const reservadas = questoesReservadasAoPosResumo(getUsuario(usuarioId));
+  const todas = questoesParaEstudo(usuarioId);
+  return reservadas.size ? todas.filter(q => !reservadas.has(q.id)) : todas;
+}
+
 /* ---------------------------- ações ---------------------------- */
 function iniciarQuestoesDoTema(chave){
   const u = usuarioAtual(), e = u && estadoDoTema(u, chave);
@@ -141,6 +168,49 @@ function iniciarQuestoesDoTema(chave){
       ? " (assunto vizinho incorporado ao resumo: estas vêm primeiro)" : " (escolhidas para cobrir cada parte do tema)") })), "pratica");
 }
 function lerResumoDoTema(chave){ lerResumoDoAssunto(chave); }
+
+/* ---------------------------- resumo × questões, ao lado da meta ----------------------------
+   Uma linha junto da meta diária: qual resumo está indicado agora e quem está
+   atrasado em relação a quem. QUESTÕES ATRASADAS = temas cujo resumo já foi
+   lido e o conjunto ainda não fechou; RESUMO ATRASADO = o tema da vez ainda
+   sem leitura (aí a sugestão é ler antes das questões). */
+function situacaoResumoEQuestoes(u){
+  const ciclo = cicloDoAluno(u);
+  if(!ciclo) return null;
+  const primeiras = _primeirasRespostas(u.id), vistos = new Set();
+  const lidosAbertos = [];
+  for(const a of _assuntosNaOrdemDoCiclo(u)){
+    const chave = temaDoAssunto(a);
+    if(!chave || vistos.has(chave)) continue;
+    vistos.add(chave);
+    const e = estadoDoTema(u, chave, primeiras);
+    if(e && e.ids.length && e.lidoEm && !e.concluido) lidosAbertos.push(e);
+  }
+  const atual = ciclo.atual;
+  const resumoAtrasado = !!(atual && !atual.semResumo && !atual.lidoEm);
+  return { atual, resumoAtrasado, lidosAbertos, faltamQuestoes: lidosAbertos.reduce((n, e) => n + e.proximas.length, 0) };
+}
+function htmlResumoAoLadoDaMeta(u){
+  questoesReservadasAoPosResumo(u);   // já pede os conjuntos (em silêncio): a sessão que sair daqui já os conhece
+  if(!CONFIG.integracaoResumos.cicloNoInicio) return "";
+  const s = situacaoResumoEQuestoes(u);
+  if(!s || !s.atual) return "";
+  const e = s.atual, ch = escapeHtml(e.chave);
+  let texto, botao;
+  if(s.resumoAtrasado){
+    texto = `Resumo indicado: <strong>${escapeHtml(e.titulo)}</strong> · <span class="badge badge-amber">resumo atrasado</span> leia-o antes das questões do tema.`;
+    botao = `<button class="btn btn-secondary btn-sm" onclick="lerResumoDoTema('${ch}')">${iconeSvg("book")} Ler o resumo</button>`;
+  }else if(s.faltamQuestoes){
+    const n = s.lidosAbertos.length;
+    texto = `Resumo indicado: <strong>${escapeHtml(e.titulo)}</strong>${e.lidoEm ? " (lido)" : ""} · <span class="badge badge-amber">questões atrasadas</span> ${n} ${plural(n, "tema lido espera", "temas lidos esperam")} ${s.faltamQuestoes} ${plural(s.faltamQuestoes, "questão", "questões")} do conjunto.`;
+    const alvo = s.lidosAbertos[0];
+    botao = `<button class="btn btn-secondary btn-sm" onclick="iniciarQuestoesDoTema('${escapeHtml(alvo.chave)}')">Fazer as questões de ${escapeHtml(alvo.titulo)}</button>`;
+  }else{
+    texto = `Resumo indicado: <strong>${escapeHtml(e.titulo)}</strong>${e.semResumo ? " (sem resumo: direto às questões)" : ""} · resumos e questões em dia.`;
+    botao = "";
+  }
+  return `<div class="text-sm mt-1 flex gap-1 items-center quebra">${iconeSvg("book")} <span>${texto}</span>${botao}</div>`;
+}
 
 /* ---------------------------- o cartão do Início ---------------------------- */
 function _htmlResultadoDoTema(e){

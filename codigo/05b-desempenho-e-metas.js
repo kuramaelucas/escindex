@@ -543,6 +543,15 @@ function questoesRespondidasHoje(usuarioId){ return db.respostas.filter(r=>r.usu
    (Ajustar meta), senão o padrão. Separado da meta porque quem faz 40 por
    dia costuma preferir duas sessões de 20 — e quem estuda de uma vez, a meta inteira. */
 function tamanhoDaSessaoDoUsuario(usuario){ return (usuario && usuario.tamanhoSessao) || CONFIG.tamanhoSessaoPadrao; }
+/* SESSÃO EXTRA: a que vem depois da meta batida. O piso fixo de 5 dava uma
+   sessão que mal começava; o padrão é metade da meta diária (mínimo 5) e a
+   pessoa escolhe outro número em Ajustar meta (u.tamanhoSessaoExtra). Com meta
+   semanal, a "diária" é a semanal dividida pelos dias de estudo. */
+function sessaoExtraPadrao(usuario){
+  const diaria = usuario && usuario.metaQuestoesSemana ? Math.ceil(usuario.metaQuestoesSemana / DIAS_DE_ESTUDO_NA_META_SEMANAL) : metaDoUsuario(usuario);
+  return Math.max(5, Math.round(diaria / 2));
+}
+function tamanhoDaSessaoExtra(usuario){ return (usuario && usuario.tamanhoSessaoExtra) || sessaoExtraPadrao(usuario); }
 function metaDoUsuario(usuario){ return (usuario && usuario.metaQuestoesDia) || (db.configGeral && db.configGeral.metaRecomendadaQuestoesDia) || CONFIG.metaRecomendadaQuestoesDia; }
 /* META SEMANAL. Quem não estuda os 7 dias (plantão, fim de semana livre) não
    pode aparecer "atrasado" num dia de folga. Com u.metaQuestoesSemana a meta

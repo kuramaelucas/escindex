@@ -141,7 +141,7 @@ function montarSessaoDeFormado(usuario, tamanho){
   const consolidado = id => trilha ? !!(itemDaTrilha[id] && itemDaTrilha[id].consolidado && !itemDaTrilha[id].misc) : faseDe(id).concluido;
   const raro = id => !!(trilha && itemDaTrilha[id] && itemDaTrilha[id].misc);
   const assuntos = {};
-  questoesParaEstudo(usuarioId).forEach(q=>{
+  questoesDaSessaoRecomendada(usuarioId).forEach(q=>{
     if(usados.has(q.id) || jaFoiRespondida(usuarioId, q.id)) return;
     const a = assuntos[q.assuntoId] || (assuntos[q.assuntoId] = { id:q.assuntoId, niveis:[[],[],[]], naSessao:[0,0,0], postas:0 });
     a.niveis[nivelProprioDaQuestao(q)].push(q);
@@ -284,7 +284,7 @@ function montarSessaoSemCalendario(usuario, tamanho){
     origem: v.motivo==="erro" ? "revisao_erro" : "revisao_decaimento",
     motivo: v.motivo==="erro" ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto"}));
   const usados = new Set(itens.map(it=>it.questaoId));
-  const naoVistas = questoesParaEstudo(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id));
+  const naoVistas = questoesDaSessaoRecomendada(usuarioId).filter(q=>!usados.has(q.id) && !jaFoiRespondida(usuarioId, q.id));
   selecionarComProgressao(naoVistas, tamanho - itens.length, usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
     .forEach(q=>{ itens.push({questaoId:q.id, origem:"nao_vista", motivo:"Questão que você ainda não viu"+rotulo(q)}); usados.add(q.id); });
   if(itens.length < tamanho){
@@ -335,7 +335,7 @@ function montarSessaoDeProvaReal(usuarioId, n, excluidas){
   const crono = cronogramaDoUsuario(getUsuario(usuarioId)) || CONFIG.cronogramaDoSextoAno;
   const prior = {}, pesos = {};
   prioridadesDeEstudo(usuarioId, TODAS_AS_PROVAS).forEach(p=>{ prior[p.assuntoId] = p; pesos[p.assuntoId] = 1 + crono.pesoExtras*p.prioridadeRelativa; });
-  const livres = questoesParaEstudo(usuarioId).filter(q=>!excluidas.has(q.id));
+  const livres = questoesDaSessaoRecomendada(usuarioId).filter(q=>!excluidas.has(q.id));
   const reais = livres.filter(q=>!ehConsolidacao(q));
   const motivo = q => {
     const p = prior[q.assuntoId];
@@ -382,7 +382,7 @@ function montarSessaoRecomendada(usuarioId, tamanho){
   const nRevisao = Math.round(tamanho*mistura.revisaoPassados);
   const nPrevia = Math.max(0, tamanho - nAtual - nRevisao);
 
-  const poolAtual = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId)));
+  const poolAtual = semRepeticaoPrematura(usuarioId, questoesDaSessaoRecomendada(usuarioId).filter(q=>assuntosAtual.includes(q.assuntoId)));
   const pesos = pesosDeIncidencia(usuarioId);
   const destaque = assuntosQueMaisCaem(usuarioId);
   /* A proporção consolidação/residência do ano do aluno (CONFIG.progressaoConsolidacao)
@@ -405,10 +405,11 @@ function montarSessaoRecomendada(usuarioId, tamanho){
     const porErro = partesRevisao.erros.includes(v);
     itensRevisao.push({questaoId:v.questao.id, origem: porErro ? "revisao_erro" : "revisao_decaimento", motivo: (porErro ? "Revisão espaçada — erro/chute anterior" : "Revisão espaçada — já faz tempo desde o último acerto") + (atraso>0 ? ", vencida há "+atraso+" "+plural(atraso,"dia","dias")+"" : ", no prazo")});
   });
-  selecionarComProgressao(partesRevisao.novas, Math.max(0, nRevisao - itensRevisao.length), usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
+  const reservadas = questoesReservadasAoPosResumo(usuario);
+  selecionarComProgressao(partesRevisao.novas.filter(q => !reservadas.has(q.id)), Math.max(0, nRevisao - itensRevisao.length), usuario, (p,k)=>selecionarComInterleaving(p, k, pesos))
     .forEach(q=>itensRevisao.push({questaoId:q.id, origem:"revisao_nova", motivo:"Revisão — assunto de bloco anterior que você ainda não viu"+rotulo(q)}));
 
-  const poolPrevia = semRepeticaoPrematura(usuarioId, questoesParaEstudo(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
+  const poolPrevia = semRepeticaoPrematura(usuarioId, questoesDaSessaoRecomendada(usuarioId).filter(q=>assuntosFuturos.includes(q.assuntoId) && q.dificuldadeManual==="fundamental"));
   const itensPrevia = selecionarComProgressao(poolPrevia, nPrevia, usuario, (p,k)=>embaralhar(p).slice(0,k)).map(q=>({questaoId:q.id, origem:"previa", motivo: (proximo ? "Prévia do próximo bloco — "+proximo.nome : "Prévia")+rotulo(q)}));
 
   let todos = semQuestoesRepetidas([...itensAtual, ...itensRevisao, ...itensPrevia]);

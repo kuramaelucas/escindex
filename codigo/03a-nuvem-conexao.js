@@ -383,6 +383,7 @@ function nuvemAplicarPerfilLocal(p){
      pode ser anterior a ela e a apagaria. Coluna ausente (banco sem o
      esquema.sql novo) não decide; nula, sim: é "voltei ao padrão" noutro aparelho. */
   if(!grupoLocalPendente){
+    if("sessao_extra" in p){ if(p.sessao_extra) u.tamanhoSessaoExtra = p.sessao_extra; else delete u.tamanhoSessaoExtra; }
     if("tamanho_sessao" in p){ if(p.tamanho_sessao) u.tamanhoSessao = p.tamanho_sessao; else delete u.tamanhoSessao; }
     if("regua_formado" in p){ if(CONFIG.cronogramaFormado.reguas[p.regua_formado] && p.regua_formado !== "padrao") u.reguaFormado = p.regua_formado; else delete u.reguaFormado; }
   }
@@ -432,6 +433,7 @@ function linhaDoPerfil(usuario){
     meta_cartoes_dia: usuario.metaCartoesDia || null,
     meta_questoes_semana: usuario.metaQuestoesSemana || null,
     tamanho_sessao: usuario.tamanhoSessao || null,
+    sessao_extra: usuario.tamanhoSessaoExtra || null,
     regua_formado: usuario.reguaFormado || null,
     lembrete_meta_ativo: !!usuario.lembreteMetaAtivo,
     lembrete_meta_horario: usuario.lembreteMetaHorario || null,

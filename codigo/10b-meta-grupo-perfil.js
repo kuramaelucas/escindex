@@ -39,7 +39,9 @@ function abrirModalMeta(){
       <button class="pill" onclick="document.getElementById('tamanhoSessaoInput').value=${CONFIG.tamanhoSessaoPadrao}">padrão (${CONFIG.tamanhoSessaoPadrao})</button>
       <button class="pill" onclick="document.getElementById('tamanhoSessaoInput').value=document.getElementById('metaInput').value">a meta inteira de uma vez</button>
     </div>
-    <p class="text-xs muted">Quantas questões vêm cada vez que você começa a sessão recomendada. Ela nunca passa do que falta para a meta do dia; batida a meta, vem uma sessão curta extra.</p>
+    <p class="text-xs muted">Quantas questões vêm cada vez que você começa a sessão recomendada. Ela nunca passa do que falta para a meta do dia.</p>
+    <div class="field mt-2"><label class="label" for="sessaoExtraInput">Sessão extra (depois da meta batida)</label><input class="input" type="number" id="sessaoExtraInput" value="${tamanhoDaSessaoExtra(u)}" min="5" max="200"></div>
+    <p class="text-xs muted">Padrão: metade da meta diária, no mínimo 5 (hoje, ${sessaoExtraPadrao(u)}). Deixe o padrão para ele acompanhar a meta quando ela mudar.</p>
     <div class="flex gap-1 mt-3 quebra"><button class="btn btn-primary" onclick="salvarMeta()">Salvar meta</button><button class="btn btn-secondary" onclick="fecharModalComConfirmacao()">Cancelar</button>${u.metaQuestoesDia?`<button class="btn btn-ghost" onclick="restaurarMetaPadrao('questoes')" title="Volta para a meta recomendada pela coordenação">Restaurar padrão (${db.configGeral.metaRecomendadaQuestoesDia})</button>`:""}</div>`);
 }
 /* "Resetar" a meta é APAGAR a escolha pessoal, e não gravar o número padrão:
@@ -66,12 +68,17 @@ function salvarMeta(){
   if(semanal && (!semana || semana<1)){ toast("Informe quantas questões por semana.", "err"); return; }
   const tamanho = parseInt(document.getElementById("tamanhoSessaoInput").value);
   if(!tamanho || tamanho<5 || tamanho>200){ toast("Questões por sessão: de 5 a 200.", "err"); return; }
+  const extra = parseInt(document.getElementById("sessaoExtraInput").value);
+  if(!extra || extra<5 || extra>200){ toast("Sessão extra: de 5 a 200.", "err"); return; }
+  const extraPadraoAntes = sessaoExtraPadrao(usuarioAtual());
   const u = usuarioAtual();
   // a meta diária fica guardada mesmo na semanal: é a base da sugestão e volta se a pessoa desfizer
   if(!semanal) u.metaQuestoesDia = valor;
   if(semanal) u.metaQuestoesSemana = semana; else delete u.metaQuestoesSemana;
   // o padrão não se grava: assim a sessão acompanha o padrão se ele mudar
   if(tamanho === CONFIG.tamanhoSessaoPadrao) delete u.tamanhoSessao; else u.tamanhoSessao = tamanho;
+  // idem a extra: o número que o campo mostrava como padrão não vira escolha fixa
+  if(extra === extraPadraoAntes || extra === sessaoExtraPadrao(u)) delete u.tamanhoSessaoExtra; else u.tamanhoSessaoExtra = extra;
   saveState();
   fecharModal();
   toast(semanal ? "Meta semanal salva: "+semana+" questões de segunda a domingo." : valor < db.configGeral.metaMinimaQuestoesDia ? "Meta salva. Está abaixo da recomendação mínima da coordenação." : "Meta salva.");

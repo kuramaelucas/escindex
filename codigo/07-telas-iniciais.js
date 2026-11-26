@@ -542,6 +542,7 @@ function renderInicioAluno(u){
         <div class="card-title">Pronto para estudar?</div>
         ${soNoEstatistico(`<div class="text-sm muted">${bloco ? "Sessão recomendada, misturando bloco atual, revisão de blocos passados e prévia do próximo bloco." : "Sessão recomendada, misturando revisão e questões que você ainda não viu."}</div>`)}
         <div class="text-sm mt-1">${progMeta.semanal ? `<strong>${progMeta.feitas}/${progMeta.alvo}</strong> questões na semana${metaBatida ? " · em dia" : ""}` : `<strong>${respondidasHoje}/${meta}</strong> questões hoje${resumido && metaBatida ? " · meta batida" : ""}`}${htmlParaHoje(progMeta.feitas, progMeta.esperado, revisarHoje.length, flashVencidos)}</div>
+        ${htmlResumoAoLadoDaMeta(u)}
     </div>
     <div class="linha-progresso mt-1">
       <div class="progress-track"><div class="progress-fill" style="width:${Math.min(100,pct(progMeta.feitas,progMeta.alvo))}%"></div></div>
@@ -733,6 +734,7 @@ function renderEstudar(){
       </div>
     </div>
     <div class="progress-track mt-2"><div class="progress-fill" style="width:${Math.min(100,pct(progMeta.feitas,progMeta.alvo))}%"></div></div>
+    ${htmlResumoAoLadoDaMeta(u)}
     ${soNoEstatistico(`<p class="text-xs muted mt-1">Recomendação da coordenação: mínimo de ${db.configGeral.metaMinimaQuestoesDia} e ideal de ${db.configGeral.metaRecomendadaQuestoesDia} questões por dia. A meta é sua e pode ser mudada a qualquer momento.</p>`)}
   </div>
 
