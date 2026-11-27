@@ -9,9 +9,13 @@
      npm run didatica                          resumo por prova das bancas do projeto (unifesp, usp, iamspe)
      npm run didatica -- <prova> [--fila N]    questões da prova da mais rasa à mais funda (N primeiras; padrão 25)
      npm run didatica -- q-<id>                a medida de uma questão e o trecho de cada errada
+     npm run didatica -- trilha [tema]         trilha pós-resumo: temas com questões das bancas do projeto nas 20 primeiras do conjunto (faltam = ainda sem conceito-chave); com tema, as 20
 */
+import fs from "node:fs";
+import path from "node:path";
+import vm from "node:vm";
 import { pathToFileURL } from "node:url";
-import { carregar } from "./lib-dados.mjs";
+import { carregar, RAIZ } from "./lib-dados.mjs";
 
 const BANCAS = /^prova-(unifesp|usp-|iamspe)/;
 const nomeCurto = (n) => n.replace(/^(banco|prova)-/, "");
@@ -105,10 +109,41 @@ function tabela(rs){
   console.log("\nconcei% = traz 'Conceito-chave:'; armad% = traz 'Como não errar:'; fmtNovo% = erradas em 'X) Errada:'; todas% = todas as erradas tratadas;\nrasa% = ao menos uma errada com motivo PRÓPRIO < 90 caracteres (frase que junta várias letras não conta como própria); quando% = >= 50% das erradas dizem em que situação seriam certas; funda = cumpre tudo.");
 }
 
+/* TRILHA PÓS-RESUMO: o conjunto planejado de cada tema (resumos/conjuntos-por-tema.js) é o que o aluno faz depois de
+   ler o resumo; só as 20 primeiras (em ordem de peso dos fragmentos) contam como o conjunto. A revisão didática
+   começa pelas questões das bancas do projeto que estão nessas 20, tema a tema, para que quem segue o ciclo
+   encontre as explicações já no padrão. Lê o arquivo gerado, sem rodar nada do código da plataforma. */
+export function conjuntosDaTrilha(){
+  const ctx = {}; ctx.window = ctx; vm.createContext(ctx);
+  vm.runInContext(fs.readFileSync(path.join(RAIZ, "resumos", "conjuntos-por-tema.js"), "utf8"), ctx);
+  const temas = (ctx.EscResumos && ctx.EscResumos.conjuntos) || {};
+  const out = {};
+  for(const [tema, v] of Object.entries(temas)) if(v && Array.isArray(v.ids)) out[tema] = v.ids.slice(0, 20);
+  return out;
+}
+function trilha(arquivos, tema){
+  const conj = conjuntosDaTrilha();
+  const info = new Map();
+  for(const a of arquivos) for(const q of a.questoes || []) info.set(q.id, { arq: a.nome, q });
+  const doProjeto = (id) => info.get(id) && BANCAS.test(info.get(id).arq);
+  const feita = (id) => { const m = medirDidatica(info.get(id).q); return !m || m.conceito; };
+  if(tema){
+    const ids = conj[tema]; if(!ids){ console.log("tema não encontrado; ex.: " + Object.keys(conj).slice(0, 8).join(", ")); return; }
+    for(const id of ids) console.log(`${id}  ${doProjeto(id) ? (feita(id) ? "feita " : "FALTA ") : "(outra banca)"}  ${info.get(id) ? info.get(id).arq.replace("prova-", "") : "?"}`);
+    return;
+  }
+  const lin = Object.entries(conj).map(([t, ids]) => { const nossas = ids.filter(doProjeto); return { t, nossas: nossas.length, faltam: nossas.filter((i) => !feita(i)).length }; })
+    .filter((l) => l.nossas).sort((a, b) => b.faltam - a.faltam || a.t.localeCompare(b.t));
+  console.log("tema".padEnd(34) + "nas 20".padStart(7) + "faltam".padStart(8));
+  for(const l of lin) console.log(l.t.padEnd(34) + String(l.nossas).padStart(7) + String(l.faltam).padStart(8));
+  console.log(`\n${lin.length} temas · ${lin.reduce((s, l) => s + l.nossas, 0)} questões das bancas do projeto nas 20 primeiras · faltam ${lin.reduce((s, l) => s + l.faltam, 0)}`);
+}
+
 function principal(){
   const args = process.argv.slice(2);
   const { arquivos } = carregar();
   const alvo = args.find((a) => !a.startsWith("--"));
+  if(alvo === "trilha"){ trilha(arquivos, args.filter((a) => !a.startsWith("--"))[1]); return; }
   if(alvo && /^q-/.test(alvo)){
     for(const arq of arquivos) for(const q of arq.questoes || []) if(q.id === alvo){
       const m = medirDidatica(q);
