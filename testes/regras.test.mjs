@@ -1066,3 +1066,26 @@ test("resumo lido: ao trocar de aparelho vence a mudança mais recente, não o a
     assert.equal(r.linha["~em"].a, "2026-11-27T09:00:00.000Z", "os carimbos sobem junto");
   } finally { await contexto.close(); }
 });
+
+test("escolhas do perfil: a mudança feita no outro aparelho chega, a pendente daqui não se perde", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual(); db.nuvem = db.nuvem || {}; delete db.nuvem.perfilRecebido;
+      u.modoPlataforma = "resumido"; u.modoDeInicio = "zero"; u.trilhaPulados = { x: "2026-11-01" };
+      const linha = m => ({ modo_plataforma: m.mp, modo_inicio: m.mi, trilha: { pulados: m.tp } });
+      // 1ª descida, sem base: a nuvem decide
+      mesclarEscolhasDoPerfil(u, linha({ mp: "estatistico", mi: "zero", tp: { x: "2026-11-01" } }));
+      const primeira = u.modoPlataforma;
+      // aqui a pessoa muda o modo de início; lá, o outro aparelho pula um assunto
+      u.modoDeInicio = Object.keys(MODOS_DE_INICIO).find(k => k !== "zero");
+      mesclarEscolhasDoPerfil(u, linha({ mp: "estatistico", mi: "zero", tp: { x: "2026-11-01", y: "2026-11-27" } }));
+      return { primeira, inicio: u.modoDeInicio, pulados: Object.keys(u.trilhaPulados).sort() };
+    });
+    assert.equal(r.primeira, "estatistico", "a escolha do outro aparelho chega mesmo com valor aqui");
+    assert.notEqual(r.inicio, "zero", "a mudança daqui, ainda por subir, não é desfeita pela nuvem velha");
+    assert.deepEqual(r.pulados, ["x", "y"], "o assunto pulado no outro aparelho chega");
+  } finally { await contexto.close(); }
+});
