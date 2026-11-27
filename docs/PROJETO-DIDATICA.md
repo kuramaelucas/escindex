@@ -64,6 +64,8 @@ Total das três bancas: ~1.600 questões ativas. A UNIFESP e o IAMSPE agrupam er
 
 - **UNIFESP 2022, lote 1 (27/11/2026), 14 questões** (da fila dos mais rasos): `q-unifesp2022-078`, `-017`, `-061`, `-066`, `-048`, `-040`, `-097`, `-039`, `-042`, `-009`, `-043`, `-096`, `-011`, `-072`. Mesmo método do piloto; onde o gabarito da banca diverge da prática (`-009`, prazo da redução nasal) ou a norma mudou (`-097`, isolamento da covid) a explicação diz isso. Sobram da UNIFESP 2022 cerca de 83 questões.
 
+- **UNIFESP 2022, lote 2 (27/11/2026), 12 questões:** `q-unifesp2022-060`, `-013`, `-090`, `-007`, `-049`, `-012`, `-020`, `-036`, `-071`, `-088`, `-077`, `-079`. Na `-049` (vigilância ambiental) as alternativas C e D descrevem ações que também são da vigilância; a explicação diz isso e mostra por que o gabarito é a que alerta a rede. Na `-060` (profilaxia do RN exposto ao HIV) o protocolo muda com frequência e não foi reaberto. Sobram ~71 da UNIFESP 2022.
+
 ## Próximo
 
 Esperar o aval do padrão pelo piloto; depois seguir a fila: UNIFESP (da mais rasa à mais funda, prova por prova), USP, IAMSPE, em lotes de 20–30 por rodada.
