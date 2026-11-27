@@ -78,6 +78,8 @@ function quebrasDeParagrafo(plano){
   const re = (r, fn) => { let m; while((m = r.exec(plano))) fn(m); };
   re(/^A alternativa [A-E] está correta\. (?=\S)/g, m => marcar(m[0].length, 2));
   re(/(?<=[.!?:] )Dicas d[oa]s? [^:\n]{1,20}:/g, m => marcar(m.index, 2));
+  // revisão didática: o conceito e a armadilha ganham parágrafo próprio, senão se perdem no meio do raciocínio
+  re(/(?<=[.!?:] )(?:Conceito-chave|Como não errar):/g, m => marcar(m.index, 2));
   let primeiraAlt = plano.length, achouAlt = false;
   re(/(?<=[.;:!?] )(?:[A-E]\) (?=(?:Errad[ao]|Incorret[ao]|Corret[ao]|Cert[ao]|Verdadeir[ao]|Fals[ao])\b)|A alternativa [A-E] está (?:errada|incorreta)\b)/g, m => {
     marcar(m.index, 2);

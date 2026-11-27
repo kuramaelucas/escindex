@@ -29,6 +29,7 @@
     "simular-formado": "node ferramentas/simular-formado.mjs",
     "prioridade-formados": "node ferramentas/prioridade-formados.mjs",
     "auditoria-padrao": "node ferramentas/auditoria-padrao.mjs",
+    "didatica": "node ferramentas/auditoria-didatica.mjs",
     "resumo": "node ferramentas/resumo.mjs",
     "conjuntos-por-tema": "node ferramentas/conjuntos-por-tema.mjs"
   },
