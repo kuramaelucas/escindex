@@ -392,24 +392,70 @@ function nuvemAplicarPerfilLocal(p){
   // nula = meta diária (a pessoa voltou para o dia noutro aparelho); ausente = banco sem a coluna, não decide
   if("meta_questoes_semana" in p){ if(p.meta_questoes_semana) u.metaQuestoesSemana = p.meta_questoes_semana; else delete u.metaQuestoesSemana; }
   if(p.boas_vindas_em) u.boasVindasEm = p.boas_vindas_em;
-  // a escolha feita neste aparelho vale mais que a que desce: o perfil de lá pode ser anterior a ela
-  if(p.modo_plataforma && !u.modoPlataforma && (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico")) u.modoPlataforma = p.modo_plataforma;
-  // como começar (06e): mesma regra do modo da plataforma — a escolha deste aparelho vale mais
-  if(p.modo_inicio && !u.modoDeInicio && MODOS_DE_INICIO[p.modo_inicio]) u.modoDeInicio = p.modo_inicio;
   // a coluna pode nem existir neste banco (esquema.sql ainda não rodado de novo): só quem a traz decide
   if("prova_alvo_data" in p){ if(p.prova_alvo_data) u.provaAlvoData = p.prova_alvo_data; else delete u.provaAlvoData; }
-  // os assuntos pulados da trilha: o que está neste aparelho vale mais que o que desce (mesma regra do modo da plataforma)
-  if(p.trilha && typeof p.trilha === "object" && p.trilha.pulados && !u.trilhaPulados) u.trilhaPulados = p.trilha.pulados;
   // {} (reordenei de volta ao padrão) vale: é assim que "voltar à ordem da turma" chega ao outro aparelho
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
   if(Array.isArray(p.avisos_lidos)) u.avisosLidos = [...new Set([...(u.avisosLidos || []), ...p.avisos_lidos])];
-  // resumos lidos: a união, mas o que este aparelho já sabe de um resumo (lido ou desmarcado) vale mais
-  if(p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) u.resumosLidos = Object.assign({}, p.resumos_lidos, u.resumosLidos || {});
+  if(p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) mesclarResumosLidos(u, p.resumos_lidos);
+  mesclarEscolhasDoPerfil(u, p);
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
   return u;
+}
+
+/* Escolhas do perfil (modo da plataforma, modo de início, assuntos pulados da
+   trilha): junção a três, contra o último valor que DESCEU da nuvem para este
+   aparelho (db.nuvem.perfilRecebido[id]). Só a nuvem mudou → vale a nuvem; só
+   este aparelho mudou → vale o daqui (ainda vai subir); os dois → vale o daqui.
+   Antes, quem já tinha um valor nunca recebia a escolha feita no outro
+   aparelho, e ainda a desfazia ao subir o perfil. Sem base (primeira vez com
+   esta regra), a nuvem decide quando traz valor. */
+const ESCOLHAS_DO_PERFIL = [
+  { coluna: "modo_plataforma", ler: u => u.modoPlataforma || null, gravar: (u, v) => { u.modoPlataforma = v; },
+    daNuvem: p => (p.modo_plataforma === "resumido" || p.modo_plataforma === "estatistico") ? p.modo_plataforma : null },
+  { coluna: "modo_inicio", ler: u => u.modoDeInicio || null, gravar: (u, v) => { u.modoDeInicio = v; },
+    daNuvem: p => MODOS_DE_INICIO[p.modo_inicio] ? p.modo_inicio : null },
+  { coluna: "trilha", ler: u => u.trilhaPulados || null, gravar: (u, v) => { u.trilhaPulados = v; },
+    daNuvem: p => (p.trilha && typeof p.trilha === "object" && p.trilha.pulados && typeof p.trilha.pulados === "object") ? p.trilha.pulados : null },
+];
+function mesclarEscolhasDoPerfil(u, p){
+  if(!db.nuvem) db.nuvem = {};
+  const todas = db.nuvem.perfilRecebido || (db.nuvem.perfilRecebido = {});
+  const base = todas[u.id] || (todas[u.id] = {});
+  for(const e of ESCOLHAS_DO_PERFIL){
+    if(!(e.coluna in p)) continue;            // banco sem a coluna: não decide
+    const vn = e.daNuvem(p);
+    if(vn == null) continue;                  // nada (ou inválido) lá: fica o daqui
+    const sn = JSON.stringify(vn), sl = JSON.stringify(e.ler(u));
+    const temBase = e.coluna in base;
+    const localMudou = temBase && sl !== base[e.coluna];
+    const nuvemMudou = !temBase || sn !== base[e.coluna];
+    if(nuvemMudou && !localMudou) e.gravar(u, vn);
+    base[e.coluna] = sn;
+  }
+}
+
+/* Resumos lidos vindos da nuvem: por resumo, vence a mudança mais recente
+   (carimbo em "~em"). Antes o aparelho local sempre vencia, então marcar como
+   lido no celular e abrir o computador (que já tinha o resumo "desmarcado", ou
+   uma marca antiga) desfazia a leitura — e o computador ainda subia a versão
+   velha por cima. Sem carimbo dos dois lados (marca anterior a esta regra),
+   mantém-se a regra antiga: o que este aparelho sabe vale mais. */
+function mesclarResumosLidos(u, daNuvem){
+  const emNuvem = (daNuvem["~em"] && typeof daNuvem["~em"] === "object") ? daNuvem["~em"] : {};
+  const emLocal = u.resumosLidosEm || {};
+  const lidos = Object.assign({}, u.resumosLidos || {});
+  const em = Object.assign({}, emLocal);
+  for(const [id, v] of Object.entries(daNuvem)){
+    if(id[0] === "~") continue;
+    const tn = emNuvem[id] || "", tl = emLocal[id] || "";
+    if(!(id in lidos) || (tn && tn > tl)){ lidos[id] = v; if(tn) em[id] = tn; }
+  }
+  u.resumosLidos = lidos;
+  if(Object.keys(em).length) u.resumosLidosEm = em;
 }
 
 /* Manda para a nuvem o que mudou no perfil (metas, ano, turma, lembrete).
@@ -444,7 +490,7 @@ function linhaDoPerfil(usuario){
     trilha: linhaDaTrilhaDoPerfil(usuario),
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
-    resumos_lidos: usuario.resumosLidos || {},
+    resumos_lidos: Object.assign({}, usuario.resumosLidos || {}, usuario.resumosLidosEm ? { "~em": usuario.resumosLidosEm } : {}),
   };
 }
 function nuvemConferirPerfil(){
