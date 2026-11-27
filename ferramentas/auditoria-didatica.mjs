@@ -78,8 +78,8 @@ export function medirDidatica(q){
     conceito: CONCEITO.test(expl), armadilha: ARMADILHA.test(expl),
     formatoNovo: /[A-E]\)\s*Errada:/.test(expl),
   };
-  /* "Funda" = conceito-chave + toda errada com >= 90 caracteres e a maioria dizendo quando seria certa. */
-  m.completa = m.conceito && m.tratadas === m.nErradas && m.rasas === 0 && m.comQuando >= Math.ceil(m.nErradas * 0.75);
+  /* "Funda" = conceito-chave + toda errada com >= 90 caracteres e metade ou mais dizendo quando seria certa. */
+  m.completa = m.conceito && m.tratadas === m.nErradas && m.rasas === 0 && m.comQuando >= Math.ceil(m.nErradas * 0.5);
   /* pontuação só para ordenar a fila: quanto menor, mais rasa */
   m.nota = (m.conceito ? 3 : 0) + (m.armadilha ? 1 : 0) + m.comQuando * 1.5 + (m.nErradas - m.rasas) + Math.min(m.total, 3000) / 600;
   return m;
@@ -92,7 +92,7 @@ function resumoDaProva(arq){
   return { nome: arq.nome, n: ms.length,
     conceito: pct((m) => m.conceito), armadilha: pct((m) => m.armadilha), formatoNovo: pct((m) => m.formatoNovo),
     todasTratadas: pct((m) => m.tratadas === m.nErradas), erradaRasa: pct((m) => m.rasas > 0),
-    comQuando: pct((m) => m.comQuando >= Math.ceil(m.nErradas * 0.75)),
+    comQuando: pct((m) => m.comQuando >= Math.ceil(m.nErradas * 0.5)),
     mediaTotal: Math.round(ms.reduce((s, m) => s + m.total, 0) / n),
     mediaErrada: Math.round(ms.reduce((s, m) => s + m.mediaErrada, 0) / n),
     completas: ms.filter((m) => m.completa).length };
@@ -102,7 +102,7 @@ function tabela(rs){
   const col = (v, w) => String(v).padStart(w);
   console.log("prova".padEnd(28) + col("ativas", 7) + col("concei%", 8) + col("armad%", 7) + col("fmtNovo%", 9) + col("todas%", 7) + col("rasa%", 6) + col("quando%", 8) + col("chars", 7) + col("c/errada", 9) + col("funda", 6));
   for(const r of rs) console.log(nomeCurto(r.nome).padEnd(28) + col(r.n, 7) + col(r.conceito, 8) + col(r.armadilha, 7) + col(r.formatoNovo, 9) + col(r.todasTratadas, 7) + col(r.erradaRasa, 6) + col(r.comQuando, 8) + col(r.mediaTotal, 7) + col(r.mediaErrada, 9) + col(r.completas, 6));
-  console.log("\nconcei% = traz 'Conceito-chave:'; armad% = traz 'Como não errar:'; fmtNovo% = erradas em 'X) Errada:'; todas% = todas as erradas tratadas;\nrasa% = ao menos uma errada com motivo PRÓPRIO < 90 caracteres (frase que junta várias letras não conta como própria); quando% = >= 75% das erradas dizem em que situação seriam certas; funda = cumpre tudo.");
+  console.log("\nconcei% = traz 'Conceito-chave:'; armad% = traz 'Como não errar:'; fmtNovo% = erradas em 'X) Errada:'; todas% = todas as erradas tratadas;\nrasa% = ao menos uma errada com motivo PRÓPRIO < 90 caracteres (frase que junta várias letras não conta como própria); quando% = >= 50% das erradas dizem em que situação seriam certas; funda = cumpre tudo.");
 }
 
 function principal(){

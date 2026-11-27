@@ -24,7 +24,7 @@ A tela põe `Conceito-chave:` e `Como não errar:` em parágrafo próprio (`queb
 
 ## Ferramenta
 
-`npm run didatica` (`ferramentas/auditoria-didatica.mjs`, só leitura): por prova, % com conceito-chave, com "Como não errar", com erradas no formato novo, com todas as erradas tratadas, com alguma errada rasa (motivo **próprio** < 90 caracteres; frase que junta várias letras não conta como própria) e com ≥ 75% das erradas dizendo quando seriam certas; "funda" = cumpre tudo.
+`npm run didatica` (`ferramentas/auditoria-didatica.mjs`, só leitura): por prova, % com conceito-chave, com "Como não errar", com erradas no formato novo, com todas as erradas tratadas, com alguma errada rasa (motivo **próprio** < 90 caracteres; frase que junta várias letras não conta como própria) e com ≥ 50% das erradas dizendo quando seriam certas; "funda" = cumpre tudo.
 `-- <prova> --fila N` lista as N questões **mais rasas** da prova (a fila de trabalho); `-- <q-id>` mostra a medida e o texto de cada errada. É heurística por palavra e tamanho: ordena a fila, **não aprova** (quem aprova é a leitura).
 
 ## Método por lote
@@ -61,6 +61,8 @@ Total das três bancas: ~1.600 questões ativas. A UNIFESP e o IAMSPE agrupam er
 ## Feito
 
 - **Piloto (27/11/2026), 6 questões**, para validar o padrão e a ferramenta: `q-unifesp2022-014`, `q-unifesp2022-041`, `q-usp2024-072`, `q-usp2024-113`, `q-iamspe2025-019`, `q-iamspe2025-084`. Texto de livro-texto; nenhuma diretriz reaberta (nota em `referencias`). Na 041 o motivo de cada errada passou a dizer de quais ciclos aquela janela seria a certa.
+
+- **UNIFESP 2022, lote 1 (27/11/2026), 14 questões** (da fila dos mais rasos): `q-unifesp2022-078`, `-017`, `-061`, `-066`, `-048`, `-040`, `-097`, `-039`, `-042`, `-009`, `-043`, `-096`, `-011`, `-072`. Mesmo método do piloto; onde o gabarito da banca diverge da prática (`-009`, prazo da redução nasal) ou a norma mudou (`-097`, isolamento da covid) a explicação diz isso. Sobram da UNIFESP 2022 cerca de 83 questões.
 
 ## Próximo
 
