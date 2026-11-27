@@ -289,13 +289,18 @@ window.addEventListener("popstate", function(ev){
 /* ---------------------------- lidos ----------------------------
    u.resumosLidos = { resumoId: "AAAA-MM-DD" } (false = desmarcado: a marca de
    "desfiz" precisa viajar para o outro aparelho, senão a união da nuvem a traria
-   de volta). Sobe no perfil (perfis.resumos_lidos) e o Painel da Turma conta. */
+   de volta). Sobe no perfil (perfis.resumos_lidos) e o Painel da Turma conta.
+   u.resumosLidosEm = { resumoId: ISO com hora } diz QUANDO cada marca mudou: ao
+   trocar de aparelho, vence a mudança mais recente (sem isso, o aparelho velho
+   sempre ganhava e desfazia o que foi feito no outro). Viaja na mesma coluna,
+   sob a chave reservada "~em" (mesclarResumosLidos, 03a). */
 function resumoLidoEm(u, id){ const v = u && u.resumosLidos && u.resumosLidos[id]; return v || null; }
-function quantosResumosLidos(u){ return Object.values((u && u.resumosLidos) || {}).filter(Boolean).length; }
+function quantosResumosLidos(u){ return Object.entries((u && u.resumosLidos) || {}).filter(([k, v]) => v && k[0] !== "~").length; }
 function marcarResumoComoLido(id, lido){
   const u = usuarioAtual();
   if(!u) return;
   u.resumosLidos = Object.assign({}, u.resumosLidos || {}, { [id]: lido ? hojeISO() : false });
+  u.resumosLidosEm = Object.assign({}, u.resumosLidosEm || {}, { [id]: new Date().toISOString() });
   saveState();
   toast(lido ? "Resumo marcado como lido." : "Marca de lido desfeita.");
   render();

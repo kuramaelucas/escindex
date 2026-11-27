@@ -1600,7 +1600,7 @@ as $$
     p.trilha -> 'resumo',
     p.faculdade,
     (select count(*) from jsonb_each(case when jsonb_typeof(p.resumos_lidos) = 'object' then p.resumos_lidos else '{}'::jsonb end) e
-      where e.value not in ('false'::jsonb, 'null'::jsonb))
+      where e.value not in ('false'::jsonb, 'null'::jsonb) and left(e.key, 1) <> '~')  -- "~em" guarda os carimbos, não é resumo
   from public.perfis p
   cross join hoje
   left join lateral (

@@ -1045,3 +1045,24 @@ test("Formado: a resposta da própria pessoa não muda o nível (fácil/média/d
     assert.ok(r.paraTodos > r.antes, "para os outros, os erros dela contam");
   } finally { await contexto.close(); }
 });
+
+test("resumo lido: ao trocar de aparelho vence a mudança mais recente, não o aparelho local", async () => {
+  const { pagina, contexto } = await abrir();
+  try {
+    await pagina.goto(comNuvem.url + "index.html"); await pronto(pagina);
+    await pagina.evaluate(() => fazerLoginDemo("aluno"));
+    const r = await pagina.evaluate(() => {
+      const u = usuarioAtual();
+      // este aparelho: desmarcou "a" ontem e leu "b" ontem; a nuvem: leu "a" hoje (outro aparelho), desmarcou "b" antes
+      u.resumosLidos = { a: false, b: "2026-11-26", c: "2026-11-20" };
+      u.resumosLidosEm = { a: "2026-11-26T10:00:00.000Z", b: "2026-11-26T10:00:00.000Z" };
+      mesclarResumosLidos(u, { a: "2026-11-27", b: false, d: "2026-11-27", "~em": { a: "2026-11-27T09:00:00.000Z", b: "2026-11-25T09:00:00.000Z", d: "2026-11-27T09:00:00.000Z" } });
+      return { lidos: u.resumosLidos, n: quantosResumosLidos(u), linha: linhaDoPerfil(u).resumos_lidos };
+    });
+    assert.equal(r.lidos.a, "2026-11-27", "a leitura feita depois no outro aparelho chega");
+    assert.equal(r.lidos.b, "2026-11-26", "a desmarcação mais antiga da nuvem não apaga a leitura daqui");
+    assert.equal(r.lidos.c, "2026-11-20"); assert.equal(r.lidos.d, "2026-11-27");
+    assert.equal(r.n, 4, "a chave dos carimbos não conta como resumo");
+    assert.equal(r.linha["~em"].a, "2026-11-27T09:00:00.000Z", "os carimbos sobem junto");
+  } finally { await contexto.close(); }
+});

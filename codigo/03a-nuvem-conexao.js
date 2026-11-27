@@ -404,12 +404,31 @@ function nuvemAplicarPerfilLocal(p){
   if(p.ordem_estagios && typeof p.ordem_estagios === "object") u.ordemEstagios = p.ordem_estagios;
   // avisos já lidos: a união dos dois lados, porque ler num aparelho nunca desfaz a leitura no outro
   if(Array.isArray(p.avisos_lidos)) u.avisosLidos = [...new Set([...(u.avisosLidos || []), ...p.avisos_lidos])];
-  // resumos lidos: a união, mas o que este aparelho já sabe de um resumo (lido ou desmarcado) vale mais
-  if(p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) u.resumosLidos = Object.assign({}, p.resumos_lidos, u.resumosLidos || {});
+  if(p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) mesclarResumosLidos(u, p.resumos_lidos);
   u.lembreteMetaAtivo = !!p.lembrete_meta_ativo;
   if(p.lembrete_meta_horario) u.lembreteMetaHorario = p.lembrete_meta_horario;
   if(!u.criadoEm) u.criadoEm = (p.criado_em || "").slice(0,10) || hojeISO();
   return u;
+}
+
+/* Resumos lidos vindos da nuvem: por resumo, vence a mudança mais recente
+   (carimbo em "~em"). Antes o aparelho local sempre vencia, então marcar como
+   lido no celular e abrir o computador (que já tinha o resumo "desmarcado", ou
+   uma marca antiga) desfazia a leitura — e o computador ainda subia a versão
+   velha por cima. Sem carimbo dos dois lados (marca anterior a esta regra),
+   mantém-se a regra antiga: o que este aparelho sabe vale mais. */
+function mesclarResumosLidos(u, daNuvem){
+  const emNuvem = (daNuvem["~em"] && typeof daNuvem["~em"] === "object") ? daNuvem["~em"] : {};
+  const emLocal = u.resumosLidosEm || {};
+  const lidos = Object.assign({}, u.resumosLidos || {});
+  const em = Object.assign({}, emLocal);
+  for(const [id, v] of Object.entries(daNuvem)){
+    if(id[0] === "~") continue;
+    const tn = emNuvem[id] || "", tl = emLocal[id] || "";
+    if(!(id in lidos) || (tn && tn > tl)){ lidos[id] = v; if(tn) em[id] = tn; }
+  }
+  u.resumosLidos = lidos;
+  if(Object.keys(em).length) u.resumosLidosEm = em;
 }
 
 /* Manda para a nuvem o que mudou no perfil (metas, ano, turma, lembrete).
@@ -444,7 +463,7 @@ function linhaDoPerfil(usuario){
     trilha: linhaDaTrilhaDoPerfil(usuario),
     ordem_estagios: usuario.ordemEstagios || {},
     avisos_lidos: usuario.avisosLidos || [],
-    resumos_lidos: usuario.resumosLidos || {},
+    resumos_lidos: Object.assign({}, usuario.resumosLidos || {}, usuario.resumosLidosEm ? { "~em": usuario.resumosLidosEm } : {}),
   };
 }
 function nuvemConferirPerfil(){

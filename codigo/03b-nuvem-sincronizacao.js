@@ -351,6 +351,24 @@ function nuvemRegistrar(o){
 }
 
 /* ---------------------------- sincronizar --------------------------------- */
+/* O perfil sobe INTEIRO (a coluna resumos_lidos é um só jsonb). Se este
+   aparelho tem perfil por subir (mudou a meta, marcou um resumo), subir antes
+   de baixar gravaria a lista de lidos velha por cima da que outro aparelho
+   já mandou — e a leitura feita lá sumia. Por isso, só quando há o que subir,
+   lê-se o perfil da nuvem e junta-se os lidos (vence o carimbo mais novo) antes. */
+async function nuvemJuntarResumosLidosAntesDeEnviar(){
+  const u = db.usuarios.find(x => x.id === nuvemSessao.usuarioId);
+  if(!u) return;
+  const pendente = (db.filaNuvem || []).some(op => op.tabela === "perfis") || db.nuvem.perfilEnviado !== JSON.stringify(linhaDoPerfil(u));
+  if(!pendente) return;
+  try {
+    const p = await nuvemBuscarPerfil();
+    if(p && p.resumos_lidos && typeof p.resumos_lidos === "object" && !Array.isArray(p.resumos_lidos)) mesclarResumosLidos(u, p.resumos_lidos);
+  } catch(e){ /* sem resposta agora: sobe como está, a próxima sincronização junta */ }
+  // a linha que já esperava na fila é refeita com a lista juntada
+  if((db.filaNuvem || []).some(op => op.tabela === "perfis")) db.nuvem.perfilEnviado = null;
+}
+
 async function nuvemSincronizar(opcoes = {}){
   if(!nuvemConectado() || nuvemEstado.sincronizando) return false;
   // sessão vencida: insistir só geraria erro atrás de erro. A fila fica
@@ -368,6 +386,7 @@ async function nuvemSincronizar(opcoes = {}){
   const erroAntes = nuvemEstado.ultimoErro;
   nuvemEstado.ultimoErro = null;
   try{
+    await nuvemJuntarResumosLidosAntesDeEnviar();
     nuvemConferirPerfil();
     nuvemConferirGrupos();      // seção 2-C, parte 5 (03e): grupos, membros e grupos de estudo
     nuvemConferirCartoes();     // cartões sugeridos à equipe ou compartilhados com o grupo
